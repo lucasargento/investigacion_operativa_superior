@@ -1,4 +1,4 @@
-# investigacion_operativa_superior
+# Investigación Operativa Superior - Fiuba 2025
 
 Este repositorio contiene materiales, ejercicios, prácticas y recursos relacionados con la materia **Investigación Operativa Superior** de la carrera de Ingeniería. El objetivo es centralizar y organizar todo el contenido de la cursada, facilitando el acceso a apuntes, prácticas, modelos, experimentos y material de referencia.
 
