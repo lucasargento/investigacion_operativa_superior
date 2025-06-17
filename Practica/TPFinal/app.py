@@ -156,6 +156,7 @@ if st.button("Ejecutar Scheduler") and demanda:
             # Para cada tanque, si ambos sabores usan el mismo tanque, forzamos que la mezcla del sabor 2
             # comience después de que termine la mezcla del sabor 1 (según el orden de prioridad de sabores)
             for t in tanques:
+                # si ambos productos usan el mismo tanque, el segundo solo puede empezar después de que termine el primero.
                 # m1_use: variable booleana que indica si se usa el tanque t para la mezcla de (s1, f1)
                 # m1_st: variable entera que representa el inicio de la mezcla de (s1, f1) en el tanque t
                 m1_use, m1_st, _ = next(opt for opt in tareas_plot[(s1, f1)]["m_opts"] if opt[2] == t)
@@ -167,12 +168,18 @@ if st.button("Ejecutar Scheduler") and demanda:
             # Para cada línea de envasado, si ambos sabores usan la misma línea, forzamos que el envasado del sabor 2
             # comience después de que termine el envasado del sabor 1 (según el orden de prioridad de sabores)
             for l in cap:
+                # si ambos usan la misma línea, el segundo solo puede empezar después de que termine el primero.
                 if l in lineas_for[f1] and l in lineas_for[f2]:
                     e1_use, e1_st, _, d1 = next(opt for opt in tareas_plot[(s1, f1)]["e_opts"] if opt[2] == l)
                     e2_use, e2_st, _, _  = next(opt for opt in tareas_plot[(s2, f2)]["e_opts"] if opt[2] == l)
                     
                     # Restricción de precedencia de sabores 
                     mdl.Add(e2_st >= e1_st + d1).OnlyEnforceIf([e1_use, e2_use])
+
+    # Por que usamos iterators y next?
+    # Cada opción es una tupla: (use_var, start_var, tanque).
+    # next(opt for ... if opt[2] == t) busca la opción que corresponde al tanque t.
+    # Usar un generador ((opt for ... if ...)) es eficiente: no recorre toda la lista, se detiene en la primera coincidencia.
 
     # --- Makespan: minimizar el tiempo total de producción ---
     ends = [iv.EndExpr() for lst in env_por_linea.values() for iv in lst]
