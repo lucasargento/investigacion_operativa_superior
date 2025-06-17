@@ -10,3 +10,4 @@ setuptools
 dash
 plotly
 streamlit
+matplotlib
