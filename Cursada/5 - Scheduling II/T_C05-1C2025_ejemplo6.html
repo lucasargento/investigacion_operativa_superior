@@ -1,0 +1,51 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['gantt']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+      var data = new google.visualization.DataTable();
+
+      data.addColumn('string', 'Task ID');
+      data.addColumn('string', 'Task Name');
+      data.addColumn('string', 'Resource');
+      data.addColumn('date', 'Start Date');
+      data.addColumn('date', 'End Date');
+      data.addColumn('number', 'Duration');
+      data.addColumn('number', 'Percent Complete');
+      data.addColumn('string', 'Dependencies');
+
+      data.addRows([
+        ['0', 'CORTE METAL', 'A', new Date(2024, 9, 17), new Date(2024, 9, 18), null, 100, null],
+        ['1', 'DOBLADO',     'B', new Date(2024, 9, 18), new Date(2024, 9, 20), null, 100, '0'],
+        ['2', 'SOLDADO',     'C', new Date(2024, 9, 20), new Date(2024, 9, 22), null, 100, '1'],
+        ['3', 'CORTE MADERA','D', new Date(2024, 9, 23), new Date(2024, 9, 24), null, 100, '2'],
+        ['4', 'TAPIZADO',    'E', new Date(2024, 9, 24), new Date(2024, 9, 25), null, 100, '3'],
+        ['5', 'PINTURA',     'F', new Date(2024, 9, 26), new Date(2024, 9, 27), null, 100, '4'],
+        ['6', 'DESPACHO',    'G', new Date(2024, 9, 28), new Date(2024, 9, 30), null, 100, '5'],
+        ['7', 'CORTE METAL', 'A', new Date(2024, 9, 18), new Date(2024, 9, 20), null, 100, null],
+        ['8', 'DOBLADO',     'B', new Date(2024, 9, 20), new Date(2024, 9, 21), null, 100, '7'],
+        ['9', 'SOLDADO',     'H', new Date(2024, 9, 21), new Date(2024, 9, 23), null, 100, '8'],
+        ['10', 'CORTE MADERA','I', new Date(2024, 9, 23), new Date(2024, 9, 24), null, 100, '9'],
+        ['11', 'TAPIZADO',    'E', new Date(2024, 9, 25), new Date(2024, 9, 26), null, 100, '10'],
+        ['12', 'PINTURA',     'F', new Date(2024, 9, 27), new Date(2024, 9, 28), null, 100, '11'],
+        ['13', 'DESPACHO',    'J', new Date(2024, 9, 28), new Date(2024, 9, 30), null, 100, '12'],
+      ]);
+
+      var options = {
+        height: 800, gantt: { trackHeight: 30}
+      };
+
+      var chart = new google.visualization.Gantt(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <div id="chart_div"></div>
+</body>
+</html>
