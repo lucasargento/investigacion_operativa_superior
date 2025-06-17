@@ -1,0 +1,39 @@
+{
+  "description": "---\nTitle:    Graceful Graphs\nProposer: Karen Petrie\nCategory: Combinatorial mathematics\n---\n\n\nA labelling $f$ of the nodes of a graph with $q$ edges is graceful if $f$ assigns each\nnode a unique label from $\\{0, 1, \\ldots , q\\}$ and when each edge $xy$ is labelled with\n$|f(x)-f(y)|$, the edge labels are all different. Gallian surveys graceful graphs, i.e. graphs with a graceful labelling, and lists the\ngraphs whose status is known.\n\n<center>\n<figure>\n  <img src=\"assets/k4.png\" alt=\"solution to $K_4$ \" height=\"300\">\n  <figcaption>A graceful labelling of $K_4$ </figcaption>\n</figure>\n</center>\n\n{prob007} is a special case of a graceful graph where the graph is a line.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Graceful Graphs",
+    "domain": "Combinatorial mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "abs",
+      "=",
+      "all_different"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Graceful Graphs",
+    "domain": "Combinatorial mathematics",
+    "model_var_keywords": [
+      "nodes",
+      "graph",
+      "edges"
+    ],
+    "model_data_keywords": [
+      "num_edges",
+      "num_nodes"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "abs",
+      "=",
+      "all_different"
+    ]
+  }
+}

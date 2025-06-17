@@ -1,0 +1,130 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 108
+- Name: Combinatorial Auction
+- Domain: Economic and Business Decisions
+- Objective: maximization
+
+Problem Description:
+Combinatorial auction problem where bidders can give bids for sets of items. The auctioneer needs to generate an optimal selection that maximizes revenue. Given a set of items and bids, find a subset of bids such that any two bids in the subset do not share an item while maximizing the total bid amount. This problem can be seen as a variation of the set covering/set partition problem.
+
+
+Input Data (data.dzn):
+num_items = 7;
+num_bids = 5;
+max_item = 7;
+
+% Binary matrix representation of packages
+packages = array2d(1..num_bids, 1..num_items, [
+    1, 1, 1, 1, 0, 0, 0,  % Bid 1: {1,2,3,4}
+    0, 1, 1, 0, 0, 1, 0,  % Bid 2: {2,3,6}
+    1, 0, 0, 1, 1, 0, 0,  % Bid 3: {1,4,5}
+    0, 1, 0, 0, 0, 0, 1,  % Bid 4: {2,7}
+    0, 0, 0, 0, 1, 1, 0   % Bid 5: {5,6}
+]);
+
+% Bid values
+bids = [8,6,5,2,2];
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+% -----------------------------
+% 1) PARAMETERS
+% -----------------------------
+
+int: num_items;  % Number of available items
+int: num_bids;   % Number of bids
+
+% Binary matrix representation of bid packages
+array[1..num_bids, 1..num_items] of int: packages;
+  % packages[i,j] = 1 if bid i includes item j, otherwise 0
+
+array[1..num_bids] of int: bids;  % Value of each bid
+
+% -----------------------------
+% 2) DECISION VARIABLES
+% -----------------------------
+
+array[1..num_bids] of var 0..1: x;  % Whether bid i is selected (1) or not (0)
+var int: total;  % Total value of selected bids
+
+% -----------------------------
+% 3) OBJECTIVE FUNCTION
+% -----------------------------
+
+solve :: int_search(x, first_fail, indomain_min, complete) maximize total;
+
+% -----------------------------
+% 4) CONSTRAINTS
+% -----------------------------
+
+% Compute total revenue from selected bids
+constraint total = sum(i in 1..num_bids) ( x[i] * bids[i] );
+
+% Ensure each item is assigned at most once
+constraint
+   forall(j in 1..num_items) (
+       sum(i in 1..num_bids) (x[i] * packages[i,j]) <= 1
+   );
+
+% -----------------------------
+% 5) OUTPUT
+% -----------------------------
+
+output [
+  "Selected Bids: ", show(x), "\n",
+  "Total Revenue: ", show(total), "\n"
+];
+
+
+Expected Output:
+{
+  "supplier": [
+    5,
+    2,
+    5,
+    1,
+    5,
+    2,
+    2,
+    3,
+    2,
+    3
+  ],
+  "open": [
+    true,
+    true,
+    true,
+    false,
+    true
+  ],
+  "cost": [
+    30,
+    27,
+    70,
+    2,
+    4,
+    22,
+    5,
+    13,
+    35,
+    55
+  ],
+  "tot": 383,
+  "_objective": 383
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

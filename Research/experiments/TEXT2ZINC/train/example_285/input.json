@@ -1,0 +1,41 @@
+{
+  "description": "# Problem SimpleColoring\n\nA simple coloring problem\n\n## Data\n  all integrated (single problem)\n\n## Execution\n```\n  python SimpleColoring.py\n```\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Simple Coloring",
+    "domain": "Graph Theory",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "endif",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Simple Coloring",
+    "domain": "Graph Theory",
+    "model_var_keywords": [
+      "color",
+      "obj"
+    ],
+    "model_data_keywords": [
+      "num_nodes",
+      "num_colors",
+      "adjacency_matrix"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "endif",
+      "!="
+    ]
+  }
+}

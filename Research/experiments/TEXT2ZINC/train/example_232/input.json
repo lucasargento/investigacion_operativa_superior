@@ -1,0 +1,44 @@
+{
+  "description": "Minimize the total cost of the production and inventory schedule over T periods, given Deliver for each period, a StorageCost for holding inventory, and a SwitchCost for changing production between periods.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Production and Inventory Schedule Optimization",
+    "domain": "Operations Research",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "abs",
+      "sum",
+      "-",
+      ">=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Production and Inventory Schedule Optimization",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "x",
+      "inventory",
+      "cost"
+    ],
+    "model_data_keywords": [
+      "Deliver",
+      "StorageCost",
+      "SwitchCost"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "abs",
+      "sum",
+      "-",
+      ">=",
+      "="
+    ]
+  }
+}

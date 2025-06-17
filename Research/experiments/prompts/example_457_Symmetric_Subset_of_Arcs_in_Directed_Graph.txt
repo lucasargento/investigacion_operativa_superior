@@ -1,0 +1,121 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 457
+- Name: Symmetric Subset of Arcs in Directed Graph
+- Domain: Graph Theory
+- Objective: satisfaction
+
+Problem Description:
+Consider a directed graph G described by a collection of nodes. The task is to select a subset of arcs of G such that the corresponding graph is symmetric. This means that if there is an arc from node i to node j, there must also be an arc from node j to i. For example, consider the following nodes and their successors: 
+
+index-1 succ-{1,2,3},
+index-2 succ-{1,3},
+index-3 succ-{1,2},
+index-4 succ-{5,6},
+index-5 succ-{4},
+index-6 succ-{4}
+
+The symmetric constraint holds since the nodes collection depicts a symmetric graph. The problem is to find such a symmetric subset of arcs for a given directed graph.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+
+int: n = 6;
+array[1..n] of var set of 1..n: x;
+
+
+predicate symmetric(array[int] of var set of int: s) =
+
+  forall(i, j in index_set(s) where i != j) (
+    j in s[i] <-> i in s[j]
+  )
+;
+
+predicate cp1d(array[int] of var set of int: x, array[int] of var set of int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+    forall(i in index_set(x)) ( x[i] = y[i] ))
+; 
+
+solve satisfy;
+
+constraint
+   cp1d(x, 
+       [
+        {1,2,3},
+        {1,3},
+        {1,2},
+        {5,6},
+        {4},
+        {4}
+    ])
+  /\
+  symmetric(x)
+
+;
+
+
+output [
+  "x: ", show(x), "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    {
+      "set": [
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "set": [
+        1,
+        3
+      ]
+    },
+    {
+      "set": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "set": [
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "set": [
+        4
+      ]
+    },
+    {
+      "set": [
+        4
+      ]
+    }
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

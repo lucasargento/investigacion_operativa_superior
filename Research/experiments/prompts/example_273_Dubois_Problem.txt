@@ -1,0 +1,149 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 273
+- Name: Dubois Problem
+- Domain: Academic
+- Objective: maximization
+
+Problem Description:
+# Problem Dubois
+
+This problem has been conceived by Olivier Dubois, and submitted to the second DIMACS Implementation Challenge.
+Dubois's generator produces contradictory 3-SAT instances that seem very difficult to be solved by any general method.
+Given an integer n, called the degree, Dubois's process allows us to construct a 3-SAT contradictory instance with 3 * n variables and 2 * n clauses,
+each of them having 3 literals.
+
+## Data
+  A number n, each clause of the problem has 3*n variables and 2*n clauses.
+
+## Model
+  a model can be found in this jupyter notebook [GitHub page](https://github.com/xcsp3team/pycsp3/blob/master/problems/csp/academic/Dubois.py).
+
+  constraints: [Table](http://pycsp.org/documentation/constraints/Table)
+
+## Execution
+```
+  python Dubois.py -data=number
+```
+
+## Tags
+  academic
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the degree
+int: n = 5;
+
+% Define the variables
+array[1..3*n] of var bool: vars;
+
+% Define the clauses
+array[1..2*n, 1..3] of var 1..3*n: clauses;
+
+% Define the constraints
+constraint forall(i in 1..2*n) (
+    bool_clause([vars[clauses[i,j]] | j in 1..3], [true, true, true])
+);
+
+% Define the objective function
+var int: obj = sum(i in 1..2*n) (
+    sum(j in 1..3) (if vars[clauses[i,j]] then 1 else 0 endif)
+);
+
+% Define the optimization problem
+solve maximize obj;
+
+% Output the solution
+output ["Degree: " ++ show(n) ++ "\n"];
+output ["Variables: " ++ show(vars) ++ "\n"];
+output ["Clauses: " ++ show(clauses) ++ "\n"];
+output ["Objective: " ++ show(obj) ++ "\n"];
+
+Expected Output:
+{
+  "vars": [
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "clauses": [
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1
+    ]
+  ],
+  "_objective": 30
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,59 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 180
+- Name: Integer Partitioning
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is about integer partitions in MiniZinc. The goal is to find one or all possible solutions, depending on the solver, to partition an integer 'n' into 'm' parts, represented by the array 'x'. The constraints are that the sum of all elements in 'x' should be equal to 'n' and each element in 'x' should be greater than 2. There are no extra constraints. The problem does not require a specific solution, but rather all possible solutions that satisfy the constraints.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: n = 52;
+int: m = 9;
+array[1..m] of var 1..n: x;
+
+% solve satisfy;
+solve :: int_search(x, max_regret, indomain_max, complete) satisfy;
+
+constraint
+   n = sum(i in 1..m) (x[i])
+   % /\ increasing(x) % symmetry breaking
+   /\ forall(i in 1..m) (x[i] > 2)
+;
+
+
+output [
+ show(x) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    28,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

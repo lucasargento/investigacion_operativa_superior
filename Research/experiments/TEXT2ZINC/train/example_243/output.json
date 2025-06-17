@@ -1,0 +1,18 @@
+{
+  "buyquantity": [
+    0,
+    10,
+    0
+  ],
+  "sellquantity": [
+    0,
+    0,
+    10
+  ],
+  "stock": [
+    0,
+    10,
+    0
+  ],
+  "_objective": 970
+}

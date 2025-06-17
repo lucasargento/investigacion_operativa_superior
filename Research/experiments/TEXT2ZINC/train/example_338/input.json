@@ -1,0 +1,38 @@
+{
+  "description": "The Secret Santa problem involves a group of friends who play a Secret Santa game around Christmas time. They draw names and spend a week sneaking that person gifts and clues to their identity. On the last night of the game, they get together, have dinner, share stories, and try to guess who their Secret Santa was. The challenge is to implement a Secret Santa selection script. The script will be fed a list of names. The script should then choose a Secret Santa for every name in the list. A person cannot be their own Secret Santa. In addition, people in the same family are not allowed to be Santas for each other. The friends are identified with a number from 1 to n, and the families are identified with a number 1 to num_families. The goal is to assign a Secret Santa to each person such that no person is their own Secret Santa and no two people from the same family are Santas for each other.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Secret Santa Assignment",
+    "domain": "Games",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "no_self_santas",
+      "forall",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Secret Santa Assignment",
+    "domain": "Games",
+    "model_var_keywords": [
+      "secret_santa_assignment"
+    ],
+    "model_data_keywords": [
+      "n",
+      "num_families",
+      "family"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "no_self_santas",
+      "forall",
+      "!="
+    ]
+  }
+}

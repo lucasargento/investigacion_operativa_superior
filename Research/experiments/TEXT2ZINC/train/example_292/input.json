@@ -1,0 +1,47 @@
+{
+  "description": "# Problem TrafficLights\n\nProblem 016 on CSPLib\n\n## Data\n  all integrated (single problem)\n\n## Execution\n```\n  python TrafficLights.py\n```\n\n## Links\n - https://www.csplib.org/Problems/prob016/\n\n## Tags\n  single, notebook, csplib",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Traffic Lights",
+    "domain": "CSPLib",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "=",
+      "10"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Traffic Lights",
+    "domain": "CSPLib",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "=",
+      "10"
+    ]
+  }
+}

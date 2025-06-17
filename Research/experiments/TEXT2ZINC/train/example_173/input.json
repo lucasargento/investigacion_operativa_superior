@@ -1,0 +1,39 @@
+{
+  "description": "This problem is a map coloring problem. Given a number of countries and a matrix representing the connections between these countries, the task is to assign a color to each country such that no two adjacent countries have the same color. The colors are represented as integers from 1 to 4. The connections between countries are represented as a 2D matrix where a 1 indicates a connection and a 0 indicates no connection. The problem is to find a coloring that satisfies these constraints. The solution should be a list of colors assigned to each country in the order [belgium, denmark, france, germany, netherlands, luxembourg].",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Map Coloring Problem",
+    "domain": "Graph Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "where",
+      "!=",
+      "coloring"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Map Coloring Problem",
+    "domain": "Graph Theory",
+    "model_var_keywords": [
+      "country_color"
+    ],
+    "model_data_keywords": [
+      "num_countries",
+      "Colors",
+      "Countries",
+      "connections"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "where",
+      "!=",
+      "coloring"
+    ]
+  }
+}

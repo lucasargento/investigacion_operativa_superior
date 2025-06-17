@@ -1,0 +1,47 @@
+{
+  "description": "Formulate the problem of determining the production schedule that minimizes the cost, where the demand for each product is given by Demand, the maximum production amount under regular conditions is MaxRegularAmount, cost of regular production per unit is CostRegular, cost of production under overtime conditions per unit is CostOvertime, and the cost to store one unit of product is StoreCost.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Production Scheduling Problem",
+    "domain": "Manufacturing",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "if",
+      "=",
+      "+",
+      "-",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Production Scheduling Problem",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "reg_quant",
+      "over_quant",
+      "store_quant",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "demand",
+      "max_regular_amount",
+      "cost_regular",
+      "cost_overtime",
+      "store_cost"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "if",
+      "=",
+      "+",
+      "-",
+      "sum"
+    ]
+  }
+}

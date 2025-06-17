@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 395
+- Name: Birthday Paradox
+- Domain: Probability Theory
+- Objective: satisfaction
+
+Problem Description:
+The Birthday Paradox, or Birthday Problem, is a problem in probability theory that pertains to the probability that in a set of randomly chosen people, some pair of them will have the same birthday. In a group of 23 (or more) randomly chosen people, there is more than 50% probability that some pair of them will both have been born on the same day of the year. For 57 or more people, the probability is more than 99%, tending toward 100% as the pool of people grows. The problem is to calculate the probability of having no duplicate birthdays and the probability of having duplicate birthdays in a group of people. The number of days in a year is 365 and the number of people to check is 100.
+
+
+MiniZinc Model:
+int: n = 365; % number of days of a year
+int: p = 100; % number of persons to check
+
+array[1..p] of var 0.0..1.0: prob_no_dup; % probablity of no duplicate
+array[1..p] of var 0.0..1.0: prob_dup; % probablity of same birthday (duplicate)
+
+solve satisfy;
+
+constraint
+  prob_no_dup[1] = 1.0
+
+  /\  % calculate the probability of _no_ duplicate
+  forall(i in 2..p) (
+     prob_no_dup[i] = prob_no_dup[i-1] * int2float(n - i-1 )/ int2float(n)
+  )
+
+  /\ % probability of duplicates
+  forall(i in 1..p) (
+    prob_dup[i] = 1.0 - prob_no_dup[i]
+  )
+;
+
+output 
+[
+ "num persons: prob of duplicates\n"
+] ++
+[
+  show(i) ++ ": " ++ show(prob_dup[i]) ++ "\n"
+  | i in 1..p
+];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

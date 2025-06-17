@@ -1,0 +1,52 @@
+{
+  "description": "A company is planning to invest in some building projects. The company has a budget of 225 million Swedish kronor, 28 persons available, and can select a maximum of 9 projects. However, some projects may not be selected together with other projects, and some projects must be selected together with others. The goal is to select the projects in such a way that the total value of the selected projects is maximized, while adhering to the constraints of the budget, available personnel, and project selection rules. The problem is modeled as an integer programming problem, where each project is represented by a binary decision variable indicating whether it is selected or not. The objective function to be maximized is the total value of the selected projects. The constraints ensure that the budget, personnel, and project selection rules are respected.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Project Selection Optimization",
+    "domain": "Investment Planning",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "+",
+      "-",
+      "sum",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Project Selection Optimization",
+    "domain": "Investment Planning",
+    "model_var_keywords": [
+      "x",
+      "total_persons",
+      "total_budget",
+      "total_projects",
+      "total_values"
+    ],
+    "model_data_keywords": [
+      "num_projects",
+      "max_budget",
+      "max_persons",
+      "max_projects",
+      "values",
+      "budgets",
+      "personell",
+      "num_not_with",
+      "not_with",
+      "num_requires",
+      "requires"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "+",
+      "-",
+      "sum",
+      "forall"
+    ]
+  }
+}

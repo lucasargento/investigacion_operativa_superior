@@ -1,0 +1,41 @@
+{
+  "description": "Jack needs to find at least 80 shrimps and 50 conches to pay his monthly rent for his beach house . There are two beaches that Jack frequents : Silver Beach and Lucent Beach . Each day at Silver beach , Jack finds 7 shrimps and 3 conches . Each day at Lucent Beach , Jack finds 4 shrimps and 6 conches . Formulate an LP to help Jack meet his requirements while spending a minimal amount of time .",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Beach House Rent Collection",
+    "domain": "Linear Programming",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "*",
+      "+",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Beach House Rent Collection",
+    "domain": "Linear Programming",
+    "model_var_keywords": [
+      "silver_days",
+      "lucent_days",
+      "total_days"
+    ],
+    "model_data_keywords": [
+      "shrimps_silver",
+      "shrimps_lucent",
+      "conches_silver",
+      "conches_lucent",
+      "min_shrimps",
+      "min_conches"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "*",
+      "+",
+      ">="
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "description": "This problem is known as Wilkinson's problem, a non-linear problem. The problem is to find a value for 'x' in the range of -100.00 to 10.00 that minimizes 'x' and satisfies the constraint that 0.0 equals the product of (x+n) for n from 1 to 20 plus 0.00000011920928955078 times x to the power of 19. The solution to this problem is a real number that is approximately -20.84690810148.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Wilkinson's Problem",
+    "domain": "Non-linear Optimization",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "0.0",
+      "=",
+      "product_x_plus_n",
+      "+",
+      "constant",
+      "*",
+      "x_power_19"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Wilkinson's Problem",
+    "domain": "Non-linear Optimization",
+    "model_var_keywords": [
+      "x",
+      "x_plus_n",
+      "product_x_plus_n",
+      "x_power_19"
+    ],
+    "model_data_keywords": [
+      "lower_bound",
+      "upper_bound",
+      "constant"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "0.0",
+      "=",
+      "product_x_plus_n",
+      "+",
+      "constant",
+      "*",
+      "x_power_19"
+    ]
+  }
+}

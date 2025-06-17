@@ -1,0 +1,48 @@
+{
+  "description": "How much of each alloy should the company use in each type of steel, and how much of each steel type should be produced to maximize profit? The company has A different alloys and S different steel types. For each alloy a in 1, ..., A, there is an available amount of AvailableAlloy, a carbon content of CarbonContent, a nickel content of NickelContent, and an alloy price of AlloyPrice. For each steel type s in 1, ..., S, there is a steel price of SteelPrice, a minimum required carbon content of CarbonMin, and a maximum allowed nickel content of NickelMax.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Steel Production Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<=",
+      "/"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Steel Production Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "alloy_use",
+      "total_steel",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "available",
+      "carbon",
+      "nickel",
+      "alloy_prices",
+      "steel_prices",
+      "carbon_min",
+      "nickel_max"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<=",
+      "/"
+    ]
+  }
+}

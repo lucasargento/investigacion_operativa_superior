@@ -1,0 +1,91 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 310
+- Name: Price Change Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is a price change puzzle. There are 3 dealers and 2 prices. The total number of items sold by each dealer is given. The number of items sold by each dealer at each price is to be determined, as well as the two prices. The constraints are that the number of items sold by a dealer at a price cannot exceed the total number of items sold by that dealer and cannot be negative. The total number of items sold by a dealer is the sum of the items sold at each price. The total revenue of the first dealer at each price is equal to the total revenue of the other dealers at each price. The second price is at least one unit higher than the first price. The total number of items sold by the dealers are 10, 25, and 30 respectively.
+
+
+MiniZinc Model:
+int: m = 3;    % dealers
+int: n = 2;    % prices
+
+set of 1..m: M = 1..m;
+set of 1..n: N = 1..n;
+set of 2..m: Q = 2..m;
+
+array[M] of int: nsold;  % total number sold by each dealer
+
+array[M,N] of var int: x; % number sold by dealer i at price j
+array[N] of var 1..10: p; % price j (i.e. first and second prices)
+
+solve satisfy;
+
+constraint
+      forall(i in M, j in N) (
+          x[i,j] <= nsold[i] /\
+          x[i,j] >= 0
+      )
+      /\
+      forall(i in M) (
+        nsold[i] = sum (j in N) (x[i,j])
+      )
+      /\
+      forall(k in Q) (
+         sum(j in N) ( p[j] * x[1,j] ) = sum(j in N) ( p[j] * x[k,j] )
+      )
+      /\
+      p[2] >= p[1]+1
+;
+
+nsold =  [10, 25, 30];
+
+output [
+  "nsold: ", show(nsold), "\n",
+  "p:     ", show(p)
+] ++
+[
+   if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+   | i in M, j in N
+] ++ ["\n"]
+
+;
+
+Expected Output:
+{
+  "x": [
+    [
+      6,
+      4
+    ],
+    [
+      24,
+      1
+    ],
+    [
+      30,
+      0
+    ]
+  ],
+  "p": [
+    1,
+    6
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

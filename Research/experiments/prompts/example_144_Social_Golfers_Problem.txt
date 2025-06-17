@@ -1,0 +1,299 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 144
+- Name: Social Golfers Problem
+- Domain: Scheduling
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    Social Golfers Problem
+Proposer: Warwick Harvey
+Category: Scheduling and related problems
+---
+
+
+The coordinator of a local golf club has come to you with the following problem. In their club, there are 32 social golfers, each of whom play golf once a week, and always in groups of 4. They would like you to come up with a schedule of play for these golfers, to last as many weeks as possible, such that no golfer plays in the same group as any other golfer on more than one occasion.
+Possible variants of the above problem include: finding a 10-week schedule with "maximum socialisation"; that is, as few repeated pairs as possible (this has the same solutions as the original problem if it is possible to have no repeated pairs), and finding a schedule of minimum length such that each golfer plays with every other golfer at least once ("full socialisation").
+
+The problem can easily be generalized to that of scheduling $m$ groups of $n$ golfers over $p$ weeks, such that no golfer plays in the same group as any other golfer twice (i.e. maximum socialisation is achieved).
+
+This problem is derived from a question posted to sci.op-research by
+bigwind777@aol.com (Bigwind777) in May 1998. It is a generalisation of the
+problem of constructing a
+round-robin tournament schedule, where the number
+of players in a "game" is
+more than two. The optimal solution for 32 golfers is not yet known.
+
+
+Input Data (data.dzn):
+n_groups = 4;
+n_per_group = 4;
+n_rounds = 5;
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: n_groups;                          % The number of groups.
+int: n_per_group;                       % The size of each group.
+int: n_rounds;                          % The number of rounds.
+
+int: n_golfers = n_groups * n_per_group;
+
+set of int: groups = 1..n_groups;
+set of int: group = 1..n_per_group;
+set of int: rounds = 1..n_rounds;
+set of int: golfers = 1..n_golfers;
+
+array [rounds, groups] of var set of golfers: round_group_golfers;
+
+    % Each group has to have the right size.
+    %
+constraint
+    forall (r in rounds, g in groups) (
+        card(round_group_golfers[r, g]) = n_per_group
+    );
+
+    % Each group in each round has to be disjoint.
+    %
+constraint
+    forall (r in rounds) (
+        all_disjoint (g in groups) (round_group_golfers[r, g])
+    );
+
+    % Symmetry breaking.
+    %
+% constraint
+%     forall (r in rounds, g in groups where g < n_groups) (
+%         round_group_golfers[r, g] < round_group_golfers[r, g + 1]
+%     );
+
+    % Each pair may play together at most once.
+    %
+constraint
+    forall (a, b in golfers where a < b) (
+        sum (r in rounds, g in groups) (
+            bool2int({a, b} subset round_group_golfers[r, g])
+        )
+    <=
+        1
+    );
+
+solve satisfy;
+
+output [    ( if   g = 1
+              then "\nround " ++ show(r) ++ ":   "
+              else "   "
+              endif
+            ) ++
+            show(round_group_golfers[r, g])
+       |    r in rounds, g in groups
+       ];
+
+
+%-----------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------%
+
+Expected Output:
+{
+  "round_group_golfers": [
+    [
+      {
+        "set": [
+          [
+            4,
+            5
+          ],
+          [
+            13,
+            14
+          ]
+        ]
+      },
+      {
+        "set": [
+          3,
+          6,
+          [
+            15,
+            16
+          ]
+        ]
+      },
+      {
+        "set": [
+          2,
+          [
+            7,
+            9
+          ]
+        ]
+      },
+      {
+        "set": [
+          1,
+          [
+            10,
+            12
+          ]
+        ]
+      }
+    ],
+    [
+      {
+        "set": [
+          4,
+          7,
+          12,
+          16
+        ]
+      },
+      {
+        "set": [
+          3,
+          5,
+          8,
+          11
+        ]
+      },
+      {
+        "set": [
+          2,
+          6,
+          10,
+          14
+        ]
+      },
+      {
+        "set": [
+          1,
+          9,
+          13,
+          15
+        ]
+      }
+    ],
+    [
+      {
+        "set": [
+          4,
+          6,
+          9,
+          11
+        ]
+      },
+      {
+        "set": [
+          3,
+          7,
+          10,
+          13
+        ]
+      },
+      {
+        "set": [
+          2,
+          5,
+          12,
+          15
+        ]
+      },
+      {
+        "set": [
+          1,
+          8,
+          14,
+          16
+        ]
+      }
+    ],
+    [
+      {
+        "set": [
+          4,
+          8,
+          10,
+          15
+        ]
+      },
+      {
+        "set": [
+          3,
+          9,
+          12,
+          14
+        ]
+      },
+      {
+        "set": [
+          2,
+          11,
+          13,
+          16
+        ]
+      },
+      {
+        "set": [
+          1,
+          [
+            5,
+            7
+          ]
+        ]
+      }
+    ],
+    [
+      {
+        "set": [
+          7,
+          11,
+          [
+            14,
+            15
+          ]
+        ]
+      },
+      {
+        "set": [
+          6,
+          8,
+          [
+            12,
+            13
+          ]
+        ]
+      },
+      {
+        "set": [
+          5,
+          [
+            9,
+            10
+          ],
+          16
+        ]
+      },
+      {
+        "set": [
+          [
+            1,
+            4
+          ]
+        ]
+      }
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

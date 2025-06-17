@@ -1,0 +1,14 @@
+{
+  "description": "# Problem Square\n\nThere is one four-digit whole number x, such that the last four digits of x^2\nare in fact the original number x. What is it?\n\n## Data\n  all integrated (single problem)\n\n## Execution\n```\n  python Square.py\n```\n\n## Links\n - http://en.wikibooks.org/wiki/Puzzles/Arithmetical_puzzles/Digits_of_the_Square\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "",
+    "domain": "",
+    "objective": "",
+    "source": "hakank",
+    "constraints": []
+  },
+  "unverified_metadata": {}
+}

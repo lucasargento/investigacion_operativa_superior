@@ -1,0 +1,8 @@
+processing_times_central_isolate = [10, 6, 8];
+processing_times_central_scan = [6, 4, 6];
+processing_times_distributed_isolate = [12, 9, 12];
+processing_times_distributed_scan = [18, 10, 15];
+costs_central = 150;
+costs_distributed = 70;
+max_hours_central_max_hours = 16;
+max_hours_distributed_max_hours = 33;

@@ -1,0 +1,46 @@
+{
+  "description": "The Hidato puzzle is a logic puzzle game where a grid of cells is given, some of which are filled with numbers. The goal is to fill the remaining cells with consecutive numbers that will form a path from the start number to the end number, where the path is a sequence of horizontally, vertically, or diagonally adjacent cells. The start and end numbers are circled. The size of the grid is r x c, where r is the number of rows and c is the number of columns. The puzzle is represented as a 2D array, where 0 represents an empty cell and a positive integer represents a filled cell.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Hidato",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "implies",
+      "forall",
+      "and",
+      "=",
+      "<=",
+      ">=",
+      ">"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Hidato",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "grid"
+    ],
+    "model_data_keywords": [
+      "puzzle",
+      "r",
+      "c"
+    ],
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "implies",
+      "forall",
+      "and",
+      "=",
+      "<=",
+      ">=",
+      ">"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 59
+- Name: Steel Production Optimization
+- Domain: Manufacturing and Production
+- Objective: maximization
+
+Problem Description:
+A company produces different types of steel using different alloys. The company has a certain amount of each alloy available. Steel requires a certain percentage of carbon and has a maximum allowable percentage of nickel. Each alloy contains a percentage of carbon and a percentage of nickel. Each type of alloy also has a purchase price per ton. Each type of steel has a selling price per ton. Additionally, all steel must have at most 40% of alloy 1 in it. How much of each alloy should the company use in each type of steel, and how much of each steel type should be produced to maximize profit?
+
+
+Input Data (data.dzn):
+A = 3;
+S = 2;
+AvailableAlloy = [40, 50, 80];
+CarbonContent = [3, 4, 3.5];
+NickelContent = [1, 1.5, 1.8];
+AlloyPrice = [380, 400, 440];
+SteelPrice = [650, 600];
+CarbonMin = [3.6, 3.4];
+NickelMax = [1.5, 1.7];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 37100.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,109 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 565
+- Name: Resource Constrained Scheduling
+- Domain: Scheduling
+- Objective: minimization
+
+Problem Description:
+This is a scheduling problem. The aim is to find a schedule that minimises the general end while not exceeding the capacity 13 of the resource. There are 7 tasks, each with a specific duration and resource requirement. The tasks are as follows: 
+
+Task 1: Duration 16, Resource 2
+Task 2: Duration 6, Resource 9
+Task 3: Duration 13, Resource 3
+Task 4: Duration 7, Resource 7
+Task 5: Duration 5, Resource 10
+Task 6: Duration 18, Resource 1
+Task 7: Duration 4, Resource 11
+
+The goal is to find the start times (origin) and end times for each task such that the maximum end time (End) is minimized, and the total resources used at any time do not exceed the limit of 13. The problem is solved using the MiniZinc constraint programming language, with the 'cumulative' global constraint ensuring that the resource limit is not exceeded.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 7;
+int: m = 30;
+
+int: Limit; 
+array[1..n] of 1..m: LD; % duration
+array[1..n] of 1..m: LR; % resources
+
+% decision variables
+var int: End; % to minimize
+array[1..n] of var 1..m: LO; % origin (start)
+array[1..n] of var 1..m: LE; % end times
+
+
+% solve satisfy;
+% solve minimize End;
+solve :: int_search(LE, 
+        anti_first_fail, indomain_min, complete) minimize End;
+
+constraint
+  % End <= 23 % for solve satisfy
+  % /\
+  forall(i in 1..n) (
+      LO[i] + LD[i] = LE[i] 
+  )
+  /\
+  maximum(End, LE)
+  /\
+  cumulative(LO, LD, LR, Limit)
+
+;
+
+
+output [
+  "Max end time: ", show(End), "\n",
+  "Origin      : ", show(LO), "\n",
+  "Duration    : ", show(LD), "\n",
+  "Resources   : ", show(LR), "\n",
+  "End times   : ", show(LE), "\n",
+
+];
+
+%
+% data
+%
+
+LD = [16, 6,13, 7, 5,18, 4];
+LR = [ 2, 9, 3, 7,10, 1,11];
+Limit = 13;
+
+Expected Output:
+{
+  "End": 23,
+  "LO": [
+    7,
+    1,
+    1,
+    7,
+    14,
+    1,
+    19
+  ],
+  "LE": [
+    23,
+    7,
+    14,
+    14,
+    19,
+    19,
+    23
+  ],
+  "_objective": 23
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

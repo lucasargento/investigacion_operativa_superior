@@ -1,0 +1,171 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 348
+- Name: Standard Benchmark Crypto Problem
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The numbers from 1 to 26 are assigned to the letters of the alphabet. The numbers beside each word are the total of the values assigned to the letters in the word (e.g. for LYRE: L, Y, R, E might be to equal 5, 9, 20 and 13, or any other combination that add up to 47). Find the value of each letter under the equations: BALLET 45, CELLO 43, CONCERT 74, FLUTE 30, FUGUE 50, GLEE 66, JAZZ 58, LYRE 47, OBOE 53, OPERA 65, POLKA 59, QUARTET 50, SAXOPHONE 134, SCALE 51, SOLO 37, SONG 61, SOPRANO 82, THEME 72, VIOLIN 100, WALTZ 34. The solution should assign a unique number from 1 to 26 to each letter of the alphabet such that the sum of the numbers assigned to the letters in each word equals the given total for that word.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+% Decision variables
+int: num_letters = 26; % number of letters 
+set of int: LETTERS = 1..num_letters; % set of letters
+
+var LETTERS: A;
+var LETTERS: B;
+var LETTERS: C;
+var LETTERS: D;
+var LETTERS: E;
+var LETTERS: F;
+var LETTERS: G;
+var LETTERS: H;
+var LETTERS: I;
+var LETTERS: J;
+var LETTERS: K;
+var LETTERS: L;
+var LETTERS: M;
+var LETTERS: N;
+var LETTERS: O;
+var LETTERS: P;
+var LETTERS: Q;
+var LETTERS: R;
+var LETTERS: S;
+var LETTERS: T;
+var LETTERS: U;
+var LETTERS: V;
+var LETTERS: W;
+var LETTERS: X;
+var LETTERS: Y;
+var LETTERS: Z;
+
+array[1..num_letters] of var LETTERS: all_letters = [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z];
+
+% data from problem statements
+int: BALLET     =  45;
+int: CELLO      =  43;
+int: CONCERT    =  74;
+int: FLUTE      =  30;
+int: FUGUE      =  50;
+int: GLEE       =  66;
+int: JAZZ       =  58;
+int: LYRE       =  47;
+int: OBOE       =  53;
+int: OPERA      =  65;
+int: POLKA      =  59;
+int: QUARTET    =  50;
+int: SAXOPHONE  = 134;
+int: SCALE      =  51;
+int: SOLO       =  37;
+int: SONG       =  61;
+int: SOPRANO    =  82;
+int: THEME      =  72;
+int: VIOLIN     = 100;
+int: WALTZ      =  34;
+
+% all different constraint
+constraint all_different(all_letters);
+
+% constraints for each of the words
+constraint sum([B, A, L, L, E, T]) = BALLET;
+constraint sum([C, E, L, L, O]) = CELLO;
+constraint sum([C, O, N, C, E, R, T]) = CONCERT;
+constraint sum([F, L, U, T, E]) = FLUTE;
+constraint sum([F, U, G, U, E]) = FUGUE;
+constraint sum([G, L, E, E]) = GLEE;
+constraint sum([J, A, Z, Z]) = JAZZ;
+constraint sum([L, Y, R, E]) = LYRE;
+constraint sum([O, B, O, E]) = OBOE;
+constraint sum([O, P, E, R, A]) = OPERA;
+constraint sum([P, O, L, K, A]) = POLKA;
+constraint sum([Q, U, A, R, T, E, T]) = QUARTET;
+constraint sum([S, A, X, O, P, H, O, N, E]) = SAXOPHONE;
+constraint sum([S, C, A, L, E]) = SCALE;
+constraint sum([S, O, L, O]) = SOLO;
+constraint sum([S, O, N, G]) = SONG;
+constraint sum([S, O, P, R, A, N, O]) = SOPRANO;
+constraint sum([T, H, E, M, E]) = THEME;
+constraint sum([V, I, O, L, I, N]) = VIOLIN;
+constraint sum([W, A, L, T, Z]) = WALTZ;
+
+% satisfaction
+solve satisfy;
+
+% output as json
+output [
+  "{\n",
+  "  \"A\": ", show(A), ",\n",
+  "  \"B\": ", show(B), ",\n",
+  "  \"C\": ", show(C), ",\n",
+  "  \"D\": ", show(D), ",\n",
+  "  \"E\": ", show(E), ",\n",
+  "  \"F\": ", show(F), ",\n",
+  "  \"G\": ", show(G), ",\n",
+  "  \"H\": ", show(H), ",\n",
+  "  \"I\": ", show(I), ",\n",
+  "  \"J\": ", show(J), ",\n",
+  "  \"K\": ", show(K), ",\n",
+  "  \"L\": ", show(L), ",\n",
+  "  \"M\": ", show(M), ",\n",
+  "  \"N\": ", show(N), ",\n",
+  "  \"O\": ", show(O), ",\n",
+  "  \"P\": ", show(P), ",\n",
+  "  \"Q\": ", show(Q), ",\n",
+  "  \"R\": ", show(R), ",\n",
+  "  \"S\": ", show(S), ",\n",
+  "  \"T\": ", show(T), ",\n",
+  "  \"U\": ", show(U), ",\n",
+  "  \"V\": ", show(V), ",\n",
+  "  \"W\": ", show(W), ",\n",
+  "  \"X\": ", show(X), ",\n",
+  "  \"Y\": ", show(Y), ",\n",
+  "  \"Z\": ", show(Z), "\n",
+  "}\n"
+];
+
+Expected Output:
+{
+  "A": 5,
+  "B": 13,
+  "C": 9,
+  "D": 16,
+  "E": 20,
+  "F": 4,
+  "G": 24,
+  "H": 21,
+  "I": 25,
+  "J": 17,
+  "K": 23,
+  "L": 2,
+  "M": 8,
+  "N": 12,
+  "O": 10,
+  "P": 19,
+  "Q": 7,
+  "R": 11,
+  "S": 15,
+  "T": 3,
+  "U": 1,
+  "V": 26,
+  "W": 6,
+  "X": 22,
+  "Y": 14,
+  "Z": 18
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,46 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 34
+- Name: Rocket Thrust Optimization
+- Domain: Energy and Natural Resources
+- Objective: minimization
+
+Problem Description:
+Consider a rocket that travels along a straight path. We are given the position, velocity, and acceleration, respectively, of the rocket at each time. By discretizing time and by taking the time increment to be unity, we obtain an approximate discrete-time model of the form 
+    
+    x_{t+1} = x_t + v_t
+    v_{t+1} = v_t + a_t
+
+We assume that the acceleration a_t at each given timestep is under our control, as it is determined by the rocket thrust. In a rough model, the magnitude |a_t| of the accelera­tion can be assumed to be proportional to the rate of fuel consumption at a given timestep t. 
+
+Suppose that we have the initial position and velocity of the rocket. We wish the rocket to take off and reach a target position with a target speed at a target time. Furthermore, we wish to accomplish this economically, that is, by using as little fuel as possible. Given a target time T, what should the acceleration be at each timestep if we want to minimize the thrust required, which is max_t |a_t|, subject to the given constraints.
+
+
+Input Data (data.dzn):
+X0 = 0;
+V0 = 0;
+XT = 1;
+VT = 0;
+T = 20;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 0.0111
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

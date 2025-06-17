@@ -1,0 +1,45 @@
+{
+  "description": "The objective is to minimize the total fuel \\sum_{t=0}^{TotalTime-1} |a_t| spent subject to the initial position InitialPosition, initial velocity InitialVelocity, final position FinalPosition, final velocity FinalVelocity, and total time TotalTime.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Rocket Fuel Optimization",
+    "domain": "Physics",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "=",
+      "+",
+      "forall",
+      "abs",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Rocket Fuel Optimization",
+    "domain": "Physics",
+    "model_var_keywords": [
+      "x",
+      "v",
+      "a",
+      "fuel_spend"
+    ],
+    "model_data_keywords": [
+      "InitialPosition",
+      "InitialVelocity",
+      "FinalPosition",
+      "FinalVelocity",
+      "TotalTime"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "=",
+      "+",
+      "forall",
+      "abs",
+      "sum"
+    ]
+  }
+}

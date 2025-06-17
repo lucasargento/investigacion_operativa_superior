@@ -1,0 +1,46 @@
+{
+  "description": "The Cyclohexane problem, also known as the Circling the Squares puzzle, is a number placement puzzle. The task is to place a different number in each of the ten squares so that the sum of the squares of any two adjacent numbers shall be equal to the sum of the squares of the two numbers diametrically opposite to them. The four numbers placed, as examples, must stand as they are. Fractions are not allowed, and no number need contain more than two figures. The numbers range from 1 to 99. The problem is to find a solution that satisfies these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Cyclohexane Problem",
+    "domain": "Number Placement Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "sumOfSquares",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Cyclohexane Problem",
+    "domain": "Number Placement Puzzles",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "K",
+      "Squares"
+    ],
+    "model_data_keywords": [
+      "NumberRange"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "sumOfSquares",
+      "=",
+      "*"
+    ]
+  }
+}

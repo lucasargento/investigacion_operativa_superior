@@ -1,0 +1,43 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 106
+- Name: Network Intrusion Response Optimization
+- Domain: Network and Security
+- Objective: minimization
+
+Problem Description:
+A network faces an intrusion that requires immediate intervention. Interventions include isolating nodes or scanning nodes affected by the intruder which can be done either via central processing or distributed processing. Each cluster of nodes must be treated with one intervention type consistently. The processing times for each type of intervention are different across each cluster and type. There is a specific opportunity cost for processing an intervention via central and via distributed processing. There is a maximum allotment of hours for central processing and for distributed processing. Determine the most cost-effective combination of interventions to halt the intruder's progress within the network.
+
+
+Input Data (data.dzn):
+N = 3;
+IsolateCentral = [10, 6, 8];
+ScanCentral = [6, 4, 6];
+IsolateDistributed = [12, 9, 12];
+ScanDistributed = [18, 10, 15];
+CentralCost = 150;
+DistributedCost = 70;
+CentralMaxHours = 16;
+DistributedMaxHours = 33;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 2280.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,39 @@
+{
+  "description": "Determine the quantities to be produced such that all the production constraints are satisfied and the profit is maximized. The parameters include the number of different products K and the number of different machines or stations S. Each product k requires ProduceTime to produce on station s. Each station s has a total available time of AvailableTime. The profit from producing one unit of product k is Profit.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Production Planning",
+    "domain": "Operations Research",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Production Planning",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "Quantity",
+      "TotalProfit"
+    ],
+    "model_data_keywords": [
+      "ProduceTime",
+      "AvailableTime",
+      "Profit"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "description": "The Contracting Costs puzzle is a problem where a contractor is planning the construction of a house and has to pay different amounts to different workers. The contractor has to pay $1,100 to the paper hanger and the painter, $1,700 to the painter and plumber, $1,100 to the plumber and electrician, $3,300 to the electrician and carpenter, $5,300 to the carpenter and mason, and $3,200 to the mason and painter. The problem is to determine how much each worker charges for his services. The objective is to minimize the total cost of the services.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Contracting Costs Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "1100",
+      "1700",
+      "3300",
+      "5300",
+      "3200",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Contracting Costs Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "paperHangerCost",
+      "painterCost",
+      "plumberCost",
+      "electricianCost",
+      "carpenterCost",
+      "masonCost"
+    ],
+    "model_data_keywords": [
+      "MAX_COST"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "1100",
+      "1700",
+      "3300",
+      "5300",
+      "3200",
+      "="
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 427
+- Name: Beach House Rent Collection
+- Domain: Linear Programming
+- Objective: minimization
+
+Problem Description:
+Jack needs to find at least 80 shrimps and 50 conches to pay his monthly rent for his beach house . There are two beaches that Jack frequents : Silver Beach and Lucent Beach . Each day at Silver beach , Jack finds 7 shrimps and 3 conches . Each day at Lucent Beach , Jack finds 4 shrimps and 6 conches . Formulate an LP to help Jack meet his requirements while spending a minimal amount of time .
+
+
+MiniZinc Model:
+var int: silver_days;
+% days spent at lucent beach
+var int: lucent_days;
+
+constraint silver_days >= 0;
+constraint lucent_days >= 0;
+
+% Jack needs to find at least 80 shrimps
+% Jack finds 7 shrimps each day at silver beach and 4 each day at lucent beach
+constraint silver_days * 7 + lucent_days * 4 >= 80;
+
+% Jack needs to find at least 50 shrimps
+% Jack finds 7 shrimps each day at silver beach and 4 each day at lucent beach
+constraint silver_days * 3 + lucent_days * 6 >= 50;
+
+var int: total_days = silver_days + lucent_days;
+
+% minimizing the total days spent at the beaches
+solve minimize total_days;
+
+output ["Silver Beach Days: " ++ show(silver_days), "\nLucent Beach Days: " ++ show(lucent_days), "\nTotal Days: " ++ show(total_days)];
+
+Expected Output:
+{
+  "silver_days": 11,
+  "lucent_days": 3,
+  "_objective": 14
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

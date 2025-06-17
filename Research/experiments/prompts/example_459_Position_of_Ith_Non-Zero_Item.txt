@@ -1,0 +1,84 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 459
+- Name: Position of Ith Non-Zero Item
+- Domain: Sequences
+- Objective: satisfaction
+
+Problem Description:
+The problem is about finding the position of the ith non-zero item in a sequence of variables. Given a sequence of variables, the position (POS) is the position of the ITHth non-zero item of the sequence. For example, given the sequence [3,0,0,8,6], the position of the 2nd non-zero item is 4. The problem is to verify this constraint for a given sequence, position and ith value.
+
+
+MiniZinc Model:
+int: n = 5;
+array[1..n] of var 0..8: x;
+var 1..n: ith;
+var 1..n: pos;
+
+predicate ith_pos_different_from_0(var int: ith, 
+                                   var int: pos, 
+                                   array[int] of var int: x) =
+   let {
+        int: lbx = min(index_set(x)),
+        int: ubx = max(index_set(x))
+   } in
+   exists(i in lbx..ubx) (
+     pos = i 
+     /\
+     ith = sum(j in lbx..i) (bool2int(x[j] != 0))
+     /\
+     x[i] != 0
+   )
+;
+
+predicate cp1d(array[int] of var int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+     forall(i in index_set(x)) ( x[i] = y[i] ))
+; 
+
+solve satisfy;
+
+constraint
+   cp1d(x,[3,0,0,8,6])
+   /\
+   pos = 4
+   /\
+   ith = 2
+   /\
+   ith_pos_different_from_0(ith, pos, x)
+;
+
+output
+[
+  "x: " ++ show(x) ++ "\n" ++
+  "pos: " ++ show(pos) ++ "\n" ++
+  "ith: " ++ show(ith) ++ "\n"
+ 
+];
+
+Expected Output:
+{
+  "x": [
+    3,
+    0,
+    0,
+    8,
+    6
+  ],
+  "ith": 2,
+  "pos": 4
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

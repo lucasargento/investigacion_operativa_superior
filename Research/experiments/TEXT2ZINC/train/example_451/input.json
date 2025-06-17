@@ -1,0 +1,49 @@
+{
+  "description": "The problem is about implementing the 'counts' global constraint in MiniZinc. The 'counts' constraint is defined as follows: Given two collections, VALUES and VARIABLES, let N be the number of variables of the VARIABLES collection assigned to a value of the VALUES collection. The 'counts' constraint enforces a condition N\u2006RELOP\u2006LIMIT to hold, where RELOP is a relational operator (like <, <=, =, >=, >, !=) and LIMIT is an integer. For example, if VALUES = <1,\u200b3,\u200b4,\u200b9>, VARIABLES = <4,\u200b5,\u200b5,\u200b4,\u200b1,\u200b5>, RELOP = '=', and LIMIT = 3, the 'counts' constraint holds since the values 1, 3, 4 and 9 of the VALUES collection are assigned to 3 items of the VARIABLES collection, which is equal to the LIMIT. The problem requires to model this constraint in MiniZinc and solve it for given VALUES, VARIABLES, RELOP, and LIMIT.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Counts Constraint Implementation",
+    "domain": "Constraint Programming",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "compare",
+      "counts",
+      "forall",
+      "<",
+      "<=",
+      "=",
+      ">=",
+      ">",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Counts Constraint Implementation",
+    "domain": "Constraint Programming",
+    "model_var_keywords": [
+      "values",
+      "variables",
+      "limit"
+    ],
+    "model_data_keywords": [
+      "num_values",
+      "num_variables"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "compare",
+      "counts",
+      "forall",
+      "<",
+      "<=",
+      "=",
+      ">=",
+      ">",
+      "!="
+    ]
+  }
+}

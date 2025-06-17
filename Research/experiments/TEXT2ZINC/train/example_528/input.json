@@ -1,0 +1,36 @@
+{
+  "description": "The Monkey and the Coconuts problem involves a group of n men and a pile of coconuts. Each man in sequence takes (1/n)th of the coconuts left after the previous man removed his share and gives m coconuts, which do not divide equally, to a monkey. When all n men have divided the coconuts, they divide the remaining coconuts n ways, taking an additional a coconuts each, and give the m coconuts which are left over to the monkey. The problem is to determine the original number of coconuts N if m is the same at each division. The solution to this problem is represented by the formula n^(n+1)-n+1. The problem is also known as the 'Sailors and Monkey Problem' where a(n) is the smallest number such that can apply C -> (C-1)(1-1/n) n times and at every step have an integer C = 1 mod n.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Monkey and the Coconuts Problem",
+    "domain": "Mathematical Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">=",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Monkey and the Coconuts Problem",
+    "domain": "Mathematical Puzzles",
+    "model_var_keywords": [
+      "numMen",
+      "coconutsLeft",
+      "coconutsRemoved"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">=",
+      "=",
+      "*"
+    ]
+  }
+}

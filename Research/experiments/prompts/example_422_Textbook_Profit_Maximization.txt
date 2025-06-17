@@ -1,0 +1,54 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 422
+- Name: Textbook Profit Maximization
+- Domain: Economics
+- Objective: maximization
+
+Problem Description:
+Professor ABC sells his economics textbook as paperback or hardcover versions . Paperback books yield a profit of $ 150 USD whereas hardcover versions yield a profit of $ 200 USD . Since hardcover versions are more sturdy and contain some extra supplementary materials , there must be at least three times as many hardcover than paperback textbooks . However , because paperback books are less expensive , at least 100 paperback versions must be created . If the professor sells at least 1000 textbooks every year , how many of each version should he request the publisher to print to maximize the profit ?
+
+
+MiniZinc Model:
+var int: paperback;
+% number of hardcover books produced
+var int: hardcover;
+
+% number of books is non-negative
+constraint paperback >= 0;
+constraint hardcover >= 0;
+
+% there must be at least three times as many hardcover than paperback textbooks
+constraint hardcover >= 3 * paperback;
+% at least 100 paperback versions must be created
+constraint paperback >= 100;
+% the professor sells at least 1000 textbooks every year
+constraint paperback + hardcover >= 1000;
+
+% Paperback books yield a profit of $150 USD whereas hardcover versions yield a profit of $200 USD
+var int: profit = 150 * paperback + 200 * hardcover;
+
+% maximize profit
+solve maximize profit; 
+
+output ["Paperback: " ++ show(paperback) ++ "\n", "Hardcover: " ++ show(hardcover) ++ "\n", "Profit: " ++ show(profit) ++ "\n"];
+
+Expected Output:
+{
+  "paperback": 100,
+  "hardcover": 10737343,
+  "_objective": 2147483600
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

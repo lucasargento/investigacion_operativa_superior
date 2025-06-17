@@ -1,0 +1,74 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 337
+- Name: Minimum Coin Denominations
+- Domain: Finance
+- Objective: minimization
+
+Problem Description:
+In this problem, we have £41.58 in our pocket which is made up of different denominations of coins. There is exactly the same number of each coin. The goal is to find the minimum number of coins we have, and what are they. Britain has 8 commonly used coins, and in GBP their values are: 0.01, 0.02, 0.05, 0.10, 0.20, 0.50, 1, 2. The problem is modeled and solved using MiniZinc, a medium-level constraint modeling language. The constraints ensure that the sum of the values of the coins equals £41.58, each coin count is non-negative and less than or equal to the total amount, and the number of each type of coin is the same or zero. The objective is to minimize the total number of coins.
+
+
+MiniZinc Model:
+int: n = 8;
+array[1..n] of int: denom = [1, 2, 5, 10, 20, 50, 100, 200]; % in cents
+int: s = 4158; % 41.58
+array[1..n] of var int: x;
+var int: num_coins = sum(i in 1..n) (x[i]);
+
+solve :: int_search(x, smallest, indomain_min, complete) minimize num_coins;
+% solve :: int_search(x, smallest, indomain_min, complete) satisfy;
+
+constraint
+%   s = 4158
+%   /\
+   sum(i in 1..n) (x[i]*denom[i]) = s
+   /\
+   forall(i in 1..n) (
+      x[i] >= 0
+      /\
+      x[i] <= s
+   )
+   /\
+   forall(i, j in 1..n) (
+     x[i] = x[j] 
+     \/ 
+     x[i] = 0 
+     \/
+     x[j] = 0
+   )
+;
+
+output
+[
+  "x: " ++ show(x) ++ "\n" ++
+  "num_coins: " ++ show(num_coins)
+];
+
+Expected Output:
+{
+  "x": [
+    18,
+    0,
+    0,
+    18,
+    18,
+    0,
+    0,
+    18
+  ],
+  "_objective": 72
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

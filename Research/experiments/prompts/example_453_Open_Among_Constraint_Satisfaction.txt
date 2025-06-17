@@ -1,0 +1,91 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 453
+- Name: Open Among Constraint Satisfaction
+- Domain: Constraint Satisfaction
+- Objective: satisfaction
+
+Problem Description:
+The problem is defined by the open_among constraint. Given a set of positions S, a number NVAR, a collection of variables, and a set of values, the constraint is satisfied if the number of variables at the positions specified by S that take their value from the set of values is equal to NVAR. For example, given the set of positions S={2,3,4,5}, the number NVAR=3, the collection of variables <8,5,5,4,1>, and the set of values {1,5,8}, the constraint is satisfied because exactly 3 values from the last four values of the collection of variables belong to the set of values.
+
+
+MiniZinc Model:
+int: n = 5;
+array[1..n] of var 1..8: variables;
+var 0..n*2: nvar;
+var set of 1..n: s;
+% strange: values must either be initialized here or free
+var set of 1..8: values = {1,5,8};
+
+
+predicate open_among(var set of int: s, 
+                     var int: nvar, 
+                     array[int] of var int: variables,
+                     var set of int: values) =
+
+    nvar == sum(i in index_set(variables)) ( 
+             bool2int(
+                 i in s /\
+                 variables[i] in values
+             ) 
+   )
+;
+
+predicate cp1d(array[int] of var int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+     forall(i in index_set(x)) ( x[i] = y[i] ))
+; 
+
+solve satisfy;
+
+constraint
+    % it fails if values is defined only here 
+    % values =  {1,5,8} /\
+
+    s = {2,3,4,5} /\
+    nvar = 3 /\
+    cp1d(variables, [8,5,5,4,1]) /\
+    open_among(s, nvar, variables, values)
+;
+
+output
+[
+  "variables: " ++ show(variables) ++ "\n" ++
+  "values: " ++ show(values) ++ "\n" ++
+  "nvar: " ++ show(nvar) ++ "\n" ++
+  "s: " ++ show(s) ++ "\n"
+];
+
+Expected Output:
+{
+  "variables": [
+    8,
+    5,
+    5,
+    4,
+    1
+  ],
+  "nvar": 3,
+  "s": {
+    "set": [
+      [
+        2,
+        5
+      ]
+    ]
+  }
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

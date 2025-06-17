@@ -1,0 +1,70 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 556
+- Name: Ski Assignment Optimization
+- Domain: Resource Allocation
+- Objective: minimization
+
+Problem Description:
+The problem is about ski assignment optimization at a ski rental shop. The goal is to assign skis to skiers in such a way that the height of the skis matches the height of the skier as closely as possible. The disparity between a skier and his or her skis is defined as the absolute value of the difference between the height of the skier and the pair of skis. The objective is to find an assignment of skis to skiers that minimizes the sum of the disparities. The problem is illustrated with the following sample data: Ski heights are 1, 2, 5, 7, 13, 21 and Skier heights are 3, 4, 7, 11, 18. The problem is to find the assignment of skis to skiers that minimizes the total disparity.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+% include "globals-gecode.mzn"; 
+
+int: num_skis = 6;
+int: num_skiers = 5;
+array[1..num_skis] of int: ski_heights;
+array[1..num_skiers] of int: skier_heights;
+
+% the assignments
+array[1..num_skiers] of var 1..num_skis: x;
+
+% minimize the differences
+% var int: z = sum(i in 1..num_skiers) ( abs(ski_heights[x[i]] - skier_heights[i]) );
+% Without the element constraint
+var int: z = sum(i in 1..num_skiers, j in 1..num_skis) (
+             bool2int(x[i] = j) * abs(ski_heights[j] - skier_heights[i]) 
+    );
+
+% solve satisfy;
+solve :: int_search(x, smallest, indomain_min, complete)  minimize z;
+
+constraint
+   % z = 7 /\ % for original problem
+   all_different(x) % :: domain
+;
+
+ski_heights =   [1, 2, 5, 7, 13, 21]; % original problem
+skier_heights = [3, 4, 7, 11, 18];
+
+output [
+  show(z) ++ "\n" ++
+  show(x) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "_objective": 7
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

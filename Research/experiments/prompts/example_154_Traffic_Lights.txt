@@ -1,0 +1,95 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 154
+- Name: Traffic Lights
+- Domain: Transportation
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    Traffic Lights
+Proposer: 
+    - Toby Walsh
+    - Walter Hower 
+Category:
+---
+
+
+Consider a four way traffic junction with eight traffic lights. Four of the traffic lights are for the vehicles and can be represented by the variables V1 to V4 with domains {r,ry,g,y} (for red, red-yellow, green and yellow). The other four traffic lights are for the pedestrians and can be represented by the variables P1 to P4 with domains {r,g}.
+The constraints on these variables can be modelled by quaternary constraints on (Vi, Pi, Vj, Pj ) for $1\leq i\leq 4, j=(1+i)\ mod\ 4$ which allow just the tuples {(r,r,g,g), (ry,r,y,r), (g,g,r,r), (y,r,ry,r)}.
+
+We are interested in the set of all globally consistent 8-tuples (which reflects the evolution of the traffic light sequence).
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: n = 4;
+int: r  = 1; % red
+int: ry = 2; % red-yellow
+int: g  = 3; % green
+int: y  = 4; % yellow
+
+set of int: Cars = {r,ry,g,y};
+set of int: Pedestrians = {r,g};
+
+array[1..4, 1..4] of Cars: allowed;
+
+array[1..n] of var Cars: V;
+array[1..n] of var Pedestrians: P;
+
+
+solve satisfy;
+
+constraint
+ forall(i in 1..n, j in 1..n where j = (1+i) mod 4)  (
+   table([V[i], P[i], V[j], P[j]], allowed)
+ )
+;
+
+
+allowed = array2d(1..4, 1..4, 
+[
+ r,r,g,g, 
+ ry,r,y,r, 
+ g,g,r,r, 
+ y,r,ry,r
+]);
+
+
+% output [
+%  "V: ", show(V), "\nP: ", show(P), "\n"
+% ];
+output [
+ show(V[i]) ++ " " ++ show(P[i]) ++ " "
+  | i in 1..n
+] ++ ["\n"];
+
+Expected Output:
+{
+  "V": [
+    4,
+    2,
+    4,
+    2
+  ],
+  "P": [
+    1,
+    1,
+    1,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

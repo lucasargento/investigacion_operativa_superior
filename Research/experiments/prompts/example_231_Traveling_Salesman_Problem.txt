@@ -1,0 +1,61 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 231
+- Name: Traveling Salesman Problem
+- Domain: Operations Research
+- Objective: minimization
+
+Problem Description:
+Determine the shortest route that the traveler can take to visit all N towns and return to StartCity.
+
+
+Input Data (data.dzn):
+N = 6;
+Distances = [| 0, 182, 70, 399, 56, 214
+             | 182, 0, 255, 229, 132, 267
+             | 70, 255, 0, 472, 127, 287
+             | 399, 229, 472, 0, 356, 484
+             | 56, 132, 127, 356, 0, 179
+             | 214, 267, 287, 484, 179, 0 |];
+StartCity = 0;
+
+MiniZinc Model:
+% Parameters
+int: N; % Number of cities
+array[1..N, 1..N] of int: Distances; % Distance matrix
+int: StartCity; % Starting city
+
+% Decision Variables
+array[1..N+1] of var 1..N: visit_order; % Order of cities visited
+var int: total_distance; % Total distance travelled
+
+% Constraints
+% Start and end at the start city
+constraint visit_order[1] = StartCity;
+constraint visit_order[N+1] = StartCity;
+
+% Each city is visited exactly once
+include "globals.mzn";
+constraint alldifferent(visit_order[1..N]);
+
+% Total distance is the sum of the distances between consecutive cities
+constraint total_distance = sum(i in 1..N)(Distances[visit_order[i], visit_order[i+1]]);
+
+% Objective
+solve minimize total_distance;
+
+% Output
+output ["visit_order: ", show(visit_order), "\n", "total_distance: ", show(total_distance)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

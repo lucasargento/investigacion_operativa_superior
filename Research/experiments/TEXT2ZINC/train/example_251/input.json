@@ -1,0 +1,40 @@
+{
+  "description": "The manufacturer wishes to find the amounts of the various alloys needed and to determine the cheapest combination given AlloyQuantity, the total quantity of alloy to produce, Target, the quantity of target components in the alloy, Ratio, the ratio of each component k in alloy m, and Price, the price of each alloy k.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Cheapest Alloy Combination",
+    "domain": "Manufacturing",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Cheapest Alloy Combination",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "amount",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "alloy_quant",
+      "target",
+      "ratio",
+      "price"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "="
+    ]
+  }
+}

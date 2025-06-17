@@ -1,0 +1,47 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 8
+- Name: Food Manufacturing Optimization
+- Domain: Manufacturing and Production
+- Objective: maximization
+
+Problem Description:
+A food is manufactured by refining raw oils and blending them together. Each type of raw oil is either a vegetable oil or non-vegetable oil. Each type may be purchased during any month for a month-specific price. The final product sells at a fixed price per ton. Vegetable oils and non-vegetable oils require different production lines for refining. In any month, there is a limit on how much vegetable oil can be refined and how much non-vegetable oil can be refined. There is no loss of weight in the refining process, and the cost of refining may be ignored. There is a limit on the amount of raw oil that can be stored for later use. The cost of storage for both vegetable and non-vegetable oil is the same per ton per month. However, only raw oil can be stored, not refined oils or the final product. There is also a technological restriction of the hardness of the final product. The hardness of the final product is calculated by the weighted average of the hardness of each oil it is made with. We are given the maximum and minimum hardness (in units which hardness is measured) that the final product may be. We are also given the hardness of each oil type. At present, we are given the initial amounts of each type of raw oil that is in storage. It is required that at the end of the last month, we still have the same amount of storage as we started with. What buying, storing and manufacturing policy should the company pursue in order to maximize profit?
+
+
+Input Data (data.dzn):
+M = 6;
+I = 5;
+BuyPrice = array2d(1..6, 1..5, [110, 120, 130, 110, 115, 130, 130, 110, 90, 115, 110, 140, 130, 100, 95, 120, 110, 120, 120, 125, 100, 120, 150, 110, 105, 90, 100, 140, 80, 135]);
+SellPrice = 150;
+IsVegetable = [True, True, False, False, False];
+MaxVegetableRefiningPerMonth = 200;
+MaxNonVegetableRefiningPerMonth = 250;
+StorageSize = 1000;
+StorageCost = 5;
+MinHardness = 3;
+MaxHardness = 6;
+Hardness = [8.8, 6.1, 2.0, 4.2, 5.0];
+InitialAmount = 500;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 107843.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

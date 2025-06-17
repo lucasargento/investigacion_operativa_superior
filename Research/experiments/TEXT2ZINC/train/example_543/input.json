@@ -1,0 +1,14 @@
+{
+  "description": "The problem is a matching problem of OR'ers. The problem was inspired by the matching of OR'ers by Figure It Out's 'Cupids with Computers' (Capgemini blog). A bunch of OR'ers are matched according to some compatibility scores. The goal is to find the best matching pairs of OR'ers based on these scores. The problem also identifies the person who is unmatched. The problem is to maximize the total compatibility score of all the matched pairs. The problem also includes constraints to ensure that each person is matched with exactly one other person, and that the matching is symmetric (i.e., if person A is matched with person B, then person B is also matched with person A).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "",
+    "domain": "",
+    "objective": "",
+    "source": "hakank",
+    "constraints": []
+  },
+  "unverified_metadata": {}
+}

@@ -1,0 +1,43 @@
+{
+  "description": "The problem is about assigning a group of kids to some activities. Each kid fills a form where they specify 3 choices of activities in order of preference. Each activity has a maximum number of participants. The goal is to find a solution where the choices are respected as much as possible without exceeding the maximum number of participants for each activity. The link between the number of choice, activity, and children is known. The problem is to define relevant constraints so that all permutations are considered, a score is given to each (adding the numbers of choices to get the minimum), and results with too big groups are eliminated. The problem is to find a good way to do this using constraint programming.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Kids Activity Assignment",
+    "domain": "Scheduling",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "let",
+      "=",
+      "/\\",
+      "global_cardinality_low_up"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Kids Activity Assignment",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "selected_activity",
+      "scores",
+      "total_score"
+    ],
+    "model_data_keywords": [
+      "prefs",
+      "activity_size",
+      "num_kids",
+      "num_activities"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "let",
+      "=",
+      "/\\",
+      "global_cardinality_low_up"
+    ]
+  }
+}

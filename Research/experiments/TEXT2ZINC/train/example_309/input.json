@@ -1,0 +1,47 @@
+{
+  "description": "The problem is a puzzle called 'Earthlings' from Martin Chlond's Integer Programming Puzzles. There are three teams: Zaire, Uruguay, and Spain. Each team can be in one of three places: 1st, 2nd, or 3rd. Each team can be of one of three types: truth-teller, alternator, or liar. Each team makes a statement, which can be one of three types: x(1,1)+x(2,2)+x(3,3)=3, x(1,1)+x(3,2)+x(2,3)=3, or x(2,1)+x(3,2)+x(1,3)=3. The goal is to find the configuration of teams, places, and types that satisfies all the constraints. The constraints are: each place has one team, each team is in one place, each type makes one statement, each statement is made by one type, the number of truths in each statement is equal to the number of teams in the corresponding places, if a statement is made by a truth-teller then it must be true, if a statement is made by a liar then it must be false, and assertions 1 and 3 are either both true or both false for all statements.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Earthlings Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      ">=",
+      "and",
+      "or"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Earthlings Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "y",
+      "d"
+    ],
+    "model_data_keywords": [
+      "num_teams",
+      "num_places",
+      "num_types",
+      "num_statements"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      ">=",
+      "and",
+      "or"
+    ]
+  }
+}

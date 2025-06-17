@@ -1,0 +1,45 @@
+{
+  "description": "Maximize total production in the last two years using the given constraints on production inputs from two resource types (InputOne and InputTwo), manpower allocations (ManpowerOne and ManpowerTwo), stock levels (Stock), capacities (Capacity), and the upper limit of manpower (ManpowerLimit).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Economic Production Planning",
+    "domain": "Economics",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Economic Production Planning",
+    "domain": "Economics",
+    "model_var_keywords": [
+      "produce",
+      "buildcapa",
+      "stockhold",
+      "total_production"
+    ],
+    "model_data_keywords": [
+      "inputone",
+      "manpowerone",
+      "inputtwo",
+      "manpowertwo",
+      "stock",
+      "capacity",
+      "manpower_limit"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "+"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 528
+- Name: Monkey and the Coconuts Problem
+- Domain: Mathematical Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Monkey and the Coconuts problem involves a group of n men and a pile of coconuts. Each man in sequence takes (1/n)th of the coconuts left after the previous man removed his share and gives m coconuts, which do not divide equally, to a monkey. When all n men have divided the coconuts, they divide the remaining coconuts n ways, taking an additional a coconuts each, and give the m coconuts which are left over to the monkey. The problem is to determine the original number of coconuts N if m is the same at each division. The solution to this problem is represented by the formula n^(n+1)-n+1. The problem is also known as the 'Sailors and Monkey Problem' where a(n) is the smallest number such that can apply C -> (C-1)(1-1/n) n times and at every step have an integer C = 1 mod n.
+
+
+MiniZinc Model:
+int: n = 3; % number of men
+
+array[0..n] of var int: left;
+array[1..n+1] of var int: removed;
+
+
+
+solve satisfy;
+% solve :: int_search(left ++ removed, "first_fail", "indomain", "complete") satisfy;
+% solve :: int_search(left ++ removed, first_fail, indomain_median, complete) minimize left[0];
+% solve minimize left[0];
+
+constraint 
+  forall(i in 0..n)   ( left[i] >= 0 ) 
+  /\
+  forall(i in 1..n+1) ( removed[i] >= 0 ) 
+  /\
+  forall(i in 0..n-1) ( 
+     left[i] = n*removed[i+1] + 1 
+     /\ 
+     left[i+1] = (n-1)*removed[i+1]
+  ) 
+  /\
+  left[n] = n*removed[n+1] + 1
+;
+
+
+output [
+  "original #: " ++ show(left[0]) ++ "\n" ++
+  "left: " ++ show(left) ++ "\n" ++
+  "removed: " ++ show(removed) ++ "\n"
+
+];
+
+Expected Output:
+{
+  "left": [
+    79,
+    52,
+    34,
+    22
+  ],
+  "removed": [
+    26,
+    17,
+    11,
+    7
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

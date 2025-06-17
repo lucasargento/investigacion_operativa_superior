@@ -1,0 +1,53 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 503
+- Name: 99 Bottles of Beer Lyrics Generator
+- Domain: Entertainment
+- Objective: satisfaction
+
+Problem Description:
+The problem is to generate the lyrics of the song '99 bottles of beer on the wall'. The lyrics follow this form: 
+
+X bottles of beer on the wall
+X bottles of beer
+Take one down, pass it around
+X-1 bottles of beer on the wall
+
+X-1 bottles of beer on the wall
+...
+Take one down, pass it around
+0 bottles of beer on the wall
+
+Where X and X-1 are replaced by numbers. The goal is to generate these lyrics in a creative, concise, or comical way. Grammatical support for '1 bottle of beer' is optional.
+
+
+MiniZinc Model:
+solve satisfy;
+
+int: n = 100;
+
+constraint 1=1;
+
+output [
+   show(n-i-1) ++ " bottles of beer on the wall\n" ++
+   if i < n-1 then
+     show(n-i-1) ++ " bootles of beer\n" ++ "Take one down, pass it around\n"
+   else "" endif
+  | i in 0..n-1
+];
+
+Expected Output:
+{}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

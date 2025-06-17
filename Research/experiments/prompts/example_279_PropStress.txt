@@ -1,0 +1,60 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 279
+- Name: PropStress
+- Domain: Academic
+- Objective: minimization
+
+Problem Description:
+# Problem PropStress
+
+The model, below, is close to (can be seen as the close translation of) the one submitted to the 2009 Minizinc challenge.
+No Licence was explicitly mentioned (MIT Licence assumed).
+
+## Data
+  An integer n
+
+## Execution
+```
+  python PropStress.py -data=number
+```
+
+## Links
+  - https://www.minizinc.org/challenge2009/results2009.html
+
+## Tags
+  academic, mzn09
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the integer 'n'
+var 1..100: n;
+
+% Define the objective function
+var int: obj = n;
+
+% The objective is to minimize the value of 'n'
+solve minimize obj;
+
+output ["n = ", show(n), "\n"];
+
+Expected Output:
+{
+  "n": 1,
+  "_objective": 1
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

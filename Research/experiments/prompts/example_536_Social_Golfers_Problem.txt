@@ -1,0 +1,133 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 536
+- Name: Social Golfers Problem
+- Domain: Scheduling
+- Objective: satisfaction
+
+Problem Description:
+In a golf club, there are a certain number of social golfers who play once a week in a certain number of groups of a certain size. The problem is to find a schedule for as many weeks as possible, such that no two golfers play in the same group more than once. The number of groups to be formed each week, the size of each group, and the number of weeks for which a scheduling is requested are given as input. The search space is the set of all possible group assignments to all players in each of the weeks. The constraints are that each group has exactly the specified group size of players and each pair of players only meets at most once. Additionally, on the first week, the first group of golfers play in group 1, the second group of golfers play in group 2, etc. On the second week, golfer 1 plays in group 1, golfer 2 plays in group 2, etc.
+
+
+MiniZinc Model:
+int: weeks = 4;
+int: groups = 3;
+int: groupSize = 3;
+int: golfers = groups * groupSize;
+
+set of int: Golfer = 1..golfers;
+set of int: Week = 1..weeks;
+set of int: Group = 1..groups;
+
+% Search space: The set of all possible group assignments to all 
+% players in each of the weeks
+array[Golfer, Week] of var Group: assign;
+
+% solve satisfy;
+% solve :: int_search([assign[i,j] | i in Golfer, j in Week ], "first_fail", "indomain", "complete") satisfy;
+solve :: int_search([assign[i,j] | i in Golfer, j in Week ], 
+        first_fail, indomain_min, complete) satisfy;
+
+constraint
+   % C1: Each group has exactly groupSize players
+   forall (gr in Group, w in Week)( % c1
+     sum (g in Golfer) (bool2int(assign[g,w] = gr)) = groupSize
+   )
+   /\
+   % C2: Each pair of players only meets at most once
+   forall (g1, g2 in Golfer, w1, w2 in Week  where g1 != g2 /\ w1 != w2) (
+     (bool2int(assign[g1,w1] = assign[g2,w1]) + bool2int(assign[g1,w2] = assign[g2,w2])) <= 1
+   )
+  /\
+  % SBSA: Symmetry-breaking by selective assignment
+  % On the first week, the first groupSize golfers play in group 1, the 
+  % second groupSize golfers play in group 2, etc. On the second week, 
+  % golfer 1 plays in group 1, golfer 2 plays in group 2, etc.
+  forall(g in Golfer) (
+    assign[g,1]=((g-1) div groupSize) + 1 % 
+  )
+  /\
+  forall(g in Golfer where g <= groupSize)(
+    assign[g,2]=g
+  )
+
+;
+
+output [
+  if j = 1 then "\n" else " " endif ++
+  show(assign[i,j])
+  | i in Golfer, j in Week
+] ++ ["\n"];
+
+Expected Output:
+{
+  "assign": [
+    [
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      2,
+      2,
+      2
+    ],
+    [
+      1,
+      3,
+      3,
+      3
+    ],
+    [
+      2,
+      1,
+      2,
+      3
+    ],
+    [
+      2,
+      2,
+      3,
+      1
+    ],
+    [
+      2,
+      3,
+      1,
+      2
+    ],
+    [
+      3,
+      1,
+      3,
+      2
+    ],
+    [
+      3,
+      2,
+      1,
+      3
+    ],
+    [
+      3,
+      3,
+      2,
+      1
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

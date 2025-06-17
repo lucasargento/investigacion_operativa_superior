@@ -1,0 +1,40 @@
+{
+  "description": "# Problem Dinner\n\nMy son came to me the other day and said, \"Dad, I need help with a math problem.\"\nThe problem went like this:\n - We're going out to dinner taking 1-6 grandparents, 1-10 parents and/or 1-40 children\n - Grandparents cost $3 for dinner, parents $2 and children $0.50\n - There must be 20 total people at dinner, and it must cost $20\nHow many grandparents, parents and children are going to dinner?\n\n## Data\n  all integrated (single problem)\n\n## Execution\n```\n  python Dinner.py\n```\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Dinner Problem",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "+",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Dinner Problem",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "grandparents",
+      "parents",
+      "children"
+    ],
+    "model_data_keywords": [
+      "cost_grandparents",
+      "cost_parents",
+      "cost_children",
+      "total_people",
+      "total_cost"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "+",
+      "=",
+      "*"
+    ]
+  }
+}

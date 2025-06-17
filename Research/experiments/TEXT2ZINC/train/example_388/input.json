@@ -1,0 +1,41 @@
+{
+  "description": "This problem is about Markov Chains and is based on the Fertilizer example from Hamdy Taha's 'Operations Research' (8th edition), page 649ff. The problem involves a transition matrix of size 3x3, which represents the probabilities of transitioning from one state to another. The goal is to calculate the steady state probability of this transition matrix, which is the long-term probability distribution of the states of the system. Additionally, the problem involves calculating the mean first return time from a steady state probability array, which is the expected time to return to a state for the first time. The problem also involves calculating the total cost, which is the sum of the cost of each state multiplied by its steady state probability. The cost of each state is given. The problem is solved when the steady state probabilities, the mean first return times, and the total cost are found.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Markov Chain Steady State and Cost Analysis",
+    "domain": "Operations Research",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "/",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Markov Chain Steady State and Cost Analysis",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "steady_state_probabilities",
+      "mean_first_return_times",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "transition_matrix",
+      "state_costs"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "/",
+      "*"
+    ]
+  }
+}

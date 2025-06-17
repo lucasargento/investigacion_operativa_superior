@@ -1,0 +1,49 @@
+{
+  "description": "Calculate the minimum number of employees to hire such that the requirements for coverage (as described by Num) can be met with each employee working for WorkingDays consecutive days followed by at least RestingDays consecutive resting days.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Cafeteria Staff Scheduling",
+    "domain": "Workforce Scheduling",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "=",
+      "<=",
+      "if",
+      "then",
+      "elseif",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Cafeteria Staff Scheduling",
+    "domain": "Workforce Scheduling",
+    "model_var_keywords": [
+      "total_number",
+      "is_work"
+    ],
+    "model_data_keywords": [
+      "num",
+      "n_working_days",
+      "n_resting_days"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "=",
+      "<=",
+      "if",
+      "then",
+      "elseif",
+      "endif"
+    ]
+  }
+}

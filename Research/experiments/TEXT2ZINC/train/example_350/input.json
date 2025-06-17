@@ -1,0 +1,45 @@
+{
+  "description": "Takuzu is a logic-based number placement puzzle. The objective is to fill a grid (usually 10x10) with 1s and 0s, where there is an equal number of 1s and 0s in each row and column and no more than two of either number adjacent to each other. Additionally, there can be no identical rows or columns. Fill the remaining squares in the Takuzu puzzle.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Takuzu",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "or",
+      "!=",
+      "exists",
+      "<",
+      "bool2int"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Takuzu",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "grid"
+    ],
+    "model_data_keywords": [
+      "puzzle",
+      "n"
+    ],
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "or",
+      "!=",
+      "exists",
+      "<",
+      "bool2int"
+    ]
+  }
+}

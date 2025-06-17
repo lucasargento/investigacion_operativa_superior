@@ -1,0 +1,57 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 415
+- Name: Pharmacy Production Optimization
+- Domain: Manufacturing
+- Objective: minimization
+
+Problem Description:
+A pharmacy has two factories , factory 1 and factory 2 , where they make acne cream and anti - bacterial cream . Factory 1 produces 12 units of acne cream and 15 units of anti - bacterial cream per hour . Factory 2 produces 20 units of acne cream and 10 units of anti - bacterial cream per hour . Factory 1 requires 30 units of base gel per hour while factory 2 requires 45 units of base gel per hour . The pharmacy has available 5000 units of base gel . Further , they must make at least 800 units of acne cream and 1000 units of anti - bacterial cream . How many hours should each factory be run to minimize the total time needed ?
+
+
+MiniZinc Model:
+var int: hours_factory1;
+% number of hours facroty 2 is run
+var int: hours_factory2;
+
+% number of hours must be non-negative
+constraint hours_factory1 >= 0;
+constraint hours_factory2 >= 0;
+
+% The pharmacy has available 5000 units of base gel. 
+% factory 1 requires 30 units of base gel per hour while factory 2 requires 45 units of base gel per hour
+constraint hours_factory1 * 30 + hours_factory2 * 45 <= 5000;
+
+% they must make at least 800 units of acne cream a
+% factory 1 produces 12 units of acne cream and Factory 2 produces 20 units of acne cream
+constraint hours_factory1 * 12 + hours_factory2 * 20 >= 800;
+
+% they must make at least 1000 units of anti - bacterial cream 
+% factory 1 produces 15 units of anti-bacterial cream per hour and factory 2 produces 10 units of anti-bacterial cream per hour
+constraint hours_factory1 * 15 + hours_factory2 * 10 >= 1000;
+
+% minimize the total time needed 
+solve minimize hours_factory1 + hours_factory2;
+
+% output
+output ["Hours for Factory 1: " ++ show(hours_factory1) ++ "\nHours for Factory 2: " ++ show(hours_factory2)];
+
+Expected Output:
+{
+  "hours_factory1": 67,
+  "hours_factory2": 0,
+  "_objective": 67
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

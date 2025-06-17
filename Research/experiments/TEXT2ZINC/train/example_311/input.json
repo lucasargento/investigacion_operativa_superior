@@ -1,0 +1,51 @@
+{
+  "description": "The problem is a job-shop scheduling problem. Given a number of machines and jobs, each job has a specific order in which it must be processed by the machines and each job-machine pair has a specific processing time. The goal is to schedule all jobs on all machines such that the time at which the last job is finished (the makespan) is minimized. The constraints of the problem ensure that each machine can only process one job at a time, that each job is processed by the machines in the correct order, and that the processing of a job on a machine cannot start until the processing time of the job on that machine has elapsed.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Job-Shop Scheduling",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "cumulative",
+      "all_different",
+      "<=",
+      ">=",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Job-Shop Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "num_machines",
+      "num_jobs",
+      "job_times",
+      "job_order",
+      "max_time",
+      "job_start",
+      "job_end",
+      "earliest_end_time"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "cumulative",
+      "all_different",
+      "<=",
+      ">=",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  }
+}

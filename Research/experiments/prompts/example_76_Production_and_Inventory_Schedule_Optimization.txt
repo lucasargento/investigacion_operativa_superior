@@ -1,0 +1,38 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 76
+- Name: Production and Inventory Schedule Optimization
+- Domain: Manufacturing and Production
+- Objective: minimization
+
+Problem Description:
+A company must deliver a target number of units of its product at the end of each month. Material produced during a month can be delivered either at the end of the same month or can be stored as inventory and delivered at the end of a subsequent month. There is a storage cost per month for each unit of product held in inventory. The year begins with zero inventory. If the company produces x_i units in month i and x_{i+1} units in month i+1, it incurs a cost switch_cost |x_{i+1} - x_i| dollars, where switch_cost is a constant of proportionality, reflecting the cost of switching to a new production level. Assume that inventory left at the end of the year has no value and does not incur any storage cost. How much product should the company produce each month if it wants to minimize the total cost of the production and inventory schedule over the next few months?
+
+
+Input Data (data.dzn):
+T = 12;
+Deliver = [100, 120, 110, 130, 150, 100, 90, 110, 95, 125, 130, 100];
+StorageCost = 5;
+SwitchCost = 10;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 1308.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

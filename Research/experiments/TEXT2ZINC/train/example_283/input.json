@@ -1,0 +1,35 @@
+{
+  "description": "# Problem CostasArray\n\nA costas array is a pattern of n marks on an n\u2217n grid, one mark per row and one per column,\nin which the n\u2217(n\u22121)/2 vectors between the marks are all-different.\n\nSee problem 076 at CSPLib.\n\n## Data\n  A unique integer, the order of the grid\n\n## Model\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)\n\n## Execution\n  - python CostasArray.py -data=number\n\n## Links\n  - https://en.wikipedia.org/wiki/Costas_array\n  - https://www.csplib.org/Problems/prob076/\n  - https://www.cril.univ-artois.fr/XCSP22/competitions/csp/csp\n\n## Tags\n  academic, csplib, xcsp22\n\n<br />\n\n## _Alternative Model(s)_\n\n#### CostasArray_z.py\n - constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)\n - tags: academic, mzn10, mzn11, mzn15",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Costas Array",
+    "domain": "Academic",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "-"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Costas Array",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "marks",
+      "vectors"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "-"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "description": "The problem is about symmetry breaking in MiniZinc. The task is to find seven integers A, B, C, D, E, F, G in the range of 1 to 50 that satisfy the following conditions: The sum of the cubes of A, B, C, and D is equal to the sum of the cubes of E, F, and G. Additionally, the integers must satisfy the following symmetry conditions: A is less than or equal to B, B is less than or equal to C, C is less than or equal to D, E is less than or equal to F, F is less than or equal to G, and A is less than or equal to E.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Symmetry Breaking in MiniZinc",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "=",
+      "+",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Symmetry Breaking in MiniZinc",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G"
+    ],
+    "model_data_keywords": [
+      "min_value",
+      "max_value"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "<=",
+      "=",
+      "+",
+      "*"
+    ]
+  }
+}

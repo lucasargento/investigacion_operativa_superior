@@ -1,0 +1,119 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 451
+- Name: Counts Constraint Implementation
+- Domain: Constraint Programming
+- Objective: satisfaction
+
+Problem Description:
+The problem is about implementing the 'counts' global constraint in MiniZinc. The 'counts' constraint is defined as follows: Given two collections, VALUES and VARIABLES, let N be the number of variables of the VARIABLES collection assigned to a value of the VALUES collection. The 'counts' constraint enforces a condition N RELOP LIMIT to hold, where RELOP is a relational operator (like <, <=, =, >=, >, !=) and LIMIT is an integer. For example, if VALUES = <1,​3,​4,​9>, VARIABLES = <4,​5,​5,​4,​1,​5>, RELOP = '=', and LIMIT = 3, the 'counts' constraint holds since the values 1, 3, 4 and 9 of the VALUES collection are assigned to 3 items of the VARIABLES collection, which is equal to the LIMIT. The problem requires to model this constraint in MiniZinc and solve it for given VALUES, VARIABLES, RELOP, and LIMIT.
+
+
+MiniZinc Model:
+int: m = 4;
+int: n = 6;
+array[1..n] of var 1..5: variables;
+array[1..m] of var 1..9: values;
+var int: limitx;
+
+
+solve satisfy;
+
+%
+% Since MiniZinc don't handle function variables we use the following 
+% hack where t is the type of comparison operator.
+% t:
+%  - 2 :  a <  b
+%  - 1 :  a <= b
+%    0 :  a  = b
+%    1 :  a >= b
+%    2 :  a >  b
+% else : a != b
+%
+predicate cmp(var int: a, var int: b, int: t) = 
+   if     t = -2 then
+     a < b
+   elseif t = -1 then
+     a <= b 
+   elseif t =  0 then
+     a = b
+   elseif t =  1 then
+     a >= b
+   elseif t =  2 then
+     a > b
+   else 
+     a != b
+   endif
+;
+
+%
+% counts(VARIABLES, VALUES, RELOP, LIMIT)
+%
+predicate counts(array[int] of var int: variables, array[int] of var int: values, int: relop, var int: limit) =
+
+     cmp(sum(i in index_set(variables)) (
+        sum(j in index_set(values)) (
+            bool2int(variables[i] = values[j])
+       )
+     ), limit, relop)
+;
+
+predicate cp1d(array[int] of int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+    forall(i in index_set(x)) ( x[i] = y[i] ) )
+; 
+
+
+constraint
+   cp1d([1,3,4,9], values)
+   /\
+   cp1d([4,5,5,4,1,5], variables)
+   /\
+   limitx = 3
+   /\
+   counts(values, variables, 0, limitx)
+
+
+
+;
+
+
+output
+[
+  "values: " ++ show(values) ++ "\n" ++
+  "variables: " ++ show(variables) ++ "\n" ++
+  "limitx: " ++ show(limitx) ++ "\n"
+];
+
+Expected Output:
+{
+  "variables": [
+    4,
+    5,
+    5,
+    4,
+    1,
+    5
+  ],
+  "values": [
+    1,
+    3,
+    4,
+    9
+  ],
+  "limitx": 3
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

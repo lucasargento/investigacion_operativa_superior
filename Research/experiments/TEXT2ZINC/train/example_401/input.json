@@ -1,0 +1,44 @@
+{
+  "description": "A seafood market sells scallops , mussels , and oysters in packages named seafood medley one and seafood medley two . A package of seafood medley one contains 20 grams of scallops , 30 grams of mussels , and 50 grams of oysters . A package of seafood medley two contains 40 grams of scallops , 40 grams of mussels , and 20 grams of oysters . The market has available 10000 grams of scallops , 12000 grams of mussels , and 11000 grams of oysters . If the profit per package of seafood medley one is $ 20 and the profit per package of seafood medley two is $ 25 , how many of each should be sold to maximize profit ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Seafood Medley Profit Maximization",
+    "domain": "Business Optimization",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Seafood Medley Profit Maximization",
+    "domain": "Business Optimization",
+    "model_var_keywords": [
+      "medley_one",
+      "medley_two",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "scallops_medley_one",
+      "mussels_medley_one",
+      "oysters_medley_one",
+      "scallops_medley_two",
+      "mussels_medley_two",
+      "oysters_medley_two",
+      "available_scallops",
+      "available_mussels",
+      "available_oysters",
+      "profit_medley_one",
+      "profit_medley_two"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "*"
+    ]
+  }
+}

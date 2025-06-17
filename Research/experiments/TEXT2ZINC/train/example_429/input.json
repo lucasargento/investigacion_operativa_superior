@@ -1,0 +1,38 @@
+{
+  "description": "A man wants to sell his berries at the market down the river . He can either use a boat to carry it down stream or have his neighbor carry it . A boat can take 200 units of berries per trip and cost $ 30 per trip . His neighbor can take 40 units of berries per trip and costs $ 8 . The man does not want to spend more than $ 500 and the number of boat trips can not exceed the number of trips his neighbor does . Formulate a LP to maximize the number of berries he can transport to the market ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximize Berries Transported",
+    "domain": "Transportation",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximize Berries Transported",
+    "domain": "Transportation",
+    "model_var_keywords": [
+      "boat_trips",
+      "neighbor_trips",
+      "total_berries"
+    ],
+    "model_data_keywords": [
+      "boat_trip_cost",
+      "neighbor_trip_cost",
+      "max_budget",
+      "boat_trip_units",
+      "neighbor_trip_units"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "+"
+    ]
+  }
+}

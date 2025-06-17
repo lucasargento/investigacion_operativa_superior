@@ -1,0 +1,50 @@
+{
+  "description": "The problem is about shopping different kinds of parts from a set of different stores. Each store may or may not have each specific part. The goal is to minimize the cost of buying all parts. The cost includes the price of the parts and the shipping cost for each store. The tricky part is that for each store there is a shipping cost and sometimes buying a part at the lower price, means buying it at a store that the shipping would make it more expensive than buying it from a store that is more expensive but have other less expensive parts. The decision variables are which store to buy each product from, the total cost for the parts, the delivery cost, and the total cost which is the sum of the part cost and the delivery cost. The constraints are that a selected part must be in an available store, the total cost for the parts is the sum of the cost of the parts from the selected stores, and the delivery cost is the sum of the delivery costs of the stores where something is bought from. The objective is to minimize the total cost.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimize Shopping Cost",
+    "domain": "Optimization",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">",
+      "sum",
+      "=",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimize Shopping Cost",
+    "domain": "Optimization",
+    "model_var_keywords": [
+      "store_selection",
+      "part_cost",
+      "delivery_cost",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "num_parts",
+      "num_stores",
+      "product_stores",
+      "store_delivery_costs"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">",
+      "sum",
+      "=",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  }
+}

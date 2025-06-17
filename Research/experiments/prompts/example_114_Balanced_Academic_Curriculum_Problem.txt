@@ -1,0 +1,162 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 114
+- Name: Balanced Academic Curriculum Problem
+- Domain: Scheduling
+- Objective: minimization
+
+Problem Description:
+---
+Title:    Balanced Academic Curriculum Problem (BACP)
+Proposer: 
+    - Brahim Hnich
+    - Zeynep Kiziltan
+    - Toby Walsh
+Category: Scheduling and related problems
+---
+
+
+The BACP is to design a balanced academic curriculum by assigning periods to courses in a way that the academic load of each period is balanced, i.e., as similar as possible . The curriculum must obey the following administrative and academic regulations: 
+
+* Academic curriculum: an academic curriculum is defined by a set of courses and a set of prerequisite relationships among them. 
+* Number of periods: courses must be assigned within a maximum number of academic periods. 
+* Academic load: each course has associated a number of credits or units that represent the academic effort required to successfully follow it. 
+* Prerequisites: some courses can have other courses as prerequisites. 
+* Minimum academic load: a minimum number of academic credits per period is required to consider a student as full time. 
+* Maximum academic load: a maximum number of academic credits per period is allowed in order to avoid overload. 
+* Minimum number of courses: a minimum number of courses per period is required to consider a student as full time. 
+* Maximum number of courses: a maximum number of courses per period is allowed in order to avoid overload. 
+
+The goal is to assign a period to every course in a way that the minimum and maximum academic load for each period, the minimum and maximum number of courses for each period, and the prerequisite relationships are satisfied. An optimal balanced curriculum minimises the maximum academic load for all periods.
+
+Note that we could consider other types of balance criterion, such as minimising an expression on the deviation from the mean load per period. This is explored in Monette et al
+
+
+**The Generalised Balanced Academic Curriculum Problem**
+
+Marco Chiarandini, Luca Di Gaspero, Stefano Gualandi, and Andrea Schaerf have proposed a more challenging <a href="http://www.csplib.org/Problems/prob064">generalised version</a> of the problem.
+
+
+Input Data (data.dzn):
+n_courses=6;
+n_periods=3;
+load_per_period_lb=10;
+load_per_period_ub=30;
+courses_per_period_lb=2;
+courses_per_period_ub=4;
+course_load=[5, 10, 15, 10, 5, 10];
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: n_courses;
+int: n_periods;
+int: load_per_period_lb;
+int: load_per_period_ub;
+int: courses_per_period_lb;
+int: courses_per_period_ub;
+array [1..n_courses] of int: course_load;
+int: max_course_load = sum(c in courses)(course_load[c]);
+
+set of int: courses = 1..n_courses;
+set of int: periods = 1..n_periods;
+
+% period course is assigned to
+array [courses] of var periods: course_period;
+% whether period i has course j assigned
+array [periods, courses] of var 0..1: x;
+% total load for each period
+array [periods] of var load_per_period_lb..load_per_period_ub: load;
+% optimisation target
+var load_per_period_lb..load_per_period_ub: objective;
+
+constraint forall(p in periods) (
+    forall(c in courses) (x[p,c] = bool2int(course_period[c] = p)) /\
+    sum(i in courses) (x[p,i]) >= courses_per_period_lb /\
+    sum(i in courses) (x[p,i]) <= courses_per_period_ub /\
+    load[p] = sum(c in courses) (x[p,c] * course_load[c]) /\
+    load[p] >= load_per_period_lb /\
+    load[p] <= objective
+);
+
+% prerequisite(a, b) means "course a has prerequisite course b".
+
+predicate prerequisite(courses: a, courses: b) =
+    course_period[b] < course_period[a];
+
+% add some redundant linear constraints
+
+constraint forall(p in 0..n_periods-1) (
+    let {
+		var 0..max_course_load: l = sum(c in courses) (bool2int(course_period[c] > p) * course_load[c])
+	} in 
+        l >= (n_periods-p) * load_per_period_lb /\
+        l <= (n_periods-p) * objective
+    );
+
+solve :: seq_search([
+      int_search([x[i,j] | i in periods, j in courses], input_order, indomain_max, complete),
+      int_search([objective], input_order, indomain_min, complete)
+    ]) minimize objective;
+
+output 
+    [show(c) ++ "-" ++ show(course_period[c]) ++ "\t" | c in courses ] ++ ["\n"] ++
+    ["objective = ", show(objective)];
+
+Expected Output:
+{
+  "course_period": [
+    1,
+    1,
+    2,
+    3,
+    2,
+    3
+  ],
+  "x": [
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1
+    ]
+  ],
+  "load": [
+    15,
+    20,
+    20
+  ],
+  "objective": 20,
+  "_objective": 20
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

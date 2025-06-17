@@ -1,0 +1,51 @@
+{
+  "description": "The problem is a variation of the classic FizzBuzz problem. The task is to write a program that prints the numbers from 1 to 100 with the following conditions: \n\n1. For multiples of three print 'Fizz' instead of the number.\n2. For multiples of five print 'Buzz' instead of the number.\n3. For numbers which are multiples of both three and five print 'FizzBuzz'.\n\nThe variation adds new requirements:\n\n1. A number is 'Fizz' if it is divisible by 3 or if it has a 3 in it.\n2. A number is 'Buzz' if it is divisible by 5 or if it has a 5 in it.\n3. If a number is divisible by 3 and has a 5 in it, or if it is divisible by 5 and has a 3 in it, it is 'FizzBuzz'.\n\nThe solution must handle all these cases at the same time, without any order between the conditions. The solution should also be able to handle the requirement 'or if it has a <n> in it'.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "FizzBuzz Variation",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "toNumber",
+      "contains",
+      "mod",
+      "forall",
+      "<->",
+      "/\\",
+      ">",
+      "=",
+      "not",
+      "exists"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "FizzBuzz Variation",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "numberState",
+      "fizzBuzzOutput",
+      "digits",
+      "state"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "toNumber",
+      "contains",
+      "mod",
+      "forall",
+      "<->",
+      "/\\",
+      ">",
+      "=",
+      "not",
+      "exists"
+    ]
+  }
+}

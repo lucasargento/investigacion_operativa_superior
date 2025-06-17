@@ -1,0 +1,58 @@
+{
+  "description": "The problem is about scheduling and assigning workers to jobs. The goal is to minimize the total time (makespan) to complete all jobs. The problem has the following features:\n\n- The order of jobs is calculated using the cumulative constraint.\n- The assignments of workers to the jobs are represented in several ways: assignment matrices for both jobs to workers and workers to jobs, and timelines for jobs as well as for workers.\n- The problem can handle precedences between jobs. If a job must be done before another job, this precedence is taken into account.\n- The problem can enforce that idleness is not allowed, i.e., a worker cannot be idle until his/her last task. This is for testing the Rule 1 from Ron L. Graham's paper 'Combinatorial Scheduling Theory'.\n- The problem can enforce that the workers assigned to a tasks must be 'near' i.e. as a collected block. This might lead to nicer (Gantt-like) output and solve some more type of problems, e.g. perfect square placement problems.\n\nEach job has a duration and requires a certain number of workers. Each worker can only work on one job at a time. If two jobs overlap in time, they cannot share workers. If the total number of workers required by two jobs is more than the total number of workers, these two jobs cannot overlap in time.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Job Scheduling and Assignment",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "cumulative",
+      "sum",
+      "forall",
+      "exists",
+      "no_overlap",
+      "prec",
+      "global_contiguity",
+      "global_contiguity_regular",
+      "max"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Job Scheduling and Assignment",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "start_time",
+      "end_time",
+      "assignment",
+      "earliest_end_time"
+    ],
+    "model_data_keywords": [
+      "num_jobs",
+      "num_workers",
+      "duration",
+      "resource",
+      "max_time",
+      "do_precendences",
+      "num_precedences",
+      "precedences",
+      "allow_idle",
+      "collect_workers"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "cumulative",
+      "sum",
+      "forall",
+      "exists",
+      "no_overlap",
+      "prec",
+      "global_contiguity",
+      "global_contiguity_regular",
+      "max"
+    ]
+  }
+}

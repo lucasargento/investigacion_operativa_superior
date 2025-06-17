@@ -1,0 +1,44 @@
+{
+  "description": "Consider a diet problem. Given a set of nutrients NutrientCount and a set of foods FoodCount. Each food j has a cost Cost_j and a range of amount that can be bought [FoodMin_j, FoodMax_j]. Each nutrient i has a range of amount that should be included in the diet [NutrientMin_i, NutrientMax_i]. The amount of nutrient i in food j is AmountNutrient_{i, j}. The problem aims to minimize the total cost of buying foods. It is constrained that the total amount of each nutrient i in the bought foods should be within its range. How to decide the amount of each food j to buy?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Diet Problem",
+    "domain": "Nutrition",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Diet Problem",
+    "domain": "Nutrition",
+    "model_var_keywords": [
+      "FoodAmount",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "NutrientCount",
+      "FoodCount",
+      "Cost",
+      "FoodMin",
+      "FoodMax",
+      "NutrientMin",
+      "NutrientMax",
+      "AmountNutrient"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<="
+    ]
+  }
+}

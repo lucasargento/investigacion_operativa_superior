@@ -1,0 +1,31 @@
+{
+  "description": "# Problem CoinsGrid\n\nFrom Tony Hurlimann, A coin puzzle, SVOR-contest 2007.\n\n## Data\n  Two integers n and c\n\n## Model\n  constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n  - python CoinsGrid.py -data=[number,number]\n\n## Links\n  - https://link.springer.com/book/10.1007/978-3-319-25883-6\n  - https://www.cril.univ-artois.fr/XCSP22/competitions/cop/cop\n\n## Tags\n  academic, recreational, xcsp22",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Coins Grid",
+    "domain": "Academic",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "+",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Coins Grid",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "n",
+      "c"
+    ],
+    "model_data_keywords": [],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "+",
+      "="
+    ]
+  }
+}

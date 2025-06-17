@@ -1,0 +1,41 @@
+{
+  "description": "The problem is based on a Martin Gardner Problem. A number is called 'prime-looking' if it is composite but not divisible by 2, 3, or 5. The three smallest prime-looking numbers are 49, 77, and 91. There are 168 prime numbers less than 1000. The problem is to find how many prime-looking numbers are there less than 1000. The problem is modeled in MiniZinc, a medium-level constraint modeling language. The model includes two variables, d1 and d2, which are factors of a number x. The number x is considered 'prime-looking' if it is not divisible by 2, 3, or 5. The goal is to find the number x that satisfies these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Prime-Looking Numbers",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "=",
+      "<=",
+      "mod",
+      ">",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Prime-Looking Numbers",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "factor1",
+      "factor2",
+      "prime_looking_number"
+    ],
+    "model_data_keywords": [
+      "upper_limit",
+      "divisors"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "=",
+      "<=",
+      "mod",
+      ">",
+      "forall"
+    ]
+  }
+}

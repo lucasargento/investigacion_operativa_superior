@@ -1,0 +1,37 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 23
+- Name: Cafeteria Staff Scheduling
+- Domain: Scheduling
+- Objective: minimization
+
+Problem Description:
+To operate a cafeteria, the manager must ensure on-call duty based on the statistics on the required staff. For the future days, we know the number of desired employees on each day. If each employee works a fixed number of days in a row followed by a fixed number of days off, calculate the minimum number of employees to hire. Assume a recurring schedule.
+
+
+Input Data (data.dzn):
+N = 6;
+Num = [5, 10, 2, 3, 2, 10];
+WorkingDays = 5;
+RestingDays = 2;
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 15.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

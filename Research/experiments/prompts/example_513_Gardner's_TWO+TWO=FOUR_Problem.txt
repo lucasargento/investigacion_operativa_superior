@@ -1,0 +1,70 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 513
+- Name: Gardner's TWO+TWO=FOUR Problem
+- Domain: Cryptarithmetic
+- Objective: satisfaction
+
+Problem Description:
+This problem is a cryptarithmetic puzzle known as Gardner's TWO+TWO=FOUR problem. In this addition problem, each letter stands for a different digit. The problem is represented as follows:
+
+   T W O
+ + T W O
+ --------
+ F O U R
+
+The constraints are that T is equal to 7 and the letter O represents an even number. The task is to find the only possible value for W. The letters F, U, and R represent other digits, with F being greater than 0. All letters represent different digits.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+
+var 7..7: T; % hardwired to 7
+var 0..9: W;
+var 0..9: O;
+var 1..9: F; % > 0
+var 0..9: U;
+var 0..9: R;
+
+array[1..6] of var 0..9: FD = [T,W,O,F,U,R];
+
+solve satisfy;
+
+constraint
+   alldifferent(FD)
+   /\
+   2 * (100*T + 10*W + O) = 1000*F + 100*O + 10*U + R
+   /\  
+   O mod 2 = 0
+;
+
+output [
+       
+       show(T), show(W), show(O), " + ", show(T), show(W), show(O), " = ",
+       show(F), show(O), show(U), show(R), "\n",
+       "W: ", show(W), "\n"
+]
+
+Expected Output:
+{
+  "T": 7,
+  "W": 3,
+  "O": 4,
+  "F": 1,
+  "U": 6,
+  "R": 8
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

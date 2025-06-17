@@ -1,0 +1,92 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 517
+- Name: Cryptarithmetic Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is a cryptarithmetic puzzle where each letter represents a unique digit from 0 to 9. The puzzle is represented as follows: GATHER + HOMAGE = MARTIN. Additionally, the problem has two more constraints: AxA = H and GxG = O. The first digits in each word (G, H, M) must not be 0. The goal is to find the unique solution that satisfies all these constraints. The solution is represented as an array x of 10 digits, where each digit corresponds to a letter in the order [G, A, T, H, E, R, O, M, I, N].
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 10;
+
+var 0..9: G;
+var 0..9: A;
+var 0..9: T;
+var 0..9: H;
+var 0..9: E;
+var 0..9: R;
+var 0..9: O;
+var 0..9: M;
+var 0..9: I;
+var 0..9: N;
+
+array[1..n] of string: s = ["G","A","T","H","E","R","O","M","I","N"]; 
+
+% decision variables
+array[1..n] of var 0..9: x = [G,A,T,H,E,R,O,M,I,N];
+
+solve satisfy;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+   alldifferent(x) /\
+
+   100000*G + 10000*A + 1000*T + 100*H + 10*E + R + 
+   100000*H + 10000*O + 1000*M + 100*A + 10*G + E = 
+   100000*M + 10000*A + 1000*R + 100*T + 10*I + N
+
+   /\ % These are not needed for uniqueness
+   A*A = H
+   /\
+   G*G = O
+
+   % The first digits in each word must not be 0.
+   % (though it don't make any difference for the solution).
+   /\ 
+   G > 0 
+   /\
+   H > 0 
+   /\
+   M > 0
+;
+
+output 
+[
+  "x: " ++ show(x) ++ "\n"
+]
+++
+[ show(s[i]) ++ ": " ++ show(x[i]) ++ "\n"
+  | i in 1..n
+];
+
+Expected Output:
+{
+  "G": 3,
+  "A": 2,
+  "T": 7,
+  "H": 4,
+  "E": 6,
+  "R": 5,
+  "O": 9,
+  "M": 8,
+  "I": 0,
+  "N": 1
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

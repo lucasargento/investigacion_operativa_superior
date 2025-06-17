@@ -1,0 +1,80 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 276
+- Name: Water Bucket Problem
+- Domain: Academic
+- Objective: minimization
+
+Problem Description:
+# Problem WaterBucket
+
+This is [Problem 018](https://www.csplib.org/Problems/prob018/) at CSPLib:
+
+You are given an 8 pint bucket of water, and two empty buckets which can contain 5 and 3 pints respectively.
+You are required to divide the water into two by pouring water between buckets
+(that is, to end up with 4 pints in the 8 pint bucket, and 4 pints in the 5 pint bucket).
+What is the minimum number of transfers of water between buckets?
+
+
+## Data
+  A tuple (c1,c2,c3,g1,g2,g3,h), where
+  - c1, c2, c3 for capacities of the three buckets
+  - g1, g2, g3  for goal (which quantities must be present in the three buckets after all transfers)
+  - h for horizon (maximal number of rounds/transfers)
+
+## Model
+  constraints: [Table](http://pycsp.org/documentation/constraints/Table)
+
+## Execution
+```
+  python WaterBucket.py -data=[8,5,3,4,4,0,8]
+```
+
+## Tags
+  academic, csplib
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Bucket capacities
+int: c1 = 8; int: c2 = 5; int: c3 = 3;
+
+% Goal quantities
+int: g1 = 4; int: g2 = 4; int: g3 = 0;
+
+% Horizon
+int: h = 6;
+
+% Decision variables
+array[1..h, 1..3] of var 0..c1: x;
+
+% Initial state
+constraint forall(i in 1..3)(x[1,i] = if i = 1 then c1 else 0 endif);
+
+% Goal state
+constraint forall(i in 1..3)(x[h,i] = if i = 1 then g1 else if i = 2 then g2 else g3 endif endif);
+
+% Transitions
+constraint forall(t in 1..h-1, i in 1..3, j in 1..3 where i != j)(
+  x[t+1,i] = x[t,i] - min(x[t,i], c3 - x[t,3]) /\ x[t+1,j] = x[t,j] + min(x[t,i], c3 - x[t,3])
+);
+
+% Solve
+solve minimize h;
+
+% Output
+output [ "Transfer " ++ show(t) ++ ": " ++ show(x[t,1]) ++ ", " ++ show(x[t,2]) ++ ", " ++ show(x[t,3]) ++ "\n" | t in 1..h];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

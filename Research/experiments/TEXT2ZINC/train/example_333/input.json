@@ -1,0 +1,43 @@
+{
+  "description": "The problem is based on the 'numbers round' from the UK TV quiz show called Countdown. In this round, there are some cards laid face down in front of the host - the top row contains 'large' numbers (from the set 25, 50, 75, 100), and the rest are 'small' (1 to 10). Six cards are picked and displayed: the choice is made by one of the contestants, who typically will ask for one large number and five small ones. A machine called 'Cecil' picks a target number between 100 and 999 at random. The contestants then have 30 seconds to find a way of combining the source numbers using the normal arithmetic operators (+, -, *, /) to make the target number, or to get as close as possible. Each source card can be used no more than once. The same applies to any intermediate results. The task is to write a program which will accept one target number and a list of source numbers, and generate a solution which calculates the target or a number as close to the target as possible. This MiniZinc model is more restricted in how the operators work: It only solves solutions of a specific form.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Countdown Numbers Round",
+    "domain": "Game",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "make",
+      "total",
+      "make_op"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Countdown Numbers Round",
+    "domain": "Game",
+    "model_var_keywords": [
+      "x",
+      "perm",
+      "s",
+      "total",
+      "ops"
+    ],
+    "model_data_keywords": [
+      "numbers",
+      "n",
+      "max_ops",
+      "ops_string"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "make",
+      "total",
+      "make_op"
+    ]
+  }
+}

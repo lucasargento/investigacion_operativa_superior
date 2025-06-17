@@ -1,0 +1,39 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 41
+- Name: Soybean Transportation Optimization
+- Domain: Transportation and Logistics
+- Objective: minimization
+
+Problem Description:
+US soybean suppliers ship soybeans to different destinations using various routes. Consider a transportation network consisting of several cities. Soybeans are sent from a terminal city to a port city. Subsequently, Soybeans are transported from a port city to a destination city. We are given a set of routes between cities and a positive transport cost per metric ton to transport soybeans per ton along that route. Each source terminal has a soybean supply and each destination has a demand for soybeans that must be met. What quantity of soybeans should they transport along each route from source to destination to minimize transportation costs?
+
+
+Input Data (data.dzn):
+NumTerminals = 3;
+NumPorts = 4;
+Cost = array2d(1..3, 1..4, [34, 49, 17, 26, 52, 64, 23, 14, 20, 28, 12, 17]);
+Demand = [65, 70, 50, 45];
+Supply = [150, 100, 100];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 33960.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

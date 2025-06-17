@@ -1,0 +1,69 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 249
+- Name: Auto Parts Manufacturer Optimization
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+Determine the quantity of batches for each part the manufacturer should produce every month, ensuring all constraints are met, where the manufacturer has P different parts, M machines, TimeRequired matrix indicating the time each machine takes to produce a part, MachineCosts indicating the cost of each machine, Availability of each machine, Prices of each part, MinBatches required for each part, a StandardCost of running a machine per hour, an OvertimeCost for running a machine beyond the standard hours, an OvertimeHour available for overtime work for each machine, and a MinProfit that the manufacturer aims to achieve.
+
+
+Input Data (data.dzn):
+time_required = [|2, 1, 3, 2|4, 2, 1, 2|6, 2, 1, 2|];
+machine_costs = [160, 10, 15];
+availability = [200, 300, 500];
+prices = [570, 250, 585, 430];
+min_batches = [10, 10, 10, 10];
+standard_cost = 20;
+overtime_cost = 30;
+overtime_hour = 400;
+min_profit = 5000;
+
+MiniZinc Model:
+% Parameters
+int: P; % Number of parts
+int: M; % Number of machines
+array[1..M, 1..P] of int: time_required; % Time required by each machine to produce each part
+array[1..M] of int: machine_costs; % Cost of each machine
+array[1..M] of int: availability; % Availability of each machine
+array[1..P] of int: prices; % Price of each part
+array[1..P] of int: min_batches; % Minimum batches required for each part
+int: standard_cost; % Standard cost of running a machine per hour
+int: overtime_cost; % Overtime cost of running a machine beyond the standard hours
+int: overtime_hour; % Overtime hours available for each machine
+int: min_profit; % Minimum profit that the manufacturer aims to achieve
+
+% Decision Variables
+array[1..P] of var 0..1000: batches; % Number of batches for each part
+var int: total_profit; % Total profit
+
+% Constraints
+constraint forall(m in 1..M)(
+    sum(p in 1..P)(time_required[m,p]*batches[p]) <= availability[m]
+);
+
+constraint forall(p in 1..P)(
+    batches[p] >= min_batches[p]
+);
+
+constraint sum(p in 1..P)(prices[p]*batches[p]) - sum(m in 1..M)(machine_costs[m]*sum(p in 1..P)(time_required[m,p]*batches[p])) - (if sum(p in 1..P)(time_required[1,p]*batches[p]) > overtime_hour then (sum(p in 1..P)(time_required[1,p]*batches[p]) - overtime_hour)*overtime_cost else 0 endif) >= min_profit;
+
+% Objective
+solve maximize total_profit;
+
+% Output
+output ["batches: ", show(batches), "\n", "total_profit: ", show(total_profit)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

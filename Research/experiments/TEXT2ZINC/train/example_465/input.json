@@ -1,0 +1,58 @@
+{
+  "description": "The problem is about implementing the global constraint nvalues_except_0 in MiniZinc. The constraint nvalues_except_0(VARIABLES,RELOP,LIMIT) is defined as follows: Let N be the number of distinct values, different from 0, assigned to the variables of the VARIABLES collection. The condition N\u2006RELOP\u2006LIMIT should hold. Here, VARIABLES is a collection of variables, RELOP is a comparison operator, and LIMIT is a limit value. The comparison operator is coded as: '<' is -2, '<=' is -1, '=' is 0, '>=' is 1, '>' is 2. An example of this constraint is (<4,5,5,4,0,1>,=,3). The nvalues_except_0 constraint holds since the number of distinct values, different from 0, occurring within the collection <4,5,5,4,0,1> is equal (i.e., RELOP is set to =) to its third argument LIMIT=3. The problem is to find the variables, relop, and limitx that satisfy this constraint.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "NValues Except Zero Constraint",
+    "domain": "Constraint Programming",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "nvalues_except_0",
+      "arrays_equal",
+      "=",
+      "<",
+      "<=",
+      ">",
+      ">=",
+      "forall",
+      "exists",
+      "not",
+      "card",
+      "distinct_values",
+      "assert",
+      "index_set"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "NValues Except Zero Constraint",
+    "domain": "Constraint Programming",
+    "model_var_keywords": [
+      "variables",
+      "limit_val",
+      "comp_operator"
+    ],
+    "model_data_keywords": [
+      "num_vars"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "nvalues_except_0",
+      "arrays_equal",
+      "=",
+      "<",
+      "<=",
+      ">",
+      ">=",
+      "forall",
+      "exists",
+      "not",
+      "card",
+      "distinct_values",
+      "assert",
+      "index_set"
+    ]
+  }
+}

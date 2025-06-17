@@ -1,0 +1,58 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 426
+- Name: Maximize Toy Storage Transportation
+- Domain: Logistics
+- Objective: maximization
+
+Problem Description:
+A toy storage company needs to transport toys using a manual pallet jack or an electric pallet jack . The toy storage company has access to at most 6 manual pallet jacks and 15 electric pallet jacks . The manual pallet jacks can transport 15 boxes every hour while electric pallet jacks can transport 25 boxes every hour . Since electric jacks require less work , the number of electric pallet jacks must exceed the number of manual pallet jacks . If the company can use at most 8 manual pallet jacks and at least 5 electric pallet jacks , how many of each should the company use to maximize the number of boxes they can transport ?
+
+
+MiniZinc Model:
+var int: manual_jacks;
+% number of electric jacks
+var int: electric_jacks;
+
+% number of jacks must be greater than 0
+constraint manual_jacks >= 0;
+constraint electric_jacks >= 0;
+
+% number of manual jacks is at most 6
+constraint manual_jacks <= 6;
+% number of manual jacks is at most 8
+constraint manual_jacks <= 8;
+% number of electric jacks is at most 15
+constraint electric_jacks <= 15;
+% number of electric jacks is at least 5
+constraint electric_jacks >= 5;
+
+% number of electric jacks must be greater than the number of manual jacks
+constraint electric_jacks > manual_jacks;
+
+% manual jacks can transport 15 boxes every hour and electric jacks can transport 25 boxes every hour
+var int: boxes = 15 * manual_jacks + 25 * electric_jacks;
+
+% maximize the number of boxes
+solve maximize boxes;
+output ["Manual Pallet Jacks: " ++ show(manual_jacks) ++ "\n" ++ "Electric Pallet Jacks: " ++ show(electric_jacks) ++ "\n" ++ "Max Boxes: " ++ show(boxes)];
+
+Expected Output:
+{
+  "manual_jacks": 6,
+  "electric_jacks": 15,
+  "_objective": 465
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

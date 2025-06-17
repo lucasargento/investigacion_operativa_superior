@@ -1,0 +1,32 @@
+{
+  "description": "# Problem MagicModuloNumber\n\nA number with an interesting property: when I divide it by v, the remainder is v-1, and this from v ranging from 2 to 9.\nIt's not a small number, but it's not really big, either.\nWhen I looked for a smaller number with this property I couldn't find one.\nCan you find it?\n\n## Data\n  all integrated (single problem)\n\n## Execution\n```\n  python MagicModuloNumber.py\n```\n\n## Links\n  - see Model in OscaR\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Magic Modulo Number",
+    "domain": "Number Theory",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "mod",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Magic Modulo Number",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "magic_modulo_number"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "mod",
+      "="
+    ]
+  }
+}

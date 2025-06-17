@@ -1,0 +1,58 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 407
+- Name: Maximize Construction Equipment Production Profit
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+A construction company makes bulldozers and forklifts . Each bulldozer takes 3 hours on the assembly line and 2 hours of QC time . Each forklift takes 2 hours on the assembly line and 1.5 hours of QC time . There are 600 hours of assembly line time available and 400 hours of QC time available . If the profit per bulldozer is $ 7000 and the profit per forklift is $ 6000 , how many of each should the construction company make to maximize profit ?
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% number of bulldozers and forklifts
+var int: bulldozers;
+var int: forklifts;
+
+% units are non-negative
+constraint bulldozers >= 0;
+constraint forklifts >= 0;
+
+% 600 hours of assembly time are available
+% bulldozers take 3 hours on the assembly line and forklifts take 2 hours
+constraint bulldozers * 3 + forklifts * 2 <= 600;
+
+% 400 hours of QC time are available
+% bulldozers take 2 hours of QC time and forklifts take 1.5 hours
+constraint bulldozers * 2 + forklifts * 1.5 <= 400;
+
+% profit from bulldozers is 7000 each and from forklifts is 6000 each
+var int: profit = bulldozers * 7000 + forklifts * 6000;
+
+% maximize profit
+solve maximize profit;
+
+% Output
+output ["Number of bulldozers: ", show(bulldozers), "\n", "Number of forklifts: ", show(forklifts), "\n", "Maximum profit: $", show(profit)];
+
+Expected Output:
+{
+  "bulldozers": 2,
+  "forklifts": 264,
+  "_objective": 1598000
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

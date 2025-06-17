@@ -1,0 +1,51 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 409
+- Name: Meat Processing Plant Optimization
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+A meat processing plant has a machine that makes ham and bacon . Each kg of ham takes 15 minutes of machine time and each kg of bacon takes 8 minutes of machine time .   In a week the machine is only available for 2000 minutes . The plant can also make at most 200 kg of ham and at most 220 kg of bacon per week . If the profit per kg of ham is $ 20 and the profit per kg of bacon is $ 12 , how many of each should the plant make to maximize profit ?
+
+
+MiniZinc Model:
+var int: ham; 
+% number of kgs of bacon
+var int: bacon; 
+
+% kgs of ham and bacon produced must be non-negative
+constraint ham >= 0;
+constraint bacon >= 0;
+
+% total machine time available is 2000
+% each kg of ham takes 15 minutes of machine time and each kg of bacon takes 8 minutes of machine time
+constraint 15 * ham + 8 * bacon <= 2000; 
+
+% profit per kg of ham is $20 and for bacon is $12
+var int: profit = 20 * ham + 12 * bacon; 
+
+% maximize profit
+solve maximize profit; 
+
+output ["ham=", show(ham), "\n", "bacon=", show(bacon), "\n", "profit=", show(profit)];
+
+Expected Output:
+{
+  "ham": 0,
+  "bacon": 250,
+  "_objective": 3000
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

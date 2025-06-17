@@ -1,0 +1,55 @@
+{
+  "description": "---\nTitle:    Magic Hexagon\nProposer: Toby Walsh\nCategory:\n - Design and configuration\n - Combinatorial mathematics\n - Games and puzzles\n---\n\nA magic hexagon consists of the numbers 1 to 19 arranged in a hexagonal pattern:\n\n<center><pre>\nA,B,C\nD,E,F,G\nH,I,J,K,L\nM,N,O,P\nQ,R,S\n</pre></center>\n\nWe have a constraint that all diagonals sum to 38. That is,\n\n<pre>\nA+B+C = D+E+F+G = ... = Q+R+S = 38,\nA+D+H = B+E+I+M = ... = L+P+S = 38,\nC+G+L = B+F+K+P = ... = H+M+Q = 38.\n</pre>\n\nThe problem can be generalized to other sizes. This is the diameter 5 problem.\n\n<center>\n![Magic Hexagon](assets/magic.jpg)\n</center>",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Magic Hexagon",
+    "domain": "Design and Configuration, Combinatorial Mathematics, Games and Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "=",
+      "<",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Magic Hexagon",
+    "domain": "Design and Configuration, Combinatorial Mathematics, Games and Puzzles",
+    "model_var_keywords": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "Hexagon"
+    ],
+    "model_data_keywords": [
+      "Numbers"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "=",
+      "<",
+      "sum"
+    ]
+  }
+}

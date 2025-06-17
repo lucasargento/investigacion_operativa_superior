@@ -1,0 +1,191 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 332
+- Name: Matrix Filling with Hints
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is to create a matrix where all values on each row/column are different (except for the blanks). A set of hints is given: The (or some) first seen non blank of each upper row, lower row, left column, and right column seen from that view. The hints are coded as follows: blank -> 0, A -> 1, B -> 2, etc. The objective is to satisfy these conditions and fill the matrix accordingly. The size of the square matrix is 'n' and the numbers to place in each row/column is 'm'. The number of zeros is 'n-m'. The first 'visible' number except empty square for each row and column are given as hints. The problem is to find a solution that satisfies all these conditions.
+
+
+Input Data (data.dzn):
+% For http://www.hakank.org/minizinc/letter_square.mzn
+n = 5;
+m = 3;
+
+row_upper = [0,2,2,0,0];
+row_lower = [0,1,1,0,0];
+col_left  = [0,0,3,0,3];
+col_right = [2,0,0,0,0];
+
+MiniZinc Model:
+int: n; % size of square
+int: m; % numbers to place in each row/column
+int: num_zeros = n-m; % number of zeros
+
+array[1..n, 1..n] of var 0..m: x;
+
+% hints, problem 67
+% This is the first "visible" number except empty square
+array[1..n] of 0..n: row_upper;
+array[1..n] of 0..n: row_lower;
+array[1..n] of 0..n: col_left;
+array[1..n] of 0..n: col_right;
+
+
+predicate all_different_except_0(array[int] of var int: x) =
+   forall(i,j in index_set(x) where i != j) (
+        (x[i] != 0 /\ x[j] != 0) -> x[i] != x[j]      
+   )
+;
+
+% solve satisfy;
+solve :: int_search([x[i,j] | i,j in 1..n], smallest, indomain_min, complete) satisfy;
+
+constraint
+
+    forall(i in 1..n) (
+      all_different_except_0([x[i,j] | j in 1..n]) /\
+      all_different_except_0([x[j,i] | j in 1..n]) 
+      /\
+      sum(j in 1..n) (bool2int(x[i,j] = 0)) = num_zeros /\
+      sum(j in 1..n) (bool2int(x[j,i] = 0)) = num_zeros
+    )
+    /\
+    forall(i in 1..n) (
+      if row_upper[i] > 0 then 
+          exists(j in 1..n) (
+            forall(k in 1..j-1) (x[k,i] = 0) /\
+            x[j,i] = row_upper[i])
+      else 
+        true 
+      endif
+      /\
+
+      if row_lower[i] > 0 then 
+         exists(j in 1..n) (
+           forall(k in j+1..n) (x[k,i] = 0) /\
+           x[j,i] = row_lower[i])
+      else 
+         true 
+      endif
+
+      /\
+      if col_left[i] > 0 then 
+          exists(j in 1..n) (
+            forall(k in 1..j-1) (x[i,k] = 0) /\
+            x[i,j] = col_left[i])
+      else 
+        true 
+      endif
+
+      /\
+      if col_right[i] > 0 then 
+          exists(j in 1..n) (
+            forall(k in j+1..n) (x[i,k] = 0) /\
+            x[i,j] = col_right[i])
+      else 
+        true 
+      endif
+
+    )
+;
+
+output 
+[
+ if j = 1 then ",\n" else "," endif ++
+   show(x[i,j])
+ |i,j in 1..n
+];
+
+% output 
+% [
+%    if row_upper[j] > 0 then 
+%      "f(" ++ show(row_upper[j]) ++ ")"
+%    else
+%      "  -"
+%    endif ++ ","
+%    | j in 1..n+1
+% ]
+% ++
+% [
+%   if j = 1 then "\n" else "," endif ++
+%     if j = 1 then
+%        if col_left[i] > 0 then 
+%           "f(" ++ show(col_left[i]) ++ ")," 
+%         else "  -," endif 
+%     else "" endif ++
+%       show(x[i,j]) ++
+%     if j = n then 
+%       if col_right[i] > 0 then 
+%          ", f(" ++ show(col_right[i]) ++ ")," 
+%          else ",  -," endif
+%     else "" endif
+%   | i,j in 1..n
+% ] ++ 
+% ["\n"] ++
+% [
+%  if row_lower[j] > 0 then 
+%      "f(" ++ show(row_lower[j]) ++ ")"
+%    else
+%      "-"
+%    endif ++ ","
+%    | j in 1..n+1
+% ]
+% ++
+% ["\n"];
+
+Expected Output:
+{
+  "x": [
+    [
+      1,
+      0,
+      0,
+      3,
+      2
+    ],
+    [
+      0,
+      2,
+      0,
+      1,
+      3
+    ],
+    [
+      0,
+      3,
+      2,
+      0,
+      1
+    ],
+    [
+      2,
+      1,
+      3,
+      0,
+      0
+    ],
+    [
+      3,
+      0,
+      1,
+      2,
+      0
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

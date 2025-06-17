@@ -1,0 +1,49 @@
+{
+  "description": "Determine a strategy to minimize costs from unloading (UnloadCosts), storage (HoldingCost), and crane rentals (CraneCost) over the period. The demands over the time periods are given by Demands, with a corresponding unloading capacity per period specified by UnloadCapacity. The system starts with an initial inventory of containers given by InitContainer, and the maximum container inventory is limited to MaxContainer. The logistics also involve NumCranes number of cranes with CraneCapacity each to aid in the unloading process.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Seaport Container Management",
+    "domain": "Logistics",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "=",
+      "+",
+      "-",
+      ">=",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Seaport Container Management",
+    "domain": "Logistics",
+    "model_var_keywords": [
+      "Containers",
+      "Cranes",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "T",
+      "Demands",
+      "UnloadCosts",
+      "UnloadCapacity",
+      "HoldingCost",
+      "MaxContainer",
+      "InitContainer",
+      "NumCranes",
+      "CraneCapacity",
+      "CraneCost"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "=",
+      "+",
+      "-",
+      ">=",
+      "<="
+    ]
+  }
+}

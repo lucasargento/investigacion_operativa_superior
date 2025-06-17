@@ -1,0 +1,107 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 368
+- Name: Tokyo Elevator Puzzle
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+This problem is based on the 'Tokyo Elevator Puzzle' by Martin Chlond. The puzzle involves an elevator in a building with 8 floors. The elevator makes 70 trips, and the data for each trip is represented in a 2D array. Each row in the array represents a trip, and each column represents a floor. A '1' in a cell indicates that the elevator stopped at that floor during the trip, while a '0' indicates that it did not. The goal of the puzzle is to find a pattern or strategy for the elevator's stops that minimizes the total time or distance traveled.
+
+
+MiniZinc Model:
+include "elevator_model.mzn";
+
+% 
+% Data set for elevator puzzle
+% 8 floors, 4 visits (excluding top and bottom)
+%
+m = 70;
+n = 8;
+
+c = array2d(1..m, 1..n, [
+ 0, 0, 0, 0, 1, 1, 1, 1,
+ 0, 0, 0, 1, 0, 1, 1, 1,
+ 0, 0, 1, 0, 0, 1, 1, 1,
+ 0, 1, 0, 0, 0, 1, 1, 1,
+ 1, 0, 0, 0, 0, 1, 1, 1,
+ 0, 0, 0, 1, 1, 0, 1, 1,
+ 0, 0, 1, 0, 1, 0, 1, 1,
+ 0, 1, 0, 0, 1, 0, 1, 1,
+ 1, 0, 0, 0, 1, 0, 1, 1,
+ 0, 0, 1, 1, 0, 0, 1, 1,
+ 0, 1, 0, 1, 0, 0, 1, 1,
+ 1, 0, 0, 1, 0, 0, 1, 1,
+ 0, 1, 1, 0, 0, 0, 1, 1,
+ 1, 0, 1, 0, 0, 0, 1, 1,
+ 1, 1, 0, 0, 0, 0, 1, 1,
+ 0, 0, 0, 1, 1, 1, 0, 1,
+ 0, 0, 1, 0, 1, 1, 0, 1,
+ 0, 1, 0, 0, 1, 1, 0, 1,
+ 1, 0, 0, 0, 1, 1, 0, 1,
+ 0, 0, 1, 1, 0, 1, 0, 1,
+ 0, 1, 0, 1, 0, 1, 0, 1,
+ 1, 0, 0, 1, 0, 1, 0, 1,
+ 0, 1, 1, 0, 0, 1, 0, 1,
+ 1, 0, 1, 0, 0, 1, 0, 1,
+ 1, 1, 0, 0, 0, 1, 0, 1,
+ 0, 0, 1, 1, 1, 0, 0, 1,
+ 0, 1, 0, 1, 1, 0, 0, 1,
+ 1, 0, 0, 1, 1, 0, 0, 1,
+ 0, 1, 1, 0, 1, 0, 0, 1,
+ 1, 0, 1, 0, 1, 0, 0, 1,
+ 1, 1, 0, 0, 1, 0, 0, 1,
+ 0, 1, 1, 1, 0, 0, 0, 1,
+ 1, 0, 1, 1, 0, 0, 0, 1,
+ 1, 1, 0, 1, 0, 0, 0, 1,
+ 1, 1, 1, 0, 0, 0, 0, 1,
+ 0, 0, 0, 1, 1, 1, 1, 0,
+ 0, 0, 1, 0, 1, 1, 1, 0,
+ 0, 1, 0, 0, 1, 1, 1, 0,
+ 1, 0, 0, 0, 1, 1, 1, 0,
+ 0, 0, 1, 1, 0, 1, 1, 0,
+ 0, 1, 0, 1, 0, 1, 1, 0,
+ 1, 0, 0, 1, 0, 1, 1, 0,
+ 0, 1, 1, 0, 0, 1, 1, 0,
+ 1, 0, 1, 0, 0, 1, 1, 0,
+ 1, 1, 0, 0, 0, 1, 1, 0,
+ 0, 0, 1, 1, 1, 0, 1, 0,
+ 0, 1, 0, 1, 1, 0, 1, 0,
+ 1, 0, 0, 1, 1, 0, 1, 0,
+ 0, 1, 1, 0, 1, 0, 1, 0,
+ 1, 0, 1, 0, 1, 0, 1, 0,
+ 1, 1, 0, 0, 1, 0, 1, 0,
+ 0, 1, 1, 1, 0, 0, 1, 0,
+ 1, 0, 1, 1, 0, 0, 1, 0,
+ 1, 1, 0, 1, 0, 0, 1, 0,
+ 1, 1, 1, 0, 0, 0, 1, 0,
+ 0, 0, 1, 1, 1, 1, 0, 0,
+ 0, 1, 0, 1, 1, 1, 0, 0,
+ 1, 0, 0, 1, 1, 1, 0, 0,
+ 0, 1, 1, 0, 1, 1, 0, 0,
+ 1, 0, 1, 0, 1, 1, 0, 0,
+ 1, 1, 0, 0, 1, 1, 0, 0,
+ 0, 1, 1, 1, 0, 1, 0, 0,
+ 1, 0, 1, 1, 0, 1, 0, 0,
+ 1, 1, 0, 1, 0, 1, 0, 0,
+ 1, 1, 1, 0, 0, 1, 0, 0,
+ 0, 1, 1, 1, 1, 0, 0, 0,
+ 1, 0, 1, 1, 1, 0, 0, 0,
+ 1, 1, 0, 1, 1, 0, 0, 0,
+ 1, 1, 1, 0, 1, 0, 0, 0,
+ 1, 1, 1, 1, 0, 0, 0, 0 
+])
+;
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

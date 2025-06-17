@@ -1,0 +1,40 @@
+{
+  "description": "The problem is to find a set of distinct positive integers such that, for every pair of them, their difference divides their sum. The size of the set is defined by the variable 'n'. The maximum value that any integer in the set can take is defined by the variable 'max_val'. The problem also requires that the sum of all integers in the set, represented by the variable 'z', is divisible by 'n'. The integers in the set are represented by the array 'x'. The problem is solved when a set of integers that satisfies all these conditions is found. The solution should be ordered in increasing order and the difference between any two integers in the set should not be 1.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Distinct Integer Set Division",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "<",
+      "sum",
+      "mod",
+      "abs"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Distinct Integer Set Division",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "x",
+      "z"
+    ],
+    "model_data_keywords": [
+      "n",
+      "max_val"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "<",
+      "sum",
+      "mod",
+      "abs"
+    ]
+  }
+}

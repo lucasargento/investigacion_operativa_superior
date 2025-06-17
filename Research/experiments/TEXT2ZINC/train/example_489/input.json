@@ -1,0 +1,34 @@
+{
+  "description": "The problem is about generating a sequence of Fibonacci numbers using MiniZinc. The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1. However, in this problem, the sequence starts with 1 and 1. The task is to calculate the first 'n' numbers in the Fibonacci sequence, where 'n' is a given integer. The challenge is that recursion, a common method for generating Fibonacci numbers, is not allowed in MiniZinc. Therefore, an array is used to store and calculate the sequence. The output is the sequence of the first 'n' Fibonacci numbers.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Fibonacci Sequence Generation",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Fibonacci Sequence Generation",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "fib"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfaction",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "+"
+    ]
+  }
+}

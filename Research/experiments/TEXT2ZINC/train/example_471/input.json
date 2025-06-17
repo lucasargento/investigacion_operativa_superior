@@ -1,0 +1,37 @@
+{
+  "description": "The problem is about a constraint called 'sum_of_weights_of_distinct_values'. This constraint is applied to a collection of variables, a collection of values, and a cost. All variables in the VARIABLES collection take a value in the VALUES collection. In addition, COST is the sum of the weight attributes associated with the distinct values taken by the variables of VARIABLES. For example, if VARIABLES = <1,6,1>, VALUES = <val-1 weight-5, val-2 weight-3, val-6 weight-7>, and COST = 12, the constraint holds since COST=12 is equal to the sum 5+7 of the weights of the values 1 and 6 that occur within the VARIABLES collection. The goal is to find the variables, values, and cost that satisfy this constraint.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Sum of Weights of Distinct Values",
+    "domain": "Constraints",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "equal_1d_arrays",
+      "equal_2d_arrays",
+      "sum_of_weights_of_distinct_values"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Sum of Weights of Distinct Values",
+    "domain": "Constraints",
+    "model_var_keywords": [
+      "variables",
+      "values",
+      "cost"
+    ],
+    "model_data_keywords": [
+      "num_variables",
+      "num_values"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "equal_1d_arrays",
+      "equal_2d_arrays",
+      "sum_of_weights_of_distinct_values"
+    ]
+  }
+}

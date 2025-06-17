@@ -1,0 +1,40 @@
+{
+  "description": "# Problem Hadamard\n\nFor every odd positive integer n (and m = (n\u22121)/2), the 2cc Hadamard matrix Legendre pairs are defined from m quadratic constraints and 2 linear constraints.\n\nSee Problem 084 on CSPLib\n\n## Data\n  a unique integer, the order of the problem instance\n\n## Model\n  constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n  - python Hadamard.py -data=number\n\n## Links\n  - https://www.csplib.org/Problems/prob084/\n  - https://www.cril.univ-artois.fr/XCSP22/competitions/csp/csp\n\n## Tags\n  academic, csplib, xcsp22",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Hadamard Matrix and Legendre Pairs",
+    "domain": "Academic",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "mod",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Hadamard Matrix and Legendre Pairs",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "H",
+      "L"
+    ],
+    "model_data_keywords": [
+      "n",
+      "m"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "mod",
+      "*"
+    ]
+  }
+}

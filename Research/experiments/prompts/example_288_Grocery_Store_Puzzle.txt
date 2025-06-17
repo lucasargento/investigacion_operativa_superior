@@ -1,0 +1,80 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 288
+- Name: Grocery Store Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+# Problem Grocery
+
+A kid goes into a grocery store and buys four items.
+The cashier charges $7.11, the kid pays and is about to leave when the cashier calls the kid back, and says:
+"Hold on, I multiplied the four items instead of adding them;
+  I'll try again;
+  Hah, with adding them the price still comes to $7.11 ".
+What were the prices of the four items?
+
+
+## Data
+  all integrated (single problem)
+
+## Model
+  constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)
+
+## Execution
+```
+  python Grocery.py
+```
+
+## Links
+  - http://mozart2.org/mozart-v1/doc-1.4.0/fdt/index.html
+
+## Tags
+  single
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the variables
+var 0..711: item1;
+var 0..711: item2;
+var 0..711: item3;
+var 0..711: item4;
+
+% The sum of the prices of the four items must equal $7.11
+constraint item1 + item2 + item3 + item4 = 711;
+
+% The product of the prices of the four items must equal $7.11
+constraint item1 * item2 * item3 * item4 = 711000000;
+
+% The prices of the items must be different
+constraint alldifferent([item1, item2, item3, item4]);
+
+% Solve the problem
+solve satisfy;
+
+% Output the solution
+output ["Item 1: " ++ show(item1), "\nItem 2: " ++ show(item2), "\nItem 3: " ++ show(item3), "\nItem 4: " ++ show(item4)];
+
+Expected Output:
+{
+  "item1": 316,
+  "item2": 150,
+  "item3": 125,
+  "item4": 120
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

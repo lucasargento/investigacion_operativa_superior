@@ -1,0 +1,79 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 93
+- Name: Seam Carving
+- Domain: Puzzles and Games
+- Objective: maximization
+
+Problem Description:
+The problem is about finding the greatest combination of numbers in a square grid of numbers. The goal is to start at the top of the grid and move down row by row, selecting one number from each row. The selected number from each row forms a combination. The movement from one row to the next can be either straight down, down to the right, or down to the left. The problem is to find the combination that gives the maximum sum. For example, given the grid [[0,2,1,0], [0,1,1,0], [0,10,20,30]], the best move would be indices [1,2,3] for 33 points. Another example is the grid [0,1,1] [0,2,1] [10,0,0], one of the best paths is [1,1,0] for 13 points. The problem is to find the combination that gives the maximum sum and the path that leads to this sum.
+
+
+Input Data (data.dzn):
+n = 3;
+m = 3;
+grid = array2d(1..n, 1..m,
+[
+   0, 1, 1, 
+   0, 2, 1,
+  10, 0, 0
+]);
+
+MiniZinc Model:
+include "globals.mzn"; 
+% input data
+int: n; % number of rows
+int: m; % number of columns 
+array[1..n, 1..m] of int: grid; % grid of values
+
+% decision variables
+array[1..n] of var 1..m: cols_chosen; % represents columns chosen from top to bottom
+var 0..sum(grid): max_val = sum(i in 1..n) (grid[i, cols_chosen[i]]); % value to be maximized
+
+% solve satisfy;
+solve maximize max_val;
+
+%  the movement from one row to the next can be either straight down, down to the right, or down to the left.
+constraint
+   forall(i in 2..n) (
+     let {
+       var 1..m: j
+     } in
+     abs(cols_chosen[i-1]-j) <=1
+     /\
+     cols_chosen[i] = j
+   )
+;
+
+% output
+output [
+  "{\n",
+  "  \"max_val\": " ++ show(max_val) ++ ",\n",
+  "  \"cols_chosen\": " ++ show(cols_chosen) ++ ",\n",
+  "  \"values\": " ++ show([grid[i,fix(cols_chosen[i])] | i in 1..n]) ++ "\n",
+  "}"
+];
+
+
+Expected Output:
+{
+  "cols_chosen": [
+    2,
+    2,
+    1
+  ],
+  "_objective": 13
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

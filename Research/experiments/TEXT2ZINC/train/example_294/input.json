@@ -1,0 +1,34 @@
+{
+  "description": "# Problem SuperNumber\n\nWe are looking for the 10-digit number which satisfies the following conditions:\n  - all digits from 0-9 occur exactly once\n  - the first 2 digits are divisible by 2\n  - the first 3 digits are divisible by 3\n  - ...\n  - the first 10 digits are divisible by 10\n\nUsing divisibility rules allows us to use less expensive operations (constraints), but a less compact model.\n\n## Data\n  all integrated (single problem)\n\n## Model\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n```\n  python SuperNumber.py\n  python SuperNumber.py -variant=rules\n```\n\n## Links\n  - https://www.logisch-gedacht.de/logikraetsel/10stellige-zahl\n  - https://en.wikipedia.org/wiki/Divisibility_rule\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "SuperNumber",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "mod",
+      "sum",
+      "for"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "SuperNumber",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "digits"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "mod",
+      "sum",
+      "for"
+    ]
+  }
+}

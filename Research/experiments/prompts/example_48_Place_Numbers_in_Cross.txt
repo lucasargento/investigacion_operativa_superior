@@ -1,0 +1,77 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 48
+- Name: Place Numbers in Cross
+- Domain: Puzzles and Games
+- Objective: satisfaction
+
+Problem Description:
+A large rectangle is divided into four smaller rectangles. The areas of three of these rectangles are known to be 16, 13, and 39. The dimensions of the large rectangle are unknown, as are the dimensions of the smaller rectangles. Find the area of the fourth rectangle. A diagram of the rectangles is given below.
+
+        x        len
+    ------------------
+    | area1 |  area2  | 
+    -----------------   y
+    | area3 |    ?    |      
+    -------------- height
+
+
+
+Input Data (data.dzn):
+% Fixed values for area1, area2, and area3
+area1 = 13;
+area2 = 39;
+area3 == 16;
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+% Variables representing the areas of different sections
+int: area1;
+int: area2;
+int: area3;
+var 1..100: area4;
+
+% Variables representing the dimensions of the overall area
+var 1..100: len;
+var 1..100: height;
+var 1..100: x;
+var 1..100: y;
+
+solve satisfy;
+
+% Constraints
+
+% Area constraints for the given dimensions
+constraint x * y == area1;
+constraint (len - x) * y == area2;
+constraint (height - y) * x == area3;
+constraint (height - y) * (len - x) == area4;
+
+% The total area must be equal to the sum of all individual areas
+constraint len * height == area1 + area2 + area3 + area4;
+
+% Output
+output [ "area4: ", show(area4), "\n"];
+
+Expected Output:
+{
+  "area4": 48,
+  "len": 4,
+  "height": 29,
+  "x": 1,
+  "y": 13
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

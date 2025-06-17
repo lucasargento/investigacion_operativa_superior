@@ -1,0 +1,49 @@
+{
+  "description": "---\nTitle:    The n-Fractions Puzzle\nProposer: \n    - Alan Frisch\n    - Christopher Jefferson\n    - Ian Miguel\n    - Toby Walsh\nCategory: \n    - Combinatorial mathematics\n    - Games and puzzles\n---\n\n\n\n# Original Specification\n\nThe original fractions puzzle is specified as follows. Find 9 distinct non-zero digits that satisfy:\n\n```\nA    D    G\n-- + -- + -- == 1\nBC   EF   HI\n```\n\nwhere `BC` is shorthand for `10B+C`, `EF` for `10E+F` and `HI` for `10H+I`.\n\n\n# n-Fractions\n\nA simple generalisation is as follows. Find 3n non-zero digits satisfying: $ 1 = \\sum_{i \\in 1..n} x_i / y_iz_i $\n\nwhere $y_iz_i$ is shorthand for $10y_i+z_i$ and the number of occurrences of each digit in $1..9$ is between $1$ and $ceil(n/3)$.\n\nSince each fraction is at least $1/99$, this family of problems has solutions for at most $n <= 99$.\nAn interesting problem would be to find the greatest $n$ such that at least one solution exists.\nA further generalisation might specify that the fractions sum to $ceil(n/3)$.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "n-Fractions Puzzle",
+    "domain": "Combinatorial mathematics, Games and puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "=",
+      "*",
+      ">=",
+      "<=",
+      "/"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "n-Fractions Puzzle",
+    "domain": "Combinatorial mathematics, Games and puzzles",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "Denom1",
+      "Denom2",
+      "Denom3"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "=",
+      "*",
+      ">=",
+      "<=",
+      "/"
+    ]
+  }
+}

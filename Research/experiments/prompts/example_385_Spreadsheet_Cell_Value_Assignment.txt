@@ -1,0 +1,54 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 385
+- Name: Spreadsheet Cell Value Assignment
+- Domain: Spreadsheets
+- Objective: satisfaction
+
+Problem Description:
+This problem is a representation of a spreadsheet in MiniZinc. The spreadsheet contains several cells, each represented by a variable: B1, B4, B5, C4, C5, D4, D5, E7, E8. Each of these variables can take a value between 0.0 and 1000.0. The problem is to find values for these variables that satisfy the following constraints: B1 = 0.17, B4 = 3.5, B5 = 1.7, C4 = 1.5, C5 = 4.5, D4 = B4 * C4, D5 = B5 * C5, E7 = D4 + D5, and E8 = E7 * (1.0 + B1).
+
+
+MiniZinc Model:
+var 0.0..1000.0: B1;
+var 0.0..1000.0: B4;
+var 0.0..1000.0: B5;
+var 0.0..1000.0: C4;
+var 0.0..1000.0: C5;
+var 0.0..1000.0: D4;
+var 0.0..1000.0: D5;
+var 0.0..1000.0: E7;
+var 0.0..1000.0: E8;
+
+solve satisfy;
+
+constraint
+      B1 = 0.17 /\
+      B4 = 3.5 /\
+      B5 = 1.7 /\
+      C4 = 1.5 /\
+      C5 = 4.5 /\
+      D4 = B4 * C4 /\
+      D5 = B5 * C5 /\
+      E7 = D4 + D5 /\
+      E8 = E7 * (1.0 + B1) 
+;
+
+
+output [
+  show([B1, B4, B5,C4,C5,D4,D5,E7,E8]) 
+
+];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

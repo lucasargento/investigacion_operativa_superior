@@ -1,0 +1,61 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 446
+- Name: Diet Problem
+- Domain: Nutrition
+- Objective: minimization
+
+Problem Description:
+Consider a diet problem. Given a set of nutrients NutrientCount and a set of foods FoodCount. Each food j has a cost Cost_j and a range of amount that can be bought [FoodMin_j, FoodMax_j]. Each nutrient i has a range of amount that should be included in the diet [NutrientMin_i, NutrientMax_i]. The amount of nutrient i in food j is AmountNutrient_{i, j}. The problem aims to minimize the total cost of buying foods. It is constrained that the total amount of each nutrient i in the bought foods should be within its range. How to decide the amount of each food j to buy?
+
+
+Input Data (data.dzn):
+NutrientCount = 4;
+FoodCount = 8;
+Cost = [3.19, 2.59, 2.29, 2.89, 1.89, 1.99, 1.99, 2.49];
+FoodMin = [0, 0, 0, 0, 0, 0, 0, 0];
+FoodMax = [100, 100, 100, 100, 100, 100, 100, 100];
+NutrientMin = [700, 700, 700, 700];
+NutrientMax = [10000, 10000, 10000, 10000];
+AmountNutrient = [|60, 20, 10, 15|8, 0, 20, 20|8, 10, 15, 10|40, 40, 35, 10|15, 35, 15, 15|70, 30, 15, 15|25, 50, 25, 15|60, 20, 15, 10|];
+
+MiniZinc Model:
+% Parameters
+int: NutrientCount;
+int: FoodCount;
+array[1..FoodCount] of int: Cost;
+array[1..FoodCount] of int: FoodMin;
+array[1..FoodCount] of int: FoodMax;
+array[1..NutrientCount] of int: NutrientMin;
+array[1..NutrientCount] of int: NutrientMax;
+array[1..NutrientCount, 1..FoodCount] of int: AmountNutrient;
+
+% Decision Variables
+array[1..FoodCount] of var FoodMin[1]..FoodMax[1]: FoodAmount;
+
+% Objective
+var int: TotalCost = sum(j in 1..FoodCount)(Cost[j]*FoodAmount[j]);
+minimize TotalCost;
+
+% Constraints
+constraint forall(i in 1..NutrientCount)(
+    sum(j in 1..FoodCount)(AmountNutrient[i,j]*FoodAmount[j]) >= NutrientMin[i] /\
+    sum(j in 1..FoodCount)(AmountNutrient[i,j]*FoodAmount[j]) <= NutrientMax[i]
+);
+
+% Output
+output ["Total cost: ", show(TotalCost), "\n"] ++
+["Food amounts: "] ++ [show(FoodAmount[j]) | j in 1..FoodCount];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

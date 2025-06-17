@@ -1,0 +1,47 @@
+{
+  "description": "The problem is about finding the number of distinct pairs in a given collection. The collection is represented as a 2D array, where each row represents a pair. The number of distinct pairs is represented by the variable 'npairs'. The problem is to assign values to the pairs in such a way that the number of distinct pairs equals 'npairs'. The pairs are considered distinct based on both elements of the pair, not just one. For example, in the given collection of pairs [(3,1), (1,5), (3,1), (3,1), (1,5)], the number of distinct pairs is 2, which are (3,1) and (1,5). The problem is solved when the number of distinct pairs in the collection equals the given 'npairs' value.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Distinct Pairs in Collection",
+    "domain": "Combinatorics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "not",
+      "=",
+      "sum",
+      "assert",
+      "index_set_1of2",
+      "index_set_2of2"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Distinct Pairs in Collection",
+    "domain": "Combinatorics",
+    "model_var_keywords": [
+      "numPairs",
+      "pairElements",
+      "pairs",
+      "distinctPairs",
+      "firstOccurrence"
+    ],
+    "model_data_keywords": [
+      "numPairs",
+      "pairElements"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "not",
+      "=",
+      "sum",
+      "assert",
+      "index_set_1of2",
+      "index_set_2of2"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "description": "The Office Blocked problem involves six employees of the Paper Circulation Division of the Department of Miscellania who occupy offices on two floors of the Administration Building: three on the upper floor (offices U1, U2 and U3) and the other three directly below them on the lower floor (L1, L2 and L3). The offices are arranged and numbered as follows:\n\nfloor                   representation\n2    U1   U2   U3       4  5  6\n1    L1   L2   L3       1  2  3\n\nThe employees are Arthur, Bella, Craig, Duncan, Elizabeth, and Francesca. The problem is to determine who works where based on the following conditions: \n- Arthur is directly above Bella, who works next to Duncan. \n- Elizabeth\u2019s office number is smaller than Francesca\u2019s. \n- Craig and Francesca are in adjacent rooms.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Office Blocked Problem",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "abs",
+      "==",
+      "<",
+      "-"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Office Blocked Problem",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      ""
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "abs",
+      "==",
+      "<",
+      "-"
+    ]
+  }
+}

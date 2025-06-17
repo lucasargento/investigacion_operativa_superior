@@ -1,0 +1,52 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 386
+- Name: Radius of Two Circles
+- Domain: Geometry
+- Objective: satisfaction
+
+Problem Description:
+The problem is about two circles. The sum of their circumferences is equal to 10322*Pi and the sum of their areas is equal to 13946281*Pi. The task is to find the radius of each circle. The area of a circle is calculated as Pi*r^2 and the circumference as 2*Pi*r. The radius of each circle is a real number between 0 and 10000. The radius of the first circle should be less than or equal to the radius of the second circle.
+
+
+MiniZinc Model:
+float: pi = 3.141592653589793;
+
+function var float: area(var float: r) = pi*r*r;
+function var float: circumference(var float: r) = 2*pi*r;
+
+% decision variables
+var 0.0..10000.0: r1;
+var 0.0..10000.0: r2;
+
+solve satisfy;
+
+constraint
+  r1 <= r2 /\
+
+  circumference(r1) + circumference(r2) = 10322*pi /\
+  area(r1) +area(r2) = 13946281*pi
+;
+
+% output [
+
+% ];
+
+Expected Output:
+{
+  "r1": 2020.00000000001,
+  "r2": 3141.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

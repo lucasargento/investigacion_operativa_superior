@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 224
+- Name: Power Plant Electricity Distribution
+- Domain: Energy
+- Objective: minimization
+
+Problem Description:
+How much electricity should each power plant send to each city to minimize the total transmission cost, given there are P power plants with a supply capacity of Supply, C cities with a demand of Demand, and the transmission costs between power plants and cities are TransmissionCosts?
+
+
+Input Data (data.dzn):
+supply = [30, 25, 45];
+demand = [40, 60];
+transmission_costs = [|14, 22|18, 12|10, 16|];
+
+MiniZinc Model:
+% Parameters
+int: P; % Number of power plants
+int: C; % Number of cities
+array[1..P] of int: supply; % Supply capacity of each power plant
+array[1..C] of int: demand; % Demand of each city
+array[1..P, 1..C] of int: transmission_costs; % Transmission costs between power plants and cities
+
+% Decision Variables
+array[1..P, 1..C] of var 0..max(supply): send; % Amount of electricity each power plant sends to each city
+
+% Objective
+var int: total_cost; % Total transmission cost
+
+% Constraints
+constraint forall(p in 1..P)(sum(c in 1..C)(send[p,c]) <= supply[p]); % Supply capacity constraint
+constraint forall(c in 1..C)(sum(p in 1..P)(send[p,c]) = demand[c]); % Demand constraint
+
+% Objective function
+constraint total_cost = sum(p in 1..P, c in 1..C)(send[p,c] * transmission_costs[p,c]);
+
+% Solve
+solve minimize total_cost;
+
+% Output
+output ["send = ", show2d(send), "\n", "total_cost = ", show(total_cost)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

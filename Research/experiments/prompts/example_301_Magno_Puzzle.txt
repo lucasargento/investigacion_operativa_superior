@@ -1,0 +1,56 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 301
+- Name: Magno Puzzle
+- Domain: Mathematical Puzzles
+- Objective: minimization
+
+Problem Description:
+The problem is known as the Magno puzzle. It is a mathematical puzzle where we have an array of 5 integers, all of which are non-negative. The puzzle is defined by a set of constraints: -3 times the first integer plus the second integer equals 1, -3 times the second integer plus 2 times the third integer equals 2, -3 times the third integer plus 2 times the fourth integer equals 2, and -3 times the fourth integer plus 2 times the fifth integer equals 2. The goal of the puzzle is to find the values of the integers that satisfy these constraints and minimize the value of the fifth integer.
+
+
+MiniZinc Model:
+int: n = 5;
+array[1..n] of var int: x;
+
+constraint 
+      % integer version
+      forall(i in 1..n) ( x[i] >= 0) /\
+      -3*x[1]+x[2] = 1 /\
+      -3*x[2]+2*x[3] = 2 /\  
+      -3*x[3]+2*x[4] = 2 /\  % multiplies by 2 for integer version
+      -3*x[4]+2*x[5] = 2     % ibid
+
+;
+
+solve minimize x[n];
+
+output [
+  "x: ", show(x), "\n"
+
+];
+
+Expected Output:
+{
+  "x": [
+    7,
+    22,
+    34,
+    52,
+    79
+  ],
+  "_objective": 79
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,29 @@
+{
+  "description": "# Problem SlowConvergence\n\nThe model, below, is close to (can be seen as the close translation of) the one submitted to the 2008 Minizinc challenge.\nNo Licence was explicitly mentioned (MIT Licence assumed).\n\n## Data\n  An integer n\n\n## Execution\n```\n  python SlowConvergence.py -data=number\n```\n\n## Links\n  - https://www.minizinc.org/challenge2008/results2008.html\n\n## Tags\n  academic, mzn08",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Slow Convergence",
+    "domain": "Academic",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "n*n"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Slow Convergence",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "n",
+      "obj"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "n*n"
+    ]
+  }
+}

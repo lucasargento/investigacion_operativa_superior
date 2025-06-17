@@ -1,0 +1,74 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 514
+- Name: Alphametic Puzzle Solver
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+This is an Alphametic puzzle, a type of cryptarithm in which a set of words is written down in the form of a long addition sum or some other mathematical problem. The objective is to replace the letters of the alphabet with decimal digits to make a valid arithmetic sum. The problem presented here is from Martin Gardner (November 1975) and is represented as follows: 
+
+EIN
+EIN
+EIN
+EIN
+-----
+VIER
+
+The task is to find the digits that make this sum correct. The constraints are that all the letters represent different digits, the letters 'E' and 'V' are not zero, and the sum of four 'EIN's equals 'VIER'. The solution will be the digits that satisfy these conditions.
+
+
+MiniZinc Model:
+include "globals.mzn";
+var 0..9: E;
+var 0..9: I;
+var 0..9: N;
+var 0..9: V;
+var 0..9: R;
+
+array[1..5] of var int : fd = [E,I,N,V,R];
+
+
+constraint
+  all_different(fd) /\
+                      100*E + 10*I + N +
+                      100*E + 10*I + N +
+                      100*E + 10*I + N +
+                      100*E + 10*I + N =
+             1000*V + 100*I + 10*E + R
+  /\
+  E >= 1 /\
+  V >= 1
+;  
+
+
+
+solve satisfy;
+% solve :: int_search(x, "first_fail", "indomain", "complete") satisfy;
+
+output
+[
+  "fd: " ++ show(fd)
+];
+
+Expected Output:
+{
+  "E": 8,
+  "I": 2,
+  "N": 1,
+  "V": 3,
+  "R": 4
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

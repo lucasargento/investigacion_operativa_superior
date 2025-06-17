@@ -1,0 +1,60 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 497
+- Name: Factorial Calculation
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is to calculate the factorial of a given number 'n' using MiniZinc. The factorial of a number is the product of all positive integers less than or equal to that number. The factorial function can be defined by the product of all positive integers from 1 to n. However, since the prod() function is not available in MiniZinc, an alternative method is used to calculate the factorial. An array 'x' of size 'n' is created where each element 'x[i]' is the product of 'x[i-1]' and 'i'. The result 'res' is the last element of the array 'x'. The maximum value of 'n' that can be used depends on the solver used. For example, with the 'flatzinc' solver, the maximum 'n' is 9, while with the 'fz', 'ic', 'eplex', and 'tini' solvers, the maximum 'n' is 12. With the 'fd' solver, the maximum 'n' is 10. With the 'tini' solver and the '-k 64' option, 'n' can be 15 or greater, and the result is presented in hexadecimal.
+
+
+MiniZinc Model:
+int: n = 10;
+var int: z;
+
+
+predicate factorial(int: n, var int: res) =
+   let {
+      array[1..n] of var int: x
+   }
+   in
+   x[1] = 1
+   /\
+   forall(i in 2..n) (
+     x[i] = x[i-1]*i 
+   )
+   /\
+   res = x[n] 
+
+; 
+
+solve satisfy;
+
+constraint
+   factorial(n, z)
+
+;
+
+output [
+  "n: ", show(n),"\n",
+  "z: ", show(z), "\n",
+];
+
+Expected Output:
+{
+  "z": 3628800
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

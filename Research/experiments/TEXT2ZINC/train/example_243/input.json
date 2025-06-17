@@ -1,0 +1,46 @@
+{
+  "description": "Determine the amount of buying and selling in each period to maximize the profit over the months, given the constraints of maximum storage Capacity, holding costs HoldingCost, selling prices Price, and buying costs Cost.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Warehouse Stock Management",
+    "domain": "Supply Chain Management",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "=",
+      "<=",
+      "sum",
+      "-",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Warehouse Stock Management",
+    "domain": "Supply Chain Management",
+    "model_var_keywords": [
+      "buyquantity",
+      "sellquantity",
+      "stock",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "capacity",
+      "holding_cost",
+      "price",
+      "cost"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "=",
+      "<=",
+      "sum",
+      "-",
+      "*"
+    ]
+  }
+}

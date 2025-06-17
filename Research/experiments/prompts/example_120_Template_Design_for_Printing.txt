@@ -1,0 +1,224 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 120
+- Name: Template Design for Printing
+- Domain: Bin Packing and Partitioning
+- Objective: minimization
+
+Problem Description:
+---
+Title:    Template Design
+Proposer: Barbara Smith 
+Category: 
+    - Bin packing
+    - Partitioning and related problems
+---
+
+
+This problem arises from a colour printing firm which produces a variety of products from thin board, including cartons for human and animal food and magazine inserts. Food products, for example, are often marketed as a basic brand with several variations (typically flavours). Packaging for such variations usually has the same overall design, in particular the same size and shape, but differs in a small proportion of the text displayed and/or in colour. For instance, two variations of a cat food carton may differ only in that on one is printed 'Chicken Flavour' on a blue background whereas the other has 'Rabbit Flavour' printed on a green background. A typical order is for a variety of quantities of several design variations. Because each variation is identical in dimension, we know in advance exactly how many items can be printed on each mother sheet of board, whose dimensions are largely determined by the dimensions of the printing machinery. Each mother sheet is printed from a template, consisting of a thin aluminium sheet on which the design for several of the variations is etched. The problem is to decide, firstly, how many distinct templates to produce, and secondly, which variations, and how many copies of each, to include on each template.
+The following example is based on data from an order for cartons for different varieties of dry cat-food.
+
+Variation 	|	 Order Quantity
+-------  	|   --------------
+Liver	 	|	 250,000
+Rabbit	 	|	 255,000
+Tuna	 	|	 260,000
+Chicken Twin|	 500,000
+Pilchard Twin|	 500,000
+Chicken		|	 800,000
+Pilchard	|  1,100,000
+Total	    |  3,665,000
+
+
+Each design of carton is made from an identically sized and shaped piece of board. Nine cartons can be printed on each mother sheet, and several different designs can be printed at once, on the same mother sheet. (Hence, at least 407,223 sheets of card will be required to satisfy these order quantities.)
+Because in this example there are more slots in each template (9) than there are variations (7), it would be possible to fulfil the order using just one template. This creates an enormous amount of waste card, however. We can reduce the amount of waste by using more templates; with three templates, the amount of waste produced is negligible. The problem is therefore to produce template plans which will minimize the amount of waste produced, for 1 template, 2 templates,... and so on.
+
+It is permissible to work in units of say 1000 cartons, so that the order quantities become 250, 255, etc.
+
+A variant is to allow up to 10% under-production of some designs, if this allows the overall over-production to be reduced. This is not a sensible option for the catfood problem, because it leads to under-production of all the designs.
+
+The optimal solutions for the catfood problem are shown below. For each template, the table gives a list of the number of slots allocated to each design, e.g. [1,1,1,1,1,2,2,] means that 1 slot is allocated to each of the first five designs and two each to the last two.
+
+No. of	templates   | Layouts	of each template	    | No. of Pressings	| Total pressings
+---------- | -------------- | ----------------  |
+1		   | [1,1,1,1,1,2,2]	| 550,000	| 550,000
+2		   | [0,0,0,0,0,2,7]	| 158,000	|
+    	   | [1,1,1,2,2,2,0]	| 260,000	| 418,000
+3		   | [0,5,3,0,0,1,0]	| 51,000	|
+    	   | [0,0,1,0,0,7,1]	| 107,000	|
+    	   | [1,0,0,2,2,0,4]	| 250,000	| 408,000
+
+
+Input Data (data.dzn):
+S = 9;
+t = 2;
+n = 7;
+d = [250, 255, 260, 500, 500, 800, 1100];
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: S;   		% Number of slots per template.
+int: t;   		% Number of templates.
+int: n;   		% Number of variations.
+array[1..n] of int: d; 	% How much of each variation we must print?
+
+% Lower and upper bounds for the total production.
+%
+int: llower = ceil(sum(i in 1..n)(int2float(d[i]))/int2float(S));
+int: lupper = 2*llower; % If t>1, this should be the optimal Production_{t-1}-1.
+
+% # Slots allocated to variation i in template j
+array[1..n,1..t] of var 0..S: p;
+
+% # Pressings of template j.
+array[1..t] of var 1..lupper: R;
+
+% Sum of all Rj.
+var llower..lupper: Production;
+
+% Production x S - sum(d[i])
+var 0..lupper-llower: Surplus;
+
+% First, set up Production to be the sum of the Rj
+constraint
+	Production = sum(i in 1..t)(R[i]);
+
+% the limits on production
+constraint
+	Production >= llower /\ Production <= lupper;
+
+% The number of slots occupied in each template is S.
+constraint
+	forall(j in 1..t)
+		 (sum(i in 1..n)(p[i,j]) = S);
+
+% Enough of each variation is printed.
+constraint
+	forall(i in 1..n)
+		 (sum(j in 1..t)(p[i,j]*R[j]) >= d[i]);
+
+% Symmetry constraints.
+% Variations with the same demand are symmetric.
+constraint
+	forall(i in 1..n-1) (
+		if d[i] == d[i+1] then
+			lex_lesseq([p[i,  j] | j in 1..t],
+				[p[i+1,j] | j in 1..t])
+		else
+			true
+		endif
+	);
+
+% pseudo symmetry
+constraint
+	forall(i in 1..n-1) (
+		if d[i] < d[i+1] then
+		       sum (j in 1..t) (p[i,j]*R[j])
+		     <= sum (j in 1..t) (p[i+1,j]*R[j])
+		else
+			true
+		endif
+	);
+
+% implied constraints on the surplus
+
+% These are presented in the paper as necessary to get good
+% performance for this model, but I think bounds consistency on the
+% sum(R[i]) constraint would produce the same amount of propagation
+
+% Set up surplus, which is bounded as production is bounded.
+constraint
+	Surplus = Production*S - sum(i in 1..n)(d[i]);
+
+% The surplus of each variation is also limited by the surplus.
+constraint
+	forall(k in 1..n)
+		 (sum(j in 1..t)(p[k,j]*R[j]-d[k]) <= Surplus);
+
+% The surplus of the first k variations is limited by the surplus.
+constraint
+	forall(k in 2..n-1)
+		 (sum(j in 1..t, m in 1..k)( p[m,j]*R[j]-d[m] ) <= Surplus);
+
+% Implied constraints on the run length.
+constraint
+	if t=2 then (
+		R[1] <= Production div 2
+	/\	R[2] >= Production div 2
+	) else true endif;
+
+constraint
+	if t=3 then (
+		R[1] <= Production div 3
+	/\	R[2] <= Production div 2
+	/\	R[3] >= Production div 3
+	) else true endif;
+
+% Minimize the production.
+solve :: int_search(array1d(1..n*t,p) ++ R, input_order, indomain_min, complete)
+    minimize Production;
+
+output [
+    if v = 1 then "template #" ++ show(i) ++ ": [" else "" endif ++
+    show(p[v, i]) ++
+    if v = n then "], pressings: " ++ show(R[i]) ++ "\n" else ", " endif
+	| i in 1..t, v in 1..n]
+    ++ ["Total pressings: ", show(Production), "\n%\n"];
+
+%-----------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------%
+
+Expected Output:
+{
+  "p": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      7,
+      0
+    ]
+  ],
+  "R": [
+    158,
+    260
+  ],
+  "Production": 418,
+  "Surplus": 97,
+  "_objective": 418
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

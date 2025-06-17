@@ -1,0 +1,38 @@
+{
+  "description": "Formulate the problem of determining the quantities of each spare part to be made during the month so as to maximize profit. The number of different spare parts is K. The number of machines capable of making the spare parts is S. The time taken to make spare part k on machine s is given by Time. The profit obtained from making spare part k is Profit. Each machine s has a capacity of Capacity for the spare parts.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Spare Parts Production Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Spare Parts Production Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "quantity"
+    ],
+    "model_data_keywords": [
+      "time",
+      "profit",
+      "capacity"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "*"
+    ]
+  }
+}

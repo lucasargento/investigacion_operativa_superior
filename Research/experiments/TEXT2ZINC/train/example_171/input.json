@@ -1,0 +1,39 @@
+{
+  "description": "The problem is about creating a balanced 0-1 matrix. The task is to assign values, either zero or one, to the positions of an n x n matrix, where n is even, so that each row and each column contains exactly n/2 zeros and n/2 ones. The matrix size n must be an even number. The model ensures that the sum of ones in each row and each column is equal to n/2.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Balanced 0-1 Matrix",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "assert",
+      "mod",
+      "=",
+      "forall",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Balanced 0-1 Matrix",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "n",
+      "half_n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "assert",
+      "mod",
+      "=",
+      "forall",
+      "sum"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "description": "The Aircraft Landing Problem (ALP) is the problem of deciding a landing time on an appropriate runway for each aircraft in a given set of TotalAircrafts aircraft such that each aircraft lands within a predetermined time window defined by an EarliestLandingTime and a LatestLandingTime; and separation criteria between the landing of an aircraft i, and the landing of all successive aircraft j, are respected, determined by SeparationTimeMatrix. Each aircraft has a TargetLandingTime, and penalties are incurred for landing after (PenaltyTimeAfterTarget) or before (PenaltyTimeBeforeTarget) this target time.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Aircraft Landing Problem",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "if",
+      "then",
+      "elseif",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Aircraft Landing Problem",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "LandingTime",
+      "TotalPenalty"
+    ],
+    "model_data_keywords": [
+      "TotalAircrafts",
+      "EarliestLandingTime",
+      "TargetLandingTime",
+      "LatestLandingTime",
+      "PenaltyTimeAfterTarget",
+      "PenaltyTimeBeforeTarget",
+      "SeparationTimeMatrix"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "if",
+      "then",
+      "elseif",
+      "else",
+      "endif"
+    ]
+  }
+}

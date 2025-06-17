@@ -1,0 +1,24 @@
+{
+  "description": "The problem is to generate the lyrics of the song '99 bottles of beer on the wall'. The lyrics follow this form: \n\nX bottles of beer on the wall\nX bottles of beer\nTake one down, pass it around\nX-1 bottles of beer on the wall\n\nX-1 bottles of beer on the wall\n...\nTake one down, pass it around\n0 bottles of beer on the wall\n\nWhere X and X-1 are replaced by numbers. The goal is to generate these lyrics in a creative, concise, or comical way. Grammatical support for '1 bottle of beer' is optional.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "99 Bottles of Beer Lyrics Generator",
+    "domain": "Entertainment",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": []
+  },
+  "unverified_metadata": {
+    "name": "99 Bottles of Beer Lyrics Generator",
+    "domain": "Entertainment",
+    "model_var_keywords": [],
+    "model_data_keywords": [
+      "total_bottles"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": []
+  }
+}

@@ -1,0 +1,64 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 303
+- Name: Abbott's Puzzle
+- Domain: Mathematical Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Abbott's Puzzle is a problem from the book 'Amusements in Mathematics' by H.E. Dudeney (1917). The problem is to find a solution for three variables x[1], x[2], and x[3] that satisfy the following conditions: 
+1. The sum of each variable multiplied by its corresponding amount (6, 4, 1 respectively) equals 200. 
+2. The sum of the variables equals 100. 
+3. The second variable is five times the first variable. 
+The variables are integers and can take values between 0 and 1000.
+
+
+MiniZinc Model:
+set of int: S = 1..3;
+% array[S] of 0.0..3.0: amount = [3.0, 2.0, 0.5]; % float version
+array[S] of 0..6: amount = [6, 4, 1]; % multiply with 2 for the integer solution
+array[S] of var 0..1000: x;
+
+solve satisfy;
+
+constraint
+   % float version
+   % sum(i in S) (amount[i]*int2float(x[i])) = 100.0
+   % /\
+   % sum(i in S) (x[i]) = 100
+   % /\
+   % x[2] = 5*x[1]
+
+   % integer version
+   sum(i in S) (amount[i]*x[i]) = 200
+   /\
+   sum(i in S) (x[i]) = 100
+   /\
+   x[2] = 5*x[1]
+;
+
+output [
+  show(x), "\n",
+];
+
+Expected Output:
+{
+  "x": [
+    5,
+    25,
+    70
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

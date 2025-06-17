@@ -1,0 +1,45 @@
+{
+  "description": "The problem is a scheduling problem from a fantasy game called Sangraal. The player arrives at a castle where the Foul Fiend has imprisoned 8 knights. Each knight is bound in a different way and has different injuries, which affects the time it takes to free them and the time they need to recover. The state of binding means that it will take 1, 1, 2, 2, 3, 4, 5 and 6 minutes (respectively) to free them. A freed knight then goes away to wash and recover himself physically in time for the Sangraal's arrival. The time he takes for this second stage is 5, 10 or 15 minutes, according to injury. In twenty minutes' time the sun will set and the Sangraal will arrive. The goal is to maximize the number of knights that can be freed and prepared within 20 minutes. The problem is modeled as an integer programming problem where the decision variables represent whether a knight is in a certain position and whether a position is finished within 20 minutes. The objective is to maximize the number of positions finished within 20 minutes.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Sangraal Knights Scheduling",
+    "domain": "Scheduling",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Sangraal Knights Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "x",
+      "d",
+      "finish_time",
+      "max_knights"
+    ],
+    "model_data_keywords": [
+      "num_knights",
+      "Knights",
+      "Positions",
+      "time_to_free",
+      "time_to_prepare"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<="
+    ]
+  }
+}

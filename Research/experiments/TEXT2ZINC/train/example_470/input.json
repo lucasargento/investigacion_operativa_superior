@@ -1,0 +1,43 @@
+{
+  "description": "The problem is about partitioning a collection of variables into a certain number of classes. The goal is to find the number of partitions of the collection PARTITIONS such that at least one value is assigned to at least one variable of the collection VARIABLES. For example, given the values <3, 2, 7, 2, 6> and the partitions p-<1, 3>, p-<4>, and p-<2, 6>, the values occur within partitions p-<1, 3> and p-<2, 6> but not within p-<4>. Consequently, the nclass constraint holds since its first argument NCLASS is set to value 2. The problem is to find the values of the variables and the partitions that satisfy this constraint.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Partitioning Variables into Classes",
+    "domain": "Combinatorial Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_disjoint",
+      "bool2int",
+      "exists",
+      "assert",
+      "forall",
+      "cp1d",
+      "nclass"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Partitioning Variables into Classes",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "num_variables",
+      "x",
+      "num_class",
+      "s"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_disjoint",
+      "bool2int",
+      "exists",
+      "assert",
+      "forall",
+      "cp1d",
+      "nclass"
+    ]
+  }
+}

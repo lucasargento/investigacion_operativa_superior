@@ -1,0 +1,59 @@
+{
+  "description": "LP or MILP\n\nWhat buying, storing and manufacturing policy should the company pursue in order to maximize profit?\n\n{\n    \"buy_price\": [[BuyPrice for i in 1,...,I] for m in 1,...,M],\n    \"sell_price\": SellPrice,\n    \"is_vegetable\": [IsVegetable for i in 1,...,I],\n    \"max_vegetable_refining_per_month\": MaxVegRefiningPerMonth,\n    \"max_non_vegetable_refining_per_month\": MaxNonVegRefiningPerMonth,\n    \"storage_size\": StorageSize,\n    \"storage_cost\": StorageCost,\n    \"max_hardness\": MaxHardness,\n    \"min_hardness\": MinHardness,\n    \"hardness\": [Hardness for i in 1,...,I],\n    \"init_amount\": InitialAmount,\n    \"min_usage\": MinUsage,\n    \"dependencies\": [Dependencies for i in 1,...,I]\n}",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Oil Refining and Blending",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Oil Refining and Blending",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "buy",
+      "refine",
+      "storage",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "buy_price",
+      "sell_price",
+      "is_vegetable",
+      "max_vegetable_refining_per_month",
+      "max_non_vegetable_refining_per_month",
+      "storage_size",
+      "storage_cost",
+      "min_hardness",
+      "max_hardness",
+      "hardness",
+      "init_amount",
+      "min_usage",
+      "dependencies"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  }
+}

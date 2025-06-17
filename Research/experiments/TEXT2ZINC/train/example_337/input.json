@@ -1,0 +1,38 @@
+{
+  "description": "In this problem, we have \u00a341.58 in our pocket which is made up of different denominations of coins. There is exactly the same number of each coin. The goal is to find the minimum number of coins we have, and what are they. Britain has 8 commonly used coins, and in GBP their values are: 0.01, 0.02, 0.05, 0.10, 0.20, 0.50, 1, 2. The problem is modeled and solved using MiniZinc, a medium-level constraint modeling language. The constraints ensure that the sum of the values of the coins equals \u00a341.58, each coin count is non-negative and less than or equal to the total amount, and the number of each type of coin is the same or zero. The objective is to minimize the total number of coins.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum Coin Denominations",
+    "domain": "Finance",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "=",
+      "forall",
+      "/"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum Coin Denominations",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "num_denominations",
+      "denominations",
+      "total_amount",
+      "num_each_denomination",
+      "total_num_coins"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "sum",
+      "=",
+      "forall",
+      "/"
+    ]
+  }
+}

@@ -1,0 +1,147 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 74
+- Name: Balanced Incomplete Block Design Generation
+- Domain: Industrial Engineering and Design
+- Objective: satisfaction
+
+Problem Description:
+Balanced Incomplete Block Design (BIBD) generation is a standard combinatorial problem from design theory, involving arranging distinct objects into blocks with specific constraints. The goal is to create blocks where each block contains a fixed number of objects, each object appears in a fixed number of blocks, and every pair of objects appears together in a fixed number of blocks. The problem is specified by parameters. We are provided with the number of objects, the number of blocks, the occurrences of each object in blocks, the distinct objects in each block, and the pairs which appear together.
+
+
+Input Data (data.dzn):
+% Affine plane problem:
+% v = n^2, k = n, lambda = 1
+
+v = 4;
+k = 2;
+lambda = 1;
+
+% A solution:
+%   001011
+%   010101
+%   100110
+%   111000
+
+
+MiniZinc Model:
+% bibd.mzn
+% vim: ft=zinc ts=4 sw=4 et tw=0
+% Ralph Becket <rafe@csse.unimelb.edu.au>
+% Tue Oct 23 11:28:06 EST 2007
+%
+% Balanced incomplete block designs.  See the following:
+% http://mathworld.wolfram.com/BlockDesign.html
+% http://www.dcs.st-and.ac.uk/~ianm/CSPLib/prob/prob028/spec.html
+%
+%
+%
+% A BIBD (v, b, r, k, lambda) problem is to find a binary matrix of v rows
+% of b columns such that each row sums to r, each column sums to k, and
+% the dot product beween any pair of distinct rows is lambda.
+
+include "lex_lesseq.mzn";
+
+int: v;
+int: k;
+int: lambda;
+
+int: b = (lambda * v * (v - 1)) div (k * (k - 1));
+int: r = (lambda * (v - 1)) div (k - 1);
+
+set of int: rows = 1..v;
+set of int: cols = 1..b;
+
+array [rows, cols] of var bool: m;
+
+    % Every row must sum to r.
+    %
+constraint forall (i in rows) (sum (j in cols) (bool2int(m[i, j])) = r);
+
+    % Every column must sum to k.
+    %
+constraint forall (j in cols) (sum (i in rows) (bool2int(m[i, j])) = k);
+
+    % The dot product of every pair of distinct rows must be lambda.
+    %
+constraint
+    forall (i_a, i_b in rows where i_a < i_b) (
+        sum (j in cols) (bool2int(m[i_a, j] /\ m[i_b, j])) = lambda
+    );
+
+    % Break row symmetry in the incidence matrix.
+    %
+constraint forall(i in rows diff {max(rows)})(
+        lex_lesseq([m[i, j] | j in cols], [m[i+1, j] | j in cols])
+    );
+
+    % Break column symmetry in the incidence matrix.
+    %
+constraint forall(j in cols diff {max(cols)})(
+        lex_lesseq([m[i, j] | i in rows], [m[i, j+1] | i in rows])
+    );
+
+solve :: bool_search([m[i, j] | i in rows, j in cols],
+    input_order, indomain_min, complete)
+    satisfy;
+
+output  ["bibd: (v = ", show(v), ", b = ", show(b), ", r = ", show(r),
+        ", k = ", show(k), ", lambda = ", show(lambda), ")\n\n"] ++
+        [ ( if j > b then "\n" else show(bool2int(m[i, j])) endif )
+        | i in rows, j in 1..(b + 1)
+        ];
+
+%----------------------------------------------------------------------------%
+%----------------------------------------------------------------------------%
+
+
+Expected Output:
+{
+  "m": [
+    [
+      false,
+      false,
+      false,
+      true,
+      true,
+      true
+    ],
+    [
+      false,
+      true,
+      true,
+      false,
+      false,
+      true
+    ],
+    [
+      true,
+      false,
+      true,
+      false,
+      true,
+      false
+    ],
+    [
+      true,
+      true,
+      false,
+      true,
+      false,
+      false
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

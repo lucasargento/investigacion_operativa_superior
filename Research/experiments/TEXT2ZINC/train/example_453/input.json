@@ -1,0 +1,47 @@
+{
+  "description": "The problem is defined by the open_among constraint. Given a set of positions S, a number NVAR, a collection of variables, and a set of values, the constraint is satisfied if the number of variables at the positions specified by S that take their value from the set of values is equal to NVAR. For example, given the set of positions S={2,3,4,5}, the number NVAR=3, the collection of variables <8,5,5,4,1>, and the set of values {1,5,8}, the constraint is satisfied because exactly 3 values from the last four values of the collection of variables belong to the set of values.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Open Among Constraint Satisfaction",
+    "domain": "Constraint Satisfaction",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "open_among",
+      "cp1d",
+      "=",
+      "bool2int",
+      "in",
+      "sum",
+      "assert",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Open Among Constraint Satisfaction",
+    "domain": "Constraint Satisfaction",
+    "model_var_keywords": [
+      "variables",
+      "nvar",
+      "s",
+      "values"
+    ],
+    "model_data_keywords": [
+      "num_variables"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "open_among",
+      "cp1d",
+      "=",
+      "bool2int",
+      "in",
+      "sum",
+      "assert",
+      "forall"
+    ]
+  }
+}

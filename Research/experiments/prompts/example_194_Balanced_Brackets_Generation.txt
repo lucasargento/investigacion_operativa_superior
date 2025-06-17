@@ -1,0 +1,80 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 194
+- Name: Balanced Brackets Generation
+- Domain: Combinatorial Optimization
+- Objective: satisfaction
+
+Problem Description:
+The problem is about generating balanced brackets of size m*2 using MiniZinc. A balanced bracket is a string that consists of only brackets, which can be either open '[' or closed ']', and is balanced if it starts with an open bracket, ends with a closed bracket, and at any point in the string, the number of open brackets is greater than or equal to the number of closed brackets. The number of solutions generated for m follows the Catalan numbers sequence. The model uses an array x of size n (which is m*2) where each element can be either 0 (representing an open bracket) or 1 (representing a closed bracket), and an array c of size n which is a counter (cumulative) that increments by 1 if the corresponding element in x is 0 (open bracket) and decrements by 1 if it is 1 (closed bracket). The model aims to find a solution that satisfies these constraints.
+
+
+Input Data (data.dzn):
+m = 8;
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: m = 13;
+int: n = m*2;
+
+array[0..1] of string: s = array1d(0..1, ["[","]"]);
+
+% For cumulative (c):
+% +1 if x[i] = "["
+% -1 if x[i] = "]"
+array[0..1] of int: t = array1d(0..1, [1, -1]);  
+
+% 0: "[", 1: "]"
+array[1..n] of var 0..1: x;
+array[1..n] of var 0..n: c; % counter (cumulative)
+
+% solve satisfy;
+solve :: int_search(
+        x ++ c, 
+        first_fail, 
+        indomain_split, 
+        complete) 
+    satisfy;
+
+
+constraint
+  x[1] = 0 /\ c[1] = 1  % start
+
+  /\ % cumulative
+  forall(i in 2..n) (
+     c[i] = c[i-1] + t[x[i]]
+  )
+  /\ x[n] = 1 
+  /\ c[n] = 0 % end
+
+  % Redundant constraint: This might make it faster (but it don't)
+  % /\ sum(x) = m
+;
+
+output 
+[
+  "m: " ++ show(m) ++ " n: " ++ show(n) ++ "\n" ++
+  "x: " ++ show(x) ++ "\n" ++
+  "c: " ++ show(c) ++ "\n"
+]
+++
+[
+  show(s[fix(x[i])]) 
+  | i in 1..n
+]
+++ ["\n"]
+;
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

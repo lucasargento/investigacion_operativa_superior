@@ -1,0 +1,51 @@
+{
+  "description": "The problem is about finding prime numbers using MiniZinc. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. The code defines a number 'nn' in the range of 1 to 120. It also defines a variable 'num_divisors' to count the number of divisors of 'nn' and a set 'divisor' to store the divisors of 'nn'. A variable 'is_prime' is used to indicate whether 'nn' is a prime number or not. The code includes a predicate 'divisors' to calculate the number of divisors of 'nn'. The problem is to find the value of 'nn' such that it is a prime number. The output of the code includes the value of 'nn', the number of divisors, the divisors of 'nn', and whether 'nn' is a prime number or not.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Prime Number Finder",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "calculate_divisors",
+      "num_divisors",
+      "is_prime",
+      "mod",
+      "card",
+      "in",
+      "not in",
+      "<->",
+      ">",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Prime Number Finder",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "natural_number",
+      "num_divisors",
+      "divisors",
+      "is_prime"
+    ],
+    "model_data_keywords": [
+      "upper_limit"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "calculate_divisors",
+      "num_divisors",
+      "is_prime",
+      "mod",
+      "card",
+      "in",
+      "not in",
+      "<->",
+      ">",
+      "="
+    ]
+  }
+}

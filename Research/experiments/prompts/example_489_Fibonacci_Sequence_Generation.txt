@@ -1,0 +1,59 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 489
+- Name: Fibonacci Sequence Generation
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is about generating a sequence of Fibonacci numbers using MiniZinc. The Fibonacci sequence is a series of numbers in which each number is the sum of the two preceding ones, usually starting with 0 and 1. However, in this problem, the sequence starts with 1 and 1. The task is to calculate the first 'n' numbers in the Fibonacci sequence, where 'n' is a given integer. The challenge is that recursion, a common method for generating Fibonacci numbers, is not allowed in MiniZinc. Therefore, an array is used to store and calculate the sequence. The output is the sequence of the first 'n' Fibonacci numbers.
+
+
+MiniZinc Model:
+int: n = 11; % number of Fibonacci numbers to calculate
+array[1..n] of var int: fib;
+
+solve satisfy;
+
+constraint
+        fib[1] = 1 /\
+        fib[2] = 1 /\
+        forall(i in 3..n) (
+             fib[i] = fib[i-1] + fib[i-2]
+        )        
+;
+
+
+output [
+  show(fib), "\n"
+];
+
+Expected Output:
+{
+  "fib": [
+    1,
+    1,
+    2,
+    3,
+    5,
+    8,
+    13,
+    21,
+    34,
+    55,
+    89
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

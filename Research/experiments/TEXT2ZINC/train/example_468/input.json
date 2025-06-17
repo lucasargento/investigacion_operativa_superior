@@ -1,0 +1,51 @@
+{
+  "description": "The problem is about enforcing a lexicographical order on a matrix of domain variables. The matrix is defined such that both adjacent rows and adjacent columns are lexicographically ordered. This means that each row and each column must be in a non-decreasing order. For example, given a matrix with two rows and three columns, the first row <2, 2, 3> is lexicographically less than or equal to the second row <2, 3, 1>, the first column <2, 2> is lexicographically less than or equal to the second column <2, 3>, and the second column <2, 3> is lexicographically less than or equal to the third column <3, 1>. The problem is to find a matrix that satisfies these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Lexicographical Order Matrix",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "copy_2d_array",
+      "enforce_lex_order",
+      "lex_less",
+      "forall",
+      "assert",
+      "index_set_1of2",
+      "index_set_2of2",
+      "=",
+      "/\\",
+      "min",
+      "max"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Lexicographical Order Matrix",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "matrix"
+    ],
+    "model_data_keywords": [
+      "num_rows",
+      "num_cols"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "copy_2d_array",
+      "enforce_lex_order",
+      "lex_less",
+      "forall",
+      "assert",
+      "index_set_1of2",
+      "index_set_2of2",
+      "=",
+      "/\\",
+      "min",
+      "max"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "description": "The objective is to minimize the maximum thrust required, which is max_t |a_t| over the duration T, with initial conditions set by X0, V0, and final conditions set by XT and VT.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Rocket Thrust Optimization",
+    "domain": "Physics",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "=",
+      "+",
+      "<=",
+      "abs",
+      "sum",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Rocket Thrust Optimization",
+    "domain": "Physics",
+    "model_var_keywords": [
+      "x",
+      "v",
+      "a",
+      "max_thrust",
+      "fuel_spend"
+    ],
+    "model_data_keywords": [
+      "X0",
+      "V0",
+      "XT",
+      "VT",
+      "T"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "=",
+      "+",
+      "<=",
+      "abs",
+      "sum",
+      "forall"
+    ]
+  }
+}

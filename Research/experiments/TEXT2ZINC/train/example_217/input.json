@@ -1,0 +1,40 @@
+{
+  "description": "Find the lamp powers power_j that minimize the absolute error between the illuminations ill_i and the desired illuminations DesiredIlluminations. The relationship between the lamp powers and the illuminations is given by coefficients Coefficients.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Road Illumination Optimization",
+    "domain": "Optimization",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "abs",
+      "<=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Road Illumination Optimization",
+    "domain": "Optimization",
+    "model_var_keywords": [
+      "power",
+      "error"
+    ],
+    "model_data_keywords": [
+      "Coefficients",
+      "DesiredIlluminations"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "abs",
+      "<=",
+      "sum",
+      "*"
+    ]
+  }
+}

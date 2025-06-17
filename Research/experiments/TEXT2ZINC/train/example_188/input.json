@@ -1,0 +1,48 @@
+{
+  "description": "The problem is about configuring a system with a set of models, cards, and racks. Each model has a power, connectors, and price. Each card has a power and quantity. The goal is to minimize the total cost of the system. The constraints are as follows: \n\n1. The total power of the cards in a rack should not exceed the power of the model in the rack. \n2. The total number of cards in a rack should not exceed the number of connectors in the model in the rack. \n3. The total number of each type of card used should be equal to the quantity of that card. \n4. The total cost is the sum of the prices of the models in the racks.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "System Configuration Optimization",
+    "domain": "System Design",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "==",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "System Configuration Optimization",
+    "domain": "System Design",
+    "model_var_keywords": [
+      "rack",
+      "cardCount",
+      "totalCost"
+    ],
+    "model_data_keywords": [
+      "numModels",
+      "numCards",
+      "numRacks",
+      "modelPower",
+      "modelConnectors",
+      "modelPrice",
+      "cardPower",
+      "cardQuantity",
+      "maxCost"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "==",
+      "*"
+    ]
+  }
+}

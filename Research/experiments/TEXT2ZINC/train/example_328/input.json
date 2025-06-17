@@ -1,0 +1,41 @@
+{
+  "description": "The problem is a shopping puzzle. There are three husbands: Arthur, Bernard, Charles and three wives: Ann, Barbara, Cynthia. The goal is to find out who is married to whom and how many articles each person bought. The constraints are as follows: Each husband has one wife and each wife has one husband. Arthur has bought 23 more articles than Barbara and Bernard has bought 11 more articles than Ann. Each husband has spent $63 more than his wife. The number of articles bought by each husband and the number of books (and price) bought by each son are represented by variables x and y respectively. The variable w[i,j] is 1 if husband i is married to wife j, and 0 otherwise.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Shopping Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "+",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Shopping Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "w",
+      "articles_bought_by_husbands",
+      "books_bought_by_sons"
+    ],
+    "model_data_keywords": [
+      "num_couples",
+      "Couples"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "+",
+      "*"
+    ]
+  }
+}

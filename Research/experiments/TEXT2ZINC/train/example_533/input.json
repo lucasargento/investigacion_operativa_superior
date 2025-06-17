@@ -1,0 +1,42 @@
+{
+  "description": "The problem is about calculating how to combine weight plates for barbell or dumbbells. The total weight includes the weight of the barbell or dumbbell. The result is the weights per side. For the barbell, we require 2 weight plates of each weight (one of each side of the barbell). For the dumbbells, we require 4 weight plates of each weight: one of each side and for two dumbbells. For exercises that require just one dumbbell (e.g. dumbbell row) then one can either ignore this or change the required weights to 2 and change the available weights to the same as barbell. The data for the problem is provided in separate files. The problem can be approached in different ways: to look for the maximal weight, use the objective 'maximize total'. To look for the minimal number of weight plates for a certain total, comment out (and change) the constraint 'total = xxx' and use the objective 'minimize num_selected_weights'. The model mixes var float and var int, so the solver must support that.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Weight Plate Combination",
+    "domain": "Fitness",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Weight Plate Combination",
+    "domain": "Fitness",
+    "model_var_keywords": [
+      "selected_weights",
+      "total_weight",
+      "num_selected_weights"
+    ],
+    "model_data_keywords": [
+      "weights",
+      "weight_avail",
+      "req_weights",
+      "bell_weight",
+      "bell_type"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "="
+    ]
+  }
+}

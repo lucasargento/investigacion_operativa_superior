@@ -1,0 +1,393 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 373
+- Name: Tank Attack Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is a Tank Attack Puzzle. The puzzle is played on a 6x6 grid, where each cell represents a tank. Each tank has a number from 1 to 5. The number on a tank represents the number of other tanks it can attack. A tank can attack another tank if it is in the same row or column, and the distance between them is equal to the number on the attacking tank. The objective is to find a configuration of numbers on the tanks such that the number on each tank is equal to the number of tanks it can attack. The solution must also satisfy the following symmetry constraints: the configuration is symmetric with respect to the main diagonal, and the configuration is symmetric with respect to the secondary diagonal. The output is the configuration of numbers on the tanks.
+
+
+MiniZinc Model:
+int: n = 6;
+
+% indices
+set of int: N = 1..n;
+set of int: M = 1..n-1;
+
+% variables
+array[N, N, M] of var 0..1: x; % x[i,j,k] = 1 if number on tank {i,j} = k
+array[N, N] of var int: res; % the output result
+
+solve :: int_search([x[i,j,k] | i, j in N, k in M], first_fail, indomain_min, complete) satisfy;
+% solve :: int_search([res[i,j] | i, j in N], first_fail, indomain_min, complete) satisfy;
+
+constraint
+
+  % attacks on tank = number on tank
+  forall(i in N,j in N) (
+    (
+     sum(p in N where p != j) ( x[i,p,abs(j-p)]) + 
+     sum(q in N where q != i) (x[q,j,abs(i-q)])
+    ) = sum(k in M) (k*x[i,j,k])
+  )
+
+  /\  % one number on each tank
+  forall(i in N,j in N) (
+    sum(k in M) (x[i,j,k]) = 1
+  )
+
+  /\ % symmetry constraints - otherwise too slow
+  forall(i in N,j in N,k in M) (
+      x[i,j,k] = x[(n+1-i),(n+1-j),k]
+  )
+  /\
+  forall(i in N,j in N,k in M) (
+    x[i,j,k] = x[j,(n+1-i),k]
+  )
+
+  /\ % for the output
+  forall(i, j in N) (
+     res[i,j] = sum(k in 1..n-1) (k*x[i,j,k])
+  )
+;
+
+output [
+   if j = 1 then "\n" else " " endif ++
+     show(res[i,j])
+   | i,j in N
+] ++ ["\n"];
+
+Expected Output:
+{
+  "x": [
+    [
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    [
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    [
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    [
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    [
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    [
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    ]
+  ],
+  "res": [
+    [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    [
+      2,
+      2,
+      4,
+      4,
+      2,
+      2
+    ],
+    [
+      2,
+      2,
+      4,
+      4,
+      2,
+      2
+    ],
+    [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

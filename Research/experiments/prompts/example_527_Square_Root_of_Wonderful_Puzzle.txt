@@ -1,0 +1,84 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 527
+- Name: Square Root of Wonderful Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is based on a puzzle from Martin Gardner (June 1961) titled 'The Square Root of Wonderful'. The puzzle is as follows: 'The Square Root of Wonderful' was the name of a play on Broadway. If each letter in WONDERFUL stands for a different digit (zero excluded) and if OODDF, using the same code, represent the square root, then what is the square root of wonderful? The task is to assign each letter in WONDERFUL a unique digit from 1 to 9 such that the square of the number represented by OODDF equals the number represented by WONDERFUL. The solution should satisfy the constraints that all digits are different and greater than zero, and the numbers WONDERFUL and OODDF are formed by concatenating the digits represented by the respective letters.
+
+
+MiniZinc Model:
+include "globals.mzn";
+var 1..9: W;
+var 1..9: O;
+var 1..9: N;
+var 1..9: D;
+var 1..9: E;
+var 1..9: R;
+var 1..9: F;
+var 1..9: U;
+var 1..9: L;
+
+array[1..9] of var int : fd =
+  [W,O,N,D,E,R,F,U,L];
+
+var int: WONDERFUL;
+var int: OODDF;
+
+% solve satisfy;
+solve :: int_search(fd ++ [WONDERFUL, OODDF], 
+        first_fail, indomain_min, complete) satisfy;
+
+constraint
+  all_different(fd) 
+  /\
+  WONDERFUL > 0
+  /\
+  WONDERFUL = 100000000*W + 10000000*O + 1000000*N + 100000*D + 10000*E + 1000*R +  100*F + 10*U + L
+  /\
+  OODDF = 10000*O + 1000*O + 100*D + 10*D + F
+  /\
+  OODDF*OODDF = WONDERFUL
+  /\
+  W >= 1 
+  /\
+  O >= 1
+  
+;
+
+
+output [
+  "WONDERFUL: ", show(WONDERFUL), "\n",
+  "OODDF: ", show(OODDF)
+
+];
+
+Expected Output:
+{
+  "W": 5,
+  "O": 2,
+  "N": 3,
+  "D": 8,
+  "E": 1,
+  "R": 4,
+  "F": 7,
+  "U": 6,
+  "L": 9,
+  "WONDERFUL": 523814769,
+  "OODDF": 22887
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

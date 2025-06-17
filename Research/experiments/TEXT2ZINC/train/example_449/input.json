@@ -1,0 +1,44 @@
+{
+  "description": "Consider a diet problem. Given a set of foods FoodSet and a set of nutrients NutrientSet which is the union of nutrients with minimum requirements MinReqNutrients and nutrients with maximum requirements MaxReqNutrients. Each food j has a cost CostPerFood_j and the amount of each nutrient i it contains is AmountPerNutrient_{i,j}. The problem aims to minimize the total cost of buying foods. It is constrained that the total amount of each nutrient i with minimum requirements in the foods bought is at least MinReqAmount_i and the total amount of each nutrient i with maximum requirements in the foods bought is at most MaxReqAmount_i. How to decide the amount of each food j to buy ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Diet Problem",
+    "domain": "Nutrition",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Diet Problem",
+    "domain": "Nutrition",
+    "model_var_keywords": [
+      "FoodAmount",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "FoodNum",
+      "NutrientNum",
+      "CostPerFood",
+      "FoodMin",
+      "FoodMax",
+      "MinReqAmount",
+      "MaxReqAmount",
+      "AmountPerNutrient"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<="
+    ]
+  }
+}

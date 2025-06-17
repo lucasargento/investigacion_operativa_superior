@@ -1,0 +1,57 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 420
+- Name: Vitamin Supplement Optimization
+- Domain: Healthcare
+- Objective: minimization
+
+Problem Description:
+A woman with vitamin deficiency is taking supplements from two brands , super vitamin XYZ and vitamin ABC . Super vitamin XYZ contains 2 mg of vitamin , 5 mg of fiber , and causes 2 units of drowsiness per serving . Vitamin ABC contains 1.5 mg of vitamin , 3 mg of fiber , and causes 3 units of drowsiness per serving . The woman wants to get at least 30 mg of vitamin and 55 mg of fiber . In addition , there must be at most 40 % of the supplements taken from super vitamin XYZ and there must be at least 3 servings of super vitamin XYZ because it is expiring soon . How many servings of each should she take to minimize her total drowsiness .
+
+
+MiniZinc Model:
+var int: XYZ;
+% number of servings of vitamin ABC
+var int: ABC; 
+
+% number of servings is non-negative
+constraint XYZ >= 0;
+constraint ABC >= 0;
+% at least 30 mg of vitamin
+% XYZ contains 2mg of vitamin and ABC contains 1.5mg
+constraint XYZ * 2 + ABC * 1.5 >= 30;
+% at least 55 mg of fiber
+% XYZ contains 5mg of fiber and ABC contains 3mg
+constraint XYZ * 5 + ABC * 3 >= 55; 
+% at most 40% of the supplements taken from super vitamin XYZ
+constraint XYZ <= 0.4 * (XYZ + ABC);
+% at least 3 servings of super vitamin XYZ
+constraint XYZ >= 3;
+
+% XYZ causes 2 units of drowsiness per serving and ABC causes 3 units of drowsiness per serving
+var int: drowsiness = XYZ * 2 + ABC * 3;
+
+% minimize drowsiness
+solve minimize drowsiness;
+
+output ["XYZ: " ++ show(XYZ) ++ "\n", "ABC: " ++ show(ABC) ++ "\n", "Drowsiness: " ++ show(drowsiness)];
+
+Expected Output:
+{
+  "XYZ": 7,
+  "ABC": 11,
+  "_objective": 47
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,170 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 309
+- Name: Earthlings Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is a puzzle called 'Earthlings' from Martin Chlond's Integer Programming Puzzles. There are three teams: Zaire, Uruguay, and Spain. Each team can be in one of three places: 1st, 2nd, or 3rd. Each team can be of one of three types: truth-teller, alternator, or liar. Each team makes a statement, which can be one of three types: x(1,1)+x(2,2)+x(3,3)=3, x(1,1)+x(3,2)+x(2,3)=3, or x(2,1)+x(3,2)+x(1,3)=3. The goal is to find the configuration of teams, places, and types that satisfies all the constraints. The constraints are: each place has one team, each team is in one place, each type makes one statement, each statement is made by one type, the number of truths in each statement is equal to the number of teams in the corresponding places, if a statement is made by a truth-teller then it must be true, if a statement is made by a liar then it must be false, and assertions 1 and 3 are either both true or both false for all statements.
+
+
+MiniZinc Model:
+int: team = 3;   % 1 = Zaire, 2 = Uruguay, 3 = Spain
+int: place = 3;  % 1st, 2nd or 3rd 
+int: ttype = 3;  % 1 = truth-teller, 2 = alternator, 3 = liar
+int: state = 3;  % statements 1 = x(1,1)+x(2,2)+x(3,3)=3
+                 %            2 = x(1,1)+x(3,2)+x(2,3)=3
+                 %            3 = x(2,1)+x(3,2)+x(1,3)=3 
+
+set of 1..team: T = 1..team;
+set of 1..place: P = 1..place;
+set of 1..ttype: E = 1..ttype;
+set of 1..state: S = 1..state;
+
+% x(i,j) = 1 if team i in place j , 0 otherwise 
+array[T,P] of var 0..1: x; % 
+% y(k,l) = 1 if statement k made by type l
+array[S, E] of var 0..1: y;
+% d(k) = number of truths in statement k
+array[S] of var 0..3: d;
+
+solve satisfy;
+
+constraint 
+   % each place one team
+   forall(j in P) (
+        sum(i in T) (x[i,j]) = 1
+   )
+   /\
+   % each team one place
+   forall(i in T) (
+        sum(j in P) (x[i,j]) = 1
+   )
+   /\
+   % each type makes one statement
+   forall(k in E) (
+        sum(l in S) (y[k,l]) = 1
+   )
+  /\
+  % each statement made by one type
+  forall(l in S) (
+        sum(k in E) (y[k,l]) = 1
+  )
+  /\
+  % d[i] = number of truths in statement i
+  x[1,1]+x[2,2]+x[3,3] = d[1]
+  /\
+  x[1,1]+x[3,2]+x[2,3] = d[2]
+  /\
+  x[2,1]+x[3,2]+x[1,3] = d[3]
+  /\
+
+  forall(k in S) (
+   % if statement k made by truthteller (i.e. d[k]=3 ] then y[k,1] = 1, else 0
+        d[k] - 3*y[k,1] >= 0
+  )
+  /\
+  forall(k in S) (
+        d[k] - 3*y[k,1] <= 2
+  )
+  /\
+  % if statement k made by liar (i.e. d[k]=0 ] then y[k,3] = 1, else 0
+  forall(k in S) (
+        d[k] + 3*y[k,3] <= 3
+  )
+  /\
+  forall(k in S) (
+    d[k] + y[k,3] >= 1
+  )
+  /\
+  % assertion 1 and 3 either both true or both false for all statements
+  x[1,1]=x[3,3]
+  /\
+  x[1,1]=x[2,3]
+  /\
+  x[2,1]=x[1,3]
+;
+
+
+output [
+   if i = 1 /\ j = 1 then
+   "x:" else "" endif ++
+   if j = 1 then 
+   "\n" else " " endif ++
+   show(x[i,j])
+   
+   | i in T, j in T
+] ++
+[
+
+   if i = 1 /\ j = 1 then
+   "\ny:" else "" endif ++
+   if j = 1 then 
+   "\n" else " " endif ++
+   show(y[i,j])
+   
+   | i in S, j in E
+] ++ 
+[
+  if i = 1 then
+   "\nd:\n" else "\n" endif ++
+  show(d[i]) 
+  | i in S
+];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ]
+  ],
+  "y": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ]
+  ],
+  "d": [
+    0,
+    1,
+    3
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

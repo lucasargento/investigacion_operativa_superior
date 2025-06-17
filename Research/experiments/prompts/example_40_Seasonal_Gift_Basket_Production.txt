@@ -1,0 +1,45 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 40
+- Name: Seasonal Gift Basket Production
+- Domain: Manufacturing and Production
+- Objective: maximization
+
+Problem Description:
+A fine foods company produces gift baskets for a season that lasts a certain number of weeks. Each week has a demand that must be met. There are two types of labor available, regular and overtime. Both types of labor have a limit on the number of hours per week and have a cost associated with them per hour. Each basket takes the same amount of time to assemble and has a material cost and selling price. Unsold baskets from a week have a holding cost per week. At the end of the season, unsold baskets have a salvage value. (they do not incur a holding cost). If no baskets are available at the start of week 1, how much regular and overtime labor should be utilized each week to assemble the baskets to maximize the profit over the season?
+
+
+Input Data (data.dzn):
+W = 4;
+RegularCost = 30;
+OvertimeCost = 45;
+AssemblyTime = 0.4;
+MaterialCost = 25;
+SellingPrice = 65;
+HoldingCost = 4;
+SalvageValue = 30;
+Demand = [700, 1500, 2800, 1800];
+RegularLabor = [450, 550, 600, 600];
+OvertimeLabor = [40, 200, 320, 160];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 178900.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

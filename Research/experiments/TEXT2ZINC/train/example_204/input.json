@@ -1,0 +1,54 @@
+{
+  "description": "PROBLEM TYPE\nLP\n\nINPUT FORMAT \n\n{\n    \"time_required\": [[TimeRequired for p in 1, ..., P] for m in 1, ..., M],\n    \"machine_costs\": [MachineCosts for m in 1, ..., M],\n    \"availability\": [Availability for m in 1, ..., M],\n    \"prices\": [Prices for p in 1, ..., P],\n    \"min_batches\": [MinBatches for p in 1, ..., P],\n    \"standard_cost\": StandardCost,\n    \"overtime_cost\": OvertimeCost,\n    \"overtime_hour\": OvertimeHour\n}\n\n\nOBJECTIVE\nHow many batches of each part should the manufacturer produce each month to maximize profit?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Auto Parts Manufacturer Profit Maximization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Auto Parts Manufacturer Profit Maximization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "Batches",
+      "TotalProfit"
+    ],
+    "model_data_keywords": [
+      "NumMachines",
+      "NumParts",
+      "TimeRequired",
+      "MachineCosts",
+      "Availability",
+      "Prices",
+      "MinBatches",
+      "StandardCost",
+      "OvertimeCost",
+      "OvertimeHour"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  }
+}

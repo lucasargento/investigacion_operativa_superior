@@ -1,0 +1,242 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 326
+- Name: Dudeney's Queen Placement
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+This problem is known as Dudeney's queen placement problem. The problem is set on an 8x8 chessboard. The objective is to place eight queens on the board such that the number of squares attacked by the queens is minimized. The constraints are as follows: all eight queens must be used, five of the original queens must remain untouched, and a square is considered attacked if it is in the same row, column, or diagonal as a queen. The variables 'x' and 'a' are binary matrices of size 8x8, where 'x[i,j]' is 1 if square {i,j} is occupied by a queen and 0 otherwise, and 'a[i,j]' is 1 if square {i,j} is attacked by a queen and 0 otherwise. The variable 'suma' is the sum of all elements in 'a', representing the total number of squares attacked by the queens. The problem is to find the values of 'x' and 'a' that minimize 'suma'.
+
+
+MiniZinc Model:
+int: size = 8;
+array[1..size,1..size] of var 0..1: x; % 1 if square {I,J} occupied, 0 otherwise
+array[1..size,1..size] of var 0..1: a; % 1 if square {I,J} attacked, 0 otherwise
+var 0..100: suma = sum(i, j in 1..size) (a[i,j]);
+
+% minimise number of squares attacked  
+solve minimize suma;
+% solve :: int_search([ a[i,j] | i,j in 1..size ], "first_fail", "indomain", "complete") minimize suma;
+
+constraint
+   % all eight queens used
+    sum(i in 1..size,j in 1..size) (x[i,j]) = 8
+   /\
+   % five of original queens untouched
+   sum(j in 3..size) (x[8,j] + x[7,size] + x[6,size]) = 5
+
+   /\
+   % a(i,j) = 1 if square (i,j) attacked
+   forall(i, j in 1..size) (
+     (
+        sum(m in 1..size where m != i /\ m-i+j >= 1 /\ m-i+j <= size) (x[m,m-i+j]) +
+        sum(m in 1..size where m != i /\ i+j-m >= 1 /\ i+j-m <= size) (x[m,i+j-m]) +
+        sum(m in 1..size where m != i) (x[m,j]) + 
+        sum(n in 1..size where n != j) (x[i,n]) 
+      )  <= 99*a[i,j]
+     )
+;
+
+
+output [
+   if i = 1 /\ j = 1 then 
+    "\nsuma: " ++ show(suma) ++
+    "\nx:" 
+   else "" endif ++
+   if j = 1 then "\n" else " " endif ++
+   show(x[i,j])
+   | i in 1..size, j in 1..size
+
+] ++ [
+   if i = 1 /\ j = 1 then 
+    "\na:" 
+   else "" endif ++
+   if j = 1 then "\n" else " " endif ++
+   show(a[i,j])
+   | i in 1..size, j in 1..size
+
+] ++ ["\n"]
+;
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ]
+  ],
+  "a": [
+    [
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "_objective": 57
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

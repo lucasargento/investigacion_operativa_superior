@@ -1,0 +1,44 @@
+{
+  "description": "# Problem SchurrLemma\n\nThis is [Problem 015](https://www.csplib.org/Problems/prob015/) at CSPLib.\n\nThe problem is to put n balls labelled 1,...,n into 3 boxes so that for any triple of balls (x,y,z) with x+y=z,\nnot all are in the same box.\nThe variant 'mod' has been proposed by Bessiere Meseguer Freuder Larrosa, \"On forward checking for non-binary constraint satisfaction\", 2002.\n\n## Example\n  A solution for 5 integers to put inside 4 boxes:\n  ```\n    1 2 1 2 3\n  ```\n\n## Data\n  A pair (n,d) where n is the number of balls, d the number of boxes\n\n## Model\n  There are two variants of this problem, one with NValues, the other one with AllDifferent\n\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [NValues](http://pycsp.org/documentation/constraints/NValues)\n\n## Execution\n  - python SchurrLemma.py -data=[number,number]\n  - python SchurrLemma.py -data=[number,number] -variant=mod\n\n## Tags\n  academic, csplib",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Schurr Lemma Problem",
+    "domain": "Academic",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "endif",
+      "alldifferent",
+      "sum",
+      "=",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Schurr Lemma Problem",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "num_balls",
+      "num_boxes",
+      "box_assignment"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "endif",
+      "alldifferent",
+      "sum",
+      "=",
+      "!="
+    ]
+  }
+}

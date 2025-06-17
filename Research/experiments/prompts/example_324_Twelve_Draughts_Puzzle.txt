@@ -1,0 +1,83 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 324
+- Name: Twelve Draughts Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is known as the 'Twelve draughts puzzle'. It is a puzzle where we have a 4x4 grid and we need to place 12 pieces on it such that there are 5 pieces on each side of the grid and the inner 2x2 squares are unused. The objective is to find a configuration that satisfies these conditions. Each cell in the grid can either be occupied by a piece (represented by 1) or be empty (represented by 0). The problem does not have an objective function, it is a satisfaction problem, meaning that we are only interested in finding a feasible solution that satisfies all the constraints.
+
+
+MiniZinc Model:
+int: s = 4;
+
+set of 1..s: S = 1..s;
+array[S,S] of var int: x;
+
+solve satisfy;
+  
+constraint
+  forall(i,j in S) ( x[i,j] >= 0)
+
+  /\ % total of 12 pieces placed
+  sum(i in S,j in S) (x[i,j]) = 12
+
+  /\ % 5 pieces on each side 
+  sum(j in S) (x[1,j]) = 5 /\
+  sum(i in S) (x[i,1]) = 5 /\
+  sum(j in S) (x[4,j]) = 5 /\
+  sum(i in S) (x[i,4]) = 5 
+
+  /\ % inner squares unused 
+  sum(i in 2..3,j in 2..3) (x[i,j]) = 0
+;
+
+output [
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i,j in S
+] ++ ["\n"];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      0,
+      5
+    ],
+    [
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      3,
+      2,
+      0,
+      0
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

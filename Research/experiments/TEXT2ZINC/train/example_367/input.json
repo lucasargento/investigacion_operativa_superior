@@ -1,0 +1,59 @@
+{
+  "description": "The problem is a Numberlink problem, also known as Arukone and Nanbarinku. The goal is to connect pairs of identical numbers, or 'nodes', so that the entire board is filled. The connections cannot cross each other. The board is a grid of cells, some of which contain a number. Each number appears exactly twice. The problem is to draw a path through adjacent cells (horizontally or vertically) from one number to another of the same number. Each cell in the grid must be included in a path. The problem is represented as a MiniZinc model. The model has three integer parameters: NR (number of rows), NC (number of columns), and NP (number of pairs). The model also has an array InputM of size NR x NC, which represents the initial state of the board. The decision variables are represented as an array SubM of size NR x NC. The constraints ensure that each end node has one connected neighbor and each interior node has two connected neighbors. The problem is to find a solution that satisfies all the constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Numberlink Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "endif",
+      "let",
+      "var",
+      "sum",
+      "in",
+      "where",
+      "=",
+      "!=",
+      "/\\",
+      "\\/",
+      "the_sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Numberlink Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "SubM"
+    ],
+    "model_data_keywords": [
+      "NR",
+      "NC",
+      "NP",
+      "InputM"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "endif",
+      "let",
+      "var",
+      "sum",
+      "in",
+      "where",
+      "=",
+      "!=",
+      "/\\",
+      "\\/",
+      "the_sum"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "description": "PROBLEM TYPE: MILP\n\nPROBLEM INFO:\n\n- A paper company produces large rolls of paper with a width of \\var{large_roll_width} inches.\n- These large rolls are cut into smaller rolls of various widths options to meet customer demand.\n- There are \\var{M} different types of smaller rolls.\n- The demand for rolls of width \\var{inch_j} \u200bis \\var{demand_j}\u200b units.\n- The company has \\var{N} different cutting patterns available for producing the smaller rolls.\n- For pattern \\var{i}, the number of rolls of width \\var{j} that are produced is \\var{pattern_{i,j}}.\n\nINPUT FORMAT: \n\n{\n    \"large_roll_width\": large_roll_width,\n    \"roll_width_options\": [inch_j for j in 1, ..., M],\n    \"demands\": [demand_j for j in 1, ..., M],\n    \"patterns\": [[pattern_{i,j} for j in 1, ..., M] for i in 1, ..., N]\n}\n\nOBJECTIVE: Determine the minimum number of large \\var{large_roll_width}-inch rolls needed to fulfill all the orders.\n\nOUTPUT INFO:\n\n- The different cutting patterns applied to the large rolls are detailed in \\var{patterns}.\n- The total number of large rolls of paper used in this optimization is \\var{total_large_rolls_used}.\n\nOUTPUT FORMAT:\n\n{\n    \"patterns\": [\n        {\n         \"pattern\": [pattern_j for i in 1, ..., M]\n         \"amount\": amount_i\n        }\n        for i in 1, ..., N\n    ],\n    \"total_large_rolls_used\": total_large_rolls\n}",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Paper Roll Cutting Optimization",
+    "domain": "Manufacturing",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "forall",
+      ">=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Paper Roll Cutting Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "pattern_amounts",
+      "total_large_rolls"
+    ],
+    "model_data_keywords": [
+      "large_roll_width",
+      "demands",
+      "roll_width_options",
+      "patterns"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "forall",
+      ">=",
+      "="
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 270
+- Name: Pigeonhole Principle
+- Domain: Academic
+- Objective: satisfaction
+
+Problem Description:
+# Problem Pigeons
+
+The classical "Pigeon-hole" problem.
+It can be useful to test the efficiency of filtering/reasoning algorithms.
+
+## Data
+  An integers n
+
+## Model
+  There are two variants: a main one, and a variant "dec"
+
+  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)
+
+## Execution:
+```
+  python Pigeons.py -data=number
+  python Pigeons.py -data=number -variant=dec
+```
+
+## Links
+  - https://en.wikipedia.org/wiki/Pigeonhole_principle
+
+## Tags
+  academic
+
+
+MiniZinc Model:
+include "alldifferent.mzn";
+
+% Define the number of pigeons
+int: n = 5;
+
+% Define the pigeon holes
+array[1..n+1] of var 1..n: pigeon_holes;
+
+% All pigeon holes must be different
+constraint alldifferent(pigeon_holes);
+
+solve satisfy;
+
+output ["Pigeon holes: " ++ show(pigeon_holes)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

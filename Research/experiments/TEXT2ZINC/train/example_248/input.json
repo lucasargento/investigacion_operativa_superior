@@ -1,0 +1,75 @@
+{
+  "description": "How should the farmer operate over the next five years to maximize profit using AllSpace, NHeifers, NMilk, HeiferSpace, CowSpace, CowCalve, PriceBullock, PriceHeifer, PriceCow, LossHeifer, LossCow, RevenueMilk, NMaxCow, CowOutlay, CowGrain, CowSugar, SugarPerAcre, SpaceGrain, GrainDivision, GrainYield, BuyPriceGrain, SellPriceGrain, BuyPriceSugar, SellPriceSugar, LabourHeifers, LabourCow, LabourGrain, LabourSugar, ExtraHeifers, ExtraCow, ExtraGrain, ExtraSugar, LabourCost, LabourHour, and ExtraLabourCost?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Farm Production Planning",
+    "domain": "Agriculture",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "*",
+      "-",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Farm Production Planning",
+    "domain": "Agriculture",
+    "model_var_keywords": [
+      "sellheifer",
+      "spacegrain",
+      "spacesugar",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "all_space",
+      "n_heifers",
+      "n_milk",
+      "heifer_space",
+      "cow_space",
+      "cow_calve",
+      "price_bullock",
+      "price_heifer",
+      "price_cow",
+      "loss_heifer",
+      "loss_cow",
+      "revenue_milk",
+      "n_maxcow",
+      "cow_outlay",
+      "cow_grain",
+      "cow_sugar",
+      "sugar_per_acre",
+      "space_grain",
+      "graindivision",
+      "yield",
+      "buyprice_grain",
+      "sellprice_grain",
+      "buyprice_sugar",
+      "sellprice_sugar",
+      "labour_heifers",
+      "labour_cow",
+      "labour_grain",
+      "labour_sugar",
+      "extra_heifers",
+      "extra_cow",
+      "extra_grain",
+      "extra_sugar",
+      "labour_cost",
+      "labour_hour",
+      "extra_labour_cost"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "*",
+      "-",
+      "+"
+    ]
+  }
+}

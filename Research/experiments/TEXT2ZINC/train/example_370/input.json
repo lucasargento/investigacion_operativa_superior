@@ -1,0 +1,44 @@
+{
+  "description": "The problem is based on a puzzle called 'O.R. with the Fairies' from Martin J. Chlond. The puzzle involves fairies, children, colors, and nights. There are 5 fairies (Cloe, Ariana, Oliviana, Anya, Caroline), 3 children (Tyler, Jordan, David), 9 colors (silver, sage, gold, rose, turquoise, ivory, violet, emerald, earth), and a certain number of nights. Each child has a star of a certain color and each child receives a certain number of pearls each night. Each fairy visits the children on certain nights. The problem is to determine which color each fairy is attracted to, given the following constraints: the number of pearls received by each child on each night is consistent with the visits and the color of the stars, each fairy is attracted to a single color, at least one fairy is attracted to turquoise, and exactly one fairy is attracted to earth.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "O.R. with the Fairies Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "O.R. with the Fairies Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "star",
+      "pearl",
+      "visit",
+      "x"
+    ],
+    "model_data_keywords": [
+      "num_fairies",
+      "num_children",
+      "num_colors",
+      "num_nights"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<="
+    ]
+  }
+}

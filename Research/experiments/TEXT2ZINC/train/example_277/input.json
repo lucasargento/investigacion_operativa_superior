@@ -1,0 +1,41 @@
+{
+  "description": "# Problem CryptoPuzzle\n\nVerbal arithmetic, also known as alphametics, cryptarithmetic, cryptarithm or word addition, is a type of mathematical game\nconsisting of a mathematical equation among unknown numbers, whose digits are represented by letters of the alphabet.\n\n### Example\n  For the Puzzle:\n  ```\n       S E N D\n   +   M O R E\n   = M O N E Y\n  ```\n  a possible solution is:\n  ```\n       9 5 6 7\n   +   1 0 8 5\n   = 1 0 6 5 2\n  ```\n\n## Data\n  Three strings/words (as for example [send,more,money])\n\n## Model\n  There are a main variant and a variant involving carry variables.\n  You can also find a step-by-step modeling process in this [Jupyter notebook](https://pycsp.org/documentation/models/CSP/CryptoPuzzle/).\n\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n  - python CryptoPuzzle.py -data=[string,string,string]\n  - python CryptoPuzzle.py -data=[string,string,string] -variant=carry\n\n## Links\n  - https://en.wikipedia.org/wiki/Verbal_arithmetic\n\n## Tags\n  academic, notebook",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "CryptoPuzzle",
+    "domain": "Mathematical Games",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "constraint",
+      ">",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "CryptoPuzzle",
+    "domain": "Mathematical Games",
+    "model_var_keywords": [
+      "S",
+      "E",
+      "N",
+      "D",
+      "M",
+      "O",
+      "R",
+      "Y"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "constraint",
+      ">",
+      "="
+    ]
+  }
+}

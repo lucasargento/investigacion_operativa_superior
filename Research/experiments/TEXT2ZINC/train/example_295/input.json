@@ -1,0 +1,40 @@
+{
+  "description": "# Problem Amaze\n\nGiven a grid containing some pairs of identical numbers, connect each pair of similar numbers by drawing a line sith horizontal or vertical segments,\nwhile paying attention to not having crossed lines.\n\n## Data Example\n  simple.json\n\n## Model\n  constraints: [Count](http://pycsp.org/documentation/constraints/Count), [Table](http://pycsp.org/documentation/constraints/Table)\n\n## Execution\n```\n  python Amaze.py -data=<datafile.json>\n```\n\n## Links\n\n## Tags\n  recreational, notebook\n\n<br />\n\n## _Alternative Model(s)_\n\n#### Amaze_z1.py\n - constraints: [Count](http://pycsp.org/documentation/constraints/Count), [Sum](http://pycsp.org/documentation/constraints/Sum)\n - tags: recreational, mzn12\n#### Amaze_z2.py\n - constraints: [Count](http://pycsp.org/documentation/constraints/Count), [Element](http://pycsp.org/documentation/constraints/Element)\n - tags: recreational, mzn12\n#### Amaze_z3.py\n - constraints: [Count](http://pycsp.org/documentation/constraints/Count)\n - tags: recreational, mzn14, mzn19",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Amaze Grid Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "/",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Amaze Grid Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "grid",
+      "pair1_x",
+      "pair1_y",
+      "pair2_x",
+      "pair2_y"
+    ],
+    "model_data_keywords": [
+      "Pairs"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "/",
+      "!="
+    ]
+  }
+}

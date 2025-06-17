@@ -1,0 +1,130 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 94
+- Name: Distribute Partially Filled Bottles
+- Domain: Puzzles and Games
+- Objective: satisfaction
+
+Problem Description:
+There are some bottles with varying quantities of liquid that are to be distributed to some people. How can the bottles be distributed such that each person gets the same number of bottles and the same amount of liquid? It is not possiblem to move liquid from one bottle to another. Within a solution, allocations should be in lexicographical order.
+
+
+Input Data (data.dzn):
+/*
+  Vaderlind (op cit, page 40):
+  """
+  Problem 15 
+  How to distribute 5 full, 8 half-full, and 11 empty bottles of wine
+  between three persons if each person get the same number of bottles 
+  and the same amout of wine. Find all solutions.
+  """
+  
+  Here the solutions:
+    [1, 4, 3]
+    [2, 2, 4]
+    [2, 2, 4]
+    ----------
+    [1, 4, 3]
+    [1, 4, 3]
+    [3, 0, 5]
+    ----------
+    [0, 6, 2]
+    [2, 2, 4]
+    [3, 0, 5]
+    ----------
+    ==========
+
+
+*/
+
+n = 3; % number of bottle types
+b = [5,8,11]; % number of bottles of each type
+t = [2,1,0]; %  number of [filled, half filled, empty] bottles. [1,1/2,0] -> [2,1,0]
+num_people = 3;
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n; % number of different bottle types
+array[int] of int: b; % number of bottles for each bottle type
+array[int] of int: t; % ration of oil for each bottle type (integers)
+int: num_people; % number of people
+
+int: tot_oil = sum([t[i]*b[i] | i in 1..n]); % total amount of oil
+int: tot_bottles = sum(b);                   % total number of bottles
+
+% decision variables
+% Number of bottles of each type should be distributed to each son
+array[1..num_people,1..n] of var 0..tot_oil: allocations;
+
+% satisfaction
+solve satisfy;
+
+% Total number of bottles per son 
+constraint
+  forall(s in 1..num_people) (
+    num_people * sum(allocations[s, ..]) = tot_bottles
+  );
+
+% Total amount of oil per son
+constraint
+  forall(s in 1..num_people) (
+    num_people * sum([allocations[s, j] * t[j] | j in 1..n]) = tot_oil
+  );
+
+% Allocations are in lexicographical order
+constraint
+  forall(s in 1..num_people-1) (
+    lex_lesseq(allocations[s, ..], allocations[s+1, ..])
+  );
+
+% Ensure that the exact number of bottles is distributed for each bottle type
+constraint
+  forall(j in 1..n) (
+    sum(allocations[.., j]) = b[j]
+  );
+
+
+% output
+output
+[ "tot_bottles: \(tot_bottles)\n",
+  "tot_oil: \(tot_oil)\n",
+] ++
+[
+        "\(allocations[i,..])\n"
+        | i in 1..num_people
+];
+
+Expected Output:
+{
+  "allocations": [
+    [
+      1,
+      4,
+      3
+    ],
+    [
+      1,
+      4,
+      3
+    ],
+    [
+      3,
+      0,
+      5
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

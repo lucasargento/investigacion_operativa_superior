@@ -1,0 +1,103 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 377
+- Name: P-Median Problem
+- Domain: Operations Research
+- Objective: minimization
+
+Problem Description:
+The P-Median problem is a well-known problem in Operations Research. The problem can be stated as follows: given a set of customers with known amounts of demand, a set of candidate locations for warehouses, and the distance between each pair of customer-warehouse, choose P warehouses to open that minimize the demand-weighted distance of serving all customers from those P warehouses. In this specific instance, there are 2 warehouses to be opened (P=2), 4 customers, and 3 potential warehouse locations. The demand of each customer and the distance from each customer to each warehouse is given. The goal is to determine which warehouses to open and which customers should be served by which warehouse in order to minimize the total demand-weighted distance.
+
+
+MiniZinc Model:
+int: P = 2;
+int: num_customers = 4;
+set of int: Customers = 1..num_customers;
+
+int: num_warehouses = 3;
+set of int: Warehouses = 1..num_warehouses;
+
+array[Customers] of float: Demand = [100.0,80.0,80.0,70.0];
+
+array[Customers, Warehouses] of float: Distance = 
+  array2d(Customers, Warehouses,
+  [
+    2.0, 10.0, 50.0,
+    2.0, 10.0, 52.0,
+   50.0, 60.0,  3.0,
+   40.0, 60.0,  1.0
+  ]);
+
+% decision variables
+array[Warehouses] of var 0..1: OpenWarehouse;
+array[Customers,Warehouses] of var 0..1: ShipToCustomer;
+
+var float: z =   sum(c in Customers, w in Warehouses) (
+     Demand[c]*Distance[c,w]*int2float(ShipToCustomer[c,w])
+    );
+
+solve minimize z;
+
+constraint
+  forall(c in Customers) (
+    sum(w in Warehouses) (ShipToCustomer[c,w]) = 1
+  )
+  /\
+  sum(OpenWarehouse) = P
+  /\
+  forall( c in Customers , w in Warehouses ) (
+    ShipToCustomer[c,w] <= OpenWarehouse[w]
+  )
+
+;
+
+output [
+"OpenWarehouse: " ++ show(OpenWarehouse) ++ "\n"++
+"ShipToCustomer: " ++ show(ShipToCustomer) ++ "\n"++
+"z: " ++ show(z) ++ "\n"
+];
+
+Expected Output:
+{
+  "OpenWarehouse": [
+    1,
+    0,
+    1
+  ],
+  "ShipToCustomer": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "_objective": 670.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,355 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 350
+- Name: Takuzu
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+Takuzu is a logic-based number placement puzzle. The objective is to fill a grid (usually 10x10) with 1s and 0s, where there is an equal number of 1s and 0s in each row and column and no more than two of either number adjacent to each other. Additionally, there can be no identical rows or columns. Fill the remaining squares in the Takuzu puzzle.
+
+
+Input Data (data.dzn):
+%
+% Problem instance from the Scampi data/binero1.txt
+%
+n = 10;
+problem = array2d(1..n, 1..n,
+[
+0,_,1,1,_,_,_,_,_,1,
+_,_,1,_,_,_,_,0,_,0,
+_,0,_,_,1,_,1,_,1,_,
+_,1,_,_,_,_,_,_,_,_,
+1,_,0,_,_,1,_,_,_,_,
+_,0,_,_,0,_,_,_,1,1,
+_,_,_,1,_,_,_,_,_,1,
+0,_,_,1,_,1,_,0,_,_,
+_,_,0,_,_,_,_,_,_,_,
+1,1,_,_,_,_,1,1,_,0
+]);
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+% data
+% size of grid
+int: n;
+% number of 1s and 0s in each row
+int: m = n div 2;
+% initial grid configuration 
+array[1..n, 1..n] of var 0..1: problem;
+
+% decision variables
+array[1..n, 1..n] of var 0..1: grid;
+
+
+% satisfaction
+solve satisfy;
+
+% initialize the problem
+constraint
+  forall(i, j in 1..n) (
+    grid[i, j] = problem[i, j]
+  );
+
+% equal number of 0s and 1s in each row 
+constraint
+  forall(i in 1..n) (
+    sum([bool2int(grid[i, j] = 0) | j in 1..n]) = m
+  );
+
+% equal number of 0s and 1s in each column
+constraint
+  forall(i in 1..n) (
+    sum([bool2int(grid[j, i] = 0) | j in 1..n]) = m
+  );
+
+% no more than two of the same values adjacent
+constraint
+  forall(i in 2..n-1) (
+    forall(j in 1..n) (
+      (grid[i-1, j] != grid[i, j] \/ grid[i, j] != grid[i+1, j])
+      /\
+      (grid[j, i-1] != grid[j, i] \/ grid[j, i] != grid[j, i+1])
+    )
+  );
+
+% no identical row
+constraint
+  forall(i, j in 1..n where i < j) (
+    exists(k in 1..n) ( grid[i, k] != grid[j, k] )
+  );
+
+% no identical column
+constraint
+  forall(i, j in 1..n where i < j) (
+    exists(k in 1..n) ( grid[k, i] != grid[k, j] )
+  );  
+
+% output
+output [
+   if j = 1 then "\n" else " " endif ++
+     show(grid[i,j])
+   | i,j in 1..n
+];
+
+Expected Output:
+{
+  "problem": [
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0
+    ]
+  ],
+  "grid": [
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

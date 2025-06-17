@@ -1,0 +1,271 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 520
+- Name: Calendar Cubes Construction
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is to construct two cubes which can be used as a calendar, i.e. together can represent the numbers 01..31. One cube has the sides 1,2 and the other 3,4,5. The solution should be such that cube1 = [0,1,2,6,7,8] and cube2 = [0,1,2,3,4,5]. The cubes should be constructed in such a way that they contain all the numbers from 0 to 8 at least once. The numbers on the cubes should be arranged in increasing order and all the numbers on a cube should be different. The numbers on the cubes should be able to represent all the numbers from 1 to 31 in the form of two-digit numbers where the first digit is from one cube and the second digit is from the other cube. The number 9 is represented as 6.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+array[1..6] of var 0..9: cube1;
+array[1..6] of var 0..9: cube2;
+array[1..31, 1..2] of var 0..9: x;
+
+predicate contains(var int: e, array[int] of var int: a) =
+   exists(i in 1..length(a)) (
+      a[i] = e
+   )
+;
+
+predicate toNum(array[int] of var int: number, var int: num_sum, float: base) =
+  let { 
+     int: len = length(number) 
+   }
+   in
+   num_sum = sum(i in 1..len) (
+     ceil(pow(base, int2float(len-i))) * number[i]
+   )
+   /\ 
+   forall(i in 1..len) (number[i] >= 0)
+;
+
+
+% solve satisfy;
+solve :: int_search(cube1 ++ cube2 ++ [x[i,j] | i in 1..31, j in 1..2 ], 
+        first_fail, indomain_min, complete) satisfy;
+
+
+constraint
+%  cube1 = [0,1,2,6,7,8]
+%  /\
+%  cube2 = [0,1,2,3,4,5]
+%  /\
+  contains(1, cube1) /\ contains(2, cube1) /\
+  contains(3, cube2) /\ contains(4, cube2) /\ contains(5, cube2)
+  /\
+  forall(k in 1..31) (
+    let {
+      var 1..6: i,
+      var 1..6: j,
+      array[1..2] of var 0..9: a
+    }
+    in
+    toNum(a, k, 10.0)
+    /\
+    x[k,1] = a[1]
+    /\
+    % special hack: instead of 9 we use 6
+    ( 
+     a[2] = 9 ->
+     (
+      (contains(6, cube1)  \/  contains(6, cube2) )
+      /\
+      x[k,2] = 6
+     )
+    )
+    /\
+    (
+     a[2] != 9 <->
+     (
+      x[k, 2] = a[2]
+      /\
+      (
+        10*cube1[i]  + cube2[j] = k
+        /\
+        x[k, 1] = cube1[i] /\ x[k, 2] = cube2[j]
+      )
+      \/
+      (
+        10*cube2[i] + cube1[j] = k
+        /\
+        x[k, 1] = cube2[i] /\ x[k, 2] = cube1[j]
+      )
+    )
+   )
+     
+  )
+  /\ % symmetry breaking and efficiency
+  all_different(cube1) /\ increasing(cube1)
+  /\
+  all_different(cube2) /\ increasing(cube2)
+  /\
+  forall(i in 0..8) (
+    % at_least(1, cube1 ++ cube2, i)
+    count(t in cube1 ++ cube2)(t = i) >= 1
+  )
+;
+
+
+output [
+ "cube1: ", show(cube1), "\n",
+ "cube2: ", show(cube2), "\n",
+% "x: ", show(x), "\n",
+] ++ 
+[
+ show(k) ++ ": " ++ show(x[k,1]) ++ show(x[k,2]) ++ "\n"
+ | k in 1..31
+];
+
+Expected Output:
+{
+  "cube1": [
+    0,
+    1,
+    2,
+    6,
+    7,
+    8
+  ],
+  "cube2": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "x": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      5
+    ],
+    [
+      0,
+      6
+    ],
+    [
+      0,
+      7
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      0,
+      6
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      1,
+      7
+    ],
+    [
+      1,
+      8
+    ],
+    [
+      1,
+      6
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      2,
+      2
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      2,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      2,
+      7
+    ],
+    [
+      2,
+      8
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      3,
+      1
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

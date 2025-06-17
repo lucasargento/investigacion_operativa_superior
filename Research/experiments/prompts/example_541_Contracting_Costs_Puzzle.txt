@@ -1,0 +1,64 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 541
+- Name: Contracting Costs Puzzle
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+The Contracting Costs puzzle is a problem where a contractor is planning the construction of a house and has to pay different amounts to different workers. The contractor has to pay $1,100 to the paper hanger and the painter, $1,700 to the painter and plumber, $1,100 to the plumber and electrician, $3,300 to the electrician and carpenter, $5,300 to the carpenter and mason, and $3,200 to the mason and painter. The problem is to determine how much each worker charges for his services. The objective is to minimize the total cost of the services.
+
+
+MiniZinc Model:
+int: m = 5300;
+var 0..m: Ph;
+var 0..m: Pa;
+var 0..m: Pl;
+var 0..m: El;
+var 0..m: Ca;
+var 0..m: Ma;
+
+solve minimize Ph+Pa+Pl+El+Ca+Ma+Pa;
+% solve satisfy;
+
+constraint
+  1100 = Ph + Pa
+  /\ 1700 = Pa + Pl
+  /\ 1100 = Pl + El
+  /\ 3300 = El + Ca
+  /\ 5300 = Ca + Ma
+  /\ 3200 = Ma + Pa
+;
+
+output [
+ "Ph:", show(Ph), " ",
+ "Pa:", show(Pa), " ",
+ "Pl:", show(Pl), " ",
+ "El:", show(El), " ",
+ "Ca:", show(Ca), " ",
+ "Ma:", show(Ma), " ", "\n",
+]
+
+Expected Output:
+{
+  "Ph": 200,
+  "Pa": 900,
+  "Pl": 800,
+  "El": 300,
+  "Ca": 3000,
+  "Ma": 2300,
+  "_objective": 8400
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

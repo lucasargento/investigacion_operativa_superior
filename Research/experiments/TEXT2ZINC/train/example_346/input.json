@@ -1,0 +1,43 @@
+{
+  "description": "The 'Send More Money' problem is a classic problem in constraint programming. The problem is to find distinct digits for the letters S, E, N, D, M, O, R, Y such that the following equation holds true: \n\n    S E N D\n  + M O R E\n  ------------\n  M O N E Y\n\nFind the values of each of the letters.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Send More Money",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "+",
+      "*",
+      "==",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Send More Money",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "S",
+      "E",
+      "N",
+      "D",
+      "M",
+      "O",
+      "R",
+      "Y"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "+",
+      "*",
+      "==",
+      ">="
+    ]
+  }
+}

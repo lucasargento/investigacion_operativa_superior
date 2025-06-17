@@ -1,0 +1,45 @@
+{
+  "description": "---\nTitle:    Crossfigures\nProposer: Toby Walsh\nCategory: Games and puzzles\n---\n\nCrossfigures are the numerical equivalent of crosswords. You have a grid and some clues with numerical answers to place on this grid. Clues come in several different forms for example: \n\n* Across 1: 25 across times two, \n* 2: five dozen, \n* 5: a square number, \n* 10: prime, \n* 14: 29 across times 21 down",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Crossfigures Puzzle",
+    "domain": "Games and Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "constraint",
+      "include",
+      "solve",
+      "int_search",
+      "occurrence",
+      "indomain_min",
+      "complete"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Crossfigures Puzzle",
+    "domain": "Games and Puzzles",
+    "model_var_keywords": [
+      "grid",
+      "across",
+      "down"
+    ],
+    "model_data_keywords": [
+      "gridSize",
+      "maxNumLength"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "constraint",
+      "include",
+      "solve",
+      "int_search",
+      "occurrence",
+      "indomain_min",
+      "complete"
+    ]
+  }
+}

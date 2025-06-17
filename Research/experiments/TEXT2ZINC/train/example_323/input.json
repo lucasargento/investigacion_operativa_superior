@@ -1,0 +1,46 @@
+{
+  "description": "In the game of Sangraal, the player arrives at a castle where the Foul Fiend has imprisoned 8 knights. Each knight is bound in a different way, which means it will take a different amount of time to free each one. After being freed, each knight needs a certain amount of time to recover before they can join the player. The player has a total of 20 minutes before the sun sets and the Sangraal arrives. The goal is to determine the maximum number of knights that can be rescued and prepared within this time limit. The time to free each knight and the time they need to recover are given as input. The problem is to determine the start and end times for freeing each knight, which knights to rescue, and the total number of knights rescued.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Knight Rescue in Sangraal",
+    "domain": "Games",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "<->",
+      "<=",
+      "cumulative",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Knight Rescue in Sangraal",
+    "domain": "Games",
+    "model_var_keywords": [
+      "start_time",
+      "end_time",
+      "is_rescued",
+      "total_rescued"
+    ],
+    "model_data_keywords": [
+      "num_knights",
+      "time_to_free",
+      "time_to_prepare",
+      "total_time_limit"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "<->",
+      "<=",
+      "cumulative",
+      "sum"
+    ]
+  }
+}

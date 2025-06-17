@@ -1,0 +1,43 @@
+{
+  "description": "The Maximum Cut Problem is a network problem where the network G is composed of a set of nodes V and a set of edges E. The goal is to find the partition of V into disjoint sets V1 and V2, which maximizes the sum of edge weights w(e), where edge e has one endpoint in V1 and other endpoint in V2. In this MiniZinc model, the network has 15 nodes and 22 edges. The weight of each edge is 1. The variable x[i] represents the set to which node i belongs (0 for V1 and 1 for V2). The variable t[i,j] represents a major bit of the sum x[i] + x[j]. The objective function z is the sum of the weights of the edges for which the endpoints belong to different sets, and the goal is to maximize z. The constraints ensure that each edge connects nodes from different sets and that the sum of the weights of these edges is maximized.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximum Cut Problem",
+    "domain": "Network Optimization",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "<=",
+      ">=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximum Cut Problem",
+    "domain": "Network Optimization",
+    "model_var_keywords": [
+      "x",
+      "t",
+      "z"
+    ],
+    "model_data_keywords": [
+      "num_edges",
+      "num_nodes",
+      "w",
+      "E"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "<=",
+      ">=",
+      "sum",
+      "*"
+    ]
+  }
+}

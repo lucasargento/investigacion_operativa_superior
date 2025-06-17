@@ -1,0 +1,47 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 240
+- Name: Linear Regression with Absolute Deviations
+- Domain: Statistics
+- Objective: minimization
+
+Problem Description:
+Fit the 'best' straight line Y = bX + a to this set of data points. The objective is to minimise the sum of absolute deviations of each observed value of Y from the value predicted by the linear relationship.
+
+
+Input Data (data.dzn):
+K = 19;
+Y = [1.0, 0.9, 0.7, 1.5, 2.0, 2.4, 3.2, 2.0, 2.7, 3.5, 1.0, 4.0, 3.6, 2.7, 5.7, 4.6, 6.0, 6.8, 7.3];
+X = [0.0, 0.5, 1.0, 1.5, 1.9, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.6, 7.0, 7.6, 8.5, 9.0, 10.0];
+
+MiniZinc Model:
+% Parameters
+int: K; % Number of data points
+array[1..K] of float: Y; % Observed values of Y
+array[1..K] of float: X; % Corresponding values of X
+
+% Decision Variables
+var float: intercept; % Intercept of the fitted line
+var float: slope; % Slope of the fitted line
+array[1..K] of var float: deviation; % Absolute deviation of each observed value of Y from the predicted value
+
+% Constraints
+constraint forall(k in 1..K) (
+    deviation[k] = abs(Y[k] - (slope * X[k] + intercept))
+);
+
+% Objective
+solve minimize sum(deviation);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

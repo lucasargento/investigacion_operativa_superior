@@ -1,0 +1,42 @@
+{
+  "description": "This problem is a cryptarithmetic puzzle known as Gardner's TWO+TWO=FOUR problem. In this addition problem, each letter stands for a different digit. The problem is represented as follows:\n\n   T W O\n + T W O\n --------\n F O U R\n\nThe constraints are that T is equal to 7 and the letter O represents an even number. The task is to find the only possible value for W. The letters F, U, and R represent other digits, with F being greater than 0. All letters represent different digits.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Gardner's TWO+TWO=FOUR Problem",
+    "domain": "Cryptarithmetic",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "=",
+      "mod"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Gardner's TWO+TWO=FOUR Problem",
+    "domain": "Cryptarithmetic",
+    "model_var_keywords": [
+      "T",
+      "W",
+      "O",
+      "F",
+      "U",
+      "R",
+      "digits"
+    ],
+    "model_data_keywords": [
+      "min_digit",
+      "max_digit",
+      "min_non_zero_digit"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "=",
+      "mod"
+    ]
+  }
+}

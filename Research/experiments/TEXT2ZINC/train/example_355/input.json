@@ -1,0 +1,42 @@
+{
+  "description": "The Spinning Disks problem involves two identical disks, each shaped like a CD and divided into twelve sectors. Some of these sectors are opaque, and some are transparent. The opaque and transparent sectors are not arranged in any particular order. The two disks are placed on top of each other, and the top disk is spun. Every time it rotates one twelfth of a full circle, the number of transparent sectors changes, forming a sequence of numbers. The problem is to determine which sectors of the disk are transparent, and which are not, given a part of the sequence. The part of the sequence that we know is: ..., 2, 3, 4, 4, 0, 4, ... . Find a possible solution for this problem, returning an array of 1s and 0s where 1s represent opaque and 0s transparent representing the sections in either clockwise or anticlockwise order.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Spinning Disks Problem",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "=",
+      "mod"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Spinning Disks Problem",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "num_sectors",
+      "known_sequence",
+      "disk1",
+      "disk2",
+      "sums"
+    ],
+    "model_data_keywords": [
+      "reverse_array"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "=",
+      "mod"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "description": "The company\u2019s declared objective is to minimize redundancy. Requirement are given as K different resources each having I specific requirements, where Strength is the strength of each type of resource, LessOneWaste is the value when wastage of resources is less than optimal, MoreOneWaste is the value when wastage of resources is more than optimal. Recruit is the number of recruited resources of each type, CostRedundancy is the cost of redundancy for each type of resource, NumOverman signifies the number of overmanned positions, CostOverman is the cost of overmanning for each type of resource, and NumShortwork represents the number of shortworked positions with CostShort as the cost of short working for each type of resource. How should they operate in order to do this?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Manpower Planning",
+    "domain": "Human Resources",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "if",
+      "else",
+      "endif",
+      "=",
+      "+",
+      "-",
+      "*",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Manpower Planning",
+    "domain": "Human Resources",
+    "model_var_keywords": [
+      "recruit_year",
+      "overmanning_year",
+      "short_year",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "requirement",
+      "strength",
+      "lessonewaste",
+      "moreonewaste",
+      "recruit",
+      "costredundancy",
+      "num_overman",
+      "costoverman",
+      "num_shortwork",
+      "costshort"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "if",
+      "else",
+      "endif",
+      "=",
+      "+",
+      "-",
+      "*",
+      "sum"
+    ]
+  }
+}

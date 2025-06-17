@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about shuffling the characters of a string in such a way that as many of the character values are in a different position as possible. The result should be printed as follows: original string, shuffled string, (score). The score gives the number of positions whose character value did not change. For example: tree, eetr, (0). A shuffle that produces a randomized result among the best choices is to be preferred. A deterministic approach that produces the same sequence every time is acceptable as an alternative. The words to test with are: abracadabra, seesaw, elk, grrrrrr, up, a.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "String Shuffling",
+    "domain": "String Manipulation",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "bool2int",
+      "=",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "String Shuffling",
+    "domain": "String Manipulation",
+    "model_var_keywords": [
+      "shuffle",
+      "num_same"
+    ],
+    "model_data_keywords": [
+      "num_letters",
+      "letter_to_int",
+      "int_to_letter",
+      "word_length",
+      "word"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "bool2int",
+      "=",
+      "sum"
+    ]
+  }
+}

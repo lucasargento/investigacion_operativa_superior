@@ -1,0 +1,49 @@
+{
+  "description": "We want to know how many shares the investor needs to sell in order to raise the needed money, net of capital gains and transaction costs, K, while maximizing the expected value of his portfolio next year. The investor initially bought Bought shares at a purchase price of BuyPrice per share. The current market price and expected future market price of the shares are CurrentPrice and FuturePrice, respectively. The transaction cost rate per share sold is TransactionRate, and the capital gains tax rate is TaxRate.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Stock Portfolio Optimization",
+    "domain": "Finance",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "*",
+      "-",
+      "/",
+      ">=",
+      "constraint"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Stock Portfolio Optimization",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "Sell",
+      "Total",
+      "TransactionCosts",
+      "CapitalGainsTax"
+    ],
+    "model_data_keywords": [
+      "Bought",
+      "BuyPrice",
+      "CurrentPrice",
+      "FuturePrice",
+      "TransactionRate",
+      "TaxRate",
+      "K"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "*",
+      "-",
+      "/",
+      ">=",
+      "constraint"
+    ]
+  }
+}

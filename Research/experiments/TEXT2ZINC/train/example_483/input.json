@@ -1,0 +1,39 @@
+{
+  "description": "The problem is to define the concept of antisymmetric in the context of a relation. An antisymmetric relation is one where no element is related to itself (no one is richer than him-/herself) and if one element is related to another, the second is not related to the first (if i is richer than j then j is not richer than i). The problem is modeled as a 4x4 matrix where each cell represents a binary relation between two elements. The goal is to find a configuration of this matrix that satisfies the antisymmetric property. Two versions of the antisymmetric property are defined, one directly from the definition and another as an alternative version.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Antisymmetric Relation Matrix",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "isAntisymmetricDirect",
+      "forall",
+      "=",
+      "<->",
+      "/\\",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Antisymmetric Relation Matrix",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "matrixSize",
+      "relationMatrix"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "isAntisymmetricDirect",
+      "forall",
+      "=",
+      "<->",
+      "/\\",
+      "!="
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "description": "The problem is about cumulative scheduling constraint or scheduling under resource constraints. It involves a set T of tasks described by the TASKS collection. The cumulative constraint enforces that at each point in time, the cumulated height of the set of tasks that overlap that point, does not exceed a given limit. It also imposes for each task of T the constraint origin+duration=end. Each task is represented by a set of rectangles coloured with the same colour: the sum of the lengths of the rectangles corresponds to the duration of the task, while the height of the rectangles corresponds to the resource consumption of the task. The cumulative constraint holds since at each point in time we don't have a cumulated resource consumption strictly greater than the upper limit enforced by the last argument of the cumulative constraint. The goal is to minimize the maximum end time of the tasks.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Cumulative Scheduling Constraint",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "cumulative",
+      "forall",
+      "=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Cumulative Scheduling Constraint",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "task_origin",
+      "task_end",
+      "resource_limit"
+    ],
+    "model_data_keywords": [
+      "task_duration",
+      "task_height"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "cumulative",
+      "forall",
+      "=",
+      "+"
+    ]
+  }
+}

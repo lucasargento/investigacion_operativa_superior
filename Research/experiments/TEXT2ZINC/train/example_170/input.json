@@ -1,0 +1,44 @@
+{
+  "description": "The problem is to generate a de Bruijn torus, which is a 2D version of de Bruijn sequences, using MiniZinc. A de Bruijn torus is a matrix where each sub-matrix of a certain size appears exactly once. The size of the matrix, the size of the sub-matrices, and the base (i.e., the range of values that can appear in the matrix) are given as inputs. The problem is to find a matrix that satisfies these conditions. The problem also includes additional constraints such as the number of occurrences of each value in the matrix being the same, all rows and columns being distinct, and all subgrids being distinct. The problem can be solved using different approaches, such as using an extra column/row which mirrors the first column/row to simplify the calculations, or using a 'poor man's' all different constraint on the tuples. The problem also includes examples of different configurations and their number of solutions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "De Bruijn Torus Generation",
+    "domain": "Combinatorial Design",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "assert",
+      "forall",
+      "sum",
+      "bool2int",
+      ">=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "De Bruijn Torus Generation",
+    "domain": "Combinatorial Design",
+    "model_var_keywords": [
+      "matrix"
+    ],
+    "model_data_keywords": [
+      "rows",
+      "cols",
+      "base",
+      "subMatrixRows",
+      "subMatrixCols"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "assert",
+      "forall",
+      "sum",
+      "bool2int",
+      ">=",
+      "="
+    ]
+  }
+}

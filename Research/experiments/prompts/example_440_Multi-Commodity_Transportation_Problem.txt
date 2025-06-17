@@ -1,0 +1,70 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 440
+- Name: Multi-Commodity Transportation Problem
+- Domain: Transportation
+- Objective: minimization
+
+Problem Description:
+This is a multi-commodity transportation problem. Given a set of origins OriginNum, a set of destinations DestinationNum, and a set of products ProductNum. Each origin i has a certain supply of each product p, Supply_{i,p}, and each destination j has a certain demand for each product p, Demand_{j,p}. The cost of shipping one unit of product p from origin i to destination j is Cost_{i, j, p}. The problem aims to minimize the total cost of shipping all products from the origins to the destinations. It is constrained that the total amount of each product p shipped from each origin i equals its supply, the total amount of each product p shipped to each destination j equals its demand, and the total amount of all products shipped from each origin i to each destination j does not exceed a certain limit Limit_{i,j}. The decision variable is the number of units of each product p to be shipped from each origin i to each destination j.
+
+
+Input Data (data.dzn):
+OriginNum = 3;
+DestinationNum = 7;
+ProductNum = 3;
+Supply = [| 400, 800, 200
+          | 700, 1600, 300
+          | 800, 1800, 300 |];
+Demand = [| 300, 300, 100, 75, 650, 225, 250
+          | 500, 750, 400, 250, 950, 850, 500
+          | 100, 100, 0, 50, 200, 100, 250 |];
+Limit = [| 625, 625, 625, 625, 625, 625, 625
+         | 625, 625, 625, 625, 625, 625, 625
+         | 625, 625, 625, 625, 625, 625, 625 |];
+Cost = [| [[30, 39, 41], [10, 14, 15], [8, 11, 12], [10, 14, 16], [11, 16, 17], [71, 82, 86], [6, 8, 8]]
+        | [[22, 27, 29], [7, 9, 9], [10, 12, 13], [7, 9, 9], [21, 26, 28], [82, 95, 99], [13, 17, 18]]
+        | [[19, 24, 26], [11, 14, 14], [12, 17, 17], [10, 13, 13], [25, 28, 31], [83, 99, 104], [15, 20, 20]] |];
+
+MiniZinc Model:
+% Define parameters
+int: OriginNum;
+int: DestinationNum;
+int: ProductNum;
+array[1..OriginNum, 1..ProductNum] of int: Supply;
+array[1..DestinationNum, 1..ProductNum] of int: Demand;
+array[1..OriginNum, 1..DestinationNum] of int: Limit;
+array[1..OriginNum, 1..DestinationNum, 1..ProductNum] of int: Cost;
+
+% Define decision variables
+array[1..OriginNum, 1..DestinationNum, 1..ProductNum] of var 0..max(Supply) + max(Demand): Shipment;
+
+% Objective: Minimize total cost
+var int: TotalCost = sum(i in 1..OriginNum, j in 1..DestinationNum, p in 1..ProductNum) (Cost[i,j,p] * Shipment[i,j,p]);
+minimize TotalCost;
+
+% Constraints
+% Total amount of each product shipped from each origin equals its supply
+constraint forall(i in 1..OriginNum, p in 1..ProductNum) (sum(j in 1..DestinationNum) (Shipment[i,j,p]) = Supply[i,p]);
+
+% Total amount of each product shipped to each destination equals its demand
+constraint forall(j in 1..DestinationNum, p in 1..ProductNum) (sum(i in 1..OriginNum) (Shipment[i,j,p]) = Demand[j,p]);
+
+% Total amount of all products shipped from each origin to each destination does not exceed limit
+constraint forall(i in 1..OriginNum, j in 1..DestinationNum) (sum(p in 1..ProductNum) (Shipment[i,j,p]) <= Limit[i,j]);
+
+% Output
+output ["Total Cost: ", show(TotalCost)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

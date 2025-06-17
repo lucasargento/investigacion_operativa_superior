@@ -1,0 +1,40 @@
+{
+  "description": "A software company has UI designers earning $ 2500 per week and software engineers earning $ 2000 per week . The contracts with companies to provide cloud services require at least 50 workers , of whom at least 10 must be software engineers . To make sure there is enough experience on the team , the number of software engineers should be at least a third of the number to UI designers . The company wants to keep the weekly wage bill below $ 200000 . Formulate an LP problem to minimize the wage bill .",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimize Wage Bill",
+    "domain": "Workforce Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimize Wage Bill",
+    "domain": "Workforce Scheduling",
+    "model_var_keywords": [
+      "UI_designers",
+      "software_engineers",
+      "wage_bill"
+    ],
+    "model_data_keywords": [
+      "UI_designer_wage",
+      "software_engineer_wage",
+      "min_workers",
+      "min_software_engineers",
+      "max_wage_bill"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">=",
+      "+"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 77
+- Name: Maximize Net Income
+- Domain: Finance and Investment
+- Objective: maximization
+
+Problem Description:
+A company produces and sells several different products. The demand for each product is unlimited, but the company is constrained by cash availability and machine capacity. Each unit of each type of product requires a given number of machine hours. There are a certain number of machine hours available in the current production period. Each type of product has a production cost and selling price per unit. There is a fixed amount of cash available. Furthermore, for each type of product, a specific percentage of the sales revenues for each product will be made available to finance operations during the current period. The company could increase its available machines by a certain number of hours by spending a certain number of hours for repairs. The net income from each product is the revenue we get from selling it minus the production cost and the investment cost. We are aiming at maximizing total net income subject to the cash availability and machine capacity limitations.
+
+
+Input Data (data.dzn):
+P = 2;
+Cash = 3000;
+Hour = [2, 6];
+Cost = [3, 2];
+Price = [6, 5];
+InvestPercentage = [0.4, 0.3];
+UpgradeHours = 2000;
+UpgradeCost = 400;
+AvailableHours = 2000;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 654.2
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

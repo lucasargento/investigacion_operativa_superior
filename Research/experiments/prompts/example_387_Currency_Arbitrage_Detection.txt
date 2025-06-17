@@ -1,0 +1,133 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 387
+- Name: Currency Arbitrage Detection
+- Domain: Finance
+- Objective: maximization
+
+Problem Description:
+The problem is about detecting arbitrage loops in currency exchange markets. An arbitrage loop is a sequence of currency exchanges that results in a profit when converted back to the base currency. For example, given the exchange rates between USD, EUR, JPY, and BTC, one could trade $100 to €77.79, then trade €77.79 to .8751375 BTC, and finally trade .8751375 BTC for $101.20965, resulting in a profit. The goal is to find such arbitrage loops given a set of exchange rates between different currencies. The program should determine the sequence of currencies to exchange (represented by the decision variable 'y') and the profit at each step (represented by the decision variable 'profit'), with the objective of maximizing the total profit ('z'). The constraints ensure that each currency is used only once in the sequence and that the sequence starts and ends with the same currency. The program does not consider real-world factors such as broker's fees.
+
+
+Input Data (data.dzn):
+% 
+% Example from
+% "Two-Currency, Three-Currency and Multi-Currency Arbitrage"
+% http://www.fem.uniag.sk/mefi/pdf/arbitraz.pdf
+% page 17
+%
+% Result (example):
+% """
+% [maxArb=[aud,nzd,dkk,usd,sek,eur,aud],maxProfit=1.011110812688754]
+% Real profit where we start with 1000 AUD: 1000*1.011111-1000 = 11.110813 AUD
+% """
+
+n = 6;
+m = 3;
+start = 1000.0;
+currencies = array2d(1..n,1..n,
+[
+% aud      dkk      eur      nzd      sek      usd
+  0.00000, 0.23400, 1.72460, 0.80600, 0.18300, 1.92960, % aud
+  4.27350, 0.00000, 7.44602, 3.44353, 0.78190, 8.24490, % dkk
+  0.57984, 0.13430, 0.00000, 0.46250, 0.10500, 1.10730, % eur
+  1.24069, 0.29040, 2.16216, 0.00000, 0.22710, 2.39410, % nzd
+  5.46448, 1.27894, 9.52381, 4.40335, 0.00000, 10.54000,% sek 
+  0.51824, 0.12129, 0.90310, 0.41769, 0.09488, 0.00000, % usd
+]);
+currencies_s = ["aud","dkk","eur","nzd","sek","usd"];
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n; % total number of currencies
+int: m; % number of involved currencies
+array[1..n,1..n] of float: currencies;
+array[1..n] of string: currencies_s;
+float: start;
+
+% decision variables
+array[1..m+1] of var 0..n: y; % currency to use
+array[1..m+1] of var 0.0..max(array1d(currencies)): profit;
+
+
+% var 0.0..1000000.0: z;
+var float: z;
+
+solve maximize z;
+% solve :: float_search(y ++ profit,0.1, input_order, indomain_split, complete) maximize z;
+
+constraint
+  z >= 0.0 /\
+  all_different([y[i] | i in 1..m]) /\
+  y[1] = y[m+1] /\
+  forall(i in 1..m) (
+     profit[i] = currencies[y[i],y[i+1]]
+  )
+  /\
+  z = product([profit[i] | i in 1..m])
+;
+
+output [
+  "z: \(z)\n",
+  "profit: \([profit[i] | i in 1..m])\n",
+  "y: \(y)\n",
+  "starts with \(start) \(currencies_s[fix(y[1])]) -> \(start*z) \(currencies_s[fix(y[1])])\n",
+  "real profit: \(start*z) - \(start) = \(start*z - start) \(currencies_s[fix(y[1])])\n\n",
+]
+++
+[
+  "\(currencies_s[fix(y[i])]) -> \(currencies_s[fix(y[i+1])]) \(profit[i])\n"
+  | i in 1..m
+]
+;
+
+
+%% From the example above:
+%%  Trade $100 to €77.79
+%%  Trade €77.79 to .8751375 BTC
+%%  Trade .8751375 BTC for $101.20965.
+%%
+%%  USD  EUR     JPY            BTC
+% n = 4;
+% m = 4;
+% start = 1000.0;
+% currencies = array2d(1..n,1..n,
+% [
+% 0,      0.7779,  102.4590,  0.0083,
+% 1.2851, 0,       131.7110,  0.01125,
+% 0.0098, 0.0075,  0,         0.0000811,
+% 115.65, 88.8499, 12325.44,  0,
+% ]);
+% currencies_s = ["USD","EUR","JPY","BTC"];
+
+Expected Output:
+{
+  "y": [
+    1,
+    5,
+    3,
+    1
+  ],
+  "profit": [
+    0.183,
+    9.52381,
+    0.579840000000001,
+    0.0
+  ],
+  "z": 1.0105783362432,
+  "_objective": 1.0105783362432
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,35 @@
+{
+  "description": "A child enters a grocery store and purchases four items. The cashier charges $7.11. The child pays and is about to leave when the cashier calls the child back, and says 'Hold on, I multiplied the four items instead of adding them; I'll try again... Gosh, with adding them the price still comes to $7.11'! The problem is to determine the prices of the four items. The problem is modeled using floats in MiniZinc, with the constraint that we are only working with pennies. The sum and the product of the prices of the four items should both equal to $7.11. The solution should also satisfy the condition that the prices are in increasing order.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Grocery Store Pricing Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "product",
+      "increasing"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Grocery Store Pricing Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "item"
+    ],
+    "model_data_keywords": [
+      "total_price",
+      "price_domain"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "sum",
+      "product",
+      "increasing"
+    ]
+  }
+}

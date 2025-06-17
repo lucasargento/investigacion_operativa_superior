@@ -1,0 +1,38 @@
+{
+  "description": "The Building Blocks puzzle is a logic puzzle where each of four alphabet blocks has a single letter of the alphabet on each of its six sides. In all, the four blocks contain every letter but Q and Z. By arranging the blocks in various ways, you can spell all of the words listed below. The task is to figure out how the letters are arranged on the four blocks. The words to be spelled are: BAKE, ONYX, ECHO, OVAL, GIRD, SMUG, JUMP, TORN, LUCK, VINY, LUSH, WRAP. The constraints of the problem are that the letters in a word must be on a different die and there must be exactly 6 letters on each die. The goal is to find a satisfying assignment of letters to the blocks that allows all the words to be spelled.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Building Blocks Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "global_cardinality",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Building Blocks Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "blocks_assignment"
+    ],
+    "model_data_keywords": [
+      "num_blocks",
+      "num_words",
+      "num_letters",
+      "letters",
+      "words"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "global_cardinality",
+      "<="
+    ]
+  }
+}

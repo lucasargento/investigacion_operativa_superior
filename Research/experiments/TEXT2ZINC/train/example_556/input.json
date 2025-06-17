@@ -1,0 +1,42 @@
+{
+  "description": "The problem is about ski assignment optimization at a ski rental shop. The goal is to assign skis to skiers in such a way that the height of the skis matches the height of the skier as closely as possible. The disparity between a skier and his or her skis is defined as the absolute value of the difference between the height of the skier and the pair of skis. The objective is to find an assignment of skis to skiers that minimizes the sum of the disparities. The problem is illustrated with the following sample data: Ski heights are 1, 2, 5, 7, 13, 21 and Skier heights are 3, 4, 7, 11, 18. The problem is to find the assignment of skis to skiers that minimizes the total disparity.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Ski Assignment Optimization",
+    "domain": "Resource Allocation",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "abs",
+      "sum",
+      "minimize"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Ski Assignment Optimization",
+    "domain": "Resource Allocation",
+    "model_var_keywords": [
+      "num_skis",
+      "num_skiers",
+      "ski_heights",
+      "skier_heights",
+      "ski_assignments",
+      "total_disparity"
+    ],
+    "model_data_keywords": [
+      "ski_heights",
+      "skier_heights"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "abs",
+      "sum",
+      "minimize"
+    ]
+  }
+}

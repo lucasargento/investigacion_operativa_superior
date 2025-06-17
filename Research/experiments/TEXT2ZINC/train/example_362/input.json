@@ -1,0 +1,57 @@
+{
+  "description": "The problem is based on Kaprekar's Constant. Given any four-digit number (whose digits are not all identical), the following steps are performed: \n1. Rearrange the string of digits to form the largest and smallest 4-digit numbers possible. \n2. Subtract the smaller number from the larger. \n3. Use the number obtained and repeat the above process. \nThe process eventually hits 6174 and then stays there. The amazing thing is that every four-digit number whose digits are not all the same will eventually hit 6174, in at most 7 steps, and then stay there. The task is to model this process using MiniZinc, a medium-level constraint modelling language, and find the number of solutions for different number of steps.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Kaprekar's Constant",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "kaprekar",
+      "=",
+      "in",
+      "sort",
+      "reverse",
+      "toNum",
+      "not",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Kaprekar's Constant",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "x",
+      "pos",
+      "s_num",
+      "s_ordered",
+      "s_reverse",
+      "ord_num",
+      "rev_num"
+    ],
+    "model_data_keywords": [
+      "n",
+      "base",
+      "rows",
+      "max_val",
+      "min_val",
+      "nums"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "kaprekar",
+      "=",
+      "in",
+      "sort",
+      "reverse",
+      "toNum",
+      "not",
+      "!="
+    ]
+  }
+}

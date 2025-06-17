@@ -1,0 +1,37 @@
+{
+  "description": "The problem is to implement a power function in MiniZinc, since the built-in pow() function does not handle (var int, int). The function, named 'my_pow', takes three parameters: a variable integer 'n', an integer 'len', and a variable integer 'n_pow'. The function calculates the power of 'n' raised to 'len' and assigns the result to 'n_pow'. The function does not handle (var int, var int), just (var int, int). The problem is to find a solution that satisfies the constraint that 'n' equals 3 and 'num' equals 'n' raised to the power of 4.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Power Function Implementation",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "=",
+      "*",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Power Function Implementation",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "n",
+      "num",
+      "x",
+      "n_pow"
+    ],
+    "model_data_keywords": [
+      "len"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "=",
+      "*",
+      "forall"
+    ]
+  }
+}

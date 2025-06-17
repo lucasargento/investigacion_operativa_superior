@@ -1,0 +1,36 @@
+{
+  "description": "# Problem SearchStress\n\nThe model, below, is close to (can be seen as the close translation of) the one submitted to the 2008 Minizinc challenge.\nNo Licence was explicitly mentioned (MIT Licence assumed).\n\n## Data\n  Two integers n and k\n\n## Execution\n```\n  python SearchStress.py -data=[number,number]\n```\n\n## Links\n  - https://www.minizinc.org/challenge2008/results2008.html\n\n## Tags\n  academic, mzn08\n\n<br />\n\n## _Alternative Model(s)_\n\n#### SearchStress2.py\n - constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)\n - tags: academic, mzn09",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Search Stress",
+    "domain": "Academic",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Search Stress",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "x",
+      "obj"
+    ],
+    "model_data_keywords": [
+      "n",
+      "k"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum"
+    ]
+  }
+}

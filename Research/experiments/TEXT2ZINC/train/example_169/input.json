@@ -1,0 +1,45 @@
+{
+  "description": "The problem is about generating random problem instances in MiniZinc. The problem is inspired by the Park\u2013Miller random number generator, which is a simple random number generator (RNG) defined by the recurrence relation x[i+1] = g * x[i] mod n. The problem requires to generate an array of pseudo random elements with a given seed and maximum value. If the maximum value is 0, then no modulo operation is performed. The problem also includes a test constraint that for all i in 1 to n-1, x[i] should be greater than or equal to 0 and the sum of x[i] and x[i+1] should be equal to the sum of the corresponding elements in the random array.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Random Number Generation and Summation",
+    "domain": "Random Number Generation",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "rand_int_array",
+      "forall",
+      ">=",
+      "+",
+      "=",
+      "mod"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Random Number Generation and Summation",
+    "domain": "Random Number Generation",
+    "model_var_keywords": [
+      "rand",
+      "x"
+    ],
+    "model_data_keywords": [
+      "n",
+      "max_value",
+      "seed",
+      "rand_modn",
+      "rand_g"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "rand_int_array",
+      "forall",
+      ">=",
+      "+",
+      "=",
+      "mod"
+    ]
+  }
+}

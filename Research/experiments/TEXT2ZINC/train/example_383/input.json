@@ -1,0 +1,56 @@
+{
+  "description": "The problem is about calculating the One Repetition Maximum (1RM) for weight training and age adjustment of weights. The 1RM is the maximum amount of weight that a person can possibly lift for one repetition of a given exercise. The model also calculates the equivalent weights for different numbers of repetitions. For example, it can calculate how much weight corresponds to a session of 6 repetitions of 87kg for a session of 12 repetitions. The model also calculates the age adjusted weights for different weights and 1RM. For a 60 year old man, this corresponds to weight x 1.514. The model uses Brzycki's formula for calculating 1RM given weight and reps. The solver must support decision variables of type var float. The model was created by Hakan Kjellerstrand.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "One Repetition Maximum and Age Adjustment for Weight Training",
+    "domain": "Health and Fitness",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "oneRM",
+      "weight1",
+      "weight2",
+      "reps1",
+      "reps2",
+      "AgeCoeffs",
+      "age",
+      "weight1Age",
+      "weight2Age",
+      "oneRMAge"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "One Repetition Maximum and Age Adjustment for Weight Training",
+    "domain": "Health and Fitness",
+    "model_var_keywords": [
+      "weight1",
+      "weight2",
+      "reps1",
+      "reps2",
+      "oneRM",
+      "weight1Age",
+      "weight2Age",
+      "oneRMAge"
+    ],
+    "model_data_keywords": [
+      "AgeCoeffs",
+      "age"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "oneRM",
+      "weight1",
+      "weight2",
+      "reps1",
+      "reps2",
+      "AgeCoeffs",
+      "age",
+      "weight1Age",
+      "weight2Age",
+      "oneRMAge"
+    ]
+  }
+}

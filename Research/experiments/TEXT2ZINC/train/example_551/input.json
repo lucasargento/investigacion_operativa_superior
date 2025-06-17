@@ -1,0 +1,43 @@
+{
+  "description": "The McEverywhere problem involves deciding how many fast food restaurants to build in a town. Building too many will result in wasted capital and building too few will result in lost business. The map shows the locations of 20 homes in a small town. There are no McEverywhere restaurants where the residents can eat. As the planner for McEverywhere corporation, you have been asked to build restaurants so that no resident has to travel more than 4km to reach a restaurant. You can build as many restaurants as you like and restaurants can be built on any cell (including one that has a home on it). Use a direct line between cells to calculate travel distance. The distance between two adjacent cells is 1km and the distance between two diagonal cells is 1.41 km. The question is: What is the minimum number of McEverywhere restaurants needed so that no resident has to travel more than 4km to reach one?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "McEverywhere Restaurant Placement",
+    "domain": "Urban Planning",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "exists",
+      "dist",
+      "=",
+      "sum",
+      "bool2int"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "McEverywhere Restaurant Placement",
+    "domain": "Urban Planning",
+    "model_var_keywords": [
+      "restaurants",
+      "restaurant_counts",
+      "total_restaurants"
+    ],
+    "model_data_keywords": [
+      "homes",
+      "max_dist"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "exists",
+      "dist",
+      "=",
+      "sum",
+      "bool2int"
+    ]
+  }
+}

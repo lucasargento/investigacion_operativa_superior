@@ -1,0 +1,47 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 211
+- Name: Knapsack Problem
+- Domain: Integer Programming
+- Objective: maximization
+
+Problem Description:
+Maximize the total value of the packed items, where the knapsack has a capacity of C. Each item k has a value of Value and a size of Size.
+
+
+Input Data (data.dzn):
+C = 10;
+value = [10, 20];
+size = [8, 6];
+
+MiniZinc Model:
+% Parameters
+int: C; % Capacity of the knapsack
+array[1..K] of int: value; % Value of each item
+array[1..K] of int: size; % Size of each item
+
+% Decision Variables
+array[1..K] of var 0..1: isincluded; % Binary variable indicating whether each item is included
+
+% Constraints
+constraint sum(i in 1..K)(size[i]*isincluded[i]) <= C; % Total size of included items should not exceed the capacity
+
+% Objective
+var int: total_value = sum(i in 1..K)(value[i]*isincluded[i]); % Total value of included items
+solve maximize total_value;
+
+% Output
+output ["isincluded: ", show(isincluded)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

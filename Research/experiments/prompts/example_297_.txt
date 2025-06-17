@@ -1,0 +1,142 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 297
+- Name: 
+- Domain: 
+- Objective: 
+
+Problem Description:
+# Problem Rubik
+
+The model, below, is rebuilt from instances submitted to the 2013 Minizinc challenge.
+These instances are initially given in flat format (i.e., not from a model).
+No Licence was explicitly mentioned (MIT Licence assumed).
+
+## Data Example
+  execute 'python Rubik.py -data=<datafile.dzn> -parser=Rubik_ParserZ.py -export' for getting JSON files
+
+## Model
+  constraints: [Clause](http://pycsp.org/documentation/constraints/Clause)
+
+## Execution
+```
+  python Rubik.py -data=<datafile.json>
+  python Rubik.py -data=<datafile.dzn> -parser=Rubik_ParserZ.py
+```
+
+## Links
+  - https://www.minizinc.org/challenge2013/results2013.html
+
+## Tags
+  crafted, mzn13
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the variables
+var 1..6: U; var 1..6: D; var 1..6: L; var 1..6: R; var 1..6: F; var 1..6: B;
+array[1..9] of var 1..6: up; array[1..9] of var 1..6: down; array[1..9] of var 1..6: left; array[1..9] of var 1..6: right; array[1..9] of var 1..6: front; array[1..9] of var 1..6: back;
+
+% Define the constraints
+constraint forall(i in 1..9)(up[i] = U);
+constraint forall(i in 1..9)(down[i] = D);
+constraint forall(i in 1..9)(left[i] = L);
+constraint forall(i in 1..9)(right[i] = R);
+constraint forall(i in 1..9)(front[i] = F);
+constraint forall(i in 1..9)(back[i] = B);
+
+% Define the objective function
+solve satisfy;
+
+% Output the solution
+output ["U: " ++ show(U), "D: " ++ show(D), "L: " ++ show(L), "R: " ++ show(R), "F: " ++ show(F), "B: " ++ show(B)];
+
+Expected Output:
+{
+  "U": 1,
+  "D": 1,
+  "L": 1,
+  "R": 1,
+  "F": 1,
+  "B": 1,
+  "up": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "down": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "left": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "right": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "front": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "back": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

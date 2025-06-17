@@ -1,0 +1,39 @@
+{
+  "description": "# Problem ClockTriplet\n\nThe problem was originally posed by Dean Clark and then presented to a larger audience by Martin Gardner.\nThe problem was discussed in Dr. Dobbs's Journal, May 2004 in an article  by Timothy Rolfe.\nAccording to the article, in his August 1986 column for Isaac Asimov's Science Fiction Magazine,\nMartin Gardner presented this problem:\n  Now for a curious little combinatorial puzzle involving the twelve numbers on the face of a clock.\n  Can you rearrange the numbers (keeping them in a circle) so no triplet of adjacent numbers has a sum higher\n  than 21? This is the smallest value that the highest sum of a triplet can have.\n\nTimothy Rolfe solves the problem using a rather complex algorithm and also presents a generic algorithm\nfor numbers other than 12 (clock numbers) and 21 (highest sums of triplets).\nThe main emphasis of the algorithm was put on the computational speed.\nThe article stressed the fact that a simple backtracking algorithm would be simply too slow\ndue to the number of permutations.\n\n## Data\n  Two integers r and n\n\n## Model\n  The model here is given in a general form.\n\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [Slide](http://pycsp.org/documentation/constraints/Slide), [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n  - python ClockTriplet.py -data=[number,number]\n\n## Links\n  - http://www.f1compiler.com/samples/Dean%20Clark%27s%20Problem.f1.html\n  - https://www.cril.univ-artois.fr/XCSP22/competitions/cop/cop\n\n## Tags\n  academic, recreational, xcsp22",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Clock Triplet",
+    "domain": "Academic",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "<=",
+      "+",
+      "mod"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Clock Triplet",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "clock_numbers"
+    ],
+    "model_data_keywords": [
+      "max_sum_triplets",
+      "num_clock_numbers"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "<=",
+      "+",
+      "mod"
+    ]
+  }
+}

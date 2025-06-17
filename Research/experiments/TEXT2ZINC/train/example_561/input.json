@@ -1,0 +1,52 @@
+{
+  "description": "The problem is a job-shop scheduling problem. There are a number of jobs and machines. Each job has a specific order in which it needs to be processed by the machines and each job-machine pair has a specific processing time. The goal is to schedule all jobs on the machines such that the time at which the last job is finished (the 'earliest end time') is minimized. The constraints of the problem are that each job must be processed by the machines in the specified order and that a machine can only process one job at a time.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Job-Shop Scheduling",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "cumulative",
+      "before",
+      "after",
+      "+",
+      "<=",
+      ">=",
+      "<",
+      ">"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Job-Shop Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "job_start",
+      "job_end",
+      "earliest_end_time"
+    ],
+    "model_data_keywords": [
+      "num_jobs",
+      "num_machines",
+      "job_times",
+      "job_order",
+      "max_time"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "cumulative",
+      "before",
+      "after",
+      "+",
+      "<=",
+      ">=",
+      "<",
+      ">"
+    ]
+  }
+}

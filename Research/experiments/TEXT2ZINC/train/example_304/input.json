@@ -1,0 +1,45 @@
+{
+  "description": "This is a discount puzzle problem. The problem is about buying books over a period of 5 days. Each book has a certain cost. The goal is to minimize the total cost of buying the books. The total cost is calculated as the sum of the cost of all books minus a discount. The discount is calculated as 0.001 times the product of the total cost of books bought on consecutive days. A book can be bought only once and on a specific day. The decision variable 'x[i,j]' is 1 if book 'i' is bought on day 'j', and 0 otherwise. The variable 't[j]' represents the total cost of books bought on day 'j'. The variable 'totcost' represents the total cost after applying the discount. The constraints ensure that each book is bought exactly once and the total cost for each day is correctly calculated. The problem is to determine on which day each book should be bought to minimize the total cost.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Book Buying Discount Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "int2float",
+      "-",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Book Buying Discount Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "daily_total_cost",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "num_days",
+      "Days",
+      "DiscountDays",
+      "book_cost"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "int2float",
+      "-",
+      "*"
+    ]
+  }
+}

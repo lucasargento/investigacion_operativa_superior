@@ -1,0 +1,41 @@
+{
+  "description": "Where should each department be located so as to minimize overall yearly cost? The optimization should consider the benefit of department K being located at location L, the communication costs between departments K and K, and the costs of locating at location L with requirement L.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Department Relocation Optimization",
+    "domain": "Business Optimization",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Department Relocation Optimization",
+    "domain": "Business Optimization",
+    "model_var_keywords": [
+      "islocated",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "benefit",
+      "communication",
+      "cost"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      "*"
+    ]
+  }
+}

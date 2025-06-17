@@ -1,0 +1,37 @@
+{
+  "description": "The problem is about Strimko, a puzzle game. The game is played on an nxn grid. The objective is to fill the grid in such a way that each row and column of the grid must contain the numbers 1, 2, ..., n exactly once, forming a Latin square. Additionally, each 'stream' (connected path in the grid) must also contain the numbers 1, 2, ..., n exactly once. Some numbers are already placed in the grid, and these placements cannot be changed. The task is to find a valid completion of the grid that satisfies all these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Strimko Puzzle Solver",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "=",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Strimko Puzzle Solver",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "n",
+      "streams",
+      "num_placed",
+      "placed"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "=",
+      "forall"
+    ]
+  }
+}

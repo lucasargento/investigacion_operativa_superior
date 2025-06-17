@@ -1,0 +1,53 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 434
+- Name: Cutting Stock Problem
+- Domain: Operations Research
+- Objective: minimization
+
+Problem Description:
+This is a cutting stock problem. Given a roll of width RollWidth and a set of widths Widths to be cut. Each width i has a certain number of orders Orders_i. There are NumPatterns patterns and each pattern j has a certain number of rolls of each width i NumRollsWidthPattern_{i,j}. The problem aims to minimize the total number of raw rolls cut. It is constrained that for each width i, the total number of rolls cut meets the total orders. The decision to be made concerns how to decide the number of rolls cut using each pattern j.
+
+
+Input Data (data.dzn):
+NumWidths = 5;
+Widths = [20, 45, 50, 55, 75];
+RollWidth = 110;
+Orders = [48, 35, 24, 10, 8];
+NumPatterns = 3;
+NumRollsWidthPattern = [|10, 20, 30|, |11, 21, 31|, |12, 22, 32|, |13, 23, 33|, |14, 24, 34|];
+
+MiniZinc Model:
+% MiniZinc model for the cutting stock problem
+
+% Parameters
+int: NumWidths; % Number of widths
+array[1..NumWidths] of int: Widths; % Widths to be cut
+int: RollWidth; % Width of the roll
+array[1..NumWidths] of int: Orders; % Number of orders for each width
+int: NumPatterns; % Number of patterns
+array[1..NumWidths, 1..NumPatterns] of int: NumRollsWidthPattern; % Number of rolls of each width for each pattern
+
+% Variables
+array[1..NumPatterns] of var 0..sum(Orders): NumRollsPattern; % Number of rolls cut using each pattern
+
+% Objective: Minimize the total number of raw rolls cut
+minimize sum(NumRollsPattern);
+
+% Constraints
+constraint forall(i in 1..NumWidths) (
+  sum(j in 1..NumPatterns) (NumRollsWidthPattern[i,j] * NumRollsPattern[j]) >= Orders[i]
+);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

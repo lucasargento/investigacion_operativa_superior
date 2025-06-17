@@ -1,0 +1,40 @@
+{
+  "description": "The problem is known as the 'High IQ Problem'. It involves a square that contains 24 smaller squares, each with a different integral size. The task is to determine the length of the shaded square. The problem is modeled as a constraint satisfaction problem, where each of the 24 smaller squares is represented by a variable (L1 to L24) with a domain of 1 to 200. The shaded square is represented by the variable L25. The constraints include that all the variables must have different values, the variables must be ordered in ascending order, the sum of the squares of the variables L1 to L24 must equal the square of L25, and a set of length constraints that relate the variables to each other. The problem is solved by finding a value for each variable that satisfies all the constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "High IQ Problem",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "increasing",
+      "sum",
+      "=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "High IQ Problem",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "square_lengths",
+      "sum_of_squares",
+      "shaded_square_square"
+    ],
+    "model_data_keywords": [
+      "max_length"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "increasing",
+      "sum",
+      "=",
+      "+"
+    ]
+  }
+}

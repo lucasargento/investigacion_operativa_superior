@@ -1,0 +1,234 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 330
+- Name: Dudeney's Bishop Placement Problem II
+- Domain: Puzzles
+- Objective: maximization
+
+Problem Description:
+This problem is known as Dudeney's bishop placement problem II. The problem is to place bishops on an 8x8 chessboard in such a way that every square is either occupied by a bishop or attacked by a bishop. The objective is to maximize the number of bishops placed on the board. A square is considered attacked if it is on the diagonal of a bishop. The problem is represented by two 8x8 matrices, 'x' and 'a'. 'x(i,j)' is 1 if square (i,j) is occupied by a bishop, and 0 otherwise. 'a(i,j)' is 1 if square (i,j) is attacked by a bishop, and 0 otherwise. The sum of all elements in 'x' gives the total number of bishops placed on the board. The constraints ensure that every square is either occupied or attacked, and that a square is considered attacked if it is on the diagonal of a bishop.
+
+
+MiniZinc Model:
+int: size = 8;
+array[1..size, 1..size] of var 0..1: x; % x(i,j) = 1 if square (I,J) occupied, 0 otherwise
+array[1..size, 1..size] of var 0..1: a; % a(i,j) = 1 if square (I,J) attacked, 0 otherwise
+
+var int: sumx = sum(i in 1..size,j in 1..size) (x[i,j]);
+
+
+% maximise number of bishops
+solve :: int_search([x[i,j] | i,j in 1..size], first_fail, indomain_min, complete)  maximize sumx;
+% solve maximize sumx;
+
+
+constraint
+  % a[i,j] = 1 if square (i,j) attacked
+  forall(i in 1..size,j in 1..size) (
+   sum(m in 1..size where m != i /\ m-i+j >= 1 /\ m-i+j <= size) (x[m,m-i+j]) +
+   sum(m in 1..size where m != i /\ i+j-m >= 1 /\ i+j-m <= size) (x[m,i+j-m]) <= 99*a[i,j]
+  )
+  /\
+  % each square either attacked or occupied
+  forall(i in 1..size,j in 1..size) (
+    a[i,j]+x[i,j] = 1
+  )
+;
+
+output 
+["\nsumx: ", show(sumx) ] ++
+["\nx:"] ++
+[
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i,j in 1..size
+] ++
+["\na:"] ++
+[
+  if j = 1 then "\n" else " " endif ++
+    show(a[i,j])
+  | i,j in 1..size
+] ++ ["\n"]
+;
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "a": [
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0
+    ]
+  ],
+  "_objective": 14
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

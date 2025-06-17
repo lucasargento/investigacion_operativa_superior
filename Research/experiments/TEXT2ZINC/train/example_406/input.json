@@ -1,0 +1,41 @@
+{
+  "description": "There are two ways to extract a metal from mined ores . The first way is to use process J and the second is process P. Process J can extract 5 units of metal using 8 units of water and produces 3 units of pollution . Process P can extract 9 units of metal using 6 units of water and produces 5 units of pollution . There can be at most 1500 units of water 1350 units of pollution . How many of each type of processes should be performed to maximize the amount of metal extracted ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Metal Extraction Optimization",
+    "domain": "Resource Management",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Metal Extraction Optimization",
+    "domain": "Resource Management",
+    "model_var_keywords": [
+      "J",
+      "P",
+      "total_metal"
+    ],
+    "model_data_keywords": [
+      "metal_extracted_J",
+      "metal_extracted_P",
+      "water_used_J",
+      "water_used_P",
+      "pollution_produced_J",
+      "pollution_produced_P",
+      "max_water",
+      "max_pollution"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "*"
+    ]
+  }
+}

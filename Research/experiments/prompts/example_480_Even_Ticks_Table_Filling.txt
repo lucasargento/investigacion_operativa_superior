@@ -1,0 +1,129 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 480
+- Name: Even Ticks Table Filling
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is about filling a 4x6 table with 18 ticks such that the sum of ticks on each column and row is even and no row or column is empty. The decision variable is a 2D array 'x' of size 4x6 where each element can be either 0 or 1. The objective is to find a configuration of the table that satisfies the constraints. The constraints are: the total number of ticks is 18; the sum of ticks in each row and each column is even; and no row or column is empty. The problem does not have an optimization goal, it is a satisfaction problem. The problem is solved using an integer search strategy that selects the variable with the smallest domain first (first_fail) and assigns it the smallest value in its domain (indomain_min).
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+int: rows = 4;
+int: cols = 6;
+var 0..rows*cols: ticks; % = 18;
+
+% decision variable
+array[1..rows, 1..cols] of var 0..1: x;
+
+% solve satisfy;
+% solve minimize ticks;
+solve :: int_search([x[i,j] | i in 1..rows, j in 1..cols], 
+        first_fail, 
+        indomain_min, 
+        complete) 
+    % minimize ticks;
+    satisfy;
+
+constraint
+   ticks = 18
+   /\
+
+   % number of ticks
+   sum([x[i,j] | i in 1..rows, j in 1..cols]) = ticks
+;
+
+
+constraint
+   % ensure the row constraints: sum >= 1 and even
+   forall(i in 1..rows) ( 
+      let {
+        var 1..cols: s
+      } in
+      s = sum([x[i,j] | j in 1..cols])
+      /\
+      s mod 2 = 0
+   )
+
+   /\ % ensure the column constraints: sum >= 1 and even
+   forall(j in 1..cols) (
+      let {
+        var 1..rows: s
+      } in
+
+      s = sum([x[i,j] | i in 1..rows])
+      /\
+      s mod 2 = 0
+   )
+
+
+   % /\ % symmetry breaking
+   % x[1,1] = 1 /\ x[1,2] = 1
+;
+
+output 
+[
+  "ticks: " ++ show(ticks) ++ "\n"
+]
+++
+[
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i in 1..rows, j in 1..cols
+]
+ ++ ["\n"]
+;
+
+Expected Output:
+{
+  "ticks": 18,
+  "x": [
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

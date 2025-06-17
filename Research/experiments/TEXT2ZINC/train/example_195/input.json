@@ -1,0 +1,39 @@
+{
+  "description": "We want to assign all students to schools, while minimizing the total distance traveled by all students. We have a total number of S schools, G student groups, and N neighborhoods. Each school s has a capacity for student group g represented by Capacity. The population of student group g in neighborhood n is given by Population. The distance between neighborhood n and school s is denoted as Distance. We may ignore the fact that numbers of students must be integers.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "School District Student Assignment",
+    "domain": "Education",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "=",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "School District Student Assignment",
+    "domain": "Education",
+    "model_var_keywords": [
+      "total_distance",
+      "assignment"
+    ],
+    "model_data_keywords": [
+      "Capacity",
+      "Population",
+      "Distance"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "=",
+      "<=",
+      "*"
+    ]
+  }
+}

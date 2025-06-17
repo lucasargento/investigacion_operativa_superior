@@ -1,0 +1,38 @@
+{
+  "description": "The problem is about a global constraint in MiniZinc called 'element_matrix'. The 'element_matrix' constraint is defined for a two-dimensional matrix MATRIX[1..MAX_I,1..MAX_J]. The constraint holds if the VALUE is equal to the entry MATRIX[INDEX_I,INDEX_J] of the matrix. For example, if we have a 4x3 matrix and the INDEX_I=1 and INDEX_J=3, the constraint holds if the VALUE=7 is equal to the value of the matrix at the position (1,3). The problem is to find the values of INDEX_I, INDEX_J, and VALUE that satisfy the 'element_matrix' constraint for a given matrix.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Element Matrix Constraint",
+    "domain": "Constraints",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "array2d",
+      "=",
+      "constraint"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Element Matrix Constraint",
+    "domain": "Constraints",
+    "model_var_keywords": [
+      "INDEX_I",
+      "INDEX_J",
+      "MATRIX",
+      "VALUE"
+    ],
+    "model_data_keywords": [
+      "MAX_I",
+      "MAX_J"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "array2d",
+      "=",
+      "constraint"
+    ]
+  }
+}

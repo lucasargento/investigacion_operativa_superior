@@ -1,0 +1,45 @@
+{
+  "description": "Find paths along which all data reach their intended destinations, while minimizing the total cost. The links between nodes are characterized by their capacities (Capacity) and associated costs (Cost), where each link ij connects a start node (StartNode) to an end node (EndNode). There is a set number of data flow requirements (F), each with a source node (SourceNode) and destination node (DestinationNode), and a specific data rate (DataRate) that must be achieved.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum Cost Network Flow",
+    "domain": "Network Optimization",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum Cost Network Flow",
+    "domain": "Network Optimization",
+    "model_var_keywords": [
+      "Flow",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "NumLinks",
+      "StartNode",
+      "EndNode",
+      "Capacity",
+      "Cost",
+      "NumFlowReqs",
+      "Source",
+      "Destination",
+      "DataRate"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<="
+    ]
+  }
+}

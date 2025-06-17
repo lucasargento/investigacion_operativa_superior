@@ -1,0 +1,41 @@
+{
+  "description": "The Fill-a-Pix problem is a Minesweeper-like puzzle based on a grid with a pixilated picture hidden inside. The puzzle consists of a grid containing clues in various places. The objective is to reveal a hidden picture by painting the squares directly around each clue so that the number of painted squares, including the square with the clue, matches the value of the clue. Given a grid with the clues, find which squares should be painted.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Fill-a-Pix",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "implies",
+      "<=",
+      ">",
+      "and",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Fill-a-Pix",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "grid"
+    ],
+    "model_data_keywords": [
+      "puzzle",
+      "n"
+    ],
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "implies",
+      "<=",
+      ">",
+      "and",
+      "forall"
+    ]
+  }
+}

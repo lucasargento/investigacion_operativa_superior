@@ -1,0 +1,44 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 50
+- Name: Seaport Container Management
+- Domain: Transportation and Logistics
+- Objective: minimization
+
+Problem Description:
+A seaport unloads shipping containers off of rail cars, holds them in its yard on a transport system, and then loads them onto ships. The demand for containers by ships varies every month, and this demand must be fulfilled. There is an unloading cost per container that indicates how much it costs to unload a single container from the rail car. The unloading capacity specifies the maximum number of containers that can be unloaded in a month. For each container kept in the yard until the subsequent month, there is a holding cost. Due to space limitations, the yard can store a maximum number of containers at the end of any month. Initially, at the start of the first month, the yard had some containers. Additionally, the yard should not contain any containers after the end of the last month. Further, loading containers onto ships necessitates the rental of cranes. There is a maximum number of cranes that can be rented each month, each with a capacity to load containers. There is also a cost associated with each crane. Determine a strategy to minimize costs from unloading, storage, and crane rentals over the period.
+
+
+Input Data (data.dzn):
+T = 4;
+Demands = [450, 700, 500, 750];
+UnloadCosts = [75, 100, 105, 130];
+UnloadCapacity = [800, 500, 450, 700];
+HoldingCost = 20;
+MaxContainer = 500;
+InitContainer = 200;
+NumCranes = 4;
+CraneCapacity = 200;
+CraneCost = 1000;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 251500.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

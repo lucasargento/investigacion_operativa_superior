@@ -1,0 +1,46 @@
+{
+  "description": "The problem is based on the Collatz conjecture, which is a sequence defined as follows: t(x) = x/2 if x is even, t(x) = (3x+1)/2 if x is odd. The task is to generate a Collatz sequence for a given number 'n' and calculate the length of the sequence until the number 1 is reached for the first time. The sequence is represented as an array 'x' of length 'max_len', which is three times the value of 'n'. The length of the sequence until the first occurrence of 1 is represented by the variable 'len'. The sequence must satisfy the conditions of the Collatz conjecture, i.e., each element 'x[i]' in the sequence must be either half of 'x[i-1]' if 'x[i-1]' is even, or (3*'x[i-1]'+1)/2 if 'x[i-1]' is odd. The sequence must also satisfy the condition that there exists an index 'i' such that 'x[i]' is 1 and 'len' is 'i-1', and all elements before 'x[i]' are greater than 1. The goal is to find a sequence that satisfies all these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Collatz Sequence Length",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "mod",
+      "=",
+      "div",
+      "forall",
+      "exists",
+      ">",
+      ">=",
+      "collatz"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Collatz Sequence Length",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "x",
+      "len"
+    ],
+    "model_data_keywords": [
+      "n",
+      "max_len"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "mod",
+      "=",
+      "div",
+      "forall",
+      "exists",
+      ">",
+      ">=",
+      "collatz"
+    ]
+  }
+}

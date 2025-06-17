@@ -1,0 +1,60 @@
+{
+  "description": "---\nTitle:    Balanced Academic Curriculum Problem (BACP)\nProposer: \n    - Brahim Hnich\n    - Zeynep Kiziltan\n    - Toby Walsh\nCategory: Scheduling and related problems\n---\n\n\nThe BACP is to design a balanced academic curriculum by assigning periods to courses in a way that the academic load of each period is balanced, i.e., as similar as possible . The curriculum must obey the following administrative and academic regulations: \n\n* Academic curriculum: an academic curriculum is defined by a set of courses and a set of prerequisite relationships among them. \n* Number of periods: courses must be assigned within a maximum number of academic periods. \n* Academic load: each course has associated a number of credits or units that represent the academic effort required to successfully follow it. \n* Prerequisites: some courses can have other courses as prerequisites. \n* Minimum academic load: a minimum number of academic credits per period is required to consider a student as full time. \n* Maximum academic load: a maximum number of academic credits per period is allowed in order to avoid overload. \n* Minimum number of courses: a minimum number of courses per period is required to consider a student as full time. \n* Maximum number of courses: a maximum number of courses per period is allowed in order to avoid overload. \n\nThe goal is to assign a period to every course in a way that the minimum and maximum academic load for each period, the minimum and maximum number of courses for each period, and the prerequisite relationships are satisfied. An optimal balanced curriculum minimises the maximum academic load for all periods.\n\nNote that we could consider other types of balance criterion, such as minimising an expression on the deviation from the mean load per period. This is explored in Monette et al\n\n\n**The Generalised Balanced Academic Curriculum Problem**\n\nMarco Chiarandini, Luca Di Gaspero, Stefano Gualandi, and Andrea Schaerf have proposed a more challenging <a href=\"http://www.csplib.org/Problems/prob064\">generalised version</a> of the problem.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Balanced Academic Curriculum Problem",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "bool2int",
+      "=",
+      ">=",
+      "<=",
+      "sum",
+      "*",
+      "<",
+      "let",
+      "in"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Balanced Academic Curriculum Problem",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "course_period",
+      "x",
+      "load",
+      "objective"
+    ],
+    "model_data_keywords": [
+      "n_courses",
+      "n_periods",
+      "load_per_period_lb",
+      "load_per_period_ub",
+      "courses_per_period_lb",
+      "courses_per_period_ub",
+      "course_load",
+      "max_course_load",
+      "courses",
+      "periods"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "bool2int",
+      "=",
+      ">=",
+      "<=",
+      "sum",
+      "*",
+      "<",
+      "let",
+      "in"
+    ]
+  }
+}

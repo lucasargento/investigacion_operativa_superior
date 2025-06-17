@@ -1,0 +1,96 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 346
+- Name: Send More Money
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The 'Send More Money' problem is a classic problem in constraint programming. The problem is to find distinct digits for the letters S, E, N, D, M, O, R, Y such that the following equation holds true: 
+
+    S E N D
+  + M O R E
+  ------------
+  M O N E Y
+
+Find the values of each of the letters.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Variables representing the value of each letter
+var 0..9: S;  % S must be between 0 and 9
+var 0..9: E;  % E must be between 0 and 9
+var 0..9: N;  % N must be between 0 and 9
+var 0..9: D;  % D must be between 0 and 9
+var 0..9: M;  % M must be between 0 and 9
+var 0..9: O;  % O must be between 0 and 9
+var 0..9: R;  % R must be between 0 and 9
+var 0..9: Y;  % Y must be between 0 and 9
+
+% Variables for values carried over in addition
+var 0..9: c1; % Carry over from first addition
+var 0..9: c2; % Carry over from second addition
+var 0..9: c3; % Carry over from third addition
+var 0..9: c4; % Carry over from fourth addition
+
+% Array of all letters
+array[1..8] of var int: fd = [S, E, N, D, M, O, R, Y];
+
+% Values assigned to each letter must be distinct
+constraint all_different(fd);
+
+% Constraints for the addition problem
+constraint D + E = 10 * c1 + Y;       % Units column addition
+constraint c1 + N + R == 10 * c2 + E;  % Tens column addition
+constraint c2 + E + O == 10 * c3 + N;  % Hundreds column addition
+constraint c3 + S + M == 10 * c4 + O;  % Thousands column addition
+constraint c4 = M;                    % Carry over from thousands column equals M
+
+% S and M must not be equal to zero (they are the leading digits)
+constraint S >= 1;
+constraint M >= 1;
+
+% Solve the problem by finding values that satisfy all constraints
+solve satisfy;
+
+% Output the solution
+output [
+   "S:", show(S), " E:", show(E), " N:", show(N), " D:", show(D),
+   " M:", show(M), " O:", show(O), " R:", show(R), " Y:", show(Y),
+   "\n\n",
+
+   "    ", show(S), show(E), show(N), show(D), "\n",
+   " +  ", show(M), show(O), show(R), show(E), "\n",
+   " = ", show(M), show(O), show(N), show(E), show(Y), "\n"
+];
+
+Expected Output:
+{
+  "S": 9,
+  "E": 5,
+  "N": 6,
+  "D": 7,
+  "M": 1,
+  "O": 0,
+  "R": 8,
+  "Y": 2,
+  "c1": 1,
+  "c2": 1,
+  "c3": 0,
+  "c4": 1
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

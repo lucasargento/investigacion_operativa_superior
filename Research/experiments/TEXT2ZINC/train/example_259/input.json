@@ -1,0 +1,56 @@
+{
+  "description": "Maximize total productive capacity at the end of the five years. The problem parameters are a matrix of coefficients InputOne, a vector of manpower coefficients for input one ManpowerOne, a matrix of coefficients InputTwo, a vector of manpower coefficients for input two Manpowertwo, initial stock levels Stock, productive capacities Capacity, a company-wide manpower limit ManpowerLimit, and demand for each productive unit Demand.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Economic Production and Capacity Planning",
+    "domain": "Economics",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      ">=",
+      "sum",
+      "max",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Economic Production and Capacity Planning",
+    "domain": "Economics",
+    "model_var_keywords": [
+      "produce",
+      "buildcapa",
+      "stockhold",
+      "total_capacity"
+    ],
+    "model_data_keywords": [
+      "inputone",
+      "manpowerone",
+      "inputtwo",
+      "manpowertwo",
+      "stock",
+      "capacity",
+      "manpower_limit",
+      "demand"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      ">=",
+      "sum",
+      "max",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  }
+}

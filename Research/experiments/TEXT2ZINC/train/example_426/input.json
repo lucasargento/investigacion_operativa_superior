@@ -1,0 +1,36 @@
+{
+  "description": "A toy storage company needs to transport toys using a manual pallet jack or an electric pallet jack . The toy storage company has access to at most 6 manual pallet jacks and 15 electric pallet jacks . The manual pallet jacks can transport 15 boxes every hour while electric pallet jacks can transport 25 boxes every hour . Since electric jacks require less work , the number of electric pallet jacks must exceed the number of manual pallet jacks . If the company can use at most 8 manual pallet jacks and at least 5 electric pallet jacks , how many of each should the company use to maximize the number of boxes they can transport ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximize Toy Storage Transportation",
+    "domain": "Logistics",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      ">"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximize Toy Storage Transportation",
+    "domain": "Logistics",
+    "model_var_keywords": [
+      "manual_jacks",
+      "electric_jacks",
+      "total_boxes"
+    ],
+    "model_data_keywords": [
+      "max_manual_jacks",
+      "max_electric_jacks",
+      "min_electric_jacks",
+      "boxes_per_manual_jack",
+      "boxes_per_electric_jack"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      ">"
+    ]
+  }
+}

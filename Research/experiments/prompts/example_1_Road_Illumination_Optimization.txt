@@ -1,0 +1,38 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 1
+- Name: Road Illumination Optimization
+- Domain: Energy and Natural Resources
+- Objective: minimization
+
+Problem Description:
+Consider a road illuminated by a number of lamps and divided into a number of segments. Each lamp has a given power. The illumination of the i-th segment is assumed to be \sum_{j=1}^{M} coeff_{i,j} power_j, where coeff_{i,j} are known coefficients, where M is the number of lamps. We are also given desired illuminations and are interested in choosing the lamp powers so that the illuminations are as close to the desired illuminations as possible. Find the lamp powers that minimize the absolute error between the illuminations which are a result of choosing the lamp powers and the desired illuminations.
+
+
+Input Data (data.dzn):
+N = 3;
+M = 2;
+Coefficients = array2d(1..3, 1..2, [0.5, 0.3, 0.2, 0.4, 0.1, 0.6]);
+DesiredIlluminations = [14, 3, 12];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 7.37
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

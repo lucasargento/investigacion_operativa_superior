@@ -1,0 +1,85 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 482
+- Name: Penguin Problem
+- Domain: Nonmonotonic Reasoning
+- Objective: satisfaction
+
+Problem Description:
+The problem is a nonmonotonic reasoning problem known as the Penguin problem. The assumptions are as follows: Birds which are not abnormal fly (i.e., birds usually fly). Penguins are considered abnormal. Penguins and eagles are birds. Tweety is a penguin and Toto is an eagle. The problem is to deduce which of these two birds can fly. The answer is that Toto, the eagle, can fly, while Tweety, the penguin, cannot.
+
+
+MiniZinc Model:
+int: Tweety = 1;
+int: Toto = 2;
+
+set of int: Bird = Tweety..Toto;
+% var Bird: x;
+array[1..2] of Bird: birds = [Tweety, Toto];
+
+array[Bird] of var 0..1: flies; % which flies?
+
+predicate penguin(var Bird: x) =
+  x = Tweety
+;
+
+predicate eagle(var Bird: x) = 
+  x = Toto
+;
+
+predicate ab(var Bird: x) = 
+  penguin(x)	
+;
+
+predicate bird(var Bird: x) = 
+  penguin(x) 
+  \/ 
+  eagle(x)
+;
+
+
+predicate fly(var Bird: x) = 
+  bird(x) 
+  /\ 
+  not(ab(x))
+;
+
+predicate does_fly(var Bird: x, var 0..1: f) = 
+  f = 1 <-> (bird(x) /\ not(ab(x)))
+;
+
+
+solve satisfy;
+
+constraint
+   % fly(x)
+   forall(t in Bird) (
+     does_fly(t, flies[t])
+   )
+;
+
+output
+[
+  show(flies)
+];
+
+Expected Output:
+{
+  "flies": [
+    0,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

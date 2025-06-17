@@ -1,0 +1,96 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 472
+- Name: Minimum and Maximum in Set
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is about finding the minimum and maximum values in a set. Given a set S of size 4, with elements ranging from 1 to 10, the task is to find the minimum and maximum values in the set. The minimum value 'mn' is defined as a value that is in the set and for all elements 'e' in the set, 'mn' is less than or equal to 'e'. Similarly, the maximum value 'mx' is defined as a value that is in the set and for all elements 'e' in the set, 'mx' is greater than or equal to 'e'. The goal is to satisfy these conditions.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 10;
+
+var set of 1..n: S;
+var 1..n: mn; % minimum value of the set
+var 1..n: mx; % maximum value of the set
+
+% m is the minimum value of the set s
+predicate min_set(var set of int: s, var int: m) =
+   m in s
+   /\
+   forall(e in ub(s)) (
+      (e in s) -> m <= e
+   )
+;
+
+% m is the maximum value of the set s
+predicate max_set(var set of int: s, var int: m) =
+   m in s
+   /\
+   forall(e in ub(s)) (
+      (e in s) -> m >= e
+   )
+;
+
+
+solve satisfy;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+   card(S) = 4
+;
+
+constraint
+  min_set(S, mn) 
+  /\
+  max_set(S, mx)
+;
+
+% constraint
+%    /\
+%    mn in S
+%    /\
+%    forall(e in 1..n) (
+%       (e in S) -> mn <= e
+%    )
+
+% ;
+
+output [
+  "S  : " ++ show(S) ++
+  "min: " ++ show(mn) ++
+  "max: " ++ show(mx)
+]
+ ++ ["\n"]
+;
+
+Expected Output:
+{
+  "S": {
+    "set": [
+      [
+        1,
+        4
+      ]
+    ]
+  },
+  "mn": 1,
+  "mx": 4
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

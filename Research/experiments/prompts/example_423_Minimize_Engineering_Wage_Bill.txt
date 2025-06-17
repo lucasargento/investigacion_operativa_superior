@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 423
+- Name: Minimize Engineering Wage Bill
+- Domain: Workforce Scheduling
+- Objective: minimization
+
+Problem Description:
+An engineering company has new grad engineers earning $ 1000 a week and senior engineers earning $ 3000 a week . The weekly wage bill must be kept below $ 100000 . The projects require a minimum of 50 engineers of whom at least 10 must be senior engineers . In addition , the number of senior engineers should be at least a third the number of new grad engineers . Formulate a LP to minimize the wage bill .
+
+
+MiniZinc Model:
+var int: new_grads;
+% number of senior engineers
+var int: senior;
+
+% number of engineers is non-negative
+constraint new_grads >= 0;
+constraint senior >= 0;
+
+% there are at least 50 engineers
+constraint new_grads + senior >= 50;
+% there are at least 10 senior engineers
+constraint senior >= 10;
+% senior engineers should be at least a third the number of new grad engineers
+constraint senior >= new_grads / 3;
+
+% new grad engineers earn 1000 a week and senior engineers earn 3000 a week
+var int: wage_bill = 1000*new_grads + 3000*senior;
+
+% weekly wage bill must be kept below $ 100000 
+constraint wage_bill <= 100000;
+
+% minimize the wage_bill
+solve minimize wage_bill;
+
+Expected Output:
+{
+  "new_grads": 37,
+  "senior": 13,
+  "_objective": 76000
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

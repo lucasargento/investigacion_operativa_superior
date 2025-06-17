@@ -1,0 +1,129 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 295
+- Name: Amaze Grid Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+# Problem Amaze
+
+Given a grid containing some pairs of identical numbers, connect each pair of similar numbers by drawing a line sith horizontal or vertical segments,
+while paying attention to not having crossed lines.
+
+## Data Example
+  simple.json
+
+## Model
+  constraints: [Count](http://pycsp.org/documentation/constraints/Count), [Table](http://pycsp.org/documentation/constraints/Table)
+
+## Execution
+```
+  python Amaze.py -data=<datafile.json>
+```
+
+## Links
+
+## Tags
+  recreational, notebook
+
+<br />
+
+## _Alternative Model(s)_
+
+#### Amaze_z1.py
+ - constraints: [Count](http://pycsp.org/documentation/constraints/Count), [Sum](http://pycsp.org/documentation/constraints/Sum)
+ - tags: recreational, mzn12
+#### Amaze_z2.py
+ - constraints: [Count](http://pycsp.org/documentation/constraints/Count), [Element](http://pycsp.org/documentation/constraints/Element)
+ - tags: recreational, mzn12
+#### Amaze_z3.py
+ - constraints: [Count](http://pycsp.org/documentation/constraints/Count)
+ - tags: recreational, mzn14, mzn19
+
+
+Input Data (data.dzn):
+n=3;
+
+MiniZinc Model:
+include "globals.mzn";
+    int: n; % size of the grid
+    array[1..n, 1..n] of var 0..n: grid;
+
+    % Define the pairs
+    set of int: Pairs = 1..n;
+    array[Pairs] of var 1..n: pair1_x;
+    array[Pairs] of var 1..n: pair1_y;
+    array[Pairs] of var 1..n: pair2_x;
+    array[Pairs] of var 1..n: pair2_y;
+
+    % Constraints
+    constraint forall(i in Pairs)(
+      grid[pair1_x[i], pair1_y[i]] = i /\
+      grid[pair2_x[i], pair2_y[i]] = i
+    );
+
+    % Ensure that the lines do not cross
+    constraint forall(i in Pairs, j in Pairs where i < j)(
+      (pair1_x[i] != pair1_x[j] \/ pair1_y[i] != pair1_y[j]) /\
+      (pair1_x[i] != pair2_x[j] \/ pair1_y[i] != pair2_y[j]) /\
+      (pair2_x[i] != pair1_x[j] \/ pair2_y[i] != pair1_y[j]) /\
+      (pair2_x[i] != pair2_x[j] \/ pair2_y[i] != pair2_y[j])
+    );
+
+    % Solve
+    solve satisfy;
+
+Expected Output:
+{
+  "grid": [
+    [
+      3,
+      0,
+      0
+    ],
+    [
+      2,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0
+    ]
+  ],
+  "pair1_x": [
+    3,
+    2,
+    1
+  ],
+  "pair1_y": [
+    1,
+    1,
+    1
+  ],
+  "pair2_x": [
+    3,
+    2,
+    1
+  ],
+  "pair2_y": [
+    1,
+    1,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

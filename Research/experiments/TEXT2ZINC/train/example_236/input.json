@@ -1,0 +1,63 @@
+{
+  "description": "A company is dealing with I different items over a planning horizon of M months. The buy price of item i in month m is given by BuyPrice. All items can be sold after refining for the same SellPrice. Each item is either a vegetable or not, which is indicated by IsVegetable. There is a limited refining capability where at most MaxVegetableRefiningPerMonth of vegetables and MaxNonVegetableRefiningPerMonth of non-vegetables can be refined in any given month. The company has a storage size of StorageSize and incurs a StorageCost for storing items per month. The refined products must fall within a hardness range of MinHardness to MaxHardness, where the hardness of item i is Hardness. Initially, the storage contains an amount of InitialAmount of items. What buying, storing, and manufacturing policy should the company pursue in order to maximize profit?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Food Manufacturing Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "if",
+      "else",
+      "endif",
+      "<=",
+      ">=",
+      "=",
+      "sum",
+      "*",
+      "-",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Food Manufacturing Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "buy",
+      "refine",
+      "storage",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "BuyPrice",
+      "SellPrice",
+      "IsVegetable",
+      "MaxVegetableRefiningPerMonth",
+      "MaxNonVegetableRefiningPerMonth",
+      "StorageSize",
+      "StorageCost",
+      "MinHardness",
+      "MaxHardness",
+      "Hardness",
+      "InitialAmount"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "if",
+      "else",
+      "endif",
+      "<=",
+      ">=",
+      "=",
+      "sum",
+      "*",
+      "-",
+      "+"
+    ]
+  }
+}

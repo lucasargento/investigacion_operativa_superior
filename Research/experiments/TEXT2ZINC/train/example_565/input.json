@@ -1,0 +1,42 @@
+{
+  "description": "This is a scheduling problem. The aim is to find a schedule that minimises the general end while not exceeding the capacity 13 of the resource. There are 7 tasks, each with a specific duration and resource requirement. The tasks are as follows: \n\nTask 1: Duration 16, Resource 2\nTask 2: Duration 6, Resource 9\nTask 3: Duration 13, Resource 3\nTask 4: Duration 7, Resource 7\nTask 5: Duration 5, Resource 10\nTask 6: Duration 18, Resource 1\nTask 7: Duration 4, Resource 11\n\nThe goal is to find the start times (origin) and end times for each task such that the maximum end time (End) is minimized, and the total resources used at any time do not exceed the limit of 13. The problem is solved using the MiniZinc constraint programming language, with the 'cumulative' global constraint ensuring that the resource limit is not exceeded.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Resource Constrained Scheduling",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "max",
+      "cumulative"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Resource Constrained Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "task_start",
+      "task_end",
+      "max_end_time"
+    ],
+    "model_data_keywords": [
+      "num_tasks",
+      "max_duration",
+      "resource_limit",
+      "task_duration",
+      "task_resources"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "max",
+      "cumulative"
+    ]
+  }
+}

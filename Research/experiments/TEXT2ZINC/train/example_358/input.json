@@ -1,0 +1,64 @@
+{
+  "description": "The Rogo problem is a puzzle where the goal is to find a loop through a grid of fixed length that contains as many reward points as possible. The grid is a 2D matrix where each cell can be either white (empty), black (not allowed to pass), or contain a reward point. The loop must start and end at the same cell, and it can only move to a neighboring cell (up, down, left, or right, but not diagonally). The problem is to find the loop that collects the maximum number of reward points. The problem is defined by the number of rows and columns of the grid, the maximum length of the loop, the grid itself, and the best known value of the collected reward points. The solution is the path of the loop and the total number of collected reward points.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Rogo Puzzle",
+    "domain": "Puzzles",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "alldifferent",
+      "total_points",
+      "<=",
+      "points",
+      "grid",
+      "BLOCKED_CELL",
+      "abs",
+      "=",
+      "table",
+      "valid_connections",
+      "<"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Rogo Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "y",
+      "points",
+      "total_points"
+    ],
+    "model_data_keywords": [
+      "rows",
+      "cols",
+      "max_steps",
+      "grid",
+      "best_known_value",
+      "EMPTY_CELL",
+      "BLOCKED_CELL",
+      "max_reward_point",
+      "num_connections",
+      "valid_connections"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "alldifferent",
+      "total_points",
+      "<=",
+      "points",
+      "grid",
+      "BLOCKED_CELL",
+      "abs",
+      "=",
+      "table",
+      "valid_connections",
+      "<"
+    ]
+  }
+}

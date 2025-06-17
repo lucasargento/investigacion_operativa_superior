@@ -1,0 +1,104 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 475
+- Name: Distinct Pairs in Collection
+- Domain: Combinatorics
+- Objective: satisfaction
+
+Problem Description:
+The problem is about finding the number of distinct pairs in a given collection. The collection is represented as a 2D array, where each row represents a pair. The number of distinct pairs is represented by the variable 'npairs'. The problem is to assign values to the pairs in such a way that the number of distinct pairs equals 'npairs'. The pairs are considered distinct based on both elements of the pair, not just one. For example, in the given collection of pairs [(3,1), (1,5), (3,1), (3,1), (1,5)], the number of distinct pairs is 2, which are (3,1) and (1,5). The problem is solved when the number of distinct pairs in the collection equals the given 'npairs' value.
+
+
+MiniZinc Model:
+int: n = 5;
+array[1..n, 1..2] of var 1..5: pairs;
+var lb_array(pairs)..ub_array(pairs): npairs;
+
+predicate npair(var int: npairs, array[int,int] of var int: pairs) =
+    let {
+       array[lb_array(pairs)..ub_array(pairs)] of var 0..1 : first_pos
+    } in
+    forall(i in index_set_1of2(pairs)) (
+       first_pos[i] = 1 <-> 
+           forall(j in lb_array(pairs)..i-1) (
+               not(
+                   pairs[i,1] = pairs[j,1]
+                   /\
+                   pairs[i,2] = pairs[j,2]
+               )
+           )
+    )
+    /\
+    npairs = sum(first_pos)
+;
+
+predicate cp2d(array[int,int] of var int: x, array[int,int] of var int: y) =
+  assert(index_set_1of2(x) = index_set_1of2(y) /\
+         index_set_2of2(x) = index_set_2of2(y),
+           "cp2d: x and y have different sizes",
+     forall(i in index_set_1of2(x), j in index_set_2of2(x)) (
+         y[i,j] = x[i,j]
+    ) 
+  )
+; 
+
+solve satisfy;
+
+constraint
+   npairs = 2 /\
+   cp2d(pairs, array2d(1..n,1..2, [
+                       3,1,
+                       1,5,
+                       3,1,
+                       3,1,
+                       1,5
+                  ]))
+    /\
+    npair(npairs, pairs)
+;
+
+output
+[
+  "npairs: " ++ show(npairs) ++ "\n" ++ 
+  "pairs: " ++ show(pairs) ++ "\n" 
+];
+
+Expected Output:
+{
+  "pairs": [
+    [
+      3,
+      1
+    ],
+    [
+      1,
+      5
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      1,
+      5
+    ]
+  ],
+  "npairs": 2
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

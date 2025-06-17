@@ -1,0 +1,40 @@
+{
+  "description": "The problem is to construct two cubes which can be used as a calendar, i.e. together can represent the numbers 01..31. One cube has the sides 1,2 and the other 3,4,5. The solution should be such that cube1 = [0,1,2,6,7,8] and cube2 = [0,1,2,3,4,5]. The cubes should be constructed in such a way that they contain all the numbers from 0 to 8 at least once. The numbers on the cubes should be arranged in increasing order and all the numbers on a cube should be different. The numbers on the cubes should be able to represent all the numbers from 1 to 31 in the form of two-digit numbers where the first digit is from one cube and the second digit is from the other cube. The number 9 is represented as 6.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Calendar Cubes Construction",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "contains",
+      "toNum",
+      "forall",
+      "all_different",
+      "increasing",
+      "count"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Calendar Cubes Construction",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "cube1",
+      "cube2",
+      "x"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "contains",
+      "toNum",
+      "forall",
+      "all_different",
+      "increasing",
+      "count"
+    ]
+  }
+}

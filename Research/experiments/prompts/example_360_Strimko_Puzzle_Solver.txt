@@ -1,0 +1,179 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 360
+- Name: Strimko Puzzle Solver
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is about Strimko, a puzzle game. The game is played on an nxn grid. The objective is to fill the grid in such a way that each row and column of the grid must contain the numbers 1, 2, ..., n exactly once, forming a Latin square. Additionally, each 'stream' (connected path in the grid) must also contain the numbers 1, 2, ..., n exactly once. Some numbers are already placed in the grid, and these placements cannot be changed. The task is to find a valid completion of the grid that satisfies all these conditions.
+
+
+Input Data (data.dzn):
+% Strimko Monthly #02
+n = 7;
+streams = array2d(1..n, 1..n*2, [
+        1,1, 1,2, 2,1, 2,2, 3,1, 3,3, 4,4,
+        1,3, 1,4, 1,5, 1,6, 1,7, 2,3, 2,7,
+        2,4, 2,5, 2,6, 3,4, 3,5, 4,3, 4,5,
+        3,2, 4,1, 4,2, 5,1, 6,2, 6,4, 7,3,
+        3,6, 3,7, 4,6, 4,7, 5,7, 6,5, 6,6,
+        5,2, 5,3, 5,4, 6,1, 6,3, 7,1, 7,2,
+        5,5, 5,6, 6,7, 7,4, 7,5, 7,6, 7,7
+]);
+
+num_placed = 10;
+placed = array2d(1..num_placed, 1..3, [
+                    2,1,1,
+                    2,3,7,
+                    2,5,6,
+                    2,7,4,
+                    3,2,7,
+                    3,6,1,
+                    4,1,4,
+                    4,7,5,
+                    5,2,2,
+                    5,6,6
+]);
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n;
+array[1..n, 1..n] of var 1..n: x;
+array[1..n, 1..n*2] of 1..n: streams;
+int: num_placed;
+array[1..num_placed, 1..3] of 1..n: placed;
+
+
+solve satisfy;
+
+constraint
+   %
+   % latin square
+   % 
+   forall(i in 1..n) (
+       all_different([ x[i, j] | j in 1..n]) /\
+       all_different([ x[j, i] | j in 1..n])
+   )
+   /\
+   % streams
+   forall(i in 1..n) (
+      all_different([x[streams[i,2*j+1],streams[i,2*j+2]] | j in 0..n-1])
+   )
+   /\ % placed
+   forall(i in 1..num_placed) (
+       x[placed[i,1], placed[i,2]] = placed[i,3]
+   )
+
+;
+
+output
+[ if j = 1 then "\n" else " " endif ++
+     show(x[i,j])
+  | i,j in 1..n
+];
+
+%
+% data
+%
+
+% data is in the strimko_*.dzn files
+
+% Strimko Set 068
+% n = 4;
+% streams = array2d(1..n, 1..n*2, [
+%                     1,1, 2,2, 3,3, 4,4,
+%                     2,1, 1,2, 1,3, 2,4,
+%                     3,1, 4,2, 4,3, 3,4,
+%                     4,1, 3,2, 2,3, 1,4
+%                    ]);
+
+% num_placed = 3;
+% placed = array2d(1..num_placed, 1..3, [
+%                              2,2,3,
+%                              2,3,2,
+%                              3,3,1
+%                            ]);
+
+Expected Output:
+{
+  "x": [
+    [
+      7,
+      4,
+      6,
+      3,
+      2,
+      5,
+      1
+    ],
+    [
+      1,
+      5,
+      7,
+      2,
+      6,
+      3,
+      4
+    ],
+    [
+      2,
+      7,
+      3,
+      4,
+      5,
+      1,
+      6
+    ],
+    [
+      4,
+      3,
+      1,
+      6,
+      7,
+      2,
+      5
+    ],
+    [
+      5,
+      2,
+      4,
+      7,
+      1,
+      6,
+      3
+    ],
+    [
+      3,
+      6,
+      5,
+      1,
+      4,
+      7,
+      2
+    ],
+    [
+      6,
+      1,
+      2,
+      5,
+      3,
+      4,
+      7
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

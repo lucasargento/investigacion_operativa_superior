@@ -1,0 +1,61 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 233
+- Name: Sports Product Production Optimization
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+How many of each product should the sports produce in order to maximize its profit for the month, given the N different raw materials available, where each material i has an available amount of Available, and each product j has a requirement of Requirements units of material i, a selling price of Prices, a production cost of Costs, and a market demand of Demands?
+
+
+Input Data (data.dzn):
+Here is the data in ".dzn" format:
+
+```
+available = [240000, 8000, 75000];
+requirements = [| 48, 1, 10
+                | 40, 1, 10
+                | 0, 1, 2 |];
+prices = [40, 38, 9];
+costs = [30, 26, 7];
+demands = [10000, 2000, 10000];
+```
+
+MiniZinc Model:
+% Define parameters
+int: N; % Number of raw materials
+int: M; % Number of products
+array[1..N] of int: available; % Available amount of each raw material
+array[1..M, 1..N] of int: requirements; % Requirement of each raw material for each product
+array[1..M] of int: prices; % Selling price of each product
+array[1..M] of int: costs; % Production cost of each product
+array[1..M] of int: demands; % Market demand of each product
+
+% Define decision variables
+array[1..M] of var 0..demands[i]: amount; % Amount of each product to produce
+
+% Define objective
+var int: total_profit = sum(i in 1..M)(amount[i] * (prices[i] - costs[i]));
+
+% Define constraints
+constraint forall(i in 1..N)(sum(j in 1..M)(requirements[j, i] * amount[j]) <= available[i]);
+
+% Maximize total profit
+solve maximize total_profit;
+
+% Output
+output ["amount: ", show(amount), "\n", "total_profit: ", show(total_profit)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

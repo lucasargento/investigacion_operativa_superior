@@ -1,0 +1,40 @@
+{
+  "description": "This is a transportation problem where there are multiple origins NumberOfOrigins and destinations NumberOfDestinations. Each origin has a certain supply SupplyOfOrigin, and each destination has a certain demand DemandOfDestination. The goal is to minimize the total cost of transportation TransportationCost. The cost of transporting from an origin i to a destination j is given by CostPerUnit_{i,j}. The problem is subject to the constraints that the total supply from each origin and the total demand at each destination must be met.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Transportation Problem",
+    "domain": "Logistics",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Transportation Problem",
+    "domain": "Logistics",
+    "model_var_keywords": [
+      "Transport"
+    ],
+    "model_data_keywords": [
+      "NumberOfOrigins",
+      "NumberOfDestinations",
+      "SupplyOfOrigin",
+      "DemandOfDestination",
+      "CostPerUnit"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 442
+- Name: Maximize Total Profit
+- Domain: Finance
+- Objective: maximization
+
+Problem Description:
+Consider a problem where we have a set ElementSet. For each element j in ElementSet, we have a parameter CoefficientA_j, a parameter ProfitCoefficientC_j, and a parameter UpperBoundU_j. We also have a global parameter GlobalParameterB. We have a variable DecisionVariableX_j for each j in ElementSet. The goal is to maximize the total profit, which is the sum of ProfitCoefficientC_j * DecisionVariableX_j for all j in ElementSet. The constraints are that the sum of (1/CoefficientA_j) * DecisionVariableX_j for all j in ElementSet should be less than or equal to GlobalParameterB, and DecisionVariableX_j should be between 0 and UpperBoundU_j for all j in ElementSet.
+
+
+Input Data (data.dzn):
+ElementNum = 2;
+CoefficientA = [200, 140];
+ProfitCoefficientC = [25, 30];
+UpperBoundU = [6000, 4000];
+GlobalParameterB = 40;
+
+MiniZinc Model:
+% Parameters
+int: ElementNum;
+array[1..ElementNum] of int: CoefficientA;
+array[1..ElementNum] of int: ProfitCoefficientC;
+array[1..ElementNum] of int: UpperBoundU;
+int: GlobalParameterB;
+
+% Decision Variables
+array[1..ElementNum] of var 0..max(UpperBoundU): DecisionVariableX;
+
+% Objective
+maximize sum(j in 1..ElementNum) (ProfitCoefficientC[j] * DecisionVariableX[j]);
+
+% Constraints
+constraint sum(j in 1..ElementNum) ((1.0/CoefficientA[j]) * DecisionVariableX[j]) <= GlobalParameterB;
+constraint forall(j in 1..ElementNum) (DecisionVariableX[j] >= 0 /\ DecisionVariableX[j] <= UpperBoundU[j]);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

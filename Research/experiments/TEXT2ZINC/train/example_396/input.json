@@ -1,0 +1,44 @@
+{
+  "description": "The problem is to find distinct integers A, B, C, D, E, F in the range 2 to a given maximum value such that the sum of the fractions A/B, C/D, and E/F is equal to the product of the same fractions. Additionally, the fractions must be in increasing order, i.e., A/B < C/D < E/F. The problem is to find all such combinations of A, B, C, D, E, F that satisfy these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Fraction Sum and Product Equality",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "<",
+      "all_different",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Fraction Sum and Product Equality",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "AB",
+      "CD",
+      "EF",
+      "Addition",
+      "Multiplication"
+    ],
+    "model_data_keywords": [
+      "max_val"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "<",
+      "all_different",
+      "="
+    ]
+  }
+}

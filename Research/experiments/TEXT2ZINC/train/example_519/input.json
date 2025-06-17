@@ -1,0 +1,33 @@
+{
+  "description": "The problem is to color Gardner's graph. The graph is represented by an array of sets, where each set represents the neighbors of a node in the graph. The graph has 110 nodes. The goal is to assign a color to each node, represented by the array x, such that no two adjacent nodes (i.e., nodes that are neighbors) have the same color. There are 4 possible colors, represented by the numbers 1 to 4. The problem is to find a coloring of the graph that satisfies these constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Gardner's Graph Coloring",
+    "domain": "Graph Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Gardner's Graph Coloring",
+    "domain": "Graph Theory",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "n",
+      "neighbors"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "!="
+    ]
+  }
+}

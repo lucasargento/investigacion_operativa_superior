@@ -1,0 +1,144 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 512
+- Name: Prime Number Multiplication Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is to find prime numbers (2, 3, 5, or 7) for each P such that the following multiplication is correct: 
+
+PPP
+* PP
+---------
+PPPP
+PPPP
+---------
+PPPPP
+
+The multiplication is represented as follows:
+
+ABC
+* DE
+---------
+FGHI
+JKLM
+---------
+NOPQR
+
+The goal is to find the values of ABC, DE, FGHI, JKLM, and NOPQR such that the multiplication is correct and all the digits are prime numbers (2, 3, 5, or 7).
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+set of int: primes = {2,3,5,7};
+
+% decision variables
+
+var int: abc;
+array[1..3] of var primes: abc_a;
+var int: de;
+array[1..2] of var primes: de_a;
+var int: fghi;
+array[1..4] of var primes: fghi_a;
+var int: jklm;
+array[1..4] of var primes: jklm_a;
+var int: nopqr;
+array[1..5] of var primes: nopqr_a;
+
+% Requires MiniZinc 2
+function var int: to_num(array[int] of var int: a) =
+          let { int: len = card(index_set(a));
+                var int: n = sum(i in index_set(a)) (
+                   pow(10, len-i) * a[i] 
+                 );
+         } in n
+;
+
+solve satisfy;
+
+constraint
+
+  % preparation
+  abc   = to_num(abc_a) /\
+  de    = to_num(de_a) /\
+  fghi  = to_num(fghi_a) /\
+  jklm  = to_num(jklm_a) /\
+  nopqr = to_num(nopqr_a) /\
+ 
+  % the equation
+  abc * de_a[2] = fghi /\
+  abc * de_a[1] = jklm /\
+  fghi + 10*jklm =  nopqr
+  % /\ abc * de = nopqr
+
+;
+
+output [
+
+  "abc: ", show(abc), "\n",
+  "de: ", show(de), "\n",
+  "fghi: ", show(fghi), "\n",
+  "jklm: ", show(jklm), "\n",
+  "nopqr: ", show(nopqr), "\n",
+   "\n\n",
+   "   ", show(abc), "\n",
+   "*   ", show(de), "\n",
+   "------\n",
+   "  ", show(fghi), "\n",
+   "+", show(jklm), " \n",
+   "------\n",
+   " ", show(nopqr), " \n",
+
+];
+
+Expected Output:
+{
+  "abc": 775,
+  "abc_a": [
+    7,
+    7,
+    5
+  ],
+  "de": 33,
+  "de_a": [
+    3,
+    3
+  ],
+  "fghi": 2325,
+  "fghi_a": [
+    2,
+    3,
+    2,
+    5
+  ],
+  "jklm": 2325,
+  "jklm_a": [
+    2,
+    3,
+    2,
+    5
+  ],
+  "nopqr": 25575,
+  "nopqr_a": [
+    2,
+    5,
+    5,
+    7,
+    5
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

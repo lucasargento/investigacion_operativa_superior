@@ -1,0 +1,40 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 70
+- Name: Production Scheduling Problem
+- Domain: Manufacturing and Production
+- Objective: minimization
+
+Problem Description:
+A small computer manufacturing company forecasts the demand over the following months. These demands must be satisfied and can not be shorted. In any month it can produce a maximum number of units, using regular production, at a regular cost in dollars per unit. However, by using overtime, it can produce additional units at an overtime rate in dollars per unit. The firm can store units from month to month at a rate in dollars per unit per month. Find the production schedule that minimizes the cost.
+
+
+Input Data (data.dzn):
+N = 3;
+Demand = [10.0, 20.0, 10.0];
+MaxRegularAmount = 5.0;
+CostRegular = 10.0;
+CostOvertime = 12.0;
+StoreCost = 1.0;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 450.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

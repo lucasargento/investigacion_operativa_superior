@@ -1,0 +1,35 @@
+{
+  "description": "The problem is a remainder puzzle, inspired by a puzzle from Boris Kordemsky's 'The Moscow Puzzles'. The puzzle involves an array of 4 integers, x[1] to x[4], and another integer n. The goal is to minimize n. The constraints are that all elements of the array x must be greater than or equal to 1, n must be greater than or equal to 1, and the following equations must hold: -3*x[1] + n = 1, -4*x[2] + n = 2, -5*x[3] + n = 3, -6*x[4] + n = 4. The output is the array x and the integer n.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Remainder Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "-",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Remainder Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "n"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "-",
+      "+"
+    ]
+  }
+}

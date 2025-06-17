@@ -1,0 +1,44 @@
+{
+  "description": "The problem is about filling a 4x6 table with 18 ticks such that the sum of ticks on each column and row is even and no row or column is empty. The decision variable is a 2D array 'x' of size 4x6 where each element can be either 0 or 1. The objective is to find a configuration of the table that satisfies the constraints. The constraints are: the total number of ticks is 18; the sum of ticks in each row and each column is even; and no row or column is empty. The problem does not have an optimization goal, it is a satisfaction problem. The problem is solved using an integer search strategy that selects the variable with the smallest domain first (first_fail) and assigns it the smallest value in its domain (indomain_min).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Even Ticks Table Filling",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "=",
+      "mod",
+      ">=",
+      "forall",
+      "let"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Even Ticks Table Filling",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "row_sum",
+      "col_sum"
+    ],
+    "model_data_keywords": [
+      "rows",
+      "cols",
+      "total_ticks"
+    ],
+    "objective": "satisfaction",
+    "source": "",
+    "constraints": [
+      "sum",
+      "=",
+      "mod",
+      ">=",
+      "forall",
+      "let"
+    ]
+  }
+}

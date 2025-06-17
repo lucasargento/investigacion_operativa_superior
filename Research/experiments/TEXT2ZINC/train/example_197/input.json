@@ -1,0 +1,57 @@
+{
+  "description": "What maintaining, selling, storing, and manufacturing policy should the company pursue in order to maximize profit? The company has M machines, each with a specific downtime Downtime. There are K products, each with an associated profit Profit and a production time on each machine given by Time. Products must adhere to limits given by Limit. The price for storing products is StorePrice, and they must keep a quantity of KeepQuantity in the store. The company has WorkHours work hours available for all machines combined.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Factory Production Planning",
+    "domain": "Operations Research",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "<=",
+      "+",
+      "-",
+      "*",
+      "/",
+      "if",
+      "else",
+      "endif",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Factory Production Planning",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "sell",
+      "manufacture",
+      "storage",
+      "maintain",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "num_machines",
+      "profit",
+      "time",
+      "down",
+      "limit",
+      "store_price",
+      "keep_quantity",
+      "n_workhours"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "<=",
+      "+",
+      "-",
+      "*",
+      "/",
+      "if",
+      "else",
+      "endif",
+      "forall"
+    ]
+  }
+}

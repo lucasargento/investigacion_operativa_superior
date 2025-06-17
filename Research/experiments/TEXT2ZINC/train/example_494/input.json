@@ -1,0 +1,47 @@
+{
+  "description": "The problem is about simple number theory. Given an integer 'n', the task is to calculate the number of divisors of 'n'. The divisors are stored in an array 'divisor' of size 't' where 't' is half of 'n' plus one. A variable 'is_prime' is used to check if 'n' is a prime number. If 'n' has no divisors (other than 1 and itself), then 'n' is a prime number and 'is_prime' is set to 1, otherwise 'is_prime' is set to 0. The goal is to find the values of 'divisor' and 'is_prime' that satisfy these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Number Theory Divisors",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "calculate_divisors",
+      "forall",
+      "=",
+      "mod",
+      ">",
+      "sum",
+      "bool2int",
+      "<->"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Number Theory Divisors",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "divisor",
+      "is_prime",
+      "num_divisors"
+    ],
+    "model_data_keywords": [
+      "n",
+      "t"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "calculate_divisors",
+      "forall",
+      "=",
+      "mod",
+      ">",
+      "sum",
+      "bool2int",
+      "<->"
+    ]
+  }
+}

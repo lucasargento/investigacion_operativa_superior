@@ -1,0 +1,37 @@
+{
+  "description": "The problem is about identifying the sequence and sum of N natural increasing numbers. The sequence is written in groups: 1; 2,3; 4,5,6; 7,8,9,10; ... and the task is to add the groups. This is also known as the 'sum of the next n natural numbers'. The sequence M(n) of magic constants for n X n magic squares (numbered 1 through n^2) from n=3 begins M(n) = 15, 34, 65, 111, 175, 260, .. The number of solutions (without the 'identify constraint') for n is n*n-n. The problem is to find an array of n natural numbers (x) and their sum (z) such that all numbers in x are different, x is in increasing order, the difference between the last and first number in x is n-1, and the sum z equals n*(n*n + 1) / 2. The problem is inspired by the 'farmer and cows' problem where n=9.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Sum of Natural Numbers Sequence",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "increasing",
+      "=",
+      "div"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Sum of Natural Numbers Sequence",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "sequence",
+      "sum_sequence"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "increasing",
+      "=",
+      "div"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 218
+- Name: Rocket Fuel Optimization
+- Domain: Physics
+- Objective: minimization
+
+Problem Description:
+The objective is to minimize the total fuel \sum_{t=0}^{TotalTime-1} |a_t| spent subject to the initial position InitialPosition, initial velocity InitialVelocity, final position FinalPosition, final velocity FinalVelocity, and total time TotalTime.
+
+
+Input Data (data.dzn):
+InitialPosition = 0;
+InitialVelocity = 0;
+FinalPosition = 1;
+FinalVelocity = 0;
+TotalTime = 20;
+
+MiniZinc Model:
+% Parameters
+int: InitialPosition; % Initial position of the rocket
+int: InitialVelocity; % Initial velocity of the rocket
+int: FinalPosition; % Final position of the rocket
+int: FinalVelocity; % Final velocity of the rocket
+int: TotalTime; % Total time for the rocket to reach the final position
+
+% Decision Variables
+array[0..TotalTime] of var int: x; % Position of the rocket at each time step
+array[0..TotalTime] of var int: v; % Velocity of the rocket at each time step
+array[0..TotalTime-1] of var int: a; % Acceleration of the rocket at each time step
+
+% Objective Function
+var int: fuel_spend = sum(t in 0..TotalTime-1)(abs(a[t])); % Total fuel spent
+minimize fuel_spend;
+
+% Constraints
+% Initial conditions
+constraint x[0] = InitialPosition;
+constraint v[0] = InitialVelocity;
+
+% Final conditions
+constraint x[TotalTime] = FinalPosition;
+constraint v[TotalTime] = FinalVelocity;
+
+% Dynamics of the rocket
+constraint forall(t in 0..TotalTime-1)(
+    x[t+1] = x[t] + v[t] /\ v[t+1] = v[t] + a[t]
+);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,155 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 10
+- Name: Science Fair Table Optimization
+- Domain: Mathematical Modeling
+- Objective: maximization
+
+Problem Description:
+A science fair is setting up tables to display children's science experiments. There are circular and rectangular tables, each accommodating a certain number of participants, poster boards, and guests. The tables require different amounts of space, and there are constraints on the number of participants and poster boards needed. Given a limited amount of available space, the objective is to determine how many of each type of table should be set up to maximize the number of guests that can be catered.
+
+
+Input Data (data.dzn):
+TotalSpace = 1900;
+MinParticipants = 500;
+MinBoards = 300;
+
+ParticipantsPerCircular = 5;
+ParticipantsPerRectangular = 4;
+
+BoardsPerCircular = 4;
+BoardsPerRectangular = 4;
+
+GuestsPerCircular = 8;
+GuestsPerRectangular = 12;
+
+SpacePerCircular = 15;
+SpacePerRectangular = 20;
+
+MiniZinc Model:
+% ============================================================
+% SCIENCE FAIR TABLE OPTIMIZATION MODEL
+% ============================================================
+%
+% PROBLEM DESCRIPTION:
+% -------------------
+% A science fair needs to set up tables for displaying science experiments.
+% Two types of tables can be used: circular and rectangular.
+%
+% - Each table accommodates a certain number of participants and poster boards.
+% - Each table type caters to a different number of guests.
+% - The space required for each type of table is different.
+% - There are minimum requirements for participants and poster boards.
+% - The total available space limits the number of tables that can be set up.
+%
+% OBJECTIVE:
+% ----------
+% Determine the optimal number of circular and rectangular tables to **maximize**
+% the total number of guests that can be accommodated while meeting constraints.
+%
+% PARAMETERS PROVIDED IN JSON:
+% {
+%   "TotalSpace": <int>, "MinParticipants": <int>, "MinBoards": <int>,
+%   "ParticipantsPerCircular": <int>, "ParticipantsPerRectangular": <int>,
+%   "BoardsPerCircular": <int>, "BoardsPerRectangular": <int>,
+%   "GuestsPerCircular": <int>, "GuestsPerRectangular": <int>,
+%   "SpacePerCircular": <int>, "SpacePerRectangular": <int>
+% }
+% ============================================================
+
+
+% -----------------------------
+% 1) PARAMETERS
+% -----------------------------
+
+int: TotalSpace;          % Total available space
+int: MinParticipants;     % Minimum required participants
+int: MinBoards;           % Minimum required poster boards
+
+int: ParticipantsPerCircular;  % Participants per circular table
+int: ParticipantsPerRectangular; % Participants per rectangular table
+
+int: BoardsPerCircular;    % Poster boards per circular table
+int: BoardsPerRectangular; % Poster boards per rectangular table
+
+int: GuestsPerCircular;    % Guests catered per circular table
+int: GuestsPerRectangular; % Guests catered per rectangular table
+
+int: SpacePerCircular;     % Space required per circular table
+int: SpacePerRectangular;  % Space required per rectangular table
+
+
+% -----------------------------
+% 2) DECISION VARIABLES
+% -----------------------------
+
+% The number of circular and rectangular tables to set up
+var 0..TotalSpace div SpacePerCircular: CircularTables;
+var 0..TotalSpace div SpacePerRectangular: RectangularTables;
+
+% The total number of guests that can be accommodated
+var int: TotalGuests;
+
+
+% -----------------------------
+% 3) CONSTRAINTS
+% -----------------------------
+
+% (C1) Space Constraint: The total space used cannot exceed the available space.
+constraint
+    CircularTables * SpacePerCircular + RectangularTables * SpacePerRectangular <= TotalSpace;
+
+% (C2) Participants Constraint: The total number of participants must be at least the required number.
+constraint
+    CircularTables * ParticipantsPerCircular + RectangularTables * ParticipantsPerRectangular >= MinParticipants;
+
+% (C3) Poster Board Constraint: The total number of poster boards must be at least the required number.
+constraint
+    CircularTables * BoardsPerCircular + RectangularTables * BoardsPerRectangular >= MinBoards;
+
+% (C4) Total Guests Calculation:
+% The total number of guests catered is the sum from both types of tables.
+constraint
+    TotalGuests = CircularTables * GuestsPerCircular + RectangularTables * GuestsPerRectangular;
+
+
+% -----------------------------
+% 4) OBJECTIVE FUNCTION
+% -----------------------------
+
+% Maximize the total number of guests catered.
+solve maximize TotalGuests;
+
+
+% -----------------------------
+% 5) OUTPUT
+% -----------------------------
+
+% Print the number of each table used and the maximum number of guests catered.
+output [
+    "Optimal Science Fair Table Setup:\n",
+    "  Circular Tables: ", show(CircularTables), "\n",
+    "  Rectangular Tables: ", show(RectangularTables), "\n",
+    "Maximum Guests Catered: ", show(TotalGuests), "\n"
+];
+
+Expected Output:
+{
+  "CircularTables": 60,
+  "RectangularTables": 50,
+  "TotalGuests": 1080,
+  "_objective": 1080
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

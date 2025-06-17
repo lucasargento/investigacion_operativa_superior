@@ -1,0 +1,120 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 467
+- Name: Minimum Weight All Different
+- Domain: Constraint Satisfaction
+- Objective: minimization
+
+Problem Description:
+The problem is to find a solution for the 'minimum_weight_alldifferent' constraint. This constraint requires that all variables in a given collection should take a distinct value located within the interval [1, |VARIABLES|]. In addition, a cost is calculated which is equal to the sum of the costs associated with assigning value i to variable j. These costs are given by a matrix. The goal is to minimize this cost. An example of this problem would be a set of variables <2, 3, 1, 4> and a matrix of costs. The minimum_weight_alldifferent constraint holds since the cost 17 corresponds to the sum of certain elements in the matrix. The problem is solved using the MiniZinc modeling language, which includes global constraints and built-in predicates for handling arrays and matrices.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+int: n = 4;
+array[1..n] of var 1..n: variables;
+array[1..n, 1..n] of var 0..9: matrix;
+var 0..1000: cost;
+
+predicate minimum_weight_alldifferent(array[int] of var int: variables,
+                                      array[int,int] of var int: matrix,
+                                      var int: cost) =
+   all_different(variables)
+   /\
+   cost = sum(i in index_set(variables)) (
+      sum(j in index_set_2of2(matrix)) (
+         bool2int(variables[i] = j)*matrix[i,j]
+      )
+   )
+;
+
+predicate cp2d(array[int,int] of var int: x, array[int,int] of var int: y) =
+  assert(index_set_1of2(x) = index_set_1of2(y) /\
+         index_set_2of2(x) = index_set_2of2(y),
+           "cp2d: x and y have different sizes",
+     forall(i in index_set_1of2(x), j in index_set_2of2(x)) (
+         y[i,j] = x[i,j]
+    ) 
+  )
+; 
+
+predicate cp1d(array[int] of var int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+     forall(i in index_set(x)) ( x[i] = y[i] ))
+; 
+
+solve minimize cost;
+
+constraint
+   cp1d(variables, [2,3,1,4]) % /\
+   % cp2d(matrix, array2d(1..n, 1..n, [
+   %                 4,1,7,0,
+   %                 1,0,8,2,
+   %                 3,2,1,6,
+   %                 0,0,6,5
+   %             ]))
+   /\
+   cost = 17
+   /\
+   minimum_weight_alldifferent(variables, matrix, cost)
+;
+
+
+output
+[
+  "variables: " ++ show(variables) ++ "\n" ++
+  "cost: " ++ show(cost) ++ "\n" ++
+  "matrix: " ++ show(matrix) ++ "\n"
+];
+
+Expected Output:
+{
+  "variables": [
+    2,
+    3,
+    1,
+    4
+  ],
+  "matrix": [
+    [
+      0,
+      9,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      8,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cost": 17,
+  "_objective": 17
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,42 @@
+{
+  "description": "The Birthday Paradox, or Birthday Problem, is a problem in probability theory that pertains to the probability that in a set of randomly chosen people, some pair of them will have the same birthday. In a group of 23 (or more) randomly chosen people, there is more than 50% probability that some pair of them will both have been born on the same day of the year. For 57 or more people, the probability is more than 99%, tending toward 100% as the pool of people grows. The problem is to calculate the probability of having no duplicate birthdays and the probability of having duplicate birthdays in a group of people. The number of days in a year is 365 and the number of people to check is 100.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Birthday Paradox",
+    "domain": "Probability Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "*",
+      "/",
+      "-",
+      "1.0"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Birthday Paradox",
+    "domain": "Probability Theory",
+    "model_var_keywords": [
+      "prob_no_duplicate",
+      "prob_duplicate"
+    ],
+    "model_data_keywords": [
+      "days_in_year",
+      "num_people"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "*",
+      "/",
+      "-",
+      "1.0"
+    ]
+  }
+}

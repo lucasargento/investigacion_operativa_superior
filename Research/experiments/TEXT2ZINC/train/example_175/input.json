@@ -1,0 +1,45 @@
+{
+  "description": "Langford's number problem (CSP lib problem 24) involves arranging 2 sets of positive integers 1..k into a sequence. The condition for the sequence is that, following the first occurrence of an integer i, each subsequent occurrence of i, appears i+1 indices later than the last. For example, for k=4, a solution would be 41312432. The problem also includes a constraint that k mod 4 = 0 or k mod 4 = 3. The goal is to find a sequence that satisfies these conditions. The solution is represented as an array where the numbers are in their proper positions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Langford's Number Problem",
+    "domain": "Combinatorial",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "mod",
+      "==",
+      "/",
+      "forall",
+      "=",
+      "+",
+      "all_different",
+      "<"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Langford's Number Problem",
+    "domain": "Combinatorial",
+    "model_var_keywords": [
+      "position",
+      "solution"
+    ],
+    "model_data_keywords": [
+      "k"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "mod",
+      "==",
+      "/",
+      "forall",
+      "=",
+      "+",
+      "all_different",
+      "<"
+    ]
+  }
+}

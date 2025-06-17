@@ -1,0 +1,41 @@
+{
+  "description": "This is a nonlinear optimization problem. The problem is to find the values of L, w, and h that maximize the product of w and h (wh), subject to the following constraints: L, w, and h are all non-negative integers; wh is at least 625; the sum of twice w and twice h equals L; L is at most 100; and h is at least 2. The optimal solution, according to Taha's 'Operations Research', is when w equals h equals L/4.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Nonlinear Optimization Problem",
+    "domain": "Operations Research",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "non-negative integers",
+      "wh_min",
+      "2*(w+h) = L",
+      "h_min"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Nonlinear Optimization Problem",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "L",
+      "w",
+      "h",
+      "wh"
+    ],
+    "model_data_keywords": [
+      "L_max",
+      "wh_min",
+      "h_min"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "non-negative integers",
+      "wh_min",
+      "2*(w+h) = L",
+      "h_min"
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 244
+- Name: Production Scheduling Problem
+- Domain: Manufacturing
+- Objective: minimization
+
+Problem Description:
+Formulate the problem of determining the production schedule that minimizes the cost, where the demand for each product is given by Demand, the maximum production amount under regular conditions is MaxRegularAmount, cost of regular production per unit is CostRegular, cost of production under overtime conditions per unit is CostOvertime, and the cost to store one unit of product is StoreCost.
+
+
+Input Data (data.dzn):
+demand = [10.0, 20.0, 10.0];
+max_regular_amount = 5.0;
+cost_regular = 10.0;
+cost_overtime = 12.0;
+store_cost = 1.0;
+
+MiniZinc Model:
+% Parameters
+int: N; % Number of months
+array[1..N] of float: demand; % Demand for each month
+float: max_regular_amount; % Maximum production amount under regular conditions
+float: cost_regular; % Cost of regular production per unit
+float: cost_overtime; % Cost of production under overtime conditions per unit
+float: store_cost; % Cost to store one unit of product
+
+% Decision Variables
+array[1..N] of var 0.0..max_regular_amount: reg_quant; % Quantity of products produced using regular production in each month
+array[1..N] of var 0.0..max_regular_amount: over_quant; % Quantity of products produced using overtime production in each month
+array[1..N] of var 0.0..max_regular_amount: store_quant; % Quantity of products stored in each month
+
+% Constraints
+constraint forall(i in 1..N) (
+    if i = 1 then
+        reg_quant[i] + over_quant[i] - demand[i] = store_quant[i]
+    else
+        reg_quant[i] + over_quant[i] + store_quant[i-1] - demand[i] = store_quant[i]
+    endif
+);
+
+% Objective
+var float: total_cost;
+constraint total_cost = sum(i in 1..N) (cost_regular * reg_quant[i] + cost_overtime * over_quant[i] + store_cost * store_quant[i]);
+solve minimize total_cost;
+
+% Output
+output ["reg_quant: ", show(reg_quant), "\n", "over_quant: ", show(over_quant)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

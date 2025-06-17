@@ -1,0 +1,46 @@
+{
+  "description": "The Abbott's Window puzzle is a mathematical problem that involves arranging numbers in a grid. The grid is an 8x8 matrix, where each cell can take a value of 0 or 1. The problem has several constraints that must be satisfied. The sum of the values in each row must be twice the corresponding value in array 'a'. Similarly, the sum of the values in each column must be twice the corresponding value in array 'b'. There are also constraints on the diagonals of the grid. The sum of the values in the diagonal starting from the top left to the bottom right must be twice the corresponding value in array 'c'. The sum of the values in the diagonal starting from the top right to the bottom left must be twice the corresponding value in array 'd'. The sum of the values in the diagonal starting from the bottom left to the top right must be twice the corresponding value in array 'e'. The sum of the values in the diagonal starting from the bottom right to the top left must be twice the corresponding value in array 'f'. The corners of the grid must all be 1. The goal of the problem is to maximize the total sum of the values in the grid.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Abbott's Window Puzzle",
+    "domain": "Puzzles",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "*",
+      "and"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Abbott's Window Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "gridCells",
+      "rowSums",
+      "colSums",
+      "topLeftToBottomRightDiagonalSums",
+      "topRightToBottomLeftDiagonalSums",
+      "bottomLeftToTopRightDiagonalSums",
+      "bottomRightToTopLeftDiagonalSums",
+      "totalSum"
+    ],
+    "model_data_keywords": [
+      "gridSize",
+      "GridIndices"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "*",
+      "and"
+    ]
+  }
+}

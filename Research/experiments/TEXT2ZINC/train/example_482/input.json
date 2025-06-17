@@ -1,0 +1,48 @@
+{
+  "description": "The problem is a nonmonotonic reasoning problem known as the Penguin problem. The assumptions are as follows: Birds which are not abnormal fly (i.e., birds usually fly). Penguins are considered abnormal. Penguins and eagles are birds. Tweety is a penguin and Toto is an eagle. The problem is to deduce which of these two birds can fly. The answer is that Toto, the eagle, can fly, while Tweety, the penguin, cannot.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Penguin Problem",
+    "domain": "Nonmonotonic Reasoning",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "not",
+      "\\/",
+      "/\\",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Penguin Problem",
+    "domain": "Nonmonotonic Reasoning",
+    "model_var_keywords": [
+      "canFly"
+    ],
+    "model_data_keywords": [
+      "BIRDS",
+      "TWEETY",
+      "TOTO"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "not",
+      "\\/",
+      "/\\",
+      "="
+    ]
+  }
+}

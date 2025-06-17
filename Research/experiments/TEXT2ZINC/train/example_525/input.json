@@ -1,0 +1,41 @@
+{
+  "description": "This problem is known as Martin Gardner's Prime puzzle. The task is to solve the operation: mP * nP = (m+n)P, where mP and nP are strings of m and n prime digits (2,3,5 or 7) respectively. The length of mP is 4 and the length of nP is 3. The goal is to find the values of mP, nP and (m+n)P that satisfy the operation.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Martin Gardner's Prime Puzzle",
+    "domain": "Mathematical Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "toNum",
+      "*",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Martin Gardner's Prime Puzzle",
+    "domain": "Mathematical Puzzles",
+    "model_var_keywords": [
+      "mP_a",
+      "nP_a",
+      "mnP_a",
+      "mP",
+      "nP",
+      "mnP"
+    ],
+    "model_data_keywords": [
+      "M",
+      "N",
+      "PrimeDigits"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "toNum",
+      "*",
+      "="
+    ]
+  }
+}

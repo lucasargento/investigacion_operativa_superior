@@ -1,0 +1,58 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 219
+- Name: Cafeteria Staff Scheduling
+- Domain: Workforce Scheduling
+- Objective: minimization
+
+Problem Description:
+Calculate the minimum number of employees to hire such that the requirements for coverage (as described by Num) can be met with each employee working for WorkingDays consecutive days followed by at least RestingDays consecutive resting days.
+
+
+Input Data (data.dzn):
+num = [5, 10, 2, 3, 2, 10];
+n_working_days = 5;
+n_resting_days = 2;
+
+MiniZinc Model:
+% Parameters
+int: n_working_days; % Number of consecutive working days
+int: n_resting_days; % Number of consecutive resting days
+array[1..N] of int: num; % Number of required employees each day
+
+% Decision Variables
+var int: total_number; % Total number of employees to hire
+array[1..total_number, 1..N] of var 0..1: is_work; % Whether each employee is working each day
+
+% Constraints
+constraint total_number >= max(num); % At least the maximum number of required employees must be hired
+
+% Each employee works for n_working_days consecutive days followed by at least n_resting_days consecutive resting days
+constraint forall(i in 1..total_number, n in 1..N-n_working_days-n_resting_days+1) (
+    sum(j in n..n+n_working_days-1) (is_work[i, j]) = n_working_days
+    /\ sum(j in n+n_working_days..n+n_working_days+n_resting_days-1) (is_work[i, j]) = 0
+);
+
+% The number of working employees each day must meet the requirements
+constraint forall(n in 1..N) (
+    sum(i in 1..total_number) (is_work[i, n]) = num[n]
+);
+
+% Objective
+solve minimize total_number;
+
+% Output
+output ["total_number: ", show(total_number), "\n", "is_work: ", show2d(is_work)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

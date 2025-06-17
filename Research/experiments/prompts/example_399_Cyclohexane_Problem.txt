@@ -1,0 +1,82 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 399
+- Name: Cyclohexane Problem
+- Domain: Number Placement Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Cyclohexane problem, also known as the Circling the Squares puzzle, is a number placement puzzle. The task is to place a different number in each of the ten squares so that the sum of the squares of any two adjacent numbers shall be equal to the sum of the squares of the two numbers diametrically opposite to them. The four numbers placed, as examples, must stand as they are. Fractions are not allowed, and no number need contain more than two figures. The numbers range from 1 to 99. The problem is to find a solution that satisfies these conditions.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+set of int: xrange = 1..99;
+var xrange: A;
+var xrange: B;
+var xrange: C;
+var xrange: D;
+var xrange: E;
+var xrange: F;
+var xrange: G;
+var xrange: H;
+var xrange: I;
+% var xrange: J;
+var xrange: K;
+array[1..10] of var xrange: LD = [A,B,C,D,E,F,G,H,I,K];
+
+% Predicate to simplify the constraint section
+predicate s(var int: X1, var int: X2, var int: Y1, var int: Y2 ) =
+   X1*X1 + X2*X2  = Y1*Y1 + Y2*Y2
+;
+
+% solve satisfy;
+solve :: int_search(LD, first_fail, indomain_min, complete) satisfy;
+
+
+constraint
+   all_different(LD) /\
+   A = 16 /\
+   B = 2 /\
+   F = 8 /\
+   G = 14 /\
+
+   s(A, B, F, G) /\
+   s(B, C, G, H) /\
+   s(C, D, H, I) /\
+   s(D, E, I, K) /\
+   s(E, F, K, A)
+;
+
+
+output [
+   show(LD), "\n",
+];
+
+Expected Output:
+{
+  "A": 16,
+  "B": 2,
+  "C": 19,
+  "D": 47,
+  "E": 26,
+  "F": 8,
+  "G": 14,
+  "H": 13,
+  "I": 49,
+  "K": 22
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

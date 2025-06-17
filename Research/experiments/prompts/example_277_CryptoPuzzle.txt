@@ -1,0 +1,93 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 277
+- Name: CryptoPuzzle
+- Domain: Mathematical Games
+- Objective: satisfaction
+
+Problem Description:
+# Problem CryptoPuzzle
+
+Verbal arithmetic, also known as alphametics, cryptarithmetic, cryptarithm or word addition, is a type of mathematical game
+consisting of a mathematical equation among unknown numbers, whose digits are represented by letters of the alphabet.
+
+### Example
+  For the Puzzle:
+  ```
+       S E N D
+   +   M O R E
+   = M O N E Y
+  ```
+  a possible solution is:
+  ```
+       9 5 6 7
+   +   1 0 8 5
+   = 1 0 6 5 2
+  ```
+
+## Data
+  Three strings/words (as for example [send,more,money])
+
+## Model
+  There are a main variant and a variant involving carry variables.
+  You can also find a step-by-step modeling process in this [Jupyter notebook](https://pycsp.org/documentation/models/CSP/CryptoPuzzle/).
+
+  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [Sum](http://pycsp.org/documentation/constraints/Sum)
+
+## Execution
+  - python CryptoPuzzle.py -data=[string,string,string]
+  - python CryptoPuzzle.py -data=[string,string,string] -variant=carry
+
+## Links
+  - https://en.wikipedia.org/wiki/Verbal_arithmetic
+
+## Tags
+  academic, notebook
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the variables
+var 0..9: S; var 0..9: E; var 0..9: N; var 0..9: D;
+var 0..9: M; var 0..9: O; var 0..9: R; var 0..9: Y;
+
+% All letters must represent different digits
+constraint alldifferent([S, E, N, D, M, O, R, Y]);
+
+% The sum of the first two words must equal the third word
+constraint 1000*S + 100*E + 10*N + D + 1000*M + 100*O + 10*R + E = 10000*M + 1000*O + 100*N + 10*E + Y;
+
+% The leading digits cannot be zero
+constraint S > 0;
+constraint M > 0;
+
+solve satisfy;
+
+output ["S = ", show(S), "\n", "E = ", show(E), "\n", "N = ", show(N), "\n", "D = ", show(D), "\n",
+        "M = ", show(M), "\n", "O = ", show(O), "\n", "R = ", show(R), "\n", "Y = ", show(Y), "\n"];
+
+Expected Output:
+{
+  "S": 9,
+  "E": 5,
+  "N": 6,
+  "D": 7,
+  "M": 1,
+  "O": 0,
+  "R": 8,
+  "Y": 2
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

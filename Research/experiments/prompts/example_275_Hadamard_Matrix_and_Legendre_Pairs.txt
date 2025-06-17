@@ -1,0 +1,152 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 275
+- Name: Hadamard Matrix and Legendre Pairs
+- Domain: Academic
+- Objective: satisfaction
+
+Problem Description:
+# Problem Hadamard
+
+For every odd positive integer n (and m = (n−1)/2), the 2cc Hadamard matrix Legendre pairs are defined from m quadratic constraints and 2 linear constraints.
+
+See Problem 084 on CSPLib
+
+## Data
+  a unique integer, the order of the problem instance
+
+## Model
+  constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)
+
+## Execution
+  - python Hadamard.py -data=number
+
+## Links
+  - https://www.csplib.org/Problems/prob084/
+  - https://www.cril.univ-artois.fr/XCSP22/competitions/csp/csp
+
+## Tags
+  academic, csplib, xcsp22
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the order of the instance
+int: n = 5; % odd positive integer
+int: m = (n-1) div 2;
+
+% Define the 2cc Hadamard matrix
+array[1..n, 1..n] of var -1..1: H;
+
+% Define the Legendre pairs
+array[1..n, 1..n] of var -1..1: L;
+
+% Quadratic constraints
+constraint forall(i in 1..m)(
+  sum(j in 1..n)(H[i,j]*H[i+1,j]) = 0
+);
+
+% Linear constraints
+constraint sum(i in 1..n, j in 1..n)(H[i,j]) = 0;
+constraint sum(i in 1..n, j in 1..n)(L[i,j]) = 0;
+
+% The Legendre pairs are derived from the Hadamard matrix
+constraint forall(i in 1..n, j in 1..n)(
+  L[i,j] = H[i,j]*H[(i+j-1) mod n + 1, (j+i-1) mod n + 1]
+);
+
+solve satisfy;
+
+output [ "H = ", show(H), "\n", "L = ", show(L), "\n" ];
+
+Expected Output:
+{
+  "H": [
+    [
+      -1,
+      1,
+      1,
+      0,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -1,
+      -1,
+      -1
+    ],
+    [
+      1,
+      1,
+      -1,
+      0,
+      -1
+    ],
+    [
+      0,
+      1,
+      1,
+      -1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      -1
+    ]
+  ],
+  "L": [
+    [
+      1,
+      -1,
+      -1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      -1,
+      -1,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      -1,
+      -1,
+      1,
+      -1
+    ],
+    [
+      -1,
+      -1,
+      -1,
+      -1,
+      1
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

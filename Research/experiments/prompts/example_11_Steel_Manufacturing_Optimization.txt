@@ -1,0 +1,44 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 11
+- Name: Steel Manufacturing Optimization
+- Domain: Manufacturing and Production
+- Objective: maximization
+
+Problem Description:
+A foundry receives a specific order for several tons of steel. This steel must meet the following characteristics: it must contain at least a given percentage of manganese (Mn) while its percentage of silicon (SI) must be between a lower and upper limit. To cast this steel, the foundry has limited quantities of several types of minerals. For each of these minerals, we are given the percentage per mineral of the silicon and manganese content. Additionally, the addition of manganese directly is possible in the process of producing steel. The manganese is available at a fixed price per ton. We are also given the price per ton to purchase each of the minerals. The foundry plans to sell the steel produced at a fixed price per ton. The cost of smelting a ton of mineral is given and is independent of the mineral. How should the manufacturer manage the steel to maximize profit?
+
+
+Input Data (data.dzn):
+K = 3;
+SteelQuantity = 1000;
+ManganesePercent = 0.45;
+SiliconMinPercent = 3.25;
+SiliconMaxPercent = 5.0;
+SiliconContent = [4.0, 1.0, 0.6];
+ManganeseContent = [0.45, 0.5, 0.4];
+ManganesePrice = 8.0;
+MaterialCost = [21, 25, 15];
+SellingPrice = 0.45;
+MeltingPrice = 0.005;
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 431433437.5
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

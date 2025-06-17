@@ -1,0 +1,48 @@
+{
+  "description": "Consider a meeting that ran non-stop the whole day. Each person stayed at the meeting for a continuous period of time. The meeting began while Mr Jones was present and finished while Ms White was present. Ms White arrived after the meeting has began. In turn, Director Smith, was also present but he arrived after Jones had left. Mr Brown talked to Ms White in presence of Smith. The problem is to determine if Jones and White could possibly have talked during this meeting. The goal is to minimize the time for Jones and White.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Meeting Time Optimization",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<",
+      "overlaps",
+      "real_overlap",
+      "before",
+      "weak_overlap"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Meeting Time Optimization",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "J1",
+      "J2",
+      "M1",
+      "M2",
+      "B1",
+      "B2",
+      "S1",
+      "S2",
+      "W1",
+      "W2",
+      "TimeList"
+    ],
+    "model_data_keywords": [
+      "Time"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<",
+      "overlaps",
+      "real_overlap",
+      "before",
+      "weak_overlap"
+    ]
+  }
+}

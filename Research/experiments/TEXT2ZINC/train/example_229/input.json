@@ -1,0 +1,52 @@
+{
+  "description": "What selling, storing and manufacturing policy should the company pursue in order to maximize profit? The company has M machines and produces K different products. Each product k has a profit of Profit. The time taken to manufacture product k on machine m is given by Time. There are maintenance times for each machine m in each time period i, denoted by Maintain. The limit for storing product k for time period i is given by Limit, and the company has a store price of StorePrice. The company aims to keep a quantity of KeepQuantity for product k, and there are WorkHours working hours available for production.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Factory Production Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "=",
+      "if",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Factory Production Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "sell",
+      "manufacture",
+      "storage",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "num_machines",
+      "profit",
+      "time",
+      "maintain",
+      "limit",
+      "store_price",
+      "keep_quantity",
+      "n_workhours"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "=",
+      "if",
+      "else",
+      "endif"
+    ]
+  }
+}

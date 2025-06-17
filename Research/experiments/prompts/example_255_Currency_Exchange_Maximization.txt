@@ -1,0 +1,56 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 255
+- Name: Currency Exchange Maximization
+- Domain: Finance
+- Objective: maximization
+
+Problem Description:
+The objective is to maximize the number of units of currency N that we end up with at the end of the day, through a sequence of currency transactions. We start with a certain amount Start for each currency, there is a limit Limit to the number of transactions we can perform for each currency, and the exchange rates are given by Rate.
+
+
+Input Data (data.dzn):
+N = 3;
+Start = [100.0, 50.0, 200.0];
+Limit = [1000.0, 200.0, 3000.0];
+Rate = [|0.99, 0.9, 1.02| 0.95, 0.99, 0.92| 0.9, 0.91, 0.99|];
+
+MiniZinc Model:
+% Parameters
+int: N; % Number of currencies
+array[1..N] of float: Start; % Initial amount of each currency
+array[1..N] of float: Limit; % Limit of transactions for each currency
+array[1..N, 1..N] of float: Rate; % Exchange rates between currencies
+
+% Decision Variables
+array[1..N, 1..N] of var 0.0..Limit[N]: Transactions; % Amount of currency i exchanged to currency j
+
+% Objective
+var float: FinalAmount = Start[N] + sum(i in 1..N-1) (Transactions[i,N] * Rate[i,N] - Transactions[N,i] / Rate[N,i]);
+maximize FinalAmount;
+
+% Constraints
+constraint forall(i in 1..N) (
+    sum(j in 1..N) (Transactions[i,j] + Transactions[j,i]) <= Limit[i]
+);
+
+constraint forall(i in 1..N, j in 1..N) (
+    Transactions[i,j] <= Start[i]
+);
+
+constraint forall(i in 1..N, j in 1..N) (
+    Transactions[i,j] * Rate[i,j] = Transactions[j,i]
+);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

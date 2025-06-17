@@ -1,0 +1,51 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 215
+- Name: Hospital Night Shift Scheduling
+- Domain: Healthcare
+- Objective: minimization
+
+Problem Description:
+The goal is to find the minimal number of nurses the hospital needs to hire for a planning period of Period. The hospital has a known demand for nurses across a week, specified by the array Demand, where each element corresponds to the demand for a particular day in the period.
+
+
+Input Data (data.dzn):
+Period = 4;
+Demand = [0, 5, 9, 15, 4, 7, 3];
+
+MiniZinc Model:
+% Parameters
+int: T; % Number of days in a week
+int: Period; % Number of days a nurse works in a row
+array[1..T] of int: Demand; % Demand for nurses for each day
+
+% Decision Variables
+array[1..T] of var 0..sum(Demand): start; % Number of nurses that start their period on each day
+var 0..sum(Demand): total; % Total number of nurses hired
+
+% Constraints
+constraint total = sum(start); % Total number of nurses is the sum of all starting nurses
+
+% For each day, the number of working nurses should meet the demand
+constraint forall(j in 1..T) (
+    sum(i in max(1, j - Period + 1)..j) (start[(i-1) mod T + 1]) >= Demand[j]
+);
+
+% Objective
+solve minimize total;
+
+% Output
+output ["start: ", show(start), "\n", "total: ", show(total)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

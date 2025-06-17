@@ -1,0 +1,54 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 391
+- Name: Grocery Store Pricing Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+A child enters a grocery store and purchases four items. The cashier charges $7.11. The child pays and is about to leave when the cashier calls the child back, and says 'Hold on, I multiplied the four items instead of adding them; I'll try again... Gosh, with adding them the price still comes to $7.11'! The problem is to determine the prices of the four items. The problem is modeled using floats in MiniZinc, with the constraint that we are only working with pennies. The sum and the product of the prices of the four items should both equal to $7.11. The solution should also satisfy the condition that the prices are in increasing order.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Ensure that we use pennies.
+set of float: pennies = { i/100 | i in 1..7*100 } ; 
+array[1..4] of var pennies: item;
+
+constraint
+  sum(item) = 7.11 /\
+  product(item) = 7.11;
+  
+% symmetry breaking
+constraint increasing(item);
+
+% solve satisfy;
+solve :: float_search(item,0.01, input_order, indomain_split) satisfy;
+
+output [
+   show(item), "\n",
+];
+
+Expected Output:
+{
+  "item": [
+    1.2,
+    1.25,
+    1.5,
+    3.16000000000001
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

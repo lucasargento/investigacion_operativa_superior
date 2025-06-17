@@ -1,0 +1,38 @@
+{
+  "description": "# Problem QuasiGroup\n\nThis is [Problem 003](https://www.csplib.org/Problems/prob003/) at CSPLib.\n\nAn order n quasigroup is a Latin square of size n.\nThat is, an n\u00d7n multiplication table in which each element occurs once in every row and column.\nA quasigroup can be specified by a set and a binary multiplication operator, \u2217 defined over this set.\nQuasigroup existence problems determine the existence or non-existence of quasigroups of\na given size with additional properties. For example:\n  - QG3: quasigroups for which (a \u2217 b) \u2217 (b \u2217 a) = a\n  - QG5: quasigroups for which ((b \u2217 a) \u2217 b) \u2217 b = a\n  - QG6: quasigroups for which (a \u2217 b) \u2217 b = a \u2217 (a \u2217 b)\nFor each of these problems, we may additionally demand that the quasigroup is idempotent.\nThat is, a \u2217 a = a for every element a.\n\n## Data\n  A unique integer, the order of the problem instance\n\n## Example\n  ```\n    1    2   3   4\n    4    1   2   3\n    3    4   1   2\n    2    3   4   1\n  ```\n\n## Model\n  You can find a step-by-step modeling process in this [Jupyter notebook](https://pycsp.org/documentation/models/CSP/Quasigroup/).\n\n  constraints: [Element](http://pycsp.org/documentation/constraints/Element)\n\n## Execution\n  - python QuasiGroup.py -variant=base-v3 -data=number\n  - python QuasiGroup.py -variant=base-v4 -data=number\n  - python QuasiGroup.py -variant=base-v5 -data=number\n  - python QuasiGroup.py -variant=base-v6 -data=number\n  - python QuasiGroup.py -variant=base-v7 -data=number\n  - python QuasiGroup.py -variant=aux-v3 -data=number\n  - python QuasiGroup.py -variant=aux-v4 -data=number\n  - python QuasiGroup.py -variant=aux-v5 -data=number\n  - python QuasiGroup.py -variant=aux-v7 -data=number\n\n## Links\n  - https://www.csplib.org/Problems/prob003/\n  - https://www.cril.univ-artois.fr/XCSP22/competitions/csp/csp\n\n## Tags\n  academic, notebook, csplib, xcsp22\n\n<br />\n\n## _Alternative Model(s)_\n\n#### QuasiGroup_z.py\n - constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [Element](http://pycsp.org/documentation/constraints/Element)\n - tags: academic, csplib, mzn08",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Quasigroup Problem",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "=",
+      "row",
+      "col"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Quasigroup Problem",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "quasigroup"
+    ],
+    "model_data_keywords": [
+      "order"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "=",
+      "row",
+      "col"
+    ]
+  }
+}

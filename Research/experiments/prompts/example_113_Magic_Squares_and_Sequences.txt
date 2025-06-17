@@ -1,0 +1,133 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 113
+- Name: Magic Squares and Sequences
+- Domain: Combinatorial mathematics
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    Magic Squares and Sequences
+Proposer: Toby Walsh
+Category: Combinatorial mathematics
+---
+
+
+An order $n$ magic square is a $n$ by $n$ matrix containing the numbers $1$
+to $n^2$, with each row, column and main diagonal equal the same
+sum. As well as finding magic squares, we are interested in the number
+of a given size that exist.  There are several interesting
+variations. For example, we may insist on certain values in certain
+squares (like in quasigroup completion) and ask if the magic square
+can be completed. In a heterosquare, each row, column and diagonal
+sums to a different value. In an anti-magic square, the row, column
+and diagonal sums form a sequence of consecutive integers.
+
+A magic sequence of length $n$ is a sequence of integers $x_0 \ldots
+x_{n-1}$ between $0$ and $n-1$, such that for all $i$ in $0$ to $n-1$,
+the number $i$ occurs exactly $x_i$ times in the sequence. For instance,
+$6,2,1,0,0,0,1,0,0,0$ is a magic sequence since $0$ occurs $6$ times
+in it, $1$ occurs twice, etc.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: n = 3;
+
+int: total = ( n * (n*n + 1)) div 2;
+array[1..n,1..n] of var 1..n*n: magic;
+
+
+% solve satisfy;
+solve :: int_search(
+        [magic[i,j] | i in 1..n, j in 1..n], 
+        first_fail,
+        indomain_min,
+        complete) 
+    satisfy;
+
+
+constraint
+
+        all_different([magic[i,j] | i in 1..n, j in 1..n]) :: domain
+        /\
+        forall(k in 1..n) (
+           sum(i in 1..n) (magic[k,i]) = total % :: domain
+           /\
+           sum(i in 1..n) (magic[i,k]) = total %:: domain
+        )
+       /\ % diagonal
+       sum(i in 1..n) (magic[i,i]) = total  %:: domain
+       /\ % diagonal
+       sum(i in 1..n) (magic[i,n-i+1]) = total %:: domain
+;
+
+% symmetry breaking
+% Activating all these constraints we get the
+% "standard" way of counting the number of solutions:
+%    1, 0, 1, 880, 275305224
+% i.e. this sequence: http://oeis.org/A006052
+%
+% Without the constraints the number of solutions are:
+%  N  #solutions
+%  -------------
+%  1     1
+%  2     0
+%  3     8
+%  4  7040
+%  5  many... 
+%
+% constraint
+%    magic[1,1] < magic[1,n]
+%    /\ magic[1,n] < magic[n,1]
+%    /\ magic[1,1] < magic[n,n]
+% ;
+
+
+output [
+  "Total: " ++ show(total) ++ "\n"
+] ++
+[
+    %   show(magic)
+  if j = 1 then "\n" else "" endif ++
+    if fix(magic[i,j]) < 10 then " " else "" endif ++
+    show(magic[i,j]) ++ " "
+  | i,j in 1..n
+] 
+++ 
+["\n"];
+
+Expected Output:
+{
+  "magic": [
+    [
+      2,
+      7,
+      6
+    ],
+    [
+      9,
+      5,
+      1
+    ],
+    [
+      4,
+      3,
+      8
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

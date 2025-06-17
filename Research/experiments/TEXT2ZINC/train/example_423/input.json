@@ -1,0 +1,42 @@
+{
+  "description": "An engineering company has new grad engineers earning $ 1000 a week and senior engineers earning $ 3000 a week . The weekly wage bill must be kept below $ 100000 . The projects require a minimum of 50 engineers of whom at least 10 must be senior engineers . In addition , the number of senior engineers should be at least a third the number of new grad engineers . Formulate a LP to minimize the wage bill .",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimize Engineering Wage Bill",
+    "domain": "Workforce Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">=",
+      "+",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimize Engineering Wage Bill",
+    "domain": "Workforce Scheduling",
+    "model_var_keywords": [
+      "new_grads",
+      "senior",
+      "wage_bill"
+    ],
+    "model_data_keywords": [
+      "new_grad_wage",
+      "senior_wage",
+      "min_engineers",
+      "min_senior_engineers",
+      "max_wage_bill"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">=",
+      "+",
+      "*"
+    ]
+  }
+}

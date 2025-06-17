@@ -1,0 +1,47 @@
+{
+  "description": "A woman with vitamin deficiency is taking supplements from two brands , super vitamin XYZ and vitamin ABC . Super vitamin XYZ contains 2 mg of vitamin , 5 mg of fiber , and causes 2 units of drowsiness per serving . Vitamin ABC contains 1.5 mg of vitamin , 3 mg of fiber , and causes 3 units of drowsiness per serving . The woman wants to get at least 30 mg of vitamin and 55 mg of fiber . In addition , there must be at most 40 % of the supplements taken from super vitamin XYZ and there must be at least 3 servings of super vitamin XYZ because it is expiring soon . How many servings of each should she take to minimize her total drowsiness .",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Vitamin Supplement Optimization",
+    "domain": "Healthcare",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Vitamin Supplement Optimization",
+    "domain": "Healthcare",
+    "model_var_keywords": [
+      "XYZ",
+      "ABC",
+      "total_drowsiness"
+    ],
+    "model_data_keywords": [
+      "vitamin_XYZ",
+      "vitamin_ABC",
+      "fiber_XYZ",
+      "fiber_ABC",
+      "drowsiness_XYZ",
+      "drowsiness_ABC",
+      "min_vitamin",
+      "min_fiber",
+      "max_XYZ_percentage",
+      "min_XYZ_servings"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">=",
+      "*",
+      "+"
+    ]
+  }
+}

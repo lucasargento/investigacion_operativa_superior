@@ -1,0 +1,45 @@
+{
+  "description": "The problem is about scheduling tasks for building a house. There are 10 tasks in total, each with a specific duration in days and some tasks have dependencies on others. The tasks are: erecting walls (7 days), carpentry for roof (3 days), roof (1 day), installations (8 days), facade painting (2 days), windows (1 day), garden (1 day), ceilings (3 days), painting (2 days), and moving in (1 day). The dependencies between tasks are as follows: erecting walls must be finished before carpentry for roof, carpentry for roof before roof, erecting walls before installations, roof before facade painting, installations before facade painting, roof before windows, installations before windows, roof before garden, installations before garden, erecting walls before ceilings, windows before painting, ceilings before painting, and painting before moving in. The goal is to schedule these tasks in a way that minimizes the total duration (makespan) of building the house.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "House Building Schedule Optimization",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "+",
+      "<=",
+      "max"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "House Building Schedule Optimization",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "start",
+      "end",
+      "makespan"
+    ],
+    "model_data_keywords": [
+      "num_tasks",
+      "tasks",
+      "duration",
+      "total_duration",
+      "num_precedences",
+      "precedences"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "+",
+      "<=",
+      "max"
+    ]
+  }
+}

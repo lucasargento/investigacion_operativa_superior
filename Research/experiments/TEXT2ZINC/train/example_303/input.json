@@ -1,0 +1,35 @@
+{
+  "description": "The Abbott's Puzzle is a problem from the book 'Amusements in Mathematics' by H.E. Dudeney (1917). The problem is to find a solution for three variables x[1], x[2], and x[3] that satisfy the following conditions: \n1. The sum of each variable multiplied by its corresponding amount (6, 4, 1 respectively) equals 200. \n2. The sum of the variables equals 100. \n3. The second variable is five times the first variable. \nThe variables are integers and can take values between 0 and 1000.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Abbott's Puzzle",
+    "domain": "Mathematical Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Abbott's Puzzle",
+    "domain": "Mathematical Puzzles",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "amounts",
+      "Indices"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "sum",
+      "=",
+      "*"
+    ]
+  }
+}

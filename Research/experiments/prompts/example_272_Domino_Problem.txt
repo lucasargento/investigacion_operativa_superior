@@ -1,0 +1,72 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 272
+- Name: Domino Problem
+- Domain: Academic
+- Objective: minimization
+
+Problem Description:
+# Problem Domino
+
+This problem is described in the paper cited below.
+Informally the Domino problem is an undirected constraint graph with a cycle and a trigger constraint.
+
+## Data
+  a pair (n,d), where n is the number of variables and d the size of the domain
+
+## Model
+  There are two variants: a main one and a variant 'table' with constraints in extension.
+
+  constraints: [AllEqual](http://pycsp.org/documentation/constraints/AllEqual), [Table](http://pycsp.org/documentation/constraints/Table)
+
+## Execution
+```
+  python Domino.py
+  python Domino.py -data=[number,number]
+  python Domino.py -data=[number,number] -variant=table
+```
+
+## Links
+  - https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.103.1730&rep=rep1&type=pdf
+
+## Tags
+  academic
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the number of variables and the size of the domain
+int: n = 5;
+int: d = 3;
+
+% Define the variant type
+string: variant = "primary";
+
+% Define the variables
+array[1..n] of var 1..d: vars;
+
+% Define the constraints
+constraint if variant = "primary" then alldifferent(vars) else forall(i in 1..n-1)(vars[i] = vars[i+1]) endif;
+
+% Define the objective function
+var int: obj = sum(vars);
+
+% Solve the problem
+solve minimize obj;
+
+% Output the solution
+output ["Variables: " ++ show(vars) ++ "\nObjective: " ++ show(obj)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

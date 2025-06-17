@@ -1,0 +1,87 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 473
+- Name: Sequence Sum Constraint
+- Domain: Constraints
+- Objective: satisfaction
+
+Problem Description:
+The problem is about constraining all sequences of a given length (SEQ) from a collection of variables such that the sum of the variables in each sequence falls within a specified interval [LOW, UP]. For example, given a sequence length of 4 and a collection of variables <1, 4, 2, 0, 0, 3, 4>, the problem is to ensure that the sum of every 4 consecutive values in the collection is between 3 and 7. The constraint holds if the sums associated with the subsequences 1 4 2 0, 4 2 0 0, 2 0 0 3, and 0 0 3 4 are respectively 7, 6, 5 and 7, all of which are within the interval [3, 7].
+
+
+MiniZinc Model:
+int: n = 7;
+array[1..n] of var 0..4: variables;
+var 0..10: low;
+var 0..10: up;
+1..n: seq = 4;
+
+predicate sliding_sum(var int: low, var int: up, int: seq, array[int] of var int: variables) =
+  forall(i in min(index_set(variables))..max(index_set(variables))-seq+1) (
+    let {
+      var int: s
+    }
+    in
+    s = sum(j in i..i+seq-1) (
+      variables[j]
+    )
+    /\
+    s >= low
+    /\
+    s <= up
+  )
+;
+
+predicate cp1d(array[int] of var int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+     forall(i in index_set(x)) ( x[i] = y[i] ))
+; 
+
+
+solve satisfy;
+
+constraint
+  % cp1d(variables, [1,4,2,0,0,3,3])
+  % /\
+  low = 3
+  /\
+  up = 7
+  /\
+  sliding_sum(low, up, seq, variables)
+;
+
+output [
+"low: " ++ show(low) ++ "\n"++
+"up: " ++ show(up) ++ "\n"++
+"seq: " ++ show(seq) ++ "\n"++
+"variables: " ++ show(variables) ++ "\n"
+];
+
+Expected Output:
+{
+  "variables": [
+    0,
+    3,
+    0,
+    0,
+    0,
+    3,
+    0
+  ],
+  "low": 3,
+  "up": 7
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

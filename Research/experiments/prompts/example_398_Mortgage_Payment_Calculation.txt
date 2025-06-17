@@ -1,0 +1,74 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 398
+- Name: Mortgage Payment Calculation
+- Domain: Finance
+- Objective: minimization
+
+Problem Description:
+The problem is about calculating mortgage payments over a certain time period. Given a time period (T), an interest rate (I), and a repayment amount (R), the goal is to calculate the principal amount (P) of the mortgage. The mortgage is represented as an array where each element represents the remaining mortgage amount after each time period. The mortgage amount for each time period is calculated as the previous mortgage amount plus the interest on the previous mortgage amount minus the repayment amount. The problem can also be used to calculate the interest rate or the repayment amount given the other two variables. The goal is to minimize the principal amount.
+
+
+MiniZinc Model:
+int: T = 3; % time period
+
+% comment one of the initiations to calculate it:
+var 0.0..10000.0: I = 10.0/100.0;
+var 0.0..10000.0: R = 150.0; 
+var 0.0..10000.0: P; % = 373.02779864763318;
+
+array[1..T] of var float: mortgage;
+
+% solve satisfy;
+% solve :: float_search(mortgage, 0.00000001, input_order, indomain_split, complete) satisfy;
+solve minimize P;
+
+constraint
+   forall(i in 1..T) ( mortgage[i] >= 0.0) /\
+
+   % start value:
+   mortgage[1] = P + (P  * I) - R /\
+   forall(i in 2..T) (
+     % calculate the next value using a local variable
+     % This is the recursion in the CLP example.
+     % let {
+     %    var float: NP = mortgage[i-1] + (mortgage[i-1]  * I) - R 
+     % }
+     % in
+     % in
+     % mortgage[i] =  NP /\ NP >= 0.0
+     % [Later note: This is simpler. :-)]
+     mortgage[i] = mortgage[i-1] + (mortgage[i-1]  * I) - R
+   )
+;
+
+output [
+   "P: ", show(P), "\n",
+   "I: ", show(I), "\n",
+   "R: ", show(R), "\n",
+   "mortgage: ", show(mortgage),"\n", % is not especially interesting
+];
+
+Expected Output:
+{
+  "P": 373.027798647634,
+  "mortgage": [
+    260.330578512397,
+    136.363636363637,
+    -0.0
+  ],
+  "_objective": 373.027798647634
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

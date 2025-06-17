@@ -1,0 +1,39 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 38
+- Name: Maximize Total Revenue
+- Domain: Economic and Business Decisions
+- Objective: maximization
+
+Problem Description:
+A firm produces different goods using different raw materials. The firm has a limited amount of each raw material available. Each good requires a specific amount of raw materials to be produced. Each good results in an amount of revenue produced per unit. How much of each good should the firm produce to maximize its total revenue?
+
+
+Input Data (data.dzn):
+M = 4;
+N = 5;
+Available = [10, 20, 15, 35, 25];
+Requirements = array2d(1..4, 1..5, [3, 2, 0, 0, 0, 0, 5, 2, 1, 0, 1, 0, 0, 5, 3, 0, 3, 1, 1, 5]);
+Prices = [7, 10, 5, 9];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 78.64
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

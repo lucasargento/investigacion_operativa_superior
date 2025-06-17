@@ -1,0 +1,56 @@
+{
+  "description": "The problem is based on a puzzle proposed by Martin Gardner in October 1962. The task is to place mathematical operators (+/-) between the digits 9 to 1 (in this order), or concatenate the digits, so that the result is 100. The goal is to minimize the number of operators (+/-) used. Digits may be concatenated, for example, the following solution is valid for the 1 to 9 = 100 problem: 123 - 45 - 67 + 89 = 100. The problem supports both 9 to 1 and 1 to 9. The model uses two arrays (x and y) for collecting the numbers to use. Array x is an array with 1 to 9 increasing, and y contains the number built from the representation in x. For example, if x = [1,1,1, 4,4, 6,6,6, 9], then y = [123,0,0, 45,0, 678,0,0, 9]. A sequence of the same digits in x marks that it should be considered as one number in y. However, a new number in y must be represented in x as the next integer in order after the three 1's, i.e. it should be a 4.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Martin Gardner's Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "decreasing",
+      "contains",
+      "toNum_reverse",
+      "forall",
+      "exists",
+      "<->",
+      "<=",
+      ">=",
+      "+",
+      "-",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Martin Gardner's Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "digit_representation",
+      "numbers",
+      "operations",
+      "cumulative_sum"
+    ],
+    "model_data_keywords": [
+      "n",
+      "target",
+      "max_num",
+      "digits"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "decreasing",
+      "contains",
+      "toNum_reverse",
+      "forall",
+      "exists",
+      "<->",
+      "<=",
+      ">=",
+      "+",
+      "-",
+      "="
+    ]
+  }
+}

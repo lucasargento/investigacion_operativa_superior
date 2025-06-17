@@ -1,0 +1,35 @@
+{
+  "description": "This is an Alphametic puzzle, a type of cryptarithm in which a set of words is written down in the form of a long addition sum or some other mathematical problem. The objective is to replace the letters of the alphabet with decimal digits to make a valid arithmetic sum. The problem presented here is from Martin Gardner (November 1975) and is represented as follows: \n\nEIN\nEIN\nEIN\nEIN\n-----\nVIER\n\nThe task is to find the digits that make this sum correct. The constraints are that all the letters represent different digits, the letters 'E' and 'V' are not zero, and the sum of four 'EIN's equals 'VIER'. The solution will be the digits that satisfy these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Alphametic Puzzle Solver",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Alphametic Puzzle Solver",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "E",
+      "I",
+      "N",
+      "V",
+      "R",
+      "alphameticDigits"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "="
+    ]
+  }
+}

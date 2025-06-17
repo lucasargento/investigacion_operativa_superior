@@ -1,0 +1,46 @@
+{
+  "description": "In a golf club, there are a certain number of social golfers who play once a week in a certain number of groups of a certain size. The problem is to find a schedule for as many weeks as possible, such that no two golfers play in the same group more than once. The number of groups to be formed each week, the size of each group, and the number of weeks for which a scheduling is requested are given as input. The search space is the set of all possible group assignments to all players in each of the weeks. The constraints are that each group has exactly the specified group size of players and each pair of players only meets at most once. Additionally, on the first week, the first group of golfers play in group 1, the second group of golfers play in group 2, etc. On the second week, golfer 1 plays in group 1, golfer 2 plays in group 2, etc.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Social Golfers Problem",
+    "domain": "Scheduling",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      "+",
+      "div"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Social Golfers Problem",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "assign"
+    ],
+    "model_data_keywords": [
+      "weeks",
+      "groups",
+      "groupSize",
+      "golfers",
+      "Golfer",
+      "Week",
+      "Group"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      "+",
+      "div"
+    ]
+  }
+}

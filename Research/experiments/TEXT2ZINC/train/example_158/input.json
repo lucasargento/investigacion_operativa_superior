@@ -1,0 +1,37 @@
+{
+  "description": "---\nTitle:    Maximum Clique\nProposer: Ciaran McCreesh\nCategory: Combinatorial mathematics\n---\n\nGiven a simple undirected graph $G = (V,E)$, where $V$ is the set of vertices\nand $E$ the set of undirected edges, a clique is a subset of $V$ such that each\ndistinct pair of vertices in this subset are adjacent. The maximum clique\nproblem is to find a clique of largest cardinality within a given graph. (The\nrelated clique enumeration problem is to enumerate all maximal cliques---that\nis, cliques which cannot be extended by adding an additional vertex.)\n\nThe second DIMACS implementation challenge studied this problem, and provided a\nstandard set of benchmark instances in a simple file format. These instances\nare of varying size and difficulty: some should be trivial, but a few are still\nopen. A simple example of a file is:\n\n<pre>\nc Lines that start with a c are comments. There is one line at the start\nc which starts with either \"p edge\" or \"p col\", followed by the number of\nc vertices and the (possibly incorrect) number of edges. The e lines each\nc describe an edge. Some files have blank lines.\np edge 5 6\ne 1 2\ne 2 3\ne 3 4\ne 4 1\ne 3 5\ne 4 5\n</pre>\n\nThis describes a graph with 5 vertices (which are numbered 1 to 5) and 6 edges.\nThe edges number is *not reliable* and should be ignored. Some instances\ninclude (some) edges in both directions, whilst others do not. Some files\ncontain loops (vertices adjacent to themselves), which should be ignored for\nthe clique problem.\n\nThe maximum clique in this file has size 3, with vertices 3, 4 and 5.\n\nOther datasets are available, also using this format.\n\nThe maximum clique problem is equivalent to the maximum independent set problem\nand the vertex cover problem. It is also used as an intermediate step in\nsolving the maximum common subgraph problem.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximum Clique",
+    "domain": "Combinatorial Mathematics",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "forall",
+      "<=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximum Clique",
+    "domain": "Combinatorial Mathematics",
+    "model_var_keywords": [
+      "num_vertices",
+      "adjacency_matrix",
+      "clique",
+      "clique_size"
+    ],
+    "model_data_keywords": [],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "sum",
+      "forall",
+      "<=",
+      "+"
+    ]
+  }
+}

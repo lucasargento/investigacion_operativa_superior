@@ -1,0 +1,43 @@
+{
+  "description": "How many batches of each part should the manufacturer produce each month to maximize profit? The number of different parts is P, the number of machines is M. There is a TimeRequired matrix detailing the time required to produce one batch of each part on each machine. Each machine has an associated cost given by MachineCosts and a monthly availability given by Availability. Each part can be sold for Prices and there is a minimum production requirement for each part detailed by MinBatches.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "-"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "batches",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "time_required",
+      "machine_costs",
+      "availability",
+      "prices",
+      "min_batches"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "-"
+    ]
+  }
+}

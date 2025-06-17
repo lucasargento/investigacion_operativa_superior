@@ -1,0 +1,63 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 237
+- Name: Bounds on Fourth Moment
+- Domain: Statistics
+- Objective: minimization and maximization
+
+Problem Description:
+PROBLEM TYPE
+LP
+
+INPUT FORMAT
+
+{
+    "K": K,
+    "p": [P[i] for i in 0, ..., K]
+    "E[Z]": ExpectedZ,
+    "E[Z^2]": ExpectedZSquared,
+}
+
+OBJECTIVE
+Use linear programming to find lower and upper bounds on E[Z^4].
+
+
+Input Data (data.dzn):
+K = 6;
+P = [0.1, 0.2, 0.3, 0.2, 0.1, 0.1];
+ExpectedZ = 3;
+ExpectedZSquared = 10;
+
+MiniZinc Model:
+% Parameters
+int: K; % Maximum value of random variable Z
+array[0..K] of float: P; % Probabilities of Z taking values 0, 1, ..., K
+float: ExpectedZ; % First moment of Z
+float: ExpectedZSquared; % Second moment of Z
+
+% Decision Variables
+var float: lower_bound; % Lower bound on the fourth moment of Z
+var float: upper_bound; % Upper bound on the fourth moment of Z
+
+% Constraints
+constraint lower_bound <= upper_bound; % Lower bound should be less than or equal to upper bound
+
+% Objective Function
+solve minimize lower_bound;
+solve maximize upper_bound;
+
+% Output
+output ["lower_bound: ", show(lower_bound), "\n", "upper_bound: ", show(upper_bound)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

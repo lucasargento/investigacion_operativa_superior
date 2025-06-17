@@ -1,0 +1,68 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 492
+- Name: Power Function Implementation
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is to implement a power function in MiniZinc, since the built-in pow() function does not handle (var int, int). The function, named 'my_pow', takes three parameters: a variable integer 'n', an integer 'len', and a variable integer 'n_pow'. The function calculates the power of 'n' raised to 'len' and assigns the result to 'n_pow'. The function does not handle (var int, var int), just (var int, int). The problem is to find a solution that satisfies the constraint that 'n' equals 3 and 'num' equals 'n' raised to the power of 4.
+
+
+MiniZinc Model:
+var int: n;
+var int: num;
+
+
+%
+% Since the builtin pow() don't handle (var int, int)
+% I'm rolling my own.
+% Note: This don't handle (var int, var int), just (var int, int)
+%
+predicate my_pow(var int: n, int: len, var int: n_pow) =
+   let {
+      array[1..len+1] of var int: x
+   }
+   in
+   x[1] = 1
+   /\
+   forall(i in 2..len+1) (
+     x[i] = x[i-1] * n
+   )
+   /\
+   n_pow = x[len+1]
+;
+
+solve satisfy;
+% solve :: int_search(x, "first_fail", "indomain", "complete") satisfy;
+
+constraint
+  n = 3
+  /\
+  my_pow(n, 4, num)
+;
+
+output
+[
+  "n:" ++ show(n) ++ "\n" ++
+  "num:" ++ show(num) ++ "\n" 
+];
+
+Expected Output:
+{
+  "n": 3,
+  "num": 81
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

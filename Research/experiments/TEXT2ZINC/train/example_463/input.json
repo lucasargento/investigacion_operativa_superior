@@ -1,0 +1,48 @@
+{
+  "description": "The problem is about enforcing all variables of a collection to belong to distinct intervals. The intervals are defined by [SIZE_INTERVAL*k, SIZE_INTERVAL*k+SIZE_INTERVAL-1] where k is an integer. For example, if we have a collection of variables (2,3,10) and SIZE_INTERVAL=3, it defines the following family of intervals [3*k, 3*k+2], where k is an integer. Since the three variables of the collection take values that are respectively located within the three following distinct intervals [0, 2], [3, 5] and [9, 11], the alldifferent_interval constraint holds. The problem is to find such intervals for a given collection of variables and a SIZE_INTERVAL.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Distinct Intervals Assignment",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "forall",
+      ">",
+      "=",
+      ">=",
+      "<=",
+      "exists",
+      "assert",
+      "cp1d"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Distinct Intervals Assignment",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "x",
+      "size_interval",
+      "intervals"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "forall",
+      ">",
+      "=",
+      ">=",
+      "<=",
+      "exists",
+      "assert",
+      "cp1d"
+    ]
+  }
+}

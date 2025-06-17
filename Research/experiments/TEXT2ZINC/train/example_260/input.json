@@ -1,0 +1,52 @@
+{
+  "description": "We want to maximize the daily profit of the company, which is the total revenue minus the total cost. The company has N different products, each requiring AssemblyHour hours for assembly, TestingHour hours for testing, and with a material cost of MaterialCost. The company cannot exceed MaxAssembly hours for assembly and MaxTesting hours for testing. Each product can be sold at Price, but there is an opportunity to work MaxOvertimeAssembly overtime hours for assembly at a cost of OvertimeAssemblyCost per hour. Additionally, a material discount of MaterialDiscount is offered when a purchase reaches the DiscountThreshold.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Daily Profit Maximization",
+    "domain": "Business",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "<=",
+      "=",
+      "if",
+      "then",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Daily Profit Maximization",
+    "domain": "Business",
+    "model_var_keywords": [
+      "overtimeAssembly",
+      "unitsProduced",
+      "materialBought",
+      "dailyProfit"
+    ],
+    "model_data_keywords": [
+      "AssemblyHour",
+      "TestingHour",
+      "MaterialCost",
+      "MaxAssembly",
+      "MaxTesting",
+      "Price",
+      "MaxOvertimeAssembly",
+      "OvertimeAssemblyCost",
+      "MaterialDiscount",
+      "DiscountThreshold"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "<=",
+      "=",
+      "if",
+      "then",
+      "endif"
+    ]
+  }
+}

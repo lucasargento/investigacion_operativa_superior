@@ -1,0 +1,175 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 283
+- Name: Costas Array
+- Domain: Academic
+- Objective: satisfaction
+
+Problem Description:
+# Problem CostasArray
+
+A costas array is a pattern of n marks on an n∗n grid, one mark per row and one per column,
+in which the n∗(n−1)/2 vectors between the marks are all-different.
+
+See problem 076 at CSPLib.
+
+## Data
+  A unique integer, the order of the grid
+
+## Model
+  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)
+
+## Execution
+  - python CostasArray.py -data=number
+
+## Links
+  - https://en.wikipedia.org/wiki/Costas_array
+  - https://www.csplib.org/Problems/prob076/
+  - https://www.cril.univ-artois.fr/XCSP22/competitions/csp/csp
+
+## Tags
+  academic, csplib, xcsp22
+
+<br />
+
+## _Alternative Model(s)_
+
+#### CostasArray_z.py
+ - constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)
+ - tags: academic, mzn10, mzn11, mzn15
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% The order of the grid
+int: n = 8;
+
+% The marks on the grid
+array[1..n] of var 1..n: marks;
+
+% The vectors between the marks
+array[1..n, 1..n-1] of var -n+1..n-1: vectors;
+
+% Each row and column contains only one mark
+constraint alldifferent(marks);
+
+% The vectors between the marks are all different
+constraint forall(i in 1..n)(
+  forall(j in 1..n-1)(
+    vectors[i,j] = marks[i] - marks[j]
+  )
+);
+
+constraint forall(i in 1..n)(
+  forall(j in 1..n-1)(
+    forall(k in j+1..n-1)(
+      vectors[i,j] != vectors[i,k]
+    )
+  )
+);
+
+solve satisfy;
+
+output [ "marks = " ++ show(marks) ];
+
+Expected Output:
+{
+  "marks": [
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    8
+  ],
+  "vectors": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    [
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    [
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    [
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2
+    ],
+    [
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1
+    ],
+    [
+      -6,
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0
+    ],
+    [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,48 @@
+{
+  "description": "The Logical Labyrinth is a puzzle where there are 9 doors, each hiding a prize. The prizes are either a Lady, a Tiger, or Empty. Each door has a statement on it that can be either true or false. The goal is to find the door that hides the Lady. The constraints of the puzzle are as follows: \n\n1. If the statement on door 1 is true, then exactly one of the doors 1, 3, 5, 7, 9 hides the Lady. \n2. If the statement on door 2 is true, then door 2 is empty. \n3. If the statement on door 3 is true, then either the statement on door 5 is true or door 1 hides the Lady. \n4. If the statement on door 4 is true, then the statement on door 1 is false. \n5. If the statement on door 5 is true, then either the statement on door 2 is true or the statement on door 4 is true. \n6. If the statement on door 6 is true, then the statement on door 3 is false. \n7. If the statement on door 7 is true, then door 1 does not hide the Lady. \n8. If the statement on door 8 is true, then door 8 hides the Tiger and door 9 is empty. \n9. If the statement on door 9 is true, then door 9 hides the Tiger and the statement on door 3 is true. \n\nAdditionally, each door hides exactly one prize, only one door hides the Lady, the sign on the Lady's door is true, and the signs on the Tigers' doors are false. If room 8 is not empty, then there is enough information to deduce where the Lady is.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Logical Labyrinth Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "max",
+      "min",
+      "forall",
+      "=",
+      "<=",
+      ">=",
+      "-",
+      "1"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Logical Labyrinth Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "t"
+    ],
+    "model_data_keywords": [
+      "num_doors",
+      "num_prizes"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "sum",
+      "max",
+      "min",
+      "forall",
+      "=",
+      "<=",
+      ">=",
+      "-",
+      "1"
+    ]
+  }
+}

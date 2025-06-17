@@ -1,0 +1,40 @@
+{
+  "description": "The problem is about bus scheduling. Given a number of time slots and the minimum number of buses required at each time slot, the goal is to determine how many buses should start the schedule at each time slot. The objective is to minimize the total number of buses used. There are constraints that there must be 0 or more buses at each time slot, the number of buses for a time slot and the next one should meet the demand for the current time slot, and the demand 'around the clock' meaning the number of buses for the last time slot and the first one should meet the demand for the last time slot. The problem is taken from Taha's 'Introduction to Operations Research', page 58, and is a slightly more general model than Taha's.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Bus Scheduling Optimization",
+    "domain": "Operations Research",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "+",
+      "minimize"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Bus Scheduling Optimization",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "x",
+      "total_buses"
+    ],
+    "model_data_keywords": [
+      "time_slots",
+      "demands"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "+",
+      "minimize"
+    ]
+  }
+}

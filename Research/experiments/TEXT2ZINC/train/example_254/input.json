@@ -1,0 +1,47 @@
+{
+  "description": "To maximize profit, which mines should be operated each year and how much should they produce? The company has K mines and can operate at most MaxWork in any given year. For each mine k, there is a royalty cost of Royalty, a production limit of Limit, and the material extracted has a quality of Quality. Each client i requires a material with at least RequiredQuality. The price per unit of material sold is Price, with a discount Discount applied to the royalty cost for each unit sold.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Mine Operation Optimization",
+    "domain": "Mining",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Mine Operation Optimization",
+    "domain": "Mining",
+    "model_var_keywords": [
+      "isoperated",
+      "amount",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "n_mines",
+      "n_maxwork",
+      "royalty",
+      "limit",
+      "quality",
+      "requiredquality",
+      "price",
+      "discount"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "=",
+      "*"
+    ]
+  }
+}

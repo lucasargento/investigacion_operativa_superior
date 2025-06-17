@@ -1,0 +1,108 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 462
+- Name: Implementing cond_lex_cost Constraint
+- Domain: Constraint Programming
+- Objective: satisfaction
+
+Problem Description:
+The problem is about implementing the global constraint cond_lex_cost in MiniZinc. The cond_lex_cost constraint is defined such that a given VECTOR is assigned to the COSTth item of the collection PREFERENCE_TABLE. The VECTOR and PREFERENCE_TABLE are both arrays of integers. The COST is an integer representing the position of the VECTOR in the PREFERENCE_TABLE. The problem is to find a VECTOR and its position in the PREFERENCE_TABLE such that the cond_lex_cost constraint holds. The PREFERENCE_TABLE is a 2-dimensional array of size n by m, where n and m are integers. The VECTOR is a 1-dimensional array of size m. The position is an integer between 1 and n. The problem is solved when the VECTOR is found in the PREFERENCE_TABLE at the specified position.
+
+
+MiniZinc Model:
+int: n = 4;
+int: m = 2;
+array[1..n, 1..m] of var 0..1: arr;
+array[1..m] of var 0..1: v1;
+var 1..n: pos;
+
+%
+% adding an index parameter: in which position is v?
+% This is in effect the same as the global constraint cond_lex_cost
+%
+predicate cond_lex_cost(array[int] of var int: v, array[int, int] of var int: a, var int: ix) =
+      exists(i in index_set_1of2(a)) (
+      ix = i
+      /\
+      forall(j in index_set(v)) (
+         a[i,j] = v[j]
+      ) 
+    )
+;
+
+predicate cp2d(array[int,int] of int: x, array[int,int] of var int: y) =
+  assert(index_set_1of2(x) = index_set_1of2(y) /\
+         index_set_2of2(x) = index_set_2of2(y),
+           "cp2d: x and y have different sizes",
+      forall(i in index_set_1of2(x), j in index_set_2of2(x)) (
+         y[i,j] = x[i,j]
+     ) 
+  )
+; 
+
+predicate cp1d(array[int] of int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+    forall(i in index_set(x)) ( x[i] = y[i] ) )
+; 
+
+
+solve satisfy;
+
+constraint
+%    cp1d([0,1], v1)
+%    /\
+    cp2d([|1,0,
+           |0,1,
+           |0,0
+           |1,1|], arr)
+    /\
+    cond_lex_cost(v1, arr, pos)
+;
+
+output
+[
+  "arr: " ++ show(arr) ++ "\n" ++
+  "v1: " ++ show(v1) ++ "\n" ++
+  "pos: " ++ show(pos) ++ "\n" 
+];
+
+Expected Output:
+{
+  "arr": [
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "v1": [
+    1,
+    0
+  ],
+  "pos": 1
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

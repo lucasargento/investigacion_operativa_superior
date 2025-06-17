@@ -1,0 +1,52 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 307
+- Name: Coin Puzzle
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+The problem is a coin puzzle, inspired by the XPress Mosel model created by Martin Chlond. The puzzle involves three types of coins with values 15, 16, and 17. The goal is to find the minimum number of coins needed to sum up to a required value of 121 (i.e., 11 * 11). Each type of coin can be used any number of times, including not at all. The solution to the problem is the number of each type of coin used to reach the required sum.
+
+
+MiniZinc Model:
+array[1..3] of 1..100: v = [15,16,17];
+array[1..3] of var int: x;
+
+int: requ = 121; % i.e. 11 * 11
+
+constraint
+        forall(i in 1..3) (x[i] >= 0) 
+        /\
+        sum(i in 1..3) (v[i]*x[i]) = requ
+;
+
+solve minimize sum(i in 1..3) (x[i]);
+
+output
+[
+  "x: " ++ show(x)
+];
+
+Expected Output:
+{
+  "x": [
+    7,
+    1,
+    0
+  ],
+  "_objective": 8
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

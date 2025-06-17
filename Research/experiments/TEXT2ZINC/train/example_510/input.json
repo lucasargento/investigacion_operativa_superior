@@ -1,0 +1,43 @@
+{
+  "description": "This is an Alphametic puzzle, a type of cryptarithm in which a set of words is written down in the form of a long addition sum or some other mathematical problem. The objective is to replace the letters of the alphabet with decimal digits to make a valid arithmetic sum. In this particular puzzle, the words are 'VINGT', 'CINQ', 'CINQ', and 'TRENTE'. Each letter represents a unique digit in the range 0-9. The constraints are that all letters represent different digits, the sum of the numbers represented by 'VINGT', 'CINQ', and 'CINQ' equals the number represented by 'TRENTE', and the letters 'V', 'C', and 'T' represent numbers greater than or equal to 1. The goal is to find a valid assignment of digits to letters that satisfies all these constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Alphametic Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Alphametic Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "V",
+      "I",
+      "N",
+      "G",
+      "T",
+      "C",
+      "Q",
+      "R",
+      "E",
+      "VINGT",
+      "CINQ",
+      "TRENTE"
+    ],
+    "model_data_keywords": [
+      "letters"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "="
+    ]
+  }
+}

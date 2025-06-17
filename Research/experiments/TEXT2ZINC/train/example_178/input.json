@@ -1,0 +1,42 @@
+{
+  "description": "The problem is about finding superpermutations. In combinatorial mathematics, a superpermutation on n symbols is a string that contains each permutation of n symbols as a substring. Superpermutations can be shorter than the sum of all permutations because overlap is allowed. For instance, in the case of n = 2, the superpermutation 1221 contains all possible permutations (12 and 21), but the shorter string 121 also contains both permutations. It has been shown that for 1 \u2264 n \u2264 5, the smallest superpermutation on n symbols has length 1! + 2! + \u2026 + n! The task is to find the smallest superpermutation for a given n. The problem is solved by minimizing the length of the superpermutation, subject to the constraints that each permutation must appear as a substring, all permutations must be different, the first n symbols must be in order, and the superpermutation must be a palindrome.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Smallest Superpermutation",
+    "domain": "Combinatorial Mathematics",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "all_different",
+      "=",
+      "max"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Smallest Superpermutation",
+    "domain": "Combinatorial Mathematics",
+    "model_var_keywords": [
+      "x",
+      "ps",
+      "z",
+      "tot_len"
+    ],
+    "model_data_keywords": [
+      "n",
+      "num_perms",
+      "permutations",
+      "upper_bound"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "all_different",
+      "=",
+      "max"
+    ]
+  }
+}

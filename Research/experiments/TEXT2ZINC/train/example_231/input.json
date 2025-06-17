@@ -1,0 +1,38 @@
+{
+  "description": "Determine the shortest route that the traveler can take to visit all N towns and return to StartCity.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Traveling Salesman Problem",
+    "domain": "Operations Research",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "count",
+      "forall",
+      "sum",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Traveling Salesman Problem",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "visit_order",
+      "total_distance"
+    ],
+    "model_data_keywords": [
+      "Distances",
+      "StartCity"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "count",
+      "forall",
+      "sum",
+      "!="
+    ]
+  }
+}

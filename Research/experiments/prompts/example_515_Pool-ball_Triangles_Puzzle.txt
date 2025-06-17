@@ -1,0 +1,95 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 515
+- Name: Pool-ball Triangles Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Pool-ball triangles problem is a puzzle proposed by Martin Gardner. Given n*(n+1) div 2 numbered pool balls arranged in a triangle, the task is to place them so that the number of each ball below two balls is the difference of the numbers of those two balls. For example, when n=5, the numbers range from 1 to 15. The problem is to find a configuration of these numbers in a triangular arrangement such that the number on each ball is the difference of the two numbers on the balls directly above it. Note that this model does not handle mirror symmetries of the triangle. Also, there are no solutions for n=6,7. The goal is to find a satisfying assignment of numbers to balls that meets these conditions, or determine that no such assignment exists.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+% int: n = 4; % n'th triangle number 1,3,6,10,15,...
+% int: n = 5; 
+int: n = 3; 
+int: len = (n*(n + 1)) div 2;
+array[1..len] of var 1..len: x;
+
+% the triangle numbers for 1..n
+array[1..n] of 1..len: t = [i*(i+1) div 2 | i in 1..n] ; 
+
+% the index of first number to use in the subtraction
+array[1..t[n-1]] of var 1..len: subs; 
+
+
+predicate contains(var int: e, array[int] of var int: a) =
+   exists(i in 1..length(a)) (
+      a[i] = e
+   )
+;
+
+
+% solve satisfy;
+solve :: int_search(x ++ subs, first_fail, indomain_split, complete) satisfy;
+
+constraint
+
+   % create the array of numbers to subtract
+   subs[1] = 2
+   /\ 
+   forall(i in 2..t[n-1]) (
+      % "jump" of two when i-1 is a triangle number
+      ( contains(i-1,t) ->  subs[i] = subs[i-1] + 2 )
+      /\
+      ( not (contains(i-1, t)) ->  subs[i] = subs[i-1] + 1  )
+   )  
+ 
+   /\ % position the balls in their places
+   forall(i in 1..t[n-1]) (
+      x[i] = abs(x[subs[i]]-x[subs[i]+1])
+   )
+   /\
+   all_different(x)
+
+   /\ % symmetry breaking
+   x[2] < x[3] 
+;
+
+output [
+ "x: ", show(x), "\n",
+% "t: ", show(t), "\n",
+% "subs: ", show(subs), "\n",
+];
+
+Expected Output:
+{
+  "x": [
+    1,
+    3,
+    4,
+    5,
+    2,
+    6
+  ],
+  "subs": [
+    2,
+    4,
+    5
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,39 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 101
+- Name: Warehouse Stock Management
+- Domain: Transportation and Logistics
+- Objective: maximization
+
+Problem Description:
+Consider the problem of operating a warehouse, by buying and selling the stock of a certain commodity, in order to maximize profit over a certain length of time, say several periods. The warehouse has a fixed capacity, and there is a cost per unit for holding stock for one period. The selling price, per unit of stock, of the commodity is known to fluctuate over a number of time periods. In any period there is a fixed price holding for purchase per unit of stock. Additionally, the warehouse is originally empty and is required to be empty at the end of the last period. Determine the amount of buying and selling in each period to maximize the profit over the months.
+
+
+Input Data (data.dzn):
+N = 3;
+Capacity = 10;
+HoldingCost = 2;
+Price = [1, 2, 100];
+Cost = [100, 1, 100];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 970.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

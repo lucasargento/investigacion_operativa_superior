@@ -1,0 +1,159 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 188
+- Name: System Configuration Optimization
+- Domain: System Design
+- Objective: minimization
+
+Problem Description:
+The problem is about configuring a system with a set of models, cards, and racks. Each model has a power, connectors, and price. Each card has a power and quantity. The goal is to minimize the total cost of the system. The constraints are as follows: 
+
+1. The total power of the cards in a rack should not exceed the power of the model in the rack. 
+2. The total number of cards in a rack should not exceed the number of connectors in the model in the rack. 
+3. The total number of each type of card used should be equal to the quantity of that card. 
+4. The total cost is the sum of the prices of the models in the racks.
+
+
+MiniZinc Model:
+int: nbModel = 3;
+int: nbCard = 4;
+int: nbRack = 5;
+
+set of int: Models = 0..nbModel-1;
+set of int: Cards  = 0..nbCard-1;
+set of int: Racks  = 0..nbRack-1;
+
+% modelType:
+%   power
+%   connectors
+%   price
+int: modelTypes = 3;
+array[Models, 1..modelTypes] of int: model = 
+     array2d(Models, 1..modelTypes,
+           [  0,  0,   0,
+            150,  8, 150,
+            200, 16, 200
+           ]);
+
+% cardType:
+%   power
+%   quantity
+int: cardTypes = 2;
+array[Cards, 1..cardTypes] of int: car = array2d(Cards, 1..cardTypes,
+         [  20, 10,
+            40,  4 ,
+            50,  2, 
+            75,  1]);
+
+
+int: maxPrice = max(r in Models) (model[r,3]);
+int: maxCost = nbCard * maxPrice;
+array[Models] of int: powerData = array1d(Models, [model[i,1] | i in Models]);
+array[Models] of int: connData  = array1d(Models, [model[i,2] | i in Models]);
+array[Models] of int: priceData = array1d(Models, [model[i,3] | i in Models]);
+
+% decision variables
+array[Racks] of var Models: rack;
+array[Racks, Cards] of var 0..nbCard: counters;
+var 0..maxCost: cost;
+
+
+% solve minimize cost;
+% solve satisfy;
+solve :: int_search(
+        rack ++ [counters[r,c] | r in Racks, c in Cards], 
+        first_fail, 
+        indomain_max, 
+        complete) 
+    minimize cost;
+
+constraint
+
+   forall(r in Racks) (
+      sum(c in Cards) (counters[r,c] * car[c, 1]) <= powerData[rack[r]]
+   )
+   /\
+   forall(r in Racks) (
+      sum(c in Cards) (counters[r,c]) <= connData[rack[r]] 
+   )
+   /\
+   forall(c in Cards) (
+      sum(r in Racks) ( counters[r,c])  == car[c,2]
+   )
+   /\
+   cost == sum(r in Racks) (priceData[rack[r]])
+;   
+
+% for solve satisfy
+% constraint cost = 550;
+
+output 
+[
+  "cost: " ++ show(cost) ++ "\n" ++
+  "rack: " ++ show(rack) ++ "\n"
+  % ++ "counters: " 
+]
+% ++
+% [ if c = 0 then "\n" else " " endif ++
+%     show(counters[r,c]) 
+%   | r in Racks, c in  Cards
+% ]
+;
+
+Expected Output:
+{
+  "rack": [
+    2,
+    2,
+    1,
+    0,
+    0
+  ],
+  "counters": [
+    [
+      3,
+      0,
+      1,
+      1
+    ],
+    [
+      4,
+      3,
+      0,
+      0
+    ],
+    [
+      3,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "cost": 550,
+  "_objective": 550
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

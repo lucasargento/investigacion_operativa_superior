@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about two circles. The sum of their circumferences is equal to 10322*Pi and the sum of their areas is equal to 13946281*Pi. The task is to find the radius of each circle. The area of a circle is calculated as Pi*r^2 and the circumference as 2*Pi*r. The radius of each circle is a real number between 0 and 10000. The radius of the first circle should be less than or equal to the radius of the second circle.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Radius of Two Circles",
+    "domain": "Geometry",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "=",
+      "+",
+      "calculate_circumference",
+      "calculate_area"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Radius of Two Circles",
+    "domain": "Geometry",
+    "model_var_keywords": [
+      "radius_circle1",
+      "radius_circle2"
+    ],
+    "model_data_keywords": [
+      "pi",
+      "sum_circumferences",
+      "sum_areas"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "<=",
+      "=",
+      "+",
+      "calculate_circumference",
+      "calculate_area"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "description": "# Problem ColouredQueens\n\nThe queens graph is a graph with n*n nodes corresponding to the squares of a chess-board.\nThere is an edge between nodes iff they are on the same row, column, or diagonal, i.e. if two queens on those squares would attack each other.\nThe coloring problem is to color the queens graph with n colors.\nSee paper cited below.\n\n### Example\n  An example of a solution for n=7 is:\n  ```\n     4 5 3 1 2 0 6\n     0 6 4 5 3 1 2\n     1 2 0 6 4 5 3\n     5 3 1 2 0 6 4\n     6 4 5 3 1 2 0\n     2 0 6 4 5 3 1\n     3 1 2 0 6 4 5\n  ```\n\n## Data\n  A number n, the size of the chessboard\n\n## Model\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)\n\n## Execution\n  - python ColouredQueens.py -data=number\n\n## Links\n  - https://link.springer.com/chapter/10.1007/978-3-540-30210-0_17\n\n## Tags\n  academic",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Coloured Queens",
+    "domain": "Graph Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "abs",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Coloured Queens",
+    "domain": "Graph Theory",
+    "model_var_keywords": [
+      "queens"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "abs",
+      "!="
+    ]
+  }
+}

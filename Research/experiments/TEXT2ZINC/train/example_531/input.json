@@ -1,0 +1,45 @@
+{
+  "description": "The problem is a puzzle called the Rookwise chain puzzle. The task is to place the digits from 1 to 9 on a 3x3 matrix in such a way that they form a rookwise connected chain, from 1 to 9. A rookwise chain means that each number is adjacent to the next number in the sequence, either horizontally or vertically, similar to the movements of a rook in chess. Additionally, the numbers should be arranged in such a way that the sum of the numbers in the bottom row is equal to the sum of the numbers in the first two rows. The solution to this puzzle is unique.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Rookwise Chain Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">",
+      "all_different",
+      "toNum10",
+      "=",
+      "sum",
+      "exists",
+      "abs"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Rookwise Chain Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "row_sums"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">",
+      "all_different",
+      "toNum10",
+      "=",
+      "sum",
+      "exists",
+      "abs"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 500
+- Name: Pythagorean Triplets
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is to find integers A, B, and C that satisfy the Pythagorean theorem, where A, B, and C are all greater than or equal to 1, and A is less than B which is less than C. The Pythagorean theorem states that in a right-angled triangle, the square of the length of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the lengths of the other two sides. This can be written as: A^2 + B^2 = C^2.
+
+
+MiniZinc Model:
+var int: A;
+var int: B;
+var int: C;
+
+solve satisfy;
+
+constraint
+    A >= 1 /\ B >= 1 /\ C >= 1
+    /\
+    A*A + B*B =C*C 
+    /\
+    A < B /\ B < C
+;
+
+
+output [
+  show(A),"^2 + ", show(B), "^2 = ", show(C), "^2", "\n"
+  
+]
+
+Expected Output:
+{
+  "A": 3,
+  "B": 4,
+  "C": 5
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

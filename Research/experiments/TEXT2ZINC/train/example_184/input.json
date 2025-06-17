@@ -1,0 +1,40 @@
+{
+  "description": "Given a group of people, the problem is to divide them into 'm' teams of size 'n'. The total number of people is 'nm'. The task is to enumerate all the ways this can be done. The order of elements within each subset does not matter, and the order of the subsets doesn't matter. This means that a team of Alice and Bob is the same as a team of Bob and Alice, and Alice-Bob versus Charlie-David is the same as Charlie-David versus Alice-Bob. The number of ways of doing this is calculated as (nm)!/n!mm!. This problem uses a variant representation where 'x' is a m*n array with decision variables of 1..m, i.e., the assignments of the team to a person. The constraints ensure that there are exactly 'n' members in each team and the first occurrences of the team numbers (1..m) must be in order.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Team Assignment Enumeration",
+    "domain": "Combinatorial Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "global_cardinality",
+      "value_precede_chain",
+      "factorial",
+      "div",
+      "pow"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Team Assignment Enumeration",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "team_assignment"
+    ],
+    "model_data_keywords": [
+      "num_teams",
+      "team_size",
+      "num_people"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "global_cardinality",
+      "value_precede_chain",
+      "factorial",
+      "div",
+      "pow"
+    ]
+  }
+}

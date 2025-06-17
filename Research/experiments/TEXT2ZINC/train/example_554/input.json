@@ -1,0 +1,56 @@
+{
+  "description": "The problem, known as the 'Bridges to Somewhere' problem, is about five residents of Hometown, represented by the letters 'A' through 'E'. The offices where they work are represented by their matching letters on the island of Worktown. A river lies between Hometown and Worktown, preventing the residents from getting to work. They have enough funds to build two bridges that could connect Hometown to Worktown. The locations where these bridges could be built are indicated by the brown 1x3 hashed tiles. The two bridges can only be built in these approved areas. Once the bridges are built, the residents would then be able to commute to work. A commuter will always take the shortest path from home to work and can only travel in up, down, left or right directions (no diagonals). Each tile represents a 1-km-by-1-km distance. The problem is to determine which two bridges should be built in order to minimize the total commuting distance of all residents.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Bridges to Somewhere",
+    "domain": "Urban Planning",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "minimize",
+      "exists",
+      "min",
+      "sum",
+      "let",
+      "min_index",
+      "alldifferent",
+      "increasing"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Bridges to Somewhere",
+    "domain": "Urban Planning",
+    "model_var_keywords": [
+      "num_residents",
+      "num_bridge_locations",
+      "num_bridges_to_build",
+      "pos",
+      "bridge_locations",
+      "home_to_bridge",
+      "bridge_to_work",
+      "resident_names",
+      "bridge_to_build",
+      "nearest_bridge",
+      "total_distance"
+    ],
+    "model_data_keywords": [
+      "pos",
+      "bridge_locations",
+      "resident_names"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "minimize",
+      "exists",
+      "min",
+      "sum",
+      "let",
+      "min_index",
+      "alldifferent",
+      "increasing"
+    ]
+  }
+}

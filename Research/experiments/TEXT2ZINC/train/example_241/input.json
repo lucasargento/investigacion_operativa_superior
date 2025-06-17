@@ -1,0 +1,39 @@
+{
+  "description": "A firm produces M different goods using N different raw materials. The firm has Available amount of raw material i available. Good j requires Requirements units of material i per unit produced. Good j results in a revenue of Prices per unit produced. How much of each good should the firm produce in order to maximize its total revenue?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximize Total Revenue",
+    "domain": "Economics",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximize Total Revenue",
+    "domain": "Economics",
+    "model_var_keywords": [
+      "amount",
+      "total_revenue"
+    ],
+    "model_data_keywords": [
+      "Available",
+      "Requirements",
+      "Prices"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "*"
+    ]
+  }
+}

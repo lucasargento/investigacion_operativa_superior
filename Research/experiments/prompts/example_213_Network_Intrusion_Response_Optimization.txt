@@ -1,0 +1,72 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 213
+- Name: Network Intrusion Response Optimization
+- Domain: Network Security
+- Objective: minimization
+
+Problem Description:
+Determine the most cost-effective combination of interventions to halt the intruder's progress within the network. The MILP problem includes parameters: processing times at the central system (IsolateCentral, ScanCentral), processing times at the distributed system (IsolateDistributed, ScanDistributed), costs (CentralCost, DistributedCost), and maximum hours (CentralMaxHours, DistributedMaxHours) for a number of interventions N.
+
+
+Input Data (data.dzn):
+processing_times_central_isolate = [10, 6, 8];
+processing_times_central_scan = [6, 4, 6];
+processing_times_distributed_isolate = [12, 9, 12];
+processing_times_distributed_scan = [18, 10, 15];
+costs_central = 150;
+costs_distributed = 70;
+max_hours_central_max_hours = 16;
+max_hours_distributed_max_hours = 33;
+
+MiniZinc Model:
+% Parameters
+int: N; % Number of clusters
+array[1..N] of int: processing_times_central_isolate;
+array[1..N] of int: processing_times_central_scan;
+array[1..N] of int: processing_times_distributed_isolate;
+array[1..N] of int: processing_times_distributed_scan;
+int: costs_central;
+int: costs_distributed;
+int: max_hours_central_max_hours;
+int: max_hours_distributed_max_hours;
+
+% Decision Variables
+array[1..N] of var 0..1: isolate_central;
+array[1..N] of var 0..1: scan_central;
+array[1..N] of var 0..1: isolate_distributed;
+array[1..N] of var 0..1: scan_distributed;
+
+% Constraints
+constraint forall(i in 1..N) (
+    isolate_central[i] + scan_central[i] + isolate_distributed[i] + scan_distributed[i] = 1
+);
+
+constraint sum(i in 1..N) (isolate_central[i]*processing_times_central_isolate[i] + scan_central[i]*processing_times_central_scan[i]) <= max_hours_central_max_hours;
+constraint sum(i in 1..N) (isolate_distributed[i]*processing_times_distributed_isolate[i] + scan_distributed[i]*processing_times_distributed_scan[i]) <= max_hours_distributed_max_hours;
+
+% Objective Function
+var int: total_cost = sum(i in 1..N) (
+    isolate_central[i]*processing_times_central_isolate[i]*costs_central +
+    scan_central[i]*processing_times_central_scan[i]*costs_central +
+    isolate_distributed[i]*processing_times_distributed_isolate[i]*costs_distributed +
+    scan_distributed[i]*processing_times_distributed_scan[i]*costs_distributed
+);
+
+solve minimize total_cost;
+
+% Output
+output [ if fix(isolate_central[i]) = 1 then "isolate_central" else if fix(scan_central[i]) = 1 then "scan_central" else if fix(isolate_distributed[i]) = 1 then "isolate_distributed" else "scan_distributed" endif endif endif | i in 1..N] ++ ["\nTotal cost: ", show(total_cost)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

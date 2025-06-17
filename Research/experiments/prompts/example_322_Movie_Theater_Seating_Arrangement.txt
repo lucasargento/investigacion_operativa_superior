@@ -1,0 +1,62 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 322
+- Name: Movie Theater Seating Arrangement
+- Domain: Scheduling
+- Objective: satisfaction
+
+Problem Description:
+The problem is about seating arrangements in a movie theater. There are n couples who are to be seated in one row. Each person, except the two seated at the two ends, has two neighbors. The seating arrangement should be such that each neighbor of person k should either have the same gender or be the spouse of k. The goal is to find a seating arrangement that satisfies these conditions.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+int: n = 3; 
+int: m = 2*n;
+array[1..m] of var 1..m: x;
+
+solve :: int_search(x, first_fail, indomain_split, complete) satisfy;
+
+constraint
+   alldifferent(x)
+   /\
+   forall(i in 2..m) (
+     (x[i] mod 2 = x[i-1] mod 2)
+     \/
+     exists(j in 1..n) (
+        (2*(j-1)+1 = x[i] /\ 2*(j-1)+2 = x[i-1]) 
+        \/
+        (2*(j-1)+1 = x[i-1] /\ 2*(j-1)+2 = x[i]) 
+     )
+  )
+;
+
+
+output [
+ "x     : " ++ show(x) ++ "\n" 
+] ++ ["\n"];
+
+Expected Output:
+{
+  "x": [
+    1,
+    2,
+    4,
+    3,
+    5,
+    6
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

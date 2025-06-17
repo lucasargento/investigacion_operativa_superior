@@ -1,0 +1,50 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 402
+- Name: Pharmaceutical Lab Optimization
+- Domain: Healthcare
+- Objective: minimization
+
+Problem Description:
+A pharmaceutical company has two labs , lab 1 and lab 2 , where they make heart and lung medication in pill form . At lab 1 , they can produce 20 heart medication pills and 30 lung medication pills per hour . At lab 2 , they can produce 30 heart medication pills and 40 lung medication pills per hour . Each session at lab 1 requires 3 hours of worker labor while each session at lab 2 requires 5 hours of worker labor . The company has 1500 worker hours available and must make at least 20000 heart medication pills and at least 30000 lung medication pills . How many hours at each lab should be run to minimize the total time needed ?
+
+
+MiniZinc Model:
+var int: lab1_hours;
+% hours lab 2 is run for
+var int: lab2_hours;
+
+% hours run is non-negative
+constraint lab1_hours >= 0;
+constraint lab2_hours >= 0;
+
+% The company has 1500 worker hours available
+% each session at lab 1 requires 3 hours of workers labor and each session at lab 2 requires 5 hours of worker labor
+constraint lab1_hours * 3 + lab2_hours * 5 <= 1500;
+
+% the company must make at least 20000 heart medication pills
+% lab 1 can produce 20 heart medication pills per hour and lab 2 can produce 30 heart medication pills per hour
+constraint lab1_hours * 20 + lab2_hours * 30 >= 20000;
+
+% the company must make at least 30000 lung medication pills
+% lab 1 can produce 30 lung medication pills per hour and lab 2 can produce 40 lung medication pills per hour
+constraint lab1_hours * 30 + lab2_hours * 40 >= 30000;
+
+% minimize the total time needed 
+solve minimize lab1_hours + lab2_hours;
+
+% Output
+output ["Lab 1 hours: " ++ show(lab1_hours) ++ "\n" ++ "Lab 2 hours: " ++ show(lab2_hours)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

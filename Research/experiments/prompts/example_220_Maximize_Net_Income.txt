@@ -1,0 +1,67 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 220
+- Name: Maximize Net Income
+- Domain: Finance
+- Objective: maximization
+
+Problem Description:
+We are aiming at maximizing total net income subject to the Cash availability and machine capacity limitations. The problem parameters include: the initial Cash available, the Hour(s) required to produce each of the P products, the Cost to produce each of the products, the Price at which each product can be sold, the InvestPercentage of income from each product to be reinvested, the UpgradeHours required for upgrading the machinery, the UpgradeCost associated with upgrading, and the total available AvailableHours for machine operation.
+
+
+Input Data (data.dzn):
+P = 2;
+Cash = 3000;
+Hour = [|2, 6|];
+Cost = [|3, 2|];
+Price = [|6, 5|];
+InvestPercentage = [|0.4, 0.3|];
+UpgradeHours = 2000;
+UpgradeCost = 400;
+AvailableHours = 2000;
+
+MiniZinc Model:
+% Parameters
+int: P; % Number of products
+int: Cash; % Initial cash available
+array[1..P] of int: Hour; % Hours required to produce each product
+array[1..P] of int: Cost; % Cost to produce each product
+array[1..P] of int: Price; % Price at which each product can be sold
+array[1..P] of float: InvestPercentage; % Percentage of income from each product to be reinvested
+int: UpgradeHours; % Hours required for upgrading the machinery
+int: UpgradeCost; % Cost associated with upgrading
+int: AvailableHours; % Total available hours for machine operation
+
+% Decision Variables
+var 0..Cash: net_income; % Net income of the company
+array[1..P] of var 0..Cash: production; % Production quantity of each product
+var bool: upgrade; % Whether the company should upgrade its machine capacity or not
+
+% Constraints
+constraint forall(i in 1..P) (
+    production[i] * Hour[i] <= AvailableHours + (upgrade * UpgradeHours) % Machine capacity constraint
+    /\ production[i] * Cost[i] <= Cash - (upgrade * UpgradeCost) % Cash availability constraint
+);
+
+constraint forall(i in 1..P) (
+    net_income >= (production[i] * Price[i]) - (production[i] * Cost[i]) - (production[i] * Price[i] * InvestPercentage[i]) % Net income calculation
+);
+
+% Objective
+solve maximize net_income;
+
+% Output
+output ["net_income: ", show(net_income), "\n", "production: ", show(production), "\n", "upgrade: ", show(upgrade)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

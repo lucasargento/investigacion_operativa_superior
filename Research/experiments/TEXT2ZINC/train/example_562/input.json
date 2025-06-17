@@ -1,0 +1,48 @@
+{
+  "description": "A farmer is raising pigs for market and wishes to determine the quantities of the available types of feed (corn, tankage, and alfalfa) that should be given to each pig. The objective is to determine which mix will meet certain nutritional requirements at a minimum cost. The number of units of each type of basic nutritional ingredient contained within 1 kilogram of each feed type is given, along with the daily nutritional requirements and feed costs. The problem is to formulate an integer program for this problem with the following constraints: 1) The farmer wants to have at most 2 feed types in the mix. 2) The farmer thinks that satisfying all the nutritional requirements costs him too much. He wants to keep only two of the three requirements. The model should minimize the cost while satisfying only two (any two) of the three nutritional requirements.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Pig Feed Optimization",
+    "domain": "Agriculture",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<->",
+      "=",
+      "bool2int",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Pig Feed Optimization",
+    "domain": "Agriculture",
+    "model_var_keywords": [
+      "mix",
+      "tot_cost",
+      "daily_req_met"
+    ],
+    "model_data_keywords": [
+      "num_ingredients",
+      "num_feeds",
+      "ingredients_per_feed",
+      "feed_cost",
+      "min_daily_requirements"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<->",
+      "=",
+      "bool2int",
+      "<="
+    ]
+  }
+}

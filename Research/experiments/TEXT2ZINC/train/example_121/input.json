@@ -1,0 +1,39 @@
+{
+  "description": "---\nTitle:    Nonogram\nCategory: Games and puzzles\nProposer: \n    - Gary Duncan\n    - Ian Gent\nCategory: Games and puzzles\n---\n\n\nNonograms are a popular puzzle, which goes by different names in different countries. Solvers have to shade in squares in a grid so that blocks of consecutive shaded squares satisfy constraints given for each row and column. Constraints typically indicate the sequence of shaded blocks (e.g. 3,1,2 means that there is a block of 3, then a gap of unspecified size, a block of length 1, another gap, and then a block of length 2).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Nonogram Solver",
+    "domain": "Games and Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "make_automaton",
+      "regular"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Nonogram Solver",
+    "domain": "Games and Puzzles",
+    "model_var_keywords": [
+      "grid"
+    ],
+    "model_data_keywords": [
+      "rows",
+      "cols",
+      "row_rule_len",
+      "col_rule_len",
+      "row_rules",
+      "col_rules"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "make_automaton",
+      "regular"
+    ]
+  }
+}

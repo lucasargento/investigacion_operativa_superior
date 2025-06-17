@@ -1,0 +1,38 @@
+{
+  "description": "The problem is about converting temperatures between Celsius and Fahrenheit scales. The problem is modeled as a constraint satisfaction problem where the goal is to find a temperature that is the same in both Celsius and Fahrenheit scales. The temperature is represented as a floating point number and an integer in both scales. The conversion between the scales is done using the standard formula: C = (F - 32.0) * 5.0 / 9.0. The problem is solved by searching for a solution that satisfies all the constraints. The constraints ensure that the temperatures in both scales are the same and that they are integers. The problem is solved using a floating point search strategy with a precision of 0.01. The solution is the temperatures in both scales.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Temperature Conversion",
+    "domain": "Physics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "convertTemperature",
+      "int2float",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Temperature Conversion",
+    "domain": "Physics",
+    "model_var_keywords": [
+      "tempCelsius",
+      "tempFahrenheit",
+      "tempCelsiusInt",
+      "tempFahrenheitInt"
+    ],
+    "model_data_keywords": [
+      "MAX_TEMP",
+      "MAX_TEMP_FLOAT"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "convertTemperature",
+      "int2float",
+      "="
+    ]
+  }
+}

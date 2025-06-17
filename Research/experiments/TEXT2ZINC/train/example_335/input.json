@@ -1,0 +1,37 @@
+{
+  "description": "The problem is about finding the digital root of a number. The digital root (also repeated digital sum) of a number is the number obtained by adding all the digits, then adding the digits of that number, and then continuing until a single-digit number is reached. For example, the digital root of 65,536 is 7, because 6 + 5 + 5 + 3 + 6 = 25 and 2 + 5 = 7. The task is to find the digital root for a given number 'x' and also for a range of numbers from 1 to 'm'. The digital root is calculated using a base 10 number system.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Digital Root Calculation",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "digital_root",
+      "forall",
+      "mod"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Digital Root Calculation",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "d_x",
+      "d_roots"
+    ],
+    "model_data_keywords": [
+      "n",
+      "m",
+      "x"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "digital_root",
+      "forall",
+      "mod"
+    ]
+  }
+}

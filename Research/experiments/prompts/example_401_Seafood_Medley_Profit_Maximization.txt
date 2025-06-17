@@ -1,0 +1,63 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 401
+- Name: Seafood Medley Profit Maximization
+- Domain: Business Optimization
+- Objective: maximization
+
+Problem Description:
+A seafood market sells scallops , mussels , and oysters in packages named seafood medley one and seafood medley two . A package of seafood medley one contains 20 grams of scallops , 30 grams of mussels , and 50 grams of oysters . A package of seafood medley two contains 40 grams of scallops , 40 grams of mussels , and 20 grams of oysters . The market has available 10000 grams of scallops , 12000 grams of mussels , and 11000 grams of oysters . If the profit per package of seafood medley one is $ 20 and the profit per package of seafood medley two is $ 25 , how many of each should be sold to maximize profit ?
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% number of packages of seafood medley one
+var int: medley_one;
+% number of packages of seafood medley two
+var int: medley_two;
+
+% number of packages are non-negative
+constraint medley_one >= 0;
+constraint medley_two >= 0;
+
+% number of available scallops is 10000 grams
+% medley one contains 20 grams of scallops and medley two contains 40 grams of scallops
+constraint 20 * medley_one + 40 * medley_two <= 10000;
+
+% number of available mussels is 12000 grams
+% medley one contains 30 grams of mussels and medley two contains 40 grams of mussels
+constraint 30 * medley_one + 40 * medley_two <= 12000;
+
+% number of available oysters is 11000 grams
+% medley one contains 50 grams of mussels and medley two contains 20 grams of mussels
+constraint 50 * medley_one + 20 * medley_two <= 11000;
+
+% profit from medley one is $20 each and profit from medley two is $25 each 
+var int: profit = 20 * medley_one + 25 * medley_two;
+
+% maximize profit
+solve maximize profit;
+
+% output
+output ["Seafood Medley One: " ++ show(medley_one) ++ "\nSeafood Medley Two: " ++ show(medley_two) ++ "\nProfit: $" ++ show(profit)];
+
+Expected Output:
+{
+  "medley_one": 150,
+  "medley_two": 175,
+  "_objective": 7375
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,289 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 134
+- Name: Social Golfers Problem
+- Domain: Scheduling
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    Social Golfers Problem
+Proposer: Warwick Harvey
+Category: Scheduling and related problems
+---
+
+
+The coordinator of a local golf club has come to you with the following problem. In their club, there are 32 social golfers, each of whom play golf once a week, and always in groups of 4. They would like you to come up with a schedule of play for these golfers, to last as many weeks as possible, such that no golfer plays in the same group as any other golfer on more than one occasion.
+Possible variants of the above problem include: finding a 10-week schedule with "maximum socialisation"; that is, as few repeated pairs as possible (this has the same solutions as the original problem if it is possible to have no repeated pairs), and finding a schedule of minimum length such that each golfer plays with every other golfer at least once ("full socialisation").
+
+The problem can easily be generalized to that of scheduling $m$ groups of $n$ golfers over $p$ weeks, such that no golfer plays in the same group as any other golfer twice (i.e. maximum socialisation is achieved).
+
+This problem is derived from a question posted to sci.op-research by
+bigwind777@aol.com (Bigwind777) in May 1998. It is a generalisation of the
+problem of constructing a
+round-robin tournament schedule, where the number
+of players in a "game" is
+more than two. The optimal solution for 32 golfers is not yet known.
+
+
+Input Data (data.dzn):
+n_groups = 5;
+n_per_group = 2;
+n_rounds = 8;
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: n_groups;                          % The number of groups.
+int: n_per_group;                       % The size of each group.
+int: n_rounds;                          % The number of rounds.
+
+int: n_golfers = n_groups * n_per_group;
+
+set of int: groups = 1..n_groups;
+set of int: group = 1..n_per_group;
+set of int: rounds = 1..n_rounds;
+set of int: golfers = 1..n_golfers;
+
+array [rounds, groups, group] of var golfers: round_group_i_golfer;
+
+    % Each member of each group must be distinct.
+    %
+constraint
+    forall (r in rounds) (
+        alldifferent (g in groups, i in group) (round_group_i_golfer[r, g, i])
+    );
+
+    % We also break some symmetry
+    % here by strictly ordering each group.
+    %
+constraint
+    forall (r in rounds, g in groups, i in group where i < n_per_group) (
+        round_group_i_golfer[r, g, i] < round_group_i_golfer[r, g, i + 1]
+    );
+
+    % Each pair can play together at most once.
+    %
+constraint
+    forall (a, b in golfers where a < b) (
+        sum (r in rounds, g in groups, i, j in group where i < j) (
+            bool2int(
+                round_group_i_golfer[r, g, i] = a
+            /\  round_group_i_golfer[r, g, j] = b
+            )
+        )
+    <=
+        1
+    );
+
+solve satisfy;
+
+output [
+    "Social golfers:\n\n", 
+    "Groups        : ", show(n_groups), "\n", 
+    "No. per group : ", show(n_per_group), "\n",
+    "No. of rounds : ", show(n_rounds), "\n"
+] ++ [
+    ( if g = 1 /\ i = 1 then "\nround " ++ show(r) ++ ":" else "" endif) ++
+    ( if i = 1 then "   " else " " endif) ++
+    show_int(2, round_group_i_golfer[r, g, i]) 
+    |  r in rounds, g in groups, i in group
+];
+
+%-----------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------%
+
+Expected Output:
+{
+  "round_group_i_golfer": [
+    [
+      [
+        7,
+        9
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        2,
+        10
+      ],
+      [
+        1,
+        5
+      ]
+    ],
+    [
+      [
+        3,
+        9
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        10
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    [
+      [
+        8,
+        10
+      ],
+      [
+        6,
+        9
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    [
+      [
+        5,
+        9
+      ],
+      [
+        4,
+        10
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        1,
+        8
+      ]
+    ],
+    [
+      [
+        5,
+        8
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        3,
+        10
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        1,
+        7
+      ]
+    ],
+    [
+      [
+        5,
+        10
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        1,
+        6
+      ]
+    ],
+    [
+      [
+        8,
+        9
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        1,
+        10
+      ]
+    ],
+    [
+      [
+        9,
+        10
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        1,
+        2
+      ]
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

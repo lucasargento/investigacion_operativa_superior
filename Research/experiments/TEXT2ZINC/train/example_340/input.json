@@ -1,0 +1,37 @@
+{
+  "description": "The problem is a photo problem modeled in MiniZinc. The problem involves 11 positions and 20 preferences. The goal is to find a solution that satisfies the given preferences. The preferences are given as a 2D array where each row represents a preference between two positions. The problem is solved using integer search with 'first_fail', 'indomain_min', and 'complete' as parameters. The problem also includes a constraint that the solution must be greater than or equal to 12. The problem is solved to satisfaction, not optimization. The output of the problem is the solution and the positions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Photo Problem",
+    "domain": "Scheduling",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "abs",
+      ">=",
+      "alldifferent"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Photo Problem",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "positions",
+      "z"
+    ],
+    "model_data_keywords": [
+      "num_positions",
+      "num_preferences",
+      "preferences"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "abs",
+      ">=",
+      "alldifferent"
+    ]
+  }
+}

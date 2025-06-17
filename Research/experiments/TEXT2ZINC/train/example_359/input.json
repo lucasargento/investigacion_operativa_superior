@@ -1,0 +1,44 @@
+{
+  "description": "Harriet has returned from the mall and is describing her four shoe purchases to her friend Aurora. She bought four different kinds of shoes: ecru espadrilles, fuchsia flats, purple pumps, and suede sandals. However, she can't recall at which different store (Foot Farm, Heels in a Handcart, The Shoe Palace, or Tootsies) she got each pair. The task is to figure out the order in which Harriet bought each pair of shoes, and where she bought each. The following clues are given: 1. Harriet bought fuchsia flats at Heels in a Handcart. 2. The store she visited just after buying her purple pumps was not Tootsies. 3. The Foot Farm was Harriet's second stop. 4. Two stops after leaving The Shoe Place, Harriet bought her suede sandals. The goal is to determine the order of the shoes and the corresponding store.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Shoe Shopping Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "=",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Shoe Shopping Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "ecru_espadrilles",
+      "fuchsia_flats",
+      "purple_pumps",
+      "suede_sandals",
+      "Foot_Farm",
+      "Heels_in_a_Handcart",
+      "The_Shoe_Palace",
+      "Tootsies",
+      "shoes",
+      "stores"
+    ],
+    "model_data_keywords": [
+      "num_shoes_stores",
+      "index_range"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "=",
+      "!="
+    ]
+  }
+}

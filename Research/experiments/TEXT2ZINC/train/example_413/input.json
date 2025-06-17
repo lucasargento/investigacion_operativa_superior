@@ -1,0 +1,45 @@
+{
+  "description": "A man takes two forms of vitamin supplements to get his vitamin B and vitamin D requirements . He needs at least 14 units of vitamin B and 24 units of vitamin D. Per serving , a gummy vitamin contains 2 units of vitamin B and 7 units of vitamin D. Per serving , a powder vitamin contains 6 units of vitamin B and 2 units of vitamin D. If the cost per serving for a gummy vitamin is $ 1 and the cost per serving of powder vitamin is $ 3 , how many of each should he take to minimize his cost ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Vitamin Supplements Optimization",
+    "domain": "Healthcare",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "constraint",
+      ">=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Vitamin Supplements Optimization",
+    "domain": "Healthcare",
+    "model_var_keywords": [
+      "gummy",
+      "powder",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "required_vitamin_B",
+      "required_vitamin_D",
+      "vitamin_B_per_gummy",
+      "vitamin_D_per_gummy",
+      "vitamin_B_per_powder",
+      "vitamin_D_per_powder",
+      "cost_per_gummy",
+      "cost_per_powder"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "constraint",
+      ">=",
+      "*",
+      "+"
+    ]
+  }
+}

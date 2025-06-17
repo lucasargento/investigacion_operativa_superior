@@ -1,0 +1,170 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 316
+- Name: Non-dominating Queens Puzzle
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+The Non-dominating queens puzzle is a variation of the classic N-Queens problem. The problem is to place N queens on an NxN chessboard such that no two queens threaten each other and the number of squares that are attacked or occupied is minimized. A square is considered attacked if it is in the same row, column, or diagonal as a queen. The objective is to minimize the number of squares that are either occupied by a queen or are under attack by a queen. The problem is defined on a 5x5 chessboard in this case.
+
+
+MiniZinc Model:
+int: size = 5;
+set of 1..size: S = 1..size;
+
+% var x(S,S) binary;  #  x(i,j) = 1 if square (i,j) occupied, 0 otherwise
+array[S,S] of var 0..1: x;
+% var a(S,S) binary;  # a(i,j) = 1 if square (i,j) attacked, 0 otherwise
+array[S,S] of var 0..1: a;
+
+var int: numa = sum(i in S, j in S) (a[i,j]);
+
+% minimize number of squares attacked or occupied
+% solve minimize numa;
+solve :: int_search(
+        [a[i,j] | i,j in S] ++ [x[i,j] | i,j in S], 
+        first_fail, 
+        indomain_min, 
+        complete) 
+    minimize numa;
+
+constraint
+  % number of pieces placed equals size of board
+  sum(i in S,j in S) (x[i,j]) = size
+
+  /\  % a[i,j) = 1 if square (i,j) attacked or occupied
+  forall(i in S, j in S) (
+      (sum(m in S where m != i /\ m-i+j >= 1 /\ m-i+j <= size) (x[m,m-i+j]) +
+       sum(m in S where m != i /\ i+j-m >= 1 /\ i+j-m <= size) (x[m,i+j-m]) +
+       sum(m in S) (x[m,j]) + 
+       sum(m in S  where  m != j) (x[i,m]) +
+       x[i,j]
+      ) 
+       <= size*a[i,j]
+  )
+  /\ % a[i,j) = 0 if square (i,j) not attacked or occupied
+  forall(i in S,j in S) (
+       (sum(m in S  where  m != i /\ m-i+j >= 1 /\ m-i+j <= size) (x[m,m-i+j]) +
+        sum(m in S  where  m != i /\ i+j-m >= 1 /\ i+j-m <= size) (x[m,i+j-m]) +
+        sum(m in S) (x[m,j]) + 
+        sum(m in S  where  m != j) (x[i,m]) +
+        x[i,j]) 
+        >= a[i,j] 
+  )
+;
+
+output 
+[
+ "\nnuma: " ++ show(numa)  ++ "\n"
+]
+++
+[
+   if j = 1 /\ i = 1 then 
+     "\n: x\n"
+   else "" endif ++
+   if j = 1 then "\n" else " " endif ++
+   show(x[i,j]) 
+   | i,j in 1..size
+] ++ 
+[
+   if j = 1 /\ i = 1 then 
+     "\n: a\n"
+   else "" endif ++
+   if j = 1 then "\n" else " " endif ++
+   show(a[i,j]) 
+   | i,j in 1..size
+] ++ ["\n"]
+;
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0
+    ]
+  ],
+  "a": [
+    [
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "_objective": 22
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

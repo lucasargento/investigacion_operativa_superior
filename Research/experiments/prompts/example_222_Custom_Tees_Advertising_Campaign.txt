@@ -1,0 +1,69 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 222
+- Name: Custom Tees Advertising Campaign
+- Domain: Marketing
+- Objective: maximization
+
+Problem Description:
+How many clicks from each ad type should Custom Tees purchase to maximize the number of unique clicks within the Budget? Consider the following parameters: the total number of advertisement types (A), costs of purchasing a click from each advertisement type (Costs), the maximum number of clicks that can be purchased from each advertisement type (MaxClicks), the number of young audience clicks from each advertisement type (YoungClicks), the number of old audience clicks from each advertisement type (OldClicks), and the number of unique clicks from each advertisement type (UniqueClicks). Additionally, consider the goals for the number of clicks from the young (GoalYoung) and old (GoalOld) audience, as well as the goals for the number of unique clicks from the young (GoalUniqueYoung) and old (GoalUniqueOld) audience.
+
+
+Input Data (data.dzn):
+goal_young = 500;
+goal_old = 600;
+goal_unique_young = 250;
+goal_unique_old = 300;
+young_clicks = [40, 30, 70];
+old_clicks = [60, 70, 30];
+costs = [75, 100, 120];
+max_clicks = [600, 300, 300];
+unique_clicks = [40, 75, 90];
+budget = 105000;
+
+MiniZinc Model:
+% Parameters
+int: goal_young;
+int: goal_old;
+int: goal_unique_young;
+int: goal_unique_old;
+array[1..A] of int: young_clicks;
+array[1..A] of int: old_clicks;
+array[1..A] of int: costs;
+array[1..A] of int: max_clicks;
+array[1..A] of int: unique_clicks;
+int: budget;
+
+% Decision Variables
+array[1..A] of var 0..max_clicks[i]: clicks;
+var 0..sum(max_clicks): total_unique_clicks;
+
+% Constraints
+constraint forall(i in 1..A) (
+    clicks[i] * costs[i] <= budget
+);
+
+constraint sum(i in 1..A) (clicks[i] * young_clicks[i]) >= goal_young;
+constraint sum(i in 1..A) (clicks[i] * old_clicks[i]) >= goal_old;
+constraint sum(i in 1..A) (clicks[i] * unique_clicks[i]) = total_unique_clicks;
+
+constraint total_unique_clicks >= goal_unique_young + goal_unique_old;
+
+% Objective
+solve maximize total_unique_clicks;
+
+% Output
+output ["clicks: ", show(clicks), "\n", "total_unique_clicks: ", show(total_unique_clicks)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

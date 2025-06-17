@@ -1,0 +1,53 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 171
+- Name: Balanced 0-1 Matrix
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is about creating a balanced 0-1 matrix. The task is to assign values, either zero or one, to the positions of an n x n matrix, where n is even, so that each row and each column contains exactly n/2 zeros and n/2 ones. The matrix size n must be an even number. The model ensures that the sum of ones in each row and each column is equal to n/2.
+
+
+Input Data (data.dzn):
+n = 2;
+
+MiniZinc Model:
+int: n = 6; % must be even
+int: m = n div 2;
+
+array[1..n, 1..n] of var 0..1: x;
+
+
+solve satisfy;
+
+constraint
+   assert(n mod 2 = 0, "n must be even")
+   /\
+   forall(i in 1..n) (
+        sum(j in 1..n) (bool2int(x[i,j]=1)) = m
+   )
+   /\
+   forall(j in 1..n) (
+        sum(i in 1..n) (bool2int(x[i,j]=1)) = m
+   )
+;
+
+output [
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i,j in 1..n
+] ++ ["\n"];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

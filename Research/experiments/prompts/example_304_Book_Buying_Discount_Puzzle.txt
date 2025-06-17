@@ -1,0 +1,115 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 304
+- Name: Book Buying Discount Puzzle
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+This is a discount puzzle problem. The problem is about buying books over a period of 5 days. Each book has a certain cost. The goal is to minimize the total cost of buying the books. The total cost is calculated as the sum of the cost of all books minus a discount. The discount is calculated as 0.001 times the product of the total cost of books bought on consecutive days. A book can be bought only once and on a specific day. The decision variable 'x[i,j]' is 1 if book 'i' is bought on day 'j', and 0 otherwise. The variable 't[j]' represents the total cost of books bought on day 'j'. The variable 'totcost' represents the total cost after applying the discount. The constraints ensure that each book is bought exactly once and the total cost for each day is correctly calculated. The problem is to determine on which day each book should be bought to minimize the total cost.
+
+
+MiniZinc Model:
+int: m = 5;    % days
+set of int: M = 1..m;
+set of int: Q = 2..m;
+array[M] of int: cost;  % cost of books
+
+array[M, M] of var 0..1: x; % x[i,j]=1 if book i bought on day j, 0 otherwise
+array[M] of var 0..100: t; % total cost of books on day j
+
+var 0.0..200.0: totcost = int2float(sum(i in M) (cost[i])) - sum(k in Q) (0.001*int2float(t[k-1])*int2float(t[k]));
+
+solve :: int_search([x[i,j] | i, j in M], first_fail, indomain_min, complete) minimize totcost;
+% solve minimize totcost;
+
+
+constraint
+  forall(j in M) (
+        t[j] = sum(i in M) (cost[i]*x[i,j])
+  )
+
+  /\
+  forall(i in M) (
+        sum(j in M) (x[i,j]) = 1
+  )
+
+;
+
+output 
+[ 
+  "t: ", show(t), "\n",
+  "totcost: ", show(totcost)
+] ++
+[
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i,j in M
+];
+
+%
+% data
+%
+cost = [10, 20, 30, 40, 50];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0
+    ]
+  ],
+  "t": [
+    0,
+    0,
+    0,
+    80,
+    70
+  ],
+  "_objective": 144.4
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

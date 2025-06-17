@@ -1,0 +1,95 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 498
+- Name: Prime Numbers in Range
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is about finding prime numbers in a given range. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. The range is from 1 to a given number 'n'. The problem requires to find all the prime numbers in this range and also the total number of prime numbers found. A number 'x' is considered prime if it is greater than 1 and for all numbers 'i' from 2 to the square root of 'x', 'x' is not divisible by 'i'.
+
+
+MiniZinc Model:
+int: n = 100;
+
+% array[1..n] of var 0..1: x;
+
+var set of 1..n: primes;
+var 0..n: num_primes = card(primes);
+
+predicate is_prime(var int: x) =
+   x > 1 
+   /\
+   forall(i in 2..1+ceil(sqrt(int2float(ub(x))))) ( 
+        (i < x) -> (x mod i > 0)
+   )
+;
+
+
+solve satisfy;
+% solve :: int_search(x, "first_fail", "indomain", "complete") satisfy;
+
+constraint
+  % x = 13
+  % /\
+  % is_prime(x)
+  forall(i in 1..n) (
+     %(x[i] = 1 <-> is_prime(i))
+     %/\
+     (i in primes <-> is_prime(i))
+  )
+;
+
+output [
+ % "x: " ++ show(x) ++ "\n" ++
+ "primes: " ++ show(primes) ++ "\n" ++
+ "num_primes:" ++ show(num_primes)
+] ++ ["\n"]
+
+Expected Output:
+{
+  "primes": {
+    "set": [
+      [
+        2,
+        3
+      ],
+      5,
+      7,
+      11,
+      13,
+      17,
+      19,
+      23,
+      29,
+      31,
+      37,
+      41,
+      43,
+      47,
+      53,
+      59,
+      61,
+      67,
+      71,
+      73,
+      79,
+      83,
+      89,
+      97
+    ]
+  }
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

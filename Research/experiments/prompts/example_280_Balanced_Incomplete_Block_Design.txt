@@ -1,0 +1,102 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 280
+- Name: Balanced Incomplete Block Design
+- Domain: Combinatorial
+- Objective: satisfaction
+
+Problem Description:
+# Problem BIBD
+
+This is [Problem 28](http://www.csplib.org/Problems/prob028) at CSPLib:
+
+Balanced Incomplete Block Design (BIBD) generation is a standard combinatorial problem from design theory,
+originally used in the design of statistical experiments but since finding other applications such as cryptography.
+It is a special case of Block Design, which also includes Latin Square problems.
+BIBD generation is described in most standard textbooks on combinatorics.
+A BIBD is defined as an arrangement of v distinct objects into b blocks such that each block contains exactly k distinct objects,
+each object occurs in exactly r different blocks, and every two distinct objects occur together in exactly l blocks.
+Another way of defining a BIBD is in terms of its incidence matrix, which is a v by b binary matrix with exactly r ones per row, k ones per column,
+and with a scalar product of l between any pair of distinct rows.
+A BIBD is therefore specified by its parameters (v,b,r,k,l).
+
+### Example
+  An example of a solution for (7,7,3,3,1) is:
+  ```
+    0 1 1 0 0 1 0
+    1 0 1 0 1 0 0
+    0 0 1 1 0 0 1
+    1 1 0 0 0 0 1
+    0 0 0 0 1 1 1
+    1 0 0 1 0 1 0
+    0 1 0 1 1 0 0
+  ```
+
+## Data
+  Five integers, corresponding to:
+    - v: the number of objects
+    - b: the number of blocks
+    - k: the number of distinct objects per block
+    - r: each object occurs in exactly r different blocks
+    - l: every two distinct objects occur together in exactly l blocks
+
+## Model(s)
+  There are two variants:
+    - a main variant
+    - another one (called aux) involving auxiliary variables.
+
+  You can also find a step-by-step modeling process in this [Jupyter notebook](https://pycsp.org/documentation/models/CSP/Bibd/).
+
+  constraints: [Lex](http://pycsp.org/documentation/constraints/Lex), [Sum](http://pycsp.org/documentation/constraints/Sum)
+
+## Execution
+  - python BIBD.py -data=[number,number,number,number,number]
+  - python BIBD.py -data=[number,number,number,number,number] -variant=aux
+
+## Tags
+  academic, notebook, csplib
+
+
+Input Data (data.dzn):
+v=9;
+b=0;
+r=0;
+k=3;
+l=9;
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Parameters
+int: v; % number of objects
+int: b; % number of blocks
+int: k; % number of distinct objects per block
+int: r; % each object occurs in exactly r different blocks
+int: l; % every two distinct objects occur together in exactly l blocks
+
+% Decision variable
+array[1..v, 1..b] of var 0..1: X;
+
+% Constraints
+constraint forall(i in 1..v)(sum(j in 1..b)(X[i,j]) = r);
+constraint forall(j in 1..b)(sum(i in 1..v)(X[i,j]) = k);
+constraint forall(i in 1..v-1, j in i+1..v)(sum(k in 1..b)(X[i,k]*X[j,k]) = l);
+
+% Solve
+solve satisfy;
+
+% Output
+output [ if fix(X[i,j]) = 1 then "1 " else "0 " endif | i in 1..v, j in 1..b];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

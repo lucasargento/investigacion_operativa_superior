@@ -1,0 +1,39 @@
+{
+  "description": "The problem is about five bales of hay that were weighed in all possible combinations of two. The weights of each of these combinations were written down and arranged in numerical order, without keeping track of which weight matched which pair of bales. The weights, in kilograms, were 80, 82, 83, 84, 85, 86, 87, 88, 90, and 91. The task is to find out how much each bale weighs. The problem also asks if there is a solution and if there are multiple possible solutions. The weights of the bales are represented as an array of integers, and the weights of the combinations are represented as another array of integers. The problem is solved by searching for a solution that satisfies all the constraints, which include that the sum of the weights of any two bales must be equal to one of the weights in the combinations array, and that the weights of the bales must be in increasing order.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Bales of Hay Weight Problem",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "exists",
+      "increasing",
+      "=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Bales of Hay Weight Problem",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "bales"
+    ],
+    "model_data_keywords": [
+      "num_bales",
+      "combination_weights"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "exists",
+      "increasing",
+      "=",
+      "+"
+    ]
+  }
+}

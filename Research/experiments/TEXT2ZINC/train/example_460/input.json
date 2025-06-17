@@ -1,0 +1,54 @@
+{
+  "description": "The problem is about finding a permutation of two collections of variables, VARIABLES1 and VARIABLES2, such that each value in a given set of VALUES is taken by at least a certain minimum and at most a certain maximum number of variables in the VARIABLES1 collection. The VALUES set is a collection of tuples, where each tuple contains a value, a minimum occurrence (omin), and a maximum occurrence (omax). The variables in the VARIABLES2 collection should correspond to the variables in the VARIABLES1 collection according to a permutation. The problem is to find such a permutation that satisfies these conditions. For example, given the collections VARIABLES1 = <1,9,1,5,2,1>, VARIABLES2 = <9,1,1,1,2,5>, and VALUES = <(1,2,3), (2,1,1), (5,1,1), (7,0,2), (9,1,1)>, the permutation satisfies the conditions because the values 1, 2, 5, 7, and 9 are respectively used 3, 1, 1, 0, and 1 times, which are within their respective minimum and maximum occurrences.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Permutation of Variables with Occurrence Limits",
+    "domain": "Combinatorial Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "same_global_cardinality",
+      "global_cardinality_within_limits",
+      "same_and_within_limits",
+      "forall",
+      "=",
+      "in",
+      "bool2int",
+      "sum",
+      "..",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Permutation of Variables with Occurrence Limits",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "variables1",
+      "variables2",
+      "values",
+      "sum_occurrences",
+      "gcc1",
+      "gcc2"
+    ],
+    "model_data_keywords": [
+      "num_variables",
+      "num_values"
+    ],
+    "objective": "satisfaction",
+    "source": "",
+    "constraints": [
+      "same_global_cardinality",
+      "global_cardinality_within_limits",
+      "same_and_within_limits",
+      "forall",
+      "=",
+      "in",
+      "bool2int",
+      "sum",
+      "..",
+      "/\\"
+    ]
+  }
+}

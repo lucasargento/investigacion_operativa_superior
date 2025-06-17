@@ -1,0 +1,65 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 308
+- Name: Number Satisfying Division Conditions
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is to find a number which satisfies the following conditions: when divided by 3, it gives a remainder of 1; when divided by 4, it gives a remainder of 2; when divided by 5, it gives a remainder of 3; and when divided by 6, it gives a remainder of 4. The number should be within the range of 1 to 10000.
+
+
+MiniZinc Model:
+set of int: R = 1..10000;
+%var R: X;
+%var R: A;
+%var R: B;
+%var R: C;
+%var R: D;
+
+array[1..5] of var R: x;
+
+solve satisfy;
+
+constraint
+
+  %X == A*3 + 1 /\
+  %X == B*4 + 2 /\
+  %X == C*5 + 3 /\
+  %X == D*6 + 4
+
+  % more general
+  forall(i in 2..5) (
+     x[1] = x[i]*(i+1) + i-1
+  )
+
+;
+
+output [
+"x: " ++ show(x) ++ "\n"
+
+];
+
+Expected Output:
+{
+  "x": [
+    58,
+    19,
+    14,
+    11,
+    9
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

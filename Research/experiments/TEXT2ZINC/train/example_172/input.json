@@ -1,0 +1,45 @@
+{
+  "description": "The problem is a movie scheduling problem. Given a list of movies with their respective start and end times, the goal is to schedule as many non-overlapping movies as possible. The movies and their respective time intervals are as follows: 'Tarjan of the Jungle' from 4 to 13, 'The Four Volume Problem' from 17 to 27, 'The President's Algorist' from 1 to 10, 'Steiner's Tree' from 12 to 18, 'Process Terminated' from 23 to 30, 'Halting State' from 9 to 16, 'Programming Challenges' from 19 to 25, ''Discrete' Mathematics' from 2 to 7, and 'Calculated Bets' from 26 to 31. The objective is to maximize the number of movies scheduled without any two movies overlapping in time.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Movie Scheduling",
+    "domain": "Scheduling",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "no_overlap",
+      ">",
+      "\\/",
+      "=",
+      "/\\",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Movie Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "x",
+      "total_movies"
+    ],
+    "model_data_keywords": [
+      "num_movies",
+      "movie_times",
+      "movies"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "no_overlap",
+      ">",
+      "\\/",
+      "=",
+      "/\\",
+      "sum"
+    ]
+  }
+}

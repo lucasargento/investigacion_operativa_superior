@@ -1,0 +1,37 @@
+{
+  "description": "# Problem SendMore\n\nA model for a general form of this problem is in CryptoPuzzle.py\n\n## Data\n  all integrated (single problem)\n\n## Execution\n```\n  python SendMore.py\n```\n\n## Links\n - https://en.wikipedia.org/wiki/Verbal_arithmetic\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Send More Money Puzzle",
+    "domain": "Cryptography",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Send More Money Puzzle",
+    "domain": "Cryptography",
+    "model_var_keywords": [
+      "S",
+      "E",
+      "N",
+      "D",
+      "M",
+      "O",
+      "R",
+      "Y"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "="
+    ]
+  }
+}

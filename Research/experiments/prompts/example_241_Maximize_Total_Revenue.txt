@@ -1,0 +1,49 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 241
+- Name: Maximize Total Revenue
+- Domain: Economics
+- Objective: maximization
+
+Problem Description:
+A firm produces M different goods using N different raw materials. The firm has Available amount of raw material i available. Good j requires Requirements units of material i per unit produced. Good j results in a revenue of Prices per unit produced. How much of each good should the firm produce in order to maximize its total revenue?
+
+
+Input Data (data.dzn):
+M = 4;
+N = 5;
+Available = [10, 20, 15, 35, 25];
+Requirements = [|3, 2, 0, 0, 0|0, 5, 2, 1, 0|1, 0, 0, 5, 3|0, 3, 1, 1, 5|];
+Prices = [7, 10, 5, 9];
+
+MiniZinc Model:
+% Parameters
+int: M; % Number of goods
+int: N; % Number of raw materials
+array[1..N] of int: Available; % Available amount of each raw material
+array[1..M, 1..N] of int: Requirements; % Requirements of each raw material for each good
+array[1..M] of int: Prices; % Price of each good
+
+% Decision Variables
+array[1..M] of var 0..sum(Available): amount; % Amount of each good to produce
+
+% Objective
+maximize sum(j in 1..M)(amount[j] * Prices[j]);
+
+% Constraints
+constraint forall(i in 1..N)(
+    sum(j in 1..M)(Requirements[j, i] * amount[j]) <= Available[i]
+);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

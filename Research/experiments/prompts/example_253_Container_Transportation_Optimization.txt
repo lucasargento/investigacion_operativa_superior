@@ -1,0 +1,56 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 253
+- Name: Container Transportation Optimization
+- Domain: Transportation
+- Objective: minimization
+
+Problem Description:
+Minimize the total transportation cost. This cost is calculated based on the number of depots I, the number of ports J, the cost Price per unit distance for transporting goods, and the distance Distance between depot i and port j.
+
+
+Input Data (data.dzn):
+**Output Data:**
+
+numdepot = [3, 3, 4];
+numport = [1, 6, 3];
+price = 3.0;
+distance = [|0.0, 2.0, 5.0|2.0, 0.0, 3.0|5.0, 3.0, 0.0|];
+
+MiniZinc Model:
+% Define parameters
+int: I; % Number of depots
+int: J; % Number of ports
+array[1..I] of int: numdepot; % Number of containers in each depot
+array[1..J] of int: numport; % Number of containers required in each port
+float: price; % Price per unit distance
+array[1..I, 1..J] of float: distance; % Distance between each depot and port
+
+% Define decision variables
+array[1..I, 1..J] of var 0..max(numdepot) div 2: number; % Number of containers sent from each depot to port
+
+% Define constraints
+constraint forall(i in 1..I)(sum(j in 1..J)(number[i,j]) <= numdepot[i] div 2); % Cannot send more containers than available in depot
+constraint forall(j in 1..J)(sum(i in 1..I)(number[i,j]) >= numport[j] div 2); % Must meet the container requirement in each port
+
+% Define objective function
+var float: total_cost = sum(i in 1..I, j in 1..J)(number[i,j] * distance[i,j] * price);
+
+% Minimize total cost
+solve minimize total_cost;
+
+% Output solution
+output ["number: ", show2dArray([ [number[i,j] | j in 1..J] | i in 1..I])];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

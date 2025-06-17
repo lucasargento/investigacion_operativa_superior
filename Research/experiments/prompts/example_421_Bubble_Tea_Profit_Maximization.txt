@@ -1,0 +1,46 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 421
+- Name: Bubble Tea Profit Maximization
+- Domain: Business
+- Objective: maximization
+
+Problem Description:
+A bubble tea store sells two products : almond bubble tea and ginger bubble tea . The store makes x1 bottles of almond bubble tea a day at a profit of $ 5 each and x2 bottles of ginger bubble tea a day at a profit of $ 9 each . ( x1 and x2 are unknowns and they both must be greater than or equal to 0 ) . Currently , the demand is limited to at most 120 bottles of almond bubble tea per day and at most 200 bottles of ginger bubble tea per day . Also , the store can make a maximum of 300 bottles of bubble tea ( ignoring the type ) per day . How many of each bubble tea should be made to maximize profit ?
+
+
+MiniZinc Model:
+var 0..120: x1;
+% number of bottles of ginger bubble tea
+var 0..200: x2; 
+
+% the store can make a maximum of 300 bottles of bubble tea per day
+constraint x1 + x2 <= 300;
+
+% profit from almond bubble tea is $5 each and from ginger bubble tea is $9 each
+var int: profit = 5*x1 + 9*x2;
+
+% maximize profit
+solve maximize profit;
+
+output ["Almond bubble tea: " ++ show(x1) ++ "\nGinger bubble tea: " ++ show(x2) ++ "\nProfit: $" ++ show(profit)];
+
+Expected Output:
+{
+  "x1": 100,
+  "x2": 200,
+  "_objective": 2300
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

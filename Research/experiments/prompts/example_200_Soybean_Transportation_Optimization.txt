@@ -1,0 +1,83 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 200
+- Name: Soybean Transportation Optimization
+- Domain: Supply Chain Management
+- Objective: minimization
+
+Problem Description:
+PROBLEM TYPE: LP
+
+INPUT FORMAT:
+
+{
+    "routes": [
+       {
+        "start": i,
+        "end": j,
+        "C": Cost_{i,j},
+       }
+    ],
+    "demand": [
+        {
+            "destination": l,
+            "D": Demand_{l}
+        }
+    ],
+    "supply": [
+        {
+            "terminal": k,
+            "S": Supply_{k}
+        }
+    ]
+}
+
+OBJECTIVE: What quantity of soybeans should they transport from source to destination to minimize transportation costs?
+
+
+Input Data (data.dzn):
+NumTerminals = 3;
+NumDestinations = 4;
+Cost = [| 34, 49, 17, 26
+        | 52, 64, 23, 14
+        | 20, 28, 12, 17 |];
+Demand = [65, 70, 50, 45];
+Supply = [150, 100, 100];
+
+MiniZinc Model:
+% Parameters
+int: NumTerminals; % Number of terminals
+int: NumDestinations; % Number of destinations
+array[1..NumTerminals, 1..NumDestinations] of int: Cost; % Cost matrix
+array[1..NumTerminals] of int: Supply; % Supply at each terminal
+array[1..NumDestinations] of int: Demand; % Demand at each destination
+
+% Decision Variables
+array[1..NumTerminals, 1..NumDestinations] of var 0..max(Supply)+max(Demand): Transport; % Amount of soybeans transported from each terminal to each destination
+
+% Objective
+var int: total_cost; % Total transportation cost
+
+% Constraints
+constraint total_cost = sum(i in 1..NumTerminals, j in 1..NumDestinations)(Cost[i,j]*Transport[i,j]); % Total cost is the sum of the cost of transporting each unit of soybeans
+constraint forall(i in 1..NumTerminals)(sum(j in 1..NumDestinations)(Transport[i,j]) <= Supply[i]); % The total amount of soybeans transported from each terminal cannot exceed its supply
+constraint forall(j in 1..NumDestinations)(sum(i in 1..NumTerminals)(Transport[i,j]) >= Demand[j]); % The total amount of soybeans transported to each destination must meet its demand
+
+% Solve
+solve minimize total_cost;
+
+% Output
+output [ "distribution: " ++ show(Transport) ++ "\n" ++ "total_cost: " ++ show(total_cost) ++ "\n" ];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

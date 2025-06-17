@@ -1,0 +1,42 @@
+{
+  "description": "The problem is a standard Operations Research example, where the goal is to minimize the cost of products while meeting certain nutritional requirements. The products in this case are different types of food, each with a specific cost and nutritional content. The nutritional content is measured in terms of calories, chocolate (in ounces), sugar (in ounces), and fat (in ounces). The foods are: Chocolate Cake (1 slice), Chocolate ice cream (1 scoop), Cola (1 bottle), and Pineapple cheesecake (1 piece). The problem is to determine the quantity of each food to purchase (represented by the variable 'x') such that the total cost is minimized and the nutritional requirements are met. The nutritional requirements are represented by the 'limits' array, and the cost of each food is represented by the 'price' array. The nutritional content of each food is represented by the 'calories', 'chocolate', 'sugar', and 'fat' arrays. The total cost is calculated as the sum of the product of the quantity and price of each food. The constraints ensure that the quantity of each food is non-negative and that the total nutritional content meets the requirements.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Nutrition Optimization",
+    "domain": "Operations Research",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      ">=",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Nutrition Optimization",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "food_quantities",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "food_prices",
+      "nutrition_limits",
+      "food_calories",
+      "food_chocolate",
+      "food_sugar",
+      "food_fat"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "sum",
+      ">=",
+      "<=",
+      "*"
+    ]
+  }
+}

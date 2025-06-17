@@ -1,0 +1,61 @@
+{
+  "description": "The problem is about arranging a matrix-like list of lists of values subject to certain constraints. The matrix consists of m randomly generated rows with up to n distinct values (no repeats within the row). The goal is to arrange the matrix such that the following conditions hold (if possible):\n\n1) The matrix must be \"lower triangular\"; the rows must be ordered in ascending lengths so the only \"gaps\" are in the top right corner.\n\n2) If a value appears in more than one row it must be in the same column (i.e., rearranging the order of values in a row is allowed).\n\nThe problem is to find a solution that satisfies these constraints or to determine that no solution is possible. For example, given the matrix:\n\nA B\nC E D\nC A B\n\nOne possible solution is:\n\nA B\nE D C\nA B C\n\nSince A, B, and C all appear in columns 1, 2, and 3, respectively. However, not all matrices have a solution. For instance, the matrix:\n\nA B C\nA B D\nB C D\n\nHas no solution since the constraints require the third row to have the C and D in the third column which is not possible.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Matrix Arrangement",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "alldifferent_except_0",
+      "alldifferent",
+      "permutation3",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "let",
+      "in"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Matrix Arrangement",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "num_rows",
+      "num_cols",
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "max_value",
+      "str",
+      "matrix",
+      "values",
+      "value_rows",
+      "x",
+      "perms"
+    ],
+    "model_data_keywords": [
+      "matrix"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "alldifferent_except_0",
+      "alldifferent",
+      "permutation3",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "let",
+      "in"
+    ]
+  }
+}

@@ -1,0 +1,379 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 78
+- Name: Capacitated Facility Location
+- Domain: Transportation and Logistics
+- Objective: minimization
+
+Problem Description:
+The capacitated facility location problem involves locating facilities which are to service customers at minimum total cost. Considering potential facility locations and customer zones as fixed points in a network, each facility has a fixed cost and a fixed capacity. Furthermore, each customer zone has a specific demand, and there is a transportation cost associated with shipping goods from a facility to a customer zone. The objective is to minimize total cost by choosing which facilities to establish and determining how much each facility should supply to each customer zone.
+
+
+Input Data (data.dzn):
+NumberOfFacilities = 10;
+NumberOfCustomers = 20;
+FacilityFixedCost = [8517, 5068, 9433, 6127, 6033, 5966, 7762, 9406, 6602, 7040];
+FacilityToCustomerTransportCost = [|80, 94, 44, 51, 190, 44, 129, 178, 129, 91, 172, 119, 177, 150, 90, 51, 53, 97, 184, 87|139, 33, 104, 135, 50, 176, 97, 121, 47, 29, 186, 163, 149, 108, 156, 169, 100, 160, 153, 85|153, 36, 18, 170, 18, 181, 178, 68, 171, 106, 159, 110, 21, 106, 91, 29, 144, 140, 155, 116|103, 59, 78, 125, 14, 11, 152, 95, 76, 173, 36, 148, 75, 132, 59, 153, 113, 74, 185, 71|193, 186, 130, 145, 114, 150, 33, 154, 20, 75, 103, 30, 137, 131, 167, 32, 53, 150, 176, 166|159, 130, 156, 65, 36, 59, 199, 124, 104, 72, 180, 73, 43, 152, 143, 90, 161, 65, 172, 141|173, 121, 110, 127, 22, 159, 195, 137, 47, 10, 87, 11, 154, 66, 126, 60, 152, 54, 20, 25|181, 34, 186, 152, 109, 195, 133, 198, 30, 65, 69, 19, 109, 143, 108, 196, 59, 133, 10, 123|82, 113, 147, 21, 88, 24, 38, 16, 70, 122, 148, 192, 116, 108, 18, 20, 143, 18, 116, 142|176, 170, 87, 91, 195, 183, 124, 89, 72, 97, 89, 23, 45, 196, 97, 27, 83, 81, 171, 148|];
+FacilityCapacity = [301, 291, 453, 472, 492, 375, 493, 297, 331, 246];
+CustomerDemand = [117, 86, 69, 53, 110, 74, 136, 140, 126, 79, 54, 86, 114, 76, 136, 73, 144, 51, 53, 120];
+
+MiniZinc Model:
+% Empty model file% ============================================================
+% CAPACITATED FACILITY LOCATION PROBLEM
+% ============================================================
+%
+% DESCRIPTION:
+%  The problem involves selecting a subset of potential facilities to open
+%  and assigning shipments from these facilities to customer zones such that:
+%    - Each customer zone's demand is fully met.
+%    - The total shipment from a facility does not exceed its capacity,
+%      and a facility can only ship if it is opened.
+%    - A fixed cost is incurred for each facility that is opened,
+%      in addition to transportation costs for shipping goods.
+%
+% OBJECTIVE:
+%  Minimize the total cost, which is the sum of the fixed operating costs of
+%  the open facilities and the transportation costs for servicing all customers.
+%
+% PARAMETERS (provided via input.json):
+%   - NumberOfFacilities: The number of potential facilities.
+%   - NumberOfCustomers: The number of customer zones.
+%   - FacilityFixedCost: Fixed cost for establishing each facility.
+%   - FacilityToCustomerTransportCost: Cost to transport goods from each facility to each customer.
+%   - FacilityCapacity: The maximum capacity for each facility.
+%   - CustomerDemand: The demand for each customer zone.
+%
+% OUTPUT:
+%   - FacilityOpen: Binary array (of length NumberOfFacilities) indicating if a facility is open (1) or closed (0).
+%   - CustomerAssignment: Matrix (NumberOfFacilities x NumberOfCustomers) showing the quantity shipped from facility i to customer j.
+%   - TotalCost: The total cost of the solution.
+%
+% ============================================================
+
+
+% -----------------------------
+% 1) PARAMETERS
+% -----------------------------
+int: NumberOfFacilities;
+int: NumberOfCustomers;
+
+array[1..NumberOfFacilities] of int: FacilityFixedCost;
+array[1..NumberOfFacilities, 1..NumberOfCustomers] of int: FacilityToCustomerTransportCost;
+array[1..NumberOfFacilities] of int: FacilityCapacity;
+array[1..NumberOfCustomers] of int: CustomerDemand;
+
+% To bound shipment variables, we can use the maximum customer demand.
+int: MaxDemand = max(CustomerDemand);
+
+
+% -----------------------------
+% 2) DECISION VARIABLES
+% -----------------------------
+% FacilityOpen[i] = 1 if facility i is opened, 0 otherwise.
+array[1..NumberOfFacilities] of var 0..1: FacilityOpen;
+
+% CustomerAssignment[i,j] = quantity shipped from facility i to customer j.
+% Each shipment is an integer in the range 0..MaxDemand.
+array[1..NumberOfFacilities, 1..NumberOfCustomers] of var 0..MaxDemand: CustomerAssignment;
+
+% TotalCost: The total cost of the solution.
+var int: TotalCost;
+
+
+% -----------------------------
+% 3) CONSTRAINTS
+% -----------------------------
+
+% (C1) Demand satisfaction:
+%    For each customer j, the sum of shipments from all facilities must equal CustomerDemand[j].
+constraint
+  forall(j in 1..NumberOfCustomers) (
+    sum(i in 1..NumberOfFacilities)(CustomerAssignment[i,j]) = CustomerDemand[j]
+  );
+
+% (C2) Facility capacity:
+%    For each facility i, the total shipment cannot exceed its capacity if it is open.
+%    If a facility is closed (FacilityOpen[i] = 0), then no shipment can be made from it.
+constraint
+  forall(i in 1..NumberOfFacilities) (
+    sum(j in 1..NumberOfCustomers)(CustomerAssignment[i,j]) <= FacilityCapacity[i] * FacilityOpen[i]
+  );
+
+
+% -----------------------------
+% 4) OBJECTIVE FUNCTION
+% -----------------------------
+% TotalCost = fixed costs for open facilities + transportation cost for all shipments.
+constraint
+  TotalCost = sum(i in 1..NumberOfFacilities)(FacilityFixedCost[i] * FacilityOpen[i])
+            + sum(i in 1..NumberOfFacilities, j in 1..NumberOfCustomers)(
+                FacilityToCustomerTransportCost[i,j] * CustomerAssignment[i,j]
+              );
+
+solve minimize TotalCost;
+
+
+% -----------------------------
+% 5) OUTPUT
+% -----------------------------
+output [
+    "Facility Open: ", show(FacilityOpen), "\n",
+    "Customer Assignment:\n",
+    concat([ "  Facility " ++ show(i) ++ ": " ++ show([CustomerAssignment[i,j] | j in 1..NumberOfCustomers]) ++ "\n"
+             | i in 1..NumberOfFacilities ]),
+    "Total Cost: ", show(TotalCost), "\n"
+];
+
+
+Expected Output:
+{
+  "FacilityOpen": [
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "CustomerAssignment": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      86,
+      69,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      114,
+      0,
+      0,
+      73,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      117,
+      0,
+      0,
+      0,
+      110,
+      74,
+      0,
+      0,
+      0,
+      0,
+      54,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      136,
+      0,
+      126,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      144,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      79,
+      0,
+      86,
+      0,
+      76,
+      0,
+      0,
+      0,
+      49,
+      53,
+      120
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      53,
+      0,
+      0,
+      0,
+      140,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      136,
+      0,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "TotalCost": 95090,
+  "_objective": 95090
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

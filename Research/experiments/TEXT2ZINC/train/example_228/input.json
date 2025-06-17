@@ -1,0 +1,40 @@
+{
+  "description": "Determine the optimal path the delivery person should take to ensure the package is delivered in the least amount of time. The path is constrained by the number of east-west streets, N, and the number of north-south streets, W. Each east-west street segment WestTime and each north-south street segment NorthTime takes a certain amount of time to cross.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Optimal Delivery Path",
+    "domain": "Logistics",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "if",
+      "<=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Optimal Delivery Path",
+    "domain": "Logistics",
+    "model_var_keywords": [
+      "paths",
+      "total_time"
+    ],
+    "model_data_keywords": [
+      "west_time",
+      "north_time"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "if",
+      "<=",
+      "sum",
+      "*"
+    ]
+  }
+}

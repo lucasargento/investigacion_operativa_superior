@@ -1,0 +1,57 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 242
+- Name: Department Relocation Optimization
+- Domain: Business Optimization
+- Objective: minimization
+
+Problem Description:
+Where should each department be located so as to minimize overall yearly cost? The optimization should consider the benefit of department K being located at location L, the communication costs between departments K and K, and the costs of locating at location L with requirement L.
+
+
+Input Data (data.dzn):
+benefit = [|10, 10|15, 20|10, 15|20, 15|5, 15|];
+
+communication = [|0.0, 0.0, 1.0, 1.5, 0.0|0.0, 0.0, 1.4, 1.2, 0.0|1.0, 1.4, 0.0, 0.0, 2.0|1.5, 1.2, 0.0, 2.0, 0.7|0.0, 0.0, 2.0, 0.7, 0.0|];
+
+cost = [|5, 14, 13|15, 5, 9|13, 9, 10|];
+
+MiniZinc Model:
+% Parameters
+int: K; % Number of departments
+int: L; % Number of cities
+array[1..K, 1..L] of int: benefit; % Benefit for each department at each city
+array[1..K, 1..K] of float: communication; % Communication between departments
+array[1..L, 1..L] of int: cost; % Cost of communication between cities
+
+% Decision Variables
+array[1..K, 1..L] of var 0..1: islocated; % Whether department k is located at city l
+
+% Constraints
+% Each department is located at exactly one city
+constraint forall(k in 1..K)(sum(l in 1..L)(islocated[k, l]) = 1);
+
+% No city can have more than three departments
+constraint forall(l in 1..L)(sum(k in 1..K)(islocated[k, l]) <= 3);
+
+% Objective Function
+% Minimize the total cost of communication and relocation
+var int: total_cost;
+constraint total_cost = sum(k in 1..K, l in 1..L)(islocated[k, l] * (benefit[k, l] + sum(j in 1..K, m in 1..L)(islocated[j, m] * communication[k, j] * cost[l, m])));
+solve minimize total_cost;
+
+% Output
+output ["islocated: ", show2dArray([ [islocated[k, l] | l in 1..L] | k in 1..K])];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

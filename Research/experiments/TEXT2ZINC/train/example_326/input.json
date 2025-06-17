@@ -1,0 +1,38 @@
+{
+  "description": "This problem is known as Dudeney's queen placement problem. The problem is set on an 8x8 chessboard. The objective is to place eight queens on the board such that the number of squares attacked by the queens is minimized. The constraints are as follows: all eight queens must be used, five of the original queens must remain untouched, and a square is considered attacked if it is in the same row, column, or diagonal as a queen. The variables 'x' and 'a' are binary matrices of size 8x8, where 'x[i,j]' is 1 if square {i,j} is occupied by a queen and 0 otherwise, and 'a[i,j]' is 1 if square {i,j} is attacked by a queen and 0 otherwise. The variable 'suma' is the sum of all elements in 'a', representing the total number of squares attacked by the queens. The problem is to find the values of 'x' and 'a' that minimize 'suma'.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Dudeney's Queen Placement",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "forall",
+      "<=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Dudeney's Queen Placement",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "a",
+      "totalAttackedSquares"
+    ],
+    "model_data_keywords": [
+      "size"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "sum",
+      "forall",
+      "<=",
+      "="
+    ]
+  }
+}

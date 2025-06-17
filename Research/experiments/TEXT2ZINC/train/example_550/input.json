@@ -1,0 +1,33 @@
+{
+  "description": "This is a simple integer programming problem. The goal is to maximize the expression 5*smallset + 20*largeset. The variables smallset and largeset are both integers and must be greater than or equal to 0. There are two constraints: 1*smallset + 3*largeset must be less than or equal to 200, and 3*smallset + 2*largeset must be less than or equal to 160. The output should display the values of smallset and largeset.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Integer Programming Problem",
+    "domain": "Optimization",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "+",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Integer Programming Problem",
+    "domain": "Optimization",
+    "model_var_keywords": [
+      "smallset",
+      "largeset"
+    ],
+    "model_data_keywords": [],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "+",
+      "*"
+    ]
+  }
+}

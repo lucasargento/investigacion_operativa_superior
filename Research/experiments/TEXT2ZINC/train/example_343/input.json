@@ -1,0 +1,71 @@
+{
+  "description": "Given a string with numbers from 1 to 250 concatenated in random order, but missing one number, the task is to find the missing number. The model assumes that we know the range of the numbers, i.e., that we know the maximum number of the original sequence. The model sometimes finds spurious solutions, especially if it's an ordered list. For ordered sequences, there are many solutions. However, for randomly ordered problems, it seems to be just a few solutions and all with the correct missing number.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Find Missing Number in Concatenated Sequence",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "in",
+      "missing",
+      "to_num",
+      "missing_a",
+      "diff_digit_sum",
+      "sum",
+      "all_different",
+      "start_pos",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "count"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Find Missing Number in Concatenated Sequence",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "digits_all",
+      "digits_missing",
+      "number_candidates",
+      "x",
+      "start_pos",
+      "missing",
+      "missing_a"
+    ],
+    "model_data_keywords": [
+      "n",
+      "num_digits_all",
+      "num_digits_missing",
+      "max_len",
+      "digits_all",
+      "digits_missing",
+      "digit_occurrence_all",
+      "digit_occurrence_missing",
+      "digits_in_missing_number",
+      "missing_domain"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "in",
+      "missing",
+      "to_num",
+      "missing_a",
+      "diff_digit_sum",
+      "sum",
+      "all_different",
+      "start_pos",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "count"
+    ]
+  }
+}

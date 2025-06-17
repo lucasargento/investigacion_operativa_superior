@@ -1,0 +1,41 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 71
+- Name: Sports Product Production Optimization
+- Domain: Manufacturing and Production
+- Objective: maximization
+
+Problem Description:
+Wild Sports produces different products using different raw materials. The company has a specific amount of each raw material available. Each product requires some amount of each raw material to be produced. Each product has a selling price per unit and a production cost. Each product also has a forecasted maximum demand for the month. How many of each product should the sports produce to maximize its profit for the month?
+
+
+Input Data (data.dzn):
+N = 3;
+M = 3;
+Available = [240000, 8000, 75000];
+Requirements = array2d(1..3, 1..3, [48, 1, 10, 40, 1, 10, 0, 1, 2]);
+Prices = [40, 38, 9];
+Costs = [30, 26, 7];
+Demands = [10000, 2000, 10000];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 62666.6666667
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

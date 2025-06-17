@@ -1,0 +1,43 @@
+{
+  "description": "The problem is about implementing the Rot 13 (Caesar cipher) in MiniZinc. The Caesar cipher is a type of substitution cipher in which each letter in the plaintext is 'shifted' a certain number of places down the alphabet. In this case, the shift is 13 places, hence the name Rot 13. The problem has a string of length 10 and an alphabet of length 26. The goal is to find the rotated string and the rotation number such that for each character in the string, the rotated character is the character in the alphabet that is 'rot' places down from the original character. If the rotation goes beyond the end of the alphabet, it wraps around to the beginning.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Rot 13 Caesar Cipher",
+    "domain": "Cryptography",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "mod",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Rot 13 Caesar Cipher",
+    "domain": "Cryptography",
+    "model_var_keywords": [
+      "original_text",
+      "rotated_text",
+      "rotation_number"
+    ],
+    "model_data_keywords": [
+      "string_length",
+      "alphabet_length"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "mod",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  }
+}

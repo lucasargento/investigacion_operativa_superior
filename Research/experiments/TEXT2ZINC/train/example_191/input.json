@@ -1,0 +1,46 @@
+{
+  "description": "The problem is about generating random problem instances in MiniZinc. The model generates an array of random integers and an array of random floats using a seed and a mod value. The seed can be defined via command line via the -D option. The model also defines an array of decision variables 'x'. The model then applies a constraint on the decision variables such that for all 'i' in the range 1 to 'n-1', 'x[i]' is greater than or equal to 0 and the sum of 'x[i]' and 'x[i+1]' is equal to the sum of 'rand[i]' and 'rand[i+1]'. The model then outputs the arrays of random integers, random floats, and the decision variables.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Random Problem Instance Generation",
+    "domain": "Randomized Algorithms",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "+",
+      "int_search",
+      "first_fail",
+      "indomain_min",
+      "complete"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Random Problem Instance Generation",
+    "domain": "Randomized Algorithms",
+    "model_var_keywords": [
+      "random_integers",
+      "random_floats",
+      "decision_variables"
+    ],
+    "model_data_keywords": [
+      "num_elements",
+      "mod_value",
+      "seed"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "+",
+      "int_search",
+      "first_fail",
+      "indomain_min",
+      "complete"
+    ]
+  }
+}

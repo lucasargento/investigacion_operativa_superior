@@ -1,0 +1,55 @@
+{
+  "description": "Determine the quantity of batches for each part the manufacturer should produce every month, ensuring all constraints are met, where the manufacturer has P different parts, M machines, TimeRequired matrix indicating the time each machine takes to produce a part, MachineCosts indicating the cost of each machine, Availability of each machine, Prices of each part, MinBatches required for each part, a StandardCost of running a machine per hour, an OvertimeCost for running a machine beyond the standard hours, an OvertimeHour available for overtime work for each machine, and a MinProfit that the manufacturer aims to achieve.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "forall",
+      ">=",
+      "<=",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "batches",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "time_required",
+      "machine_costs",
+      "availability",
+      "prices",
+      "min_batches",
+      "standard_cost",
+      "overtime_cost",
+      "overtime_hour",
+      "min_profit"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "forall",
+      ">=",
+      "<=",
+      ">="
+    ]
+  }
+}

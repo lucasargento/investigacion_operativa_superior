@@ -1,0 +1,42 @@
+{
+  "description": "A woman plans to invite 15 friends to dinner. For 35 days she wants to have dinner with exactly three friends a day, and she wants to arrange the triplets so that each pair of friends will only come once. The problem is to determine if this arrangement is possible. This is a Steiner triplet problem, where the goal is to arrange sets (in this case, sets of friends) such that each pair appears together exactly once. The solution should provide the arrangement of friends for each day, if it exists.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Steiner Triplet Problem",
+    "domain": "Combinatorial Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "forall",
+      "card",
+      "=",
+      "<=",
+      "intersect"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Steiner Triplet Problem",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "dinner_days"
+    ],
+    "model_data_keywords": [
+      "num_friends_per_dinner",
+      "num_dinner_days",
+      "friends"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "forall",
+      "card",
+      "=",
+      "<=",
+      "intersect"
+    ]
+  }
+}

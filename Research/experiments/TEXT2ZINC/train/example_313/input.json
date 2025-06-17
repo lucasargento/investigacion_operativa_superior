@@ -1,0 +1,42 @@
+{
+  "description": "The problem is a simple model of kidney exchange, inspired by Pascal Van Hentenryck's introduction of the Coursera Course Discrete Optimization. The objective is to maximize the number of kidney exchanges given the compatibility. A person receiving a kidney must be able to give a kidney, which means we are looking for cycles. The problem is defined for a certain number of people, and for each person, there is a set of people who are compatible with them for a kidney exchange. The problem also considers people that have no potential donors and can't get a kidney. The decision variables are which kidney does person p get (or p if he/she gets no kidney) and the total number of people who get a kidney. The constraints ensure that only the compatible people are in the domains and remove incompatible people. The problem is to find the assignment of kidneys to people that maximizes the total number of people who get a kidney.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Kidney Exchange Optimization",
+    "domain": "Healthcare",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "in",
+      "alldifferent",
+      "bool2int",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Kidney Exchange Optimization",
+    "domain": "Healthcare",
+    "model_var_keywords": [
+      "x",
+      "z"
+    ],
+    "model_data_keywords": [
+      "num_people",
+      "compatible",
+      "non_compatible",
+      "compatible_pruned"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "in",
+      "alldifferent",
+      "bool2int",
+      "!="
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "description": "This problem is known as Dudeney's tea mixing problem. The problem involves three types of tea, each with a different price. The goal is to find the quantity of each type of tea to buy such that the total price is minimized. The total price is calculated as the sum of the quantity of each type of tea multiplied by its price. The total quantity of tea to be bought is 20 pounds and the total price must be equal to 570 (20 pound * 2s 4 1/2d = 20 * (24+4+1/2) = 570). The quantity of each type of tea must be a non-negative integer.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Dudeney's Tea Mixing Problem",
+    "domain": "Optimization",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "=",
+      "0..20",
+      "570..570"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Dudeney's Tea Mixing Problem",
+    "domain": "Optimization",
+    "model_var_keywords": [
+      "quantity",
+      "totalPrice"
+    ],
+    "model_data_keywords": [
+      "numTeaTypes",
+      "TeaTypes",
+      "price"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "sum",
+      "=",
+      "0..20",
+      "570..570"
+    ]
+  }
+}

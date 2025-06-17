@@ -1,0 +1,58 @@
+{
+  "description": "---\nTitle:    Solitaire Battleships\nProposer: Ian Gent \nCategory: Games and puzzles\n---\n\n\nThe Battleships puzzle is occasionally published in Games Magazine (US), e.g. in the August 1998 issue where it is credited to Mark Gottlieb. It is loosely based on the two person pencil and paper game. I quote the puzzle description in the magazine:\n\nThis fleet consists of one battleship (four grid squares in length), two cruisers (each three grid squares long), three three destroyers (each two squares long) and four submarines (one square each). The ships may be oriented horizontally or vertically, and no two ships will occupy adjacent grid squares, not even diagonally. The digits along the right side of and below the grid indicate the number of grid squares in the corresponding rows and columns that are occupied by vessels.\n\nIn each of the puzzles, one or more `shots' have been taken to start you off. These may show water (indicated by wavy lines), a complete submarine (a circle), or the middle (a square), or the end (a rounded-off square) of a longer vessel.\n\nHere is an example problem, the first from that issue of the magazine:\n\n<pre>\n  -------------------\n0|                   |\n2|                   |\n3|                   |\n1|                   |\n2|                   |\n4|                   |\n2|                   |\n1|o                  |\n2|                   |\n3|                   |\n --------------------\n  1 3 3 1 5 1 2 4 0 0\n</pre>\n\nThe \"o\" in the grid indicates a submarine must occupy that square.\nPublished puzzles all have a grid of 10x10 and the ships as described above. Of course there is no reason that these properties cannot be varied.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Solitaire Battleships",
+    "domain": "Games and Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "endif",
+      "bool2int",
+      "alldifferent",
+      "sum",
+      "=",
+      "<=",
+      "\\",
+      "/"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Solitaire Battleships",
+    "domain": "Games and Puzzles",
+    "model_var_keywords": [
+      "board",
+      "fill",
+      "npiece"
+    ],
+    "model_data_keywords": [
+      "width",
+      "height",
+      "maxship",
+      "hint",
+      "rowsum",
+      "colsum",
+      "ship"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "if",
+      "then",
+      "endif",
+      "bool2int",
+      "alldifferent",
+      "sum",
+      "=",
+      "<=",
+      "\\",
+      "/"
+    ]
+  }
+}

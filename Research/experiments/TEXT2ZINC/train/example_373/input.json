@@ -1,0 +1,41 @@
+{
+  "description": "The problem is a Tank Attack Puzzle. The puzzle is played on a 6x6 grid, where each cell represents a tank. Each tank has a number from 1 to 5. The number on a tank represents the number of other tanks it can attack. A tank can attack another tank if it is in the same row or column, and the distance between them is equal to the number on the attacking tank. The objective is to find a configuration of numbers on the tanks such that the number on each tank is equal to the number of tanks it can attack. The solution must also satisfy the following symmetry constraints: the configuration is symmetric with respect to the main diagonal, and the configuration is symmetric with respect to the secondary diagonal. The output is the configuration of numbers on the tanks.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Tank Attack Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "abs",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Tank Attack Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "tankConfig",
+      "finalTankConfig"
+    ],
+    "model_data_keywords": [
+      "gridSize",
+      "Indices",
+      "TankNumbers"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "abs",
+      "!="
+    ]
+  }
+}

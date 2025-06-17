@@ -1,0 +1,72 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 199
+- Name: Seaport Container Management
+- Domain: Logistics
+- Objective: minimization
+
+Problem Description:
+Determine a strategy to minimize costs from unloading (UnloadCosts), storage (HoldingCost), and crane rentals (CraneCost) over the period. The demands over the time periods are given by Demands, with a corresponding unloading capacity per period specified by UnloadCapacity. The system starts with an initial inventory of containers given by InitContainer, and the maximum container inventory is limited to MaxContainer. The logistics also involve NumCranes number of cranes with CraneCapacity each to aid in the unloading process.
+
+
+Input Data (data.dzn):
+T = 4;
+Demands = [450, 700, 500, 750];
+UnloadCosts = [75, 100, 105, 130];
+UnloadCapacity = [800, 500, 450, 700];
+HoldingCost = 20;
+MaxContainer = 500;
+InitContainer = 200;
+NumCranes = 4;
+CraneCapacity = 200;
+CraneCost = 1000;
+
+MiniZinc Model:
+% Parameters
+int: T; % Number of time periods
+array[1..T] of int: Demands; % Demand for each time period
+array[1..T] of int: UnloadCosts; % Unloading cost for each time period
+array[1..T] of int: UnloadCapacity; % Unloading capacity for each time period
+int: HoldingCost; % Cost of holding a container
+int: MaxContainer; % Maximum number of containers that can be held
+int: InitContainer; % Initial number of containers
+int: NumCranes; % Number of cranes
+int: CraneCapacity; % Capacity of each crane
+int: CraneCost; % Cost of each crane
+
+% Decision Variables
+array[1..T] of var 0..MaxContainer: Containers; % Number of containers in each time period
+array[1..T] of var 0..UnloadCapacity[i]: Unload; % Number of containers unloaded in each time period
+array[1..T] of var 0..NumCranes: Cranes; % Number of cranes rented in each time period
+
+% Constraints
+constraint Containers[1] = InitContainer + Unload[1] - Demands[1];
+constraint forall(i in 2..T) (
+    Containers[i] = Containers[i-1] + Unload[i] - Demands[i]
+);
+constraint forall(i in 1..T) (
+    Cranes[i] * CraneCapacity >= Demands[i]
+);
+constraint forall(i in 1..T) (
+    Containers[i] <= MaxContainer
+);
+
+% Objective
+var int: TotalCost = sum(i in 1..T) (Unload[i] * UnloadCosts[i] + Containers[i] * HoldingCost + Cranes[i] * CraneCost);
+solve minimize TotalCost;
+
+% Output
+output ["containers_unloaded: ", show(Unload), "\n", "cranes_rented: ", show(Cranes), "\n", "total_cost: ", show(TotalCost)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

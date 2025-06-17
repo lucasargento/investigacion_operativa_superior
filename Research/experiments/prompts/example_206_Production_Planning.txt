@@ -1,0 +1,49 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 206
+- Name: Production Planning
+- Domain: Operations Research
+- Objective: maximization
+
+Problem Description:
+Determine the quantities to be produced such that all the production constraints are satisfied and the profit is maximized. The parameters include the number of different products K and the number of different machines or stations S. Each product k requires ProduceTime to produce on station s. Each station s has a total available time of AvailableTime. The profit from producing one unit of product k is Profit.
+
+
+Input Data (data.dzn):
+NumProducts = 2;
+NumMachines = 2;
+ProduceTime = [|1, 3|2, 1|];
+AvailableTime = [200, 100];
+Profit = [20, 10];
+
+MiniZinc Model:
+% Parameters
+int: NumProducts; % Number of products
+int: NumMachines; % Number of machines or stations
+array[1..NumProducts, 1..NumMachines] of int: ProduceTime; % Time to produce each product on each machine
+array[1..NumMachines] of int: AvailableTime; % Total available time for each machine
+array[1..NumProducts] of int: Profit; % Profit from producing one unit of each product
+
+% Decision Variables
+array[1..NumProducts] of var 0..max(AvailableTime): quantity; % Quantity to produce for each product
+
+% Objective
+maximize sum(k in 1..NumProducts)(Profit[k]*quantity[k]);
+
+% Constraints
+constraint forall(s in 1..NumMachines)(
+    sum(k in 1..NumProducts)(ProduceTime[k,s]*quantity[k]) <= AvailableTime[s]
+);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

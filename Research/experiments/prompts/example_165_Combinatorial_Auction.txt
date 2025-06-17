@@ -1,0 +1,103 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 165
+- Name: Combinatorial Auction
+- Domain: Auction Theory
+- Objective: maximization
+
+Problem Description:
+The combinatorial auction problem is an auction in which bidders can place bids on combinations of items, or 'packages,' rather than just individual items. The problem is specified as follows: Given a set of items Q = {q1,...,qn} and a set of bids B = {b1,...,bm} such that each bid is bi = (Qi, ri), where Qi is a subset of Q and ri is a strictly positive real number. The task is to find a subset of bids B' such that any two bids in B' do not share an item, with the goal of maximizing the sum of the ri values of the selected bids. The problem is to ensure that each item is selected at most once. An example auction could be as follows: b1 = {1,2,3,4}, r1 = 8; b2 = {2,3,6}, r2 = 6; b3 = {1,4,5}, r3 = 5; b4 = {2,8}, r4 = 2; b5 = {5,6}, r5 = 2. The optimal assignment in this case would be the bids 2 and 3: {2,3,6} and {1,4,5} to a cost of 6+5 = 11.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: num_items;
+int: max_item;
+set of int: items = 1..max_item;
+int: num_bids;
+
+array[1..num_bids] of set of items: packages;
+array[1..num_bids] of int: bids;
+
+% the assignments
+array[1..num_bids] of var 0..1: x;
+var int: total;
+
+% solve maximize total;
+solve :: int_search(x, first_fail, indomain_min, complete) maximize total;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+   total = sum(i in 1..num_bids) ( x[i]*bids[i] )
+
+   /\ % ensure that each items is selected atmost once
+   forall(j in 1..num_items) (
+       sum(i in 1..num_bids) (x[i]*bool2int(j in packages[i])) <= 1
+   )
+   % test
+   % /\ total = 11
+
+;
+
+%
+% data
+%
+num_items = 7;
+num_bids = 5;
+max_item = 7;
+packages = [
+   {1,2,3,4},
+   {2,3,6},
+   {1,4,5},
+   {2,7},
+   {5,6},
+];
+bids = [8,6,5,2,2];
+
+
+% From Numberjack Tutorial, page 24 (slide 51/175)
+% num_items = 4;
+% num_bids = 5;
+% max_item = 5;
+% packages = [
+%    {1,2},
+%    {1,3},
+%    {2,4},
+%    {2,3,4},
+%    {1}
+% ];
+% bids = [8,6,5,2,2];
+
+
+output
+[
+  "x: " ++ show(x) ++ "\n" ++
+  "total: " ++ show(total) 
+];
+
+Expected Output:
+{
+  "x": [
+    0,
+    1,
+    1,
+    0,
+    0
+  ],
+  "total": 11,
+  "_objective": 11
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

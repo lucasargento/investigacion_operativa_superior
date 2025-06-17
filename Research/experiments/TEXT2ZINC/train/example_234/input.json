@@ -1,0 +1,52 @@
+{
+  "description": "Which generators should be working in which periods of the day to minimize the total cost given the demand (Demand) for each period, the number of each generator (NumGenerator), the minimum (MinLevel) and maximum (MaxLevel) levels of each generator, the running costs (RunCost), the extra costs (ExtraCost), and the start-up costs (StartCost) for each generator?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Power Station Problem",
+    "domain": "Energy",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">= ",
+      "<=",
+      "max",
+      "if",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Power Station Problem",
+    "domain": "Energy",
+    "model_var_keywords": [
+      "numon",
+      "power",
+      "totalcost"
+    ],
+    "model_data_keywords": [
+      "demand",
+      "num",
+      "minlevel",
+      "maxlevel",
+      "runcost",
+      "extracost",
+      "startcost"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">= ",
+      "<=",
+      "max",
+      "if",
+      "else",
+      "endif"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "description": "This is a set partition problem. Given a set S = {1, 2, ..., n}, the task is to find two sets A and B such that: A union B equals S, the cardinality of A equals the cardinality of B, the sum of elements in A equals the sum of elements in B, and the sum of squares of elements in A equals the sum of squares of elements in B. The number n must be a multiple of 4. The sets A and B must be disjoint, meaning that they do not share any common elements. The problem is solved when all these conditions are met.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Set Partition Problem",
+    "domain": "Combinatorial Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "assert",
+      "mod",
+      "set_sum",
+      "set_sum_squared",
+      "partition_set",
+      "forall",
+      "card",
+      "in"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Set Partition Problem",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "partition_sets",
+      "sums",
+      "sum_squared"
+    ],
+    "model_data_keywords": [
+      "S",
+      "n",
+      "num_sets"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "assert",
+      "mod",
+      "set_sum",
+      "set_sum_squared",
+      "partition_set",
+      "forall",
+      "card",
+      "in"
+    ]
+  }
+}

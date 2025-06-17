@@ -1,0 +1,14 @@
+{
+  "mix": [
+    0,
+    0,
+    3
+  ],
+  "tot_cost": 180,
+  "daily_req_met": [
+    0,
+    1,
+    1
+  ],
+  "_objective": 180
+}

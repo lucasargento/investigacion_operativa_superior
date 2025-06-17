@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about finding the position of the ith non-zero item in a sequence of variables. Given a sequence of variables, the position (POS) is the position of the ITHth non-zero item of the sequence. For example, given the sequence [3,0,0,8,6], the position of the 2nd non-zero item is 4. The problem is to verify this constraint for a given sequence, position and ith value.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Position of Ith Non-Zero Item",
+    "domain": "Sequences",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "exists",
+      "bool2int",
+      "assert",
+      "forall",
+      "=",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Position of Ith Non-Zero Item",
+    "domain": "Sequences",
+    "model_var_keywords": [
+      "n",
+      "x",
+      "pos",
+      "ith"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "exists",
+      "bool2int",
+      "assert",
+      "forall",
+      "=",
+      "!="
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "description": "The problem is about integer partitions in MiniZinc. The goal is to find one or all possible solutions, depending on the solver, to partition an integer 'n' into 'm' parts, represented by the array 'x'. The constraints are that the sum of all elements in 'x' should be equal to 'n' and each element in 'x' should be greater than 2. There are no extra constraints. The problem does not require a specific solution, but rather all possible solutions that satisfy the constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Integer Partitioning",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "forall",
+      ">",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Integer Partitioning",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "total_integer",
+      "num_partitions",
+      "partitions"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "sum",
+      "forall",
+      ">",
+      "="
+    ]
+  }
+}

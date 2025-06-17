@@ -1,0 +1,86 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 260
+- Name: Daily Profit Maximization
+- Domain: Business
+- Objective: maximization
+
+Problem Description:
+We want to maximize the daily profit of the company, which is the total revenue minus the total cost. The company has N different products, each requiring AssemblyHour hours for assembly, TestingHour hours for testing, and with a material cost of MaterialCost. The company cannot exceed MaxAssembly hours for assembly and MaxTesting hours for testing. Each product can be sold at Price, but there is an opportunity to work MaxOvertimeAssembly overtime hours for assembly at a cost of OvertimeAssemblyCost per hour. Additionally, a material discount of MaterialDiscount is offered when a purchase reaches the DiscountThreshold.
+
+
+Input Data (data.dzn):
+N = 2;
+AssemblyHour = [0.25, 0.3333];
+TestingHour = [0.125, 0.3333];
+MaterialCost = [1.2, 0.9];
+MaxAssembly = 10;
+MaxTesting = 70;
+Price = [9, 8];
+MaxOvertimeAssembly = 50;
+OvertimeAssemblyCost = 5;
+MaterialDiscount = 10;
+DiscountThreshold = 300;
+
+MiniZinc Model:
+% Define parameters
+int: N; % Number of products
+array[1..N] of float: AssemblyHour; % Assembly hours required for each product
+array[1..N] of float: TestingHour; % Testing hours required for each product
+array[1..N] of float: MaterialCost; % Material cost for each product
+float: MaxAssembly; % Maximum assembly hours
+float: MaxTesting; % Maximum testing hours
+array[1..N] of float: Price; % Price of each product
+float: MaxOvertimeAssembly; % Maximum overtime assembly hours
+float: OvertimeAssemblyCost; % Overtime assembly cost per hour
+float: MaterialDiscount; % Material discount percentage
+float: DiscountThreshold; % Discount threshold
+
+% Define decision variables
+array[1..N] of var 0..100: UnitsProduced; % Number of units produced for each product
+var 0..MaxOvertimeAssembly: OvertimeAssembly; % Overtime assembly hours
+var 0..1000: MaterialBought; % Amount of raw materials bought
+
+% Define objective function
+var float: DailyProfit; % Daily profit
+
+% Define constraints
+constraint sum(i in 1..N)(AssemblyHour[i]*UnitsProduced[i]) <= MaxAssembly + OvertimeAssembly;
+constraint sum(i in 1..N)(TestingHour[i]*UnitsProduced[i]) <= MaxTesting;
+constraint sum(i in 1..N)(MaterialCost[i]*UnitsProduced[i]) = MaterialBought;
+constraint if MaterialBought >= DiscountThreshold then MaterialBought = MaterialBought * (1 - MaterialDiscount/100) else true endif;
+constraint DailyProfit = sum(i in 1..N)(Price[i]*UnitsProduced[i]) - MaterialBought - OvertimeAssembly*OvertimeAssemblyCost;
+
+% Define objective
+solve maximize DailyProfit;
+
+% Output
+output ["dailyProfit: ", show(DailyProfit), "\n",
+        "unitsProduced: ", show(UnitsProduced), "\n",
+        "overtimeAssembly: ", show(OvertimeAssembly), "\n",
+        "materialBought: ", show(MaterialBought), "\n"];
+
+Expected Output:
+{
+  "UnitsProduced": [
+    100,
+    100
+  ],
+  "OvertimeAssembly": 48.33,
+  "MaterialBought": 210,
+  "DailyProfit": 1248.35000000001,
+  "_objective": 1248.35000000001
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

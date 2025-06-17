@@ -1,0 +1,86 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 450
+- Name: Among Modulo Constraint Satisfaction
+- Domain: Constraint Satisfaction
+- Objective: satisfaction
+
+Problem Description:
+The problem is about a global constraint 'among_modulo' in MiniZinc. The constraint is defined as follows: NVAR is the number of variables of the collection VARIABLES taking a value that is congruent to REMAINDER modulo QUOTIENT. For example, if we have (3, <4, 5, 8, 4, 1>, 0, 2), REMAINDER = 0 and QUOTIENT = 2 specifies that we count the number of even values taken by the different variables. As a consequence the among_modulo constraint holds since exactly 3 values of the collection <4, 5, 8, 4, 1> are even. The problem is to find the values of the variables that satisfy this constraint.
+
+
+MiniZinc Model:
+array[1..5] of var 1..8: x;
+var 0..100: nvar;
+var 0..100: remainder;
+var 0..100: quotient;
+
+
+%
+% among_modulo
+% 
+predicate among_modulo(var int: nvar, array[int] of var int: x, var int: remainder, var int: quotient)=
+  nvar = sum(i in index_set(x)) (
+    bool2int(x[i] mod quotient = remainder)
+  )
+;
+
+predicate cp1d(array[int] of int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+    forall(i in index_set(x)) (
+      x[i] = y[i]
+    )
+  )
+; 
+
+
+solve satisfy;
+
+constraint
+  cp1d([4,5,8,4,1],x)
+  /\
+  among_modulo(nvar, x, remainder, quotient)
+  /\
+  remainder = 0
+  /\
+  quotient = 2
+  % /\
+  % nvar = 3
+;
+
+
+output
+[
+  "x: " ++ show(x) ++ "\n" ++
+  "nvar: " ++ show(nvar) ++ "\n" ++
+  "remainder: " ++ show(remainder) ++ "\n" ++
+  "quotient: " ++ show(quotient) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    4,
+    5,
+    8,
+    4,
+    1
+  ],
+  "nvar": 3,
+  "remainder": 0,
+  "quotient": 2
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

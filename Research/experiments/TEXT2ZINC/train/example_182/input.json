@@ -1,0 +1,44 @@
+{
+  "description": "In the SONET problem we are given a set of nodes, and for each pair of nodes we are given the demand (which is the number of channels required to carry network traffic between the two nodes). The demand may be zero, in which case the two nodes do not need to be connected.\n\nA SONET ring connects a set of nodes. A node is installed on a ring using a piece of equipment called an add-drop multiplexer (ADM). Each node may be installed on more than one ring. Network traffic can be transmitted from one node to another only if they are both installed on the same ring. Each ring has an upper limit on the number of nodes, and a limit on the number of channels. The demand of a pair of nodes may be split between multiple rings.\n\nThe objective is to minimise the total number of ADMs used while satisfying all demands.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "SONET Ring Network Optimization",
+    "domain": "Network Optimization",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "exists",
+      "<=",
+      "+",
+      "sum",
+      "->",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "SONET Ring Network Optimization",
+    "domain": "Network Optimization",
+    "model_var_keywords": [
+      "rings",
+      "total_ADMs"
+    ],
+    "model_data_keywords": [
+      "demand",
+      "capacity_nodes"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "exists",
+      "<=",
+      "+",
+      "sum",
+      "->",
+      "/\\"
+    ]
+  }
+}

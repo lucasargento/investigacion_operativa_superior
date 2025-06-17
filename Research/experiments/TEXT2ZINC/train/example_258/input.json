@@ -1,0 +1,40 @@
+{
+  "description": "PROBLEM TYPE\nLP\n\nINPUT FORMAT \n\n{\n    \"A\": [[a_i_j for j in 1, ..., N] for i in 1, ..., M],\n    \"b\": [b_i for i in 1, ..., M]\n}\n\nOBJECTIVE\nWe are interested in finding a ball with the largest possible radius, which is entirely contained within the set P (The center of such a ball is called the Chebychev center of P).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Chebychev Center of a Set",
+    "domain": "Linear Programming",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "sqrt",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Chebychev Center of a Set",
+    "domain": "Linear Programming",
+    "model_var_keywords": [
+      "r",
+      "y"
+    ],
+    "model_data_keywords": [
+      "A",
+      "B",
+      "M",
+      "N"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "sqrt",
+      "<="
+    ]
+  }
+}

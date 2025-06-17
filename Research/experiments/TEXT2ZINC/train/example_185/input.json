@@ -1,0 +1,40 @@
+{
+  "description": "Given a group of n items, each with a distinct value V(i), the problem is to find the best way to divide the items into k groups such that the group with the highest total value is minimized. The total value of a group is the sum of the values of the items in that group. The goal is to find the value of this largest group. The problem is similar to the 0-1 knapsack problem, but in 2D.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimize Maximum Group Sum",
+    "domain": "Combinatorial Optimization",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "increasing"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimize Maximum Group Sum",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "group_assignment",
+      "group_sums",
+      "max_group_sum"
+    ],
+    "model_data_keywords": [
+      "n",
+      "a",
+      "k"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "increasing"
+    ]
+  }
+}

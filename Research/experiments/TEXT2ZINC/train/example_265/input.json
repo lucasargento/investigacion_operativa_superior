@@ -1,0 +1,34 @@
+{
+  "description": "# Problem MagicSequence\n\nThis is [Problem 019](https://www.csplib.org/Problems/prob019/) at CSPLib.\n\nA magic sequence of length n is a sequence of integers x between 0 and n\u22121, such that for all i in 0 to n\u22121,\nthe number i occurs exactly x[i] times in the sequence.\n\n\n## Data\n  An integer n, the size of the sequence.\n\n## Example\n  A magic sequence for n=10.\n  ```\n    6 2 1 0 0 0 1 0 0 0\n  ```\n\n## Model\n  You can find a step-by-step modeling process in this [Jupyter notebook](https://pycsp.org/documentation/models/CSP/MagicSequence/).\n\n  constraints: [Cardinality](http://pycsp.org/documentation/constraints/Cardinality), [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n```\n  python MagicSequence.py -data=number\n```\n\n## Tags\n academic, notebook, csplib",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Magic Sequence",
+    "domain": "Academic",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "count",
+      "sum",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Magic Sequence",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "count",
+      "sum",
+      "forall"
+    ]
+  }
+}

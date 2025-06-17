@@ -1,0 +1,87 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 21
+- Name: Golomb Rulers
+- Domain: Mathematical Modeling
+- Objective: minimization
+
+Problem Description:
+A Golomb ruler is a set of $m$ integers $0 = a_1 < a_2 < ... < a_m$ such that the $m(m-1)/2$ differences $a_j - a_i, 1 <= i < j <= m$ are distinct. The objective is to find the optimal or near optimal Golomb ruler of minimum length. Symmetry can be removed by adding the constraint that $a_2 - a_1 < a_m - a_{m-1}$ where the first difference is less than the last. The ruler is not required to measure all distances up to its length, but each distance must be measured in only one way. Given the number of marks on a Golomb ruler, find the length of the smallest Golomb ruler with those many marks.
+
+
+Input Data (data.dzn):
+m = 10;
+
+
+MiniZinc Model:
+%-----------------------------------------------------------------------------%
+% Golomb rulers
+% prob006 in csplib
+%-----------------------------------------------------------------------------%
+% From csplib:
+% A Golomb ruler may be defined as a set of m integers 0 = a_1 < a_2 <
+% ... < a_m such that the m(m-1)/2 differences a_j - a_i, 1 <= i < j
+% <= m are distinct. Such a ruler is said to contain m marks and is of
+% length a_m. The objective is to find optimal (minimum length) or
+% near optimal rulers.
+%
+% This is the "ternary constraints and an alldifferent" model
+%-----------------------------------------------------------------------------%
+
+include "globals.mzn";
+
+int: m;
+int: n = m*m;
+
+array[1..m] of var 0..n: mark;
+
+array[1..(m*(m-1)) div 2] of var 0..n: differences =
+    [ mark[j] - mark[i] | i in 1..m, j in i+1..m];
+
+constraint mark[1] = 0;
+
+constraint forall ( i in 1..m-1 ) ( mark[i] < mark[i+1] );
+
+constraint alldifferent(differences);
+
+    % Symmetry breaking
+constraint differences[1] < differences[(m*(m-1)) div 2];
+
+solve :: int_search(mark, input_order, indomain, complete)
+    minimize mark[m];
+
+output [show(mark)];
+
+%-----------------------------------------------------------------------------%
+%-----------------------------------------------------------------------------%
+
+
+Expected Output:
+{
+  "mark": [
+    0,
+    1,
+    6,
+    10,
+    23,
+    26,
+    34,
+    41,
+    53,
+    55
+  ],
+  "_objective": 55
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

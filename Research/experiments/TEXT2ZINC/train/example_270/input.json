@@ -1,0 +1,30 @@
+{
+  "description": "# Problem Pigeons\n\nThe classical \"Pigeon-hole\" problem.\nIt can be useful to test the efficiency of filtering/reasoning algorithms.\n\n## Data\n  An integers n\n\n## Model\n  There are two variants: a main one, and a variant \"dec\"\n\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)\n\n## Execution:\n```\n  python Pigeons.py -data=number\n  python Pigeons.py -data=number -variant=dec\n```\n\n## Links\n  - https://en.wikipedia.org/wiki/Pigeonhole_principle\n\n## Tags\n  academic",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Pigeonhole Principle",
+    "domain": "Academic",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Pigeonhole Principle",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "pigeon_holes"
+    ],
+    "model_data_keywords": [
+      "num_pigeons"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent"
+    ]
+  }
+}

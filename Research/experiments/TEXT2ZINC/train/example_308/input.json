@@ -1,0 +1,40 @@
+{
+  "description": "The problem is to find a number which satisfies the following conditions: when divided by 3, it gives a remainder of 1; when divided by 4, it gives a remainder of 2; when divided by 5, it gives a remainder of 3; and when divided by 6, it gives a remainder of 4. The number should be within the range of 1 to 10000.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Number Satisfying Division Conditions",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "mod",
+      "=",
+      "1",
+      "2",
+      "3",
+      "4"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Number Satisfying Division Conditions",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "number"
+    ],
+    "model_data_keywords": [
+      "PossibleNumbers"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "mod",
+      "=",
+      "1",
+      "2",
+      "3",
+      "4"
+    ]
+  }
+}

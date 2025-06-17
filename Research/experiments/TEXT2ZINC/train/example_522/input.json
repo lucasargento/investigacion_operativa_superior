@@ -1,0 +1,45 @@
+{
+  "description": "The problem is known as Gardner's Sum Square problem. The task is to find distinct elements a, b, c, d, e, f, g, h from the set {-7,-5,-3,-2,2,4,6,13} such that the value of (a+b+c+d)^2 + (e+f+g+h)^2 is minimized. The elements in the subsets {a, b, c, d} and {e, f, g, h} must be in increasing order and the value of 'a' must be less than 'e'.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Gardner's Sum Square Problem",
+    "domain": "Mathematics",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "objectiveValue",
+      "increasing",
+      "<"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Gardner's Sum Square Problem",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "allVariables",
+      "objectiveValue"
+    ],
+    "model_data_keywords": [
+      "PossibleValues"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "objectiveValue",
+      "increasing",
+      "<"
+    ]
+  }
+}

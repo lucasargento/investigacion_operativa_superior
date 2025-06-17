@@ -1,0 +1,168 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 141
+- Name: Quasigroup Existence
+- Domain: Combinatorial Mathematics
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    Quasigroup Existence
+Proposer: Toby Walsh
+Category: Combinatorial mathematics
+---
+
+
+An order m quasigroup is a Latin square of size m. That is, a $m \times m$ multiplication table in which each element occurs once in every row and column. For example,
+
+```
+1	 2	 3	 4
+4	 1	 2	 3
+3	 4	 1	 2
+2	 3	 4	 1
+```
+
+is an order 4 quasigroup. A quasigroup can be specified by a set and a binary multiplication operator, \* defined over this set.
+Quasigroup existence problems determine the existence or non-existence of quasigroups of a given size with additional properties. Certain existence problems are of sufficient interest that a naming scheme has been invented for them. We define two new relations, \*321 and \*312 by $a \*321 b = c$ iff $c\*b=a$ and $a \*312 b = c$ iff $b\*c=a$.
+
+QG1.m problems are order m quasigroups for which if $a\*b=c$, $a\*b=c\*d$ and $a \*321 b = c \*321 d$ then $a=c$ and $b=d$.
+
+QG2.m problems are order m quasigroups for which if a\*b=c\*d and a \*312 b = c \*312 d then a=c and b=d.
+
+QG3.m problems are order m quasigroups for which $(a\*b)\*(b\*a) = a$.
+
+QG4.m problems are order m quasigroups for which $(b\*a)\*(a\*b) = a$.
+
+QG5.m problems are order m quasigroups for which $((b\*a)\*b)\*b = a$.
+
+QG6.m problems are order m quasigroups for which $(a\*b)\*b = a\*(a\*b)$.
+
+QG7.m problems are order m quasigroups for which $(b\*a)\*b = a\*(b\*a)$.
+
+For each of these problems, we may additionally demand that the quasigroup is idempotent. That is, a\*a=a for every element a.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 4;
+set of int: nDomain = 0..n-1;
+
+array[nDomain, nDomain] of var nDomain: quasiGroup;
+array[nDomain] of var nDomain: qgDiagonal;
+
+% solve satisfy;
+solve :: int_search([quasiGroup[row, col] | row, col in nDomain], first_fail, indomain_min, complete) satisfy;
+% solve :: int_search(qgDiagonal, first_fail, indomain_min, complete) satisfy;
+
+constraint
+     % accessor for diagonal
+     forall(i in nDomain) (
+         qgDiagonal[i] = quasiGroup[i,i] 
+     )
+     /\
+     % All rows have to be different
+     forall(row in nDomain) (
+          all_different([quasiGroup[row,col] | col in nDomain])
+     )
+     /\
+     % All columns have to be different	       
+     forall(col in nDomain) (
+          all_different([quasiGroup[row,col] | row in nDomain])
+     )
+     /\
+     %  (j*i)*(i*j) = i
+     forall(i in nDomain) (
+         forall(j in nDomain) (
+	    quasiGroup[quasiGroup[i,j],quasiGroup[j,i]] = i
+         )
+     )
+     /\
+     % Implied (from Colton,Miguel 01)
+     % All-diff diagonal
+     all_different(qgDiagonal)
+
+     /\
+
+     % anti-Abelian
+     forall(i in nDomain) (
+       forall(j in nDomain) (
+         (i != j) ->
+         (quasiGroup[i,j] != quasiGroup[j,i])
+       )
+     )
+     /\
+
+     % if (i*i)=j then (j*j) = i
+     forall(i in nDomain) (
+       forall(j in nDomain) (
+         (quasiGroup[i,i]=j) -> (quasiGroup[j,j]=i)
+       )
+     )
+     /\
+
+     % Symmetry-breaking constraints	
+     forall(i in nDomain) (
+           quasiGroup[i,n-1] + 2 >= i
+     )
+;
+
+output 
+[ "\nqgDiagonal: ", show(qgDiagonal)
+] ++
+[ "\nquasiGroup: "
+] ++
+[
+  if col = 0 then "\n" else " " endif ++
+    show(quasiGroup[row, col])
+  | row, col in nDomain
+] ++ ["\n"];
+
+Expected Output:
+{
+  "quasiGroup": [
+    [
+      0,
+      2,
+      3,
+      1
+    ],
+    [
+      3,
+      1,
+      0,
+      2
+    ],
+    [
+      1,
+      3,
+      2,
+      0
+    ],
+    [
+      2,
+      0,
+      1,
+      3
+    ]
+  ],
+  "qgDiagonal": [
+    0,
+    1,
+    2,
+    3
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

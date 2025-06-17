@@ -1,0 +1,67 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 227
+- Name: Oil Refinery Production Optimization
+- Domain: Industrial Engineering
+- Objective: maximization
+
+Problem Description:
+We want to know how many times should we execute each process to maximize the revenue for the next month (you can assume that the number of times that each process is executed is a floating point number). The problem involves O options, P price points, and L processes with Allocated resources, Price at each price point, Input required for each option in each process, Output produced for each price point in each process, and Cost for each process.
+
+
+Input Data (data.dzn):
+O = 2;
+P = 2;
+L = 3;
+Allocated = [8000, 5000];
+Price = [38, 33];
+Input = [|3, 5|, |1, 1|, |5, 3|];
+Output = [|4, 3|, |1, 1|, |3, 4|];
+Cost = [51, 11, 40];
+
+MiniZinc Model:
+% Parameters
+int: O; % Number of options
+int: P; % Number of price points
+int: L; % Number of processes
+array[1..O] of float: Allocated; % Allocated resources for each option
+array[1..P] of float: Price; % Price at each price point
+array[1..L, 1..O] of float: Input; % Input required for each option in each process
+array[1..L, 1..P] of float: Output; % Output produced for each price point in each process
+array[1..L] of float: Cost; % Cost for each process
+
+% Variables
+array[1..L] of var 0.0..1000000.0: Execute; % Number of times each process is executed
+var 0.0..1000000000.0: Revenue; % Total revenue
+
+% Constraints
+constraint forall(i in 1..O)(
+    sum(l in 1..L)(Input[l,i]*Execute[l]) <= Allocated[i]
+);
+
+constraint forall(l in 1..L)(
+    sum(p in 1..P)(Output[l,p]*Price[p]) >= Cost[l]*Execute[l]
+);
+
+% Objective
+var float: totalRevenue = sum(l in 1..L, p in 1..P)(Output[l,p]*Price[p]*Execute[l]) - sum(l in 1..L)(Cost[l]*Execute[l]);
+constraint Revenue = totalRevenue;
+
+% Solve
+solve maximize Revenue;
+
+% Output
+output ["revenue: ", show(Revenue), "\nexecute: ", show(Execute)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

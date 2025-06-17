@@ -1,0 +1,48 @@
+{
+  "description": "How many batches of each part should the manufacturer produce each month to maximize profit, considering the following parameters: number of machines (M), number of parts (P), time required (TimeRequired), machine costs (MachineCosts), machine availability (Availability), selling prices (Prices), minimum batches required (MinBatches), extra costs (ExtraCosts), and maximum extra hours (MaxExtra)?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      ">=",
+      "sum",
+      "-",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "batches",
+      "extra_time",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "time_required",
+      "machine_costs",
+      "availability",
+      "prices",
+      "min_batches",
+      "extra_costs",
+      "max_extra"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      ">=",
+      "sum",
+      "-",
+      "*"
+    ]
+  }
+}

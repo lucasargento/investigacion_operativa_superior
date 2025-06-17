@@ -1,0 +1,44 @@
+{
+  "description": "---\nTitle:    Quasigroup Existence\nProposer: Toby Walsh\nCategory: Combinatorial mathematics\n---\n\n\nAn order m quasigroup is a Latin square of size m. That is, a $m \\times m$ multiplication table in which each element occurs once in every row and column. For example,\n\n```\n1\t 2\t 3\t 4\n4\t 1\t 2\t 3\n3\t 4\t 1\t 2\n2\t 3\t 4\t 1\n```\n\nis an order 4 quasigroup. A quasigroup can be specified by a set and a binary multiplication operator, \\* defined over this set.\nQuasigroup existence problems determine the existence or non-existence of quasigroups of a given size with additional properties. Certain existence problems are of sufficient interest that a naming scheme has been invented for them. We define two new relations, \\*321 and \\*312 by $a \\*321 b = c$ iff $c\\*b=a$ and $a \\*312 b = c$ iff $b\\*c=a$.\n\nQG1.m problems are order m quasigroups for which if $a\\*b=c$, $a\\*b=c\\*d$ and $a \\*321 b = c \\*321 d$ then $a=c$ and $b=d$.\n\nQG2.m problems are order m quasigroups for which if a\\*b=c\\*d and a \\*312 b = c \\*312 d then a=c and b=d.\n\nQG3.m problems are order m quasigroups for which $(a\\*b)\\*(b\\*a) = a$.\n\nQG4.m problems are order m quasigroups for which $(b\\*a)\\*(a\\*b) = a$.\n\nQG5.m problems are order m quasigroups for which $((b\\*a)\\*b)\\*b = a$.\n\nQG6.m problems are order m quasigroups for which $(a\\*b)\\*b = a\\*(a\\*b)$.\n\nQG7.m problems are order m quasigroups for which $(b\\*a)\\*b = a\\*(b\\*a)$.\n\nFor each of these problems, we may additionally demand that the quasigroup is idempotent. That is, a\\*a=a for every element a.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Quasigroup Existence",
+    "domain": "Combinatorial Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "forall",
+      "=",
+      "!=",
+      "->",
+      "+",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Quasigroup Existence",
+    "domain": "Combinatorial Mathematics",
+    "model_var_keywords": [
+      "quasigroup",
+      "quasigroupDiagonal"
+    ],
+    "model_data_keywords": [
+      "quasigroupSize",
+      "quasigroupDomain"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "forall",
+      "=",
+      "!=",
+      "->",
+      "+",
+      ">="
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Custom Tees wants to optimize its ad clicks. Their plan is to meet certain goals for clicks from both young and old age groups. They have a set target of GoalYoung clicks by young individuals, GoalOld clicks by old individuals, GoalUniqueYoung unique clicks by young, and GoalUniqueOld unique clicks by old. They can gather clicks from a total of A different ad types. Each ad type provides a varying number of clicks by young individuals YoungClicks and by old individuals OldClicks. Each ad type also incurs different costs Costs, has a maximum limit for the number of clicks MaxClicks, and provides a number of unique clicks UniqueClicks. Custom Tees wants to know how many clicks from each ad type should they purchase to minimize the overall cost while meeting their click goals.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Custom Tees Ad Clicks Optimization",
+    "domain": "Advertising",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Custom Tees Ad Clicks Optimization",
+    "domain": "Advertising",
+    "model_var_keywords": [
+      "clicks",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "goal_young",
+      "goal_old",
+      "goal_unique_young",
+      "goal_unique_old",
+      "young_clicks",
+      "old_clicks",
+      "costs",
+      "max_clicks",
+      "unique_clicks"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "="
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 448
+- Name: Knapsack Problem
+- Domain: Operations Research
+- Objective: maximization
+
+Problem Description:
+The Knapsack Problem is a classic optimization problem in operations research and computer science. The problem is to determine the most valuable combination of items to include in a knapsack, given a set of TotalItems with different values and weights represented by ItemValues and ItemWeights respectively, and a maximum weight capacity of the knapsack MaxKnapsackWeight. The goal is to maximize the total value of the items in the knapsack, represented by ItemValues, without exceeding its weight capacity MaxKnapsackWeight.
+
+
+Input Data (data.dzn):
+TotalItems = 6;
+ItemValues = [17, 4, 10, 21, 12, 18];
+ItemWeights = [23, 6, 14, 30, 15, 25];
+MaxKnapsackWeight = 60;
+
+MiniZinc Model:
+% Parameters
+int: TotalItems; % Total number of items
+array[1..TotalItems] of int: ItemValues; % Value of each item
+array[1..TotalItems] of int: ItemWeights; % Weight of each item
+int: MaxKnapsackWeight; % Maximum weight capacity of the knapsack
+
+% Decision Variables
+array[1..TotalItems] of var 0..1: InKnapsack; % Binary variable indicating whether an item is in the knapsack
+
+% Objective
+% Maximize the total value of the items in the knapsack
+var int: TotalValue = sum(i in 1..TotalItems) (InKnapsack[i] * ItemValues[i]);
+maximize TotalValue;
+
+% Constraints
+% The total weight of the items in the knapsack should not exceed its weight capacity
+constraint sum(i in 1..TotalItems) (InKnapsack[i] * ItemWeights[i]) <= MaxKnapsackWeight;
+
+% Output
+output ["Total Value: ", show(TotalValue), "\nItems in Knapsack: ", show(InKnapsack)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

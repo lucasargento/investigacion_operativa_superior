@@ -1,0 +1,37 @@
+{
+  "description": "In a cold region , a train service offers heated seats and regular seats . The train has 100 seats available . The trains reserves at least 15 seats to be heated . However , at least 3 times as many people prefer regular seats to heated seats . If the profit per heated seat is $ 20 and the profit per regular seat is $ 15 , how many of each seat type should be sold to maximize profit ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximize Train Seat Profit",
+    "domain": "Transportation",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximize Train Seat Profit",
+    "domain": "Transportation",
+    "model_var_keywords": [
+      "heated_seats",
+      "regular_seats",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "total_seats",
+      "min_heated_seats",
+      "profit_per_heated_seat",
+      "profit_per_regular_seat"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">="
+    ]
+  }
+}

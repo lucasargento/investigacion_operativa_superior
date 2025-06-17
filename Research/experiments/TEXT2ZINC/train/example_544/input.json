@@ -1,0 +1,50 @@
+{
+  "description": "The problem is about predicting movie ratings. Retailers invest heavily in predicting how customers will rate new productions such as movies, books, games and appliances. Accurate recommendations lead to increased revenue and happier customers. To make these recommendations, retailers look for correlations between different products in order to make suggestions on what other products a customer might like. The problem provides a table of movie ratings from five customers for five movies. The ratings range from 1 to 5. A rating of 5 indicates that the movie was very highly liked and a rating of 1 indicates that it was not liked at all. One movie rating is missing because Evan has not yet seen the movie 'Prognosis Negative'. The task is to use only the data in the table to predict the most likely rating that Evan will give to the movie 'Prognosis Negative'. The approach used in the MiniZinc model is similar to the nearest neighbour principle: for all the known ratings of Evan, calculate the distance between Evan and the other customers, select the minimum distance (i.e. the one most like Evan) and pick that person's rating for 'Prognosis Negative'.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Movie Rating Prediction",
+    "domain": "Recommendation Systems",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "calculate_distance",
+      "get_min_index",
+      "forall",
+      "exists",
+      "sum",
+      "min",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Movie Rating Prediction",
+    "domain": "Recommendation Systems",
+    "model_var_keywords": [
+      "evan_all_ratings",
+      "distances",
+      "min_distance",
+      "closest_customer"
+    ],
+    "model_data_keywords": [
+      "num_customers",
+      "num_movies",
+      "ratings",
+      "evan_ratings",
+      "customer_names",
+      "target_movie"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "calculate_distance",
+      "get_min_index",
+      "forall",
+      "exists",
+      "sum",
+      "min",
+      "="
+    ]
+  }
+}

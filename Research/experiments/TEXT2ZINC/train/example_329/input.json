@@ -1,0 +1,51 @@
+{
+  "description": "The problem is a puzzle named 'On the road' from Martin Chlond's Integer Programming Puzzles. The puzzle is about finding the closest distance on a road. The road is represented by a 10x10 grid where each cell can either be 0 or 1. The variable x[i,j] is 1 if digit (i-1) is in position j. The variable y[i] represents the number at position i (not a proper integer programming constraint). The variable 'closest' is the sum of the products of the digit (i-1) and its position in the grid for the first two columns. The objective is to minimize the value of 'closest'. There are several constraints in the problem. Each row and each column in the grid should have exactly one cell with the value 1. The first, third, fifth, seventh, and ninth cells in the first row should be 0. The sum of the products of the digit (i-1) and its position in the grid for every two consecutive columns should be equal, with a difference of 'd'.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "On the Road Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "+",
+      "*",
+      "let",
+      "in",
+      "/\\",
+      "-",
+      "by"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "On the Road Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "d",
+      "y",
+      "closest"
+    ],
+    "model_data_keywords": [
+      "GRID_RANGE"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "+",
+      "*",
+      "let",
+      "in",
+      "/\\",
+      "-",
+      "by"
+    ]
+  }
+}

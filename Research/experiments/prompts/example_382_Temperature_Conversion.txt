@@ -1,0 +1,80 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 382
+- Name: Temperature Conversion
+- Domain: Physics
+- Objective: satisfaction
+
+Problem Description:
+The problem is about converting temperatures between Celsius and Fahrenheit scales. The problem is modeled as a constraint satisfaction problem where the goal is to find a temperature that is the same in both Celsius and Fahrenheit scales. The temperature is represented as a floating point number and an integer in both scales. The conversion between the scales is done using the standard formula: C = (F - 32.0) * 5.0 / 9.0. The problem is solved by searching for a solution that satisfies all the constraints. The constraints ensure that the temperatures in both scales are the same and that they are integers. The problem is solved using a floating point search strategy with a precision of 0.01. The solution is the temperatures in both scales.
+
+
+MiniZinc Model:
+int: N = 300;
+float: Nf = int2float(N);
+
+var -Nf..Nf: C; % Celsius
+var -Nf..Nf: F; % Fahrenheigh
+
+var -N..N: Ci;
+var -N..N: Fi;
+
+predicate convert(var float: C, var float: F) =
+  C = (F - 32.0) * 5.0 / 9.0
+;
+
+% solve satisfy;
+solve :: float_search([C,F],0.01,input_order,indomain_split, complete) satisfy;
+
+constraint
+
+%  F = 100.0
+%  /\
+%  C = 37.0
+%  /\
+  convert(C, F)
+%  /\
+%  C = F
+
+  % /\ (C >= 1.0 \/ F >= 1.0)
+
+  % /\ % either C or F must be an integer
+  % floor(F) = F  % floor don't accept var float
+ 
+  % both C and F must be integers
+  /\ int2float(Ci) = C 
+  /\ int2float(Fi) = F
+
+  % This works
+  % /\ exists(i in -N..N) ( int2float(i) = C )
+  % /\ exists(i in -N..N) (  int2float(i) = F )
+
+;
+
+
+output [
+  "C: ", show(C), "\n",
+  "F: ", show(F), "\n",
+
+];
+
+Expected Output:
+{
+  "C": -180.0,
+  "F": -291.999999999999,
+  "Ci": -180,
+  "Fi": -292
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

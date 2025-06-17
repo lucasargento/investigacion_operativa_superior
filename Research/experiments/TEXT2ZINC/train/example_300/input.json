@@ -1,0 +1,42 @@
+{
+  "description": "The problem is a puzzle called 'Equal Vision' from Martin Chlond's Integer Programming Puzzles. The puzzle is set on a grid of size 4x4. Each cell in the grid can either be occupied or vacant. The objective is to minimize the number of vacant cells. A watchman is placed on each cell and can see all the vacant cells in the same row, column, and diagonals. The number of vacant cells visible to the watchman on each cell is represented by 'n'. The constraints of the problem are such that the sum of vacant cells in the same row, column, and diagonals for each cell should be equal to 'n'. Additionally, 'n' should be greater than or equal to 6 minus 99 times the occupancy status of the cell and less than or equal to 6 plus 99 times the occupancy status of the cell. The occupancy status of a cell is represented by 'x', where 'x' is 0 if the cell is occupied and 1 if it is vacant.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Equal Vision Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<=",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Equal Vision Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "n",
+      "totalVacantCells"
+    ],
+    "model_data_keywords": [
+      "gridSize",
+      "visibleCells",
+      "GridIndices"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "<=",
+      "!="
+    ]
+  }
+}

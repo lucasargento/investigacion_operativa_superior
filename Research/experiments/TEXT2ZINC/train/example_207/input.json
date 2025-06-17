@@ -1,0 +1,47 @@
+{
+  "description": "How should the manufacture manage the steel to maximize profit? The manufacture has to decide on the optimal quantity of SteelQuantity tons of steel to produce, taking into account the required ManganesePercent percent manganese and ensuring the silicon content is between SiliconMinPercent percent and SiliconMaxPercent percent. The available stocks contain SiliconContent percent Silicon and ManganeseContent percent Manganese. The price of manganese is set at ManganesePrice per ton, and the material cost for each stock is MaterialCost. The company sells the steel at a price of SellingPrice per ton but also incurs a melting cost of MeltingPrice per ton.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Steel Manufacturing Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "=",
+      ">=",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Steel Manufacturing Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "num_mang",
+      "amount",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "n_steel_quant",
+      "mn_percent",
+      "si_min",
+      "si_max",
+      "contsi",
+      "contmn",
+      "mang_price",
+      "cost",
+      "sell_price",
+      "melt_price"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "=",
+      ">=",
+      "<="
+    ]
+  }
+}

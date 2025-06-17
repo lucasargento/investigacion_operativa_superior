@@ -1,0 +1,47 @@
+{
+  "description": "Determine the most cost-effective combination of interventions to halt the intruder's progress within the network. The MILP problem includes parameters: processing times at the central system (IsolateCentral, ScanCentral), processing times at the distributed system (IsolateDistributed, ScanDistributed), costs (CentralCost, DistributedCost), and maximum hours (CentralMaxHours, DistributedMaxHours) for a number of interventions N.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Network Intrusion Response Optimization",
+    "domain": "Network Security",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Network Intrusion Response Optimization",
+    "domain": "Network Security",
+    "model_var_keywords": [
+      "isolate_central",
+      "scan_central",
+      "isolate_distributed",
+      "scan_distributed",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "processing_times_central_isolate",
+      "processing_times_central_scan",
+      "processing_times_distributed_isolate",
+      "processing_times_distributed_scan",
+      "costs_central",
+      "costs_distributed",
+      "max_hours_central_max_hours",
+      "max_hours_distributed_max_hours"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "<="
+    ]
+  }
+}

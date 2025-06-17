@@ -1,0 +1,107 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 483
+- Name: Antisymmetric Relation Matrix
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is to define the concept of antisymmetric in the context of a relation. An antisymmetric relation is one where no element is related to itself (no one is richer than him-/herself) and if one element is related to another, the second is not related to the first (if i is richer than j then j is not richer than i). The problem is modeled as a 4x4 matrix where each cell represents a binary relation between two elements. The goal is to find a configuration of this matrix that satisfies the antisymmetric property. Two versions of the antisymmetric property are defined, one directly from the definition and another as an alternative version.
+
+
+MiniZinc Model:
+int: n = 4;
+array[1..n, 1..n] of var 0..1: x;
+
+%
+%
+predicate antisymmetric1(array[int, int] of var 0..1: x) =
+   let {
+       int: n = card(index_set_1of2(x))
+   }
+   in
+   %  not(iRi)
+   forall(i in 1..n) (
+      x[i,i] = 0
+   )
+   /\ % if iRj then not(jRi)
+   forall(i, j in 1..n where i != j) (
+      x[i,j] = 1 <-> x[j,i] = 0
+   )
+;
+
+%
+% Alternative version from the definition in
+% http://en.wikipedia.org/wiki/Antisymmetric_relation
+%  * if aRb with a != b, then not bRa
+%
+predicate antisymmetric2(array[int, int] of var 0..1: x) =
+   let {
+       int: n = card(index_set_1of2(x))
+   }
+   in
+   forall(a, b in 1..n) (
+      (x[a,b] = 1 /\ a != b) <-> x[b,a] = 0
+   )
+;
+
+
+solve satisfy;
+% solve :: int_search(x, "first_fail", "indomain", "complete") satisfy;
+
+constraint
+   antisymmetric1(x)
+   % antisymmetric2(x)
+;
+
+output[
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i, j in 1..n
+] 
+++ 
+["\n"]
+;
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

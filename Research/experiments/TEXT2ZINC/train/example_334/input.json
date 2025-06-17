@@ -1,0 +1,51 @@
+{
+  "description": "The Monorail puzzle is a problem where the objective is to complete a closed-circuit loop through all the stations (dots) by drawing rails. The loop must pass through each station exactly once and close back on itself, like an actual monorail system might in a city. The problem is defined on a rectangular grid with a certain number of rows and columns. Each cell in the grid represents a station. The problem also includes a number of given hints, which are pairs of stations that must be connected in the final solution. The solution to the problem is a path that visits each station exactly once and returns to the starting station, forming a closed loop. The path is represented as a sequence of coordinates in the grid. The problem also includes constraints that ensure that all coordinates in the path are unique and that only valid connections between stations are used. A valid connection is a pair of stations that are adjacent either horizontally or vertically in the grid. The problem is solved by finding a path that satisfies all the constraints and includes all the given hints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Monorail Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "let",
+      "abs",
+      "=",
+      "alldifferent",
+      "table",
+      "domain"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Monorail Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "y",
+      "path",
+      "a"
+    ],
+    "model_data_keywords": [
+      "rows",
+      "cols",
+      "num_given",
+      "given",
+      "num_steps",
+      "num_connections",
+      "valid_connections"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "let",
+      "abs",
+      "=",
+      "alldifferent",
+      "table",
+      "domain"
+    ]
+  }
+}

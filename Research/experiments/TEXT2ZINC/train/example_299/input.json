@@ -1,0 +1,37 @@
+{
+  "description": "The Public School Problem is a puzzle that involves finding five integer values (x[1] to x[5]) that satisfy a set of constraints. The constraints are as follows: \n\n1. Each of the five values must be greater than or equal to a variable 'm' which ranges from 21 to 29, and less than or equal to 1000. \n2. The first value is half of the fifth value minus 2. \n3. The sum of the fourth and fifth values is equal to the sum of the second, third values and 14. \n4. The sum of twice the second value and twice the fifth value is equal to the sum of all five values minus 4. \n5. The sum of 32 times the third value and 32 times the fourth value is equal to 13 times the sum of all five values. \n\nThe goal is to minimize the first value (x[1]).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Public School Problem",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "2*x[1] = x[5] - 4",
+      "x[4] + x[5] = x[2] + x[3] + 14",
+      "2*x[2] + 2*x[5] = sum(i in 1..5) (x[i]) - 4",
+      "32*x[3] + 32*x[4] = 13*sum(i in 1..5) (x[i])"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Public School Problem",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "lower_bound",
+      "upper_bound"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "2*x[1] = x[5] - 4",
+      "x[4] + x[5] = x[2] + x[3] + 14",
+      "2*x[2] + 2*x[5] = sum(i in 1..5) (x[i]) - 4",
+      "32*x[3] + 32*x[4] = 13*sum(i in 1..5) (x[i])"
+    ]
+  }
+}

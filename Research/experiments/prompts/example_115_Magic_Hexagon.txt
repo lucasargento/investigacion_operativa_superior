@@ -1,0 +1,137 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 115
+- Name: Magic Hexagon
+- Domain: Design and Configuration, Combinatorial Mathematics, Games and Puzzles
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    Magic Hexagon
+Proposer: Toby Walsh
+Category:
+ - Design and configuration
+ - Combinatorial mathematics
+ - Games and puzzles
+---
+
+A magic hexagon consists of the numbers 1 to 19 arranged in a hexagonal pattern:
+
+<center><pre>
+A,B,C
+D,E,F,G
+H,I,J,K,L
+M,N,O,P
+Q,R,S
+</pre></center>
+
+We have a constraint that all diagonals sum to 38. That is,
+
+<pre>
+A+B+C = D+E+F+G = ... = Q+R+S = 38,
+A+D+H = B+E+I+M = ... = L+P+S = 38,
+C+G+L = B+F+K+P = ... = H+M+Q = 38.
+</pre>
+
+The problem can be generalized to other sizes. This is the diameter 5 problem.
+
+<center>
+![Magic Hexagon](assets/magic.jpg)
+</center>
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+set of int: N = 1..19;
+var N: a;
+var N: b;
+var N: c;
+var N: d;
+var N: e;
+var N: f;
+var N: g;
+var N: h;
+var N: i;
+var N: j;
+var N: k;
+var N: l;
+var N: m;
+var N: n;
+var N: o;
+var N: p;
+var N: q;
+var N: r;
+var N: s;
+
+array[N] of var N: LD = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s];
+
+solve satisfy;
+
+constraint
+  all_different(LD) /\
+
+  a + b + c =  38 /\
+  d + e + f + g =  38 /\
+  h + i + j + k + l =  38 /\ 
+  m + n + o + p =  38 /\ 
+  q + r + s =  38 /\ 
+  a + d + h =  38 /\ 
+  b + e + i + m =  38 /\ 
+  c + f + j + n + q =  38 /\ 
+  g + k + o + r =  38 /\ 
+  l + p + s =  38 /\ 
+  c + g + l =  38 /\ 
+  b + f + k + p =  38 /\ 
+  a + e + j + o + s =  38 /\ 
+  d + i + n + r =  38 /\ 
+  h + m + q =  38 /\ 
+
+  a < c /\
+  a < h /\
+  a < l /\
+  a < q /\
+  a < s /\
+  c < h
+;
+
+output
+[
+  show(LD)
+];
+
+Expected Output:
+{
+  "a": 3,
+  "b": 19,
+  "c": 16,
+  "d": 17,
+  "e": 7,
+  "f": 2,
+  "g": 12,
+  "h": 18,
+  "i": 1,
+  "j": 5,
+  "k": 4,
+  "l": 10,
+  "m": 11,
+  "n": 6,
+  "o": 8,
+  "p": 13,
+  "q": 9,
+  "r": 14,
+  "s": 15
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

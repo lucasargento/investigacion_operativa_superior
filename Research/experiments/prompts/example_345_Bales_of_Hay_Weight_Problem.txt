@@ -1,0 +1,63 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 345
+- Name: Bales of Hay Weight Problem
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is about five bales of hay that were weighed in all possible combinations of two. The weights of each of these combinations were written down and arranged in numerical order, without keeping track of which weight matched which pair of bales. The weights, in kilograms, were 80, 82, 83, 84, 85, 86, 87, 88, 90, and 91. The task is to find out how much each bale weighs. The problem also asks if there is a solution and if there are multiple possible solutions. The weights of the bales are represented as an array of integers, and the weights of the combinations are represented as another array of integers. The problem is solved by searching for a solution that satisfies all the constraints, which include that the sum of the weights of any two bales must be equal to one of the weights in the combinations array, and that the weights of the bales must be in increasing order.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+int: n = 5;
+array[1..n] of var 0..50: bales;
+
+array[1..10] of int: weights = [80, 82, 83, 84, 85, 86, 87, 88, 90, 91];
+
+% solve satisfy;
+solve :: int_search(bales, occurrence, indomain_min, complete) satisfy;
+
+constraint
+   forall(w in 1..10) (
+     let {
+        var 1..n: i,
+        var 1..n: j
+     } in
+       i < j /\
+       bales[i] + bales[j] = weights[w]
+   )
+   /\ increasing(bales)
+;
+
+
+output [
+  % "bales: " ++ show(bales) ++ "\n"
+  "bale" ++ show(i) ++ ": " ++ show(bales[i]) ++ "\n"
+  | i in 1..n
+] ++ ["\n"];
+
+Expected Output:
+{
+  "bales": [
+    39,
+    41,
+    43,
+    44,
+    47
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

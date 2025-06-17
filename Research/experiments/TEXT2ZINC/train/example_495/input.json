@@ -1,0 +1,43 @@
+{
+  "description": "The problem is a bit vector problem. Alice picks a number and multiplies it by two. She then inverts the last 4 bits of the obtained result. The problem is to find the number that Alice picked, if the obtained result is the same as the initial pick. The problem is solved using MiniZinc, a medium-level constraint modelling language. The model gives multiple solutions for different bit lengths. For example, for a bit length of 16, the model gives 2048 solutions. The problem is to find all such numbers that satisfy the given conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Bit Vector Problem",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "toNum",
+      "num2 = num*2",
+      "forall",
+      "<->",
+      "num = num3"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Bit Vector Problem",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "num_x",
+      "num",
+      "num2_x",
+      "num2",
+      "num3_x",
+      "num3"
+    ],
+    "model_data_keywords": [
+      "bits"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "toNum",
+      "num2 = num*2",
+      "forall",
+      "<->",
+      "num = num3"
+    ]
+  }
+}

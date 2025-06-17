@@ -1,0 +1,112 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 173
+- Name: Map Coloring Problem
+- Domain: Graph Theory
+- Objective: satisfaction
+
+Problem Description:
+This problem is a map coloring problem. Given a number of countries and a matrix representing the connections between these countries, the task is to assign a color to each country such that no two adjacent countries have the same color. The colors are represented as integers from 1 to 4. The connections between countries are represented as a 2D matrix where a 1 indicates a connection and a 0 indicates no connection. The problem is to find a coloring that satisfies these constraints. The solution should be a list of colors assigned to each country in the order [belgium, denmark, france, germany, netherlands, luxembourg].
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+
+int: n; % number of countries
+array[1..n] of var 1..4: country; % = [belgium, denmark, france, germany, netherlands, luxembourg];
+array[1..n,1..n] of 0..1: connections; % the map (as a matrix)
+
+% var int: ss = sum(i in 1..n) (i*country[i]); % bara en test
+
+% The map (from an earlier version of the model)
+%constraint
+%	country_colour[france] 		!=	country_colour[belgium]
+%  /\	country_colour[france] 		!= 	country_colour[luxembourg]
+%  /\	country_colour[france] 		!= 	country_colour[germany]
+%  /\	country_colour[luxembourg] 	!= 	country_colour[germany]
+%  /\	country_colour[luxembourg] 	!= 	country_colour[belgium]
+%  /\	country_colour[netherlands]	!= 	country_colour[belgium]
+%  /\	country_colour[germany]		!= 	country_colour[belgium]
+%  /\	country_colour[germany]		!= 	country_colour[netherlands]
+%  /\	country_colour[germany] 	!= 	country_colour[denmark]
+%;
+
+%
+%  coloring(connections, num_countries)
+%    where
+%      conn: an indicence matrix: 1 for connected, 0 for not connected
+%                   (no self-loops)
+%      contries: the array of the countries (country flag) to be solved
+%      num_countries: the number of countries    
+%
+predicate coloring(array[int,int] of int: conn, array[int] of var int: countries, int: num_countries) =
+           forall(i,j in 1..num_countries where i < j /\ conn[i,j] = 1) (
+              countries[i] != countries[j]
+           )
+;
+
+%
+% Using the predicate
+%
+constraint 
+    coloring(connections, country, n)
+
+    % /\ % with the precedence symmetry breaking: 6 solutions
+    % precedence(country)
+;
+
+
+solve satisfy;
+% solve minimize sum(i in 1..n) (i*country[i]);
+
+%
+% data
+%
+n = 6; % number of countries
+
+%
+% The map as a matrix
+%
+% [belgium, denmark, france, germany, netherlands, luxembourg]
+connections = 
+array2d(1..n, 1..n, 
+[    0,   0,   1,   1,   1,   1,
+     0,   0,   0,   1,   0,   0,
+     1,   0,   0,   1,   1,   0,
+     1,   1,   1,   0,   1,   1,
+     1,   0,   1,   1,   0,   0,
+     1,   0,   0,   1,   0,   0
+]);
+
+output [
+   "[belgium, denmark, france, germany, netherlands, luxembourg]\n",
+   show(country), "\n" % ," : ", show(ss), "\n"
+   
+]
+;
+
+Expected Output:
+{
+  "country": [
+    2,
+    2,
+    4,
+    1,
+    3,
+    3
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

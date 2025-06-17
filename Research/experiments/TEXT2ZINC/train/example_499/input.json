@@ -1,0 +1,38 @@
+{
+  "description": "The Chinese Remainder Problem is a mathematical problem that aims to find a number 'n' that, when divided by some given divisors, leaves given remainders. The problem is to determine the lowest number 'n' that satisfies these conditions. For example, what is the lowest number 'n' that when divided by 3 leaves a remainder of 2, when divided by 5 leaves a remainder of 3, and when divided by 7 leaves a remainder of 2? In this MiniZinc model, the divisors and remainders are given as input arrays, and the model aims to minimize the value of 'n' that satisfies all the given conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Chinese Remainder Problem",
+    "domain": "Mathematics",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "satisfies_conditions",
+      "forall",
+      "mod",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Chinese Remainder Problem",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "n"
+    ],
+    "model_data_keywords": [
+      "num_conditions",
+      "divisors",
+      "remainders"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "satisfies_conditions",
+      "forall",
+      "mod",
+      "="
+    ]
+  }
+}

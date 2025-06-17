@@ -1,0 +1,49 @@
+{
+  "description": "The Pool-ball triangles problem is a puzzle proposed by Martin Gardner. Given n*(n+1) div 2 numbered pool balls arranged in a triangle, the task is to place them so that the number of each ball below two balls is the difference of the numbers of those two balls. For example, when n=5, the numbers range from 1 to 15. The problem is to find a configuration of these numbers in a triangular arrangement such that the number on each ball is the difference of the two numbers on the balls directly above it. Note that this model does not handle mirror symmetries of the triangle. Also, there are no solutions for n=6,7. The goal is to find a satisfying assignment of numbers to balls that meets these conditions, or determine that no such assignment exists.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Pool-ball Triangles Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "abs",
+      "all_different",
+      "contains",
+      "exists",
+      "length",
+      "not",
+      "->",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Pool-ball Triangles Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "ball_numbers",
+      "subtraction_indices"
+    ],
+    "model_data_keywords": [
+      "n",
+      "total_balls",
+      "triangle_numbers"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "abs",
+      "all_different",
+      "contains",
+      "exists",
+      "length",
+      "not",
+      "->",
+      "/\\"
+    ]
+  }
+}

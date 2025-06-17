@@ -1,0 +1,37 @@
+{
+  "description": "The problem is a work-shift scheduling problem. There are six workers: Alan, Bob, John, Mike, Scott, and Ted. These workers are to be assigned to three working shifts. The first shift needs at least one and at most four people; the second shift needs at least two and at most three people; and the third shift needs exactly two people. Alan does not work on the first shift; Bob works only on the third shift. The others can work any shift. The objective is to find a feasible assignment for this problem. The variables W1\u2013W6 identify the shift to be assigned to each of the six workers: Alan, Bob, John, Mike, Scott, and Ted.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Work-Shift Scheduling",
+    "domain": "Scheduling",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "global_cardinality_low_up",
+      "!=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Work-Shift Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "num_shifts",
+      "num_workers",
+      "lower_bound",
+      "upper_bound",
+      "workers",
+      "shift_assignment"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "global_cardinality_low_up",
+      "!=",
+      "="
+    ]
+  }
+}

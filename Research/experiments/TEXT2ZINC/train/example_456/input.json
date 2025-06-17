@@ -1,0 +1,48 @@
+{
+  "description": "The problem is about implementing the global constraint min_nvalue in MiniZinc. The constraint min_nvalue(MIN, VARIABLES) is such that MIN is the minimum number of times that the same value is taken by the variables of the collection VARIABLES. This constraint can be used to replace a set of count or among constraints where one would have to generate explicitly one constraint for each potential value. It is also useful for constraining the number of occurrences of the least used value without knowing this value in advance and without giving explicitly a lower limit on the number of occurrences of each value as it is done in the global_cardinality constraint. The goal is to find a satisfying assignment for the variables such that the min_nvalue constraint holds.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum Value Occurrence Constraint",
+    "domain": "Constraint Programming",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "min_nvalue",
+      "global_cardinality",
+      "forall",
+      "exists",
+      ">",
+      "<=",
+      "=",
+      "assert",
+      "cp1d"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum Value Occurrence Constraint",
+    "domain": "Constraint Programming",
+    "model_var_keywords": [
+      "variables",
+      "min_occurrences",
+      "occurrences"
+    ],
+    "model_data_keywords": [
+      "num_variables"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "min_nvalue",
+      "global_cardinality",
+      "forall",
+      "exists",
+      ">",
+      "<=",
+      "=",
+      "assert",
+      "cp1d"
+    ]
+  }
+}

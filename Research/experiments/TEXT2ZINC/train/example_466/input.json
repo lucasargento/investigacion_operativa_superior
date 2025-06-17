@@ -1,0 +1,42 @@
+{
+  "description": "The problem is defined by two constraints: 'common' and 'used_by'. The 'common' constraint is defined as follows: Given two collections of variables, VARIABLES1 and VARIABLES2, NCOMMON1 is the number of variables in VARIABLES1 taking a value in VARIABLES2, and NCOMMON2 is the number of variables in VARIABLES2 taking a value in VARIABLES1. For example, if VARIABLES1 is <1, 9, 1, 5> and VARIABLES2 is <2, 1, 9, 9, 6, 9>, then NCOMMON1 is 3 (the number of values in VARIABLES1 that occur in VARIABLES2) and NCOMMON2 is 4 (the number of values in VARIABLES2 that occur in VARIABLES1). The 'used_by' constraint is defined as follows: All the values of the variables of collection VARIABLES2 are used by the variables of collection VARIABLES1. For example, if VARIABLES1 is [1, 9, 1, 5, 2, 1] and VARIABLES2 is [1, 1, 2, 5], then all values in VARIABLES2 are used by VARIABLES1. The problem is to find values for the variables in VARIABLES1 and VARIABLES2 that satisfy these constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Common and Used By Constraints",
+    "domain": "Constraint Satisfaction",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "bool2int",
+      "in",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Common and Used By Constraints",
+    "domain": "Constraint Satisfaction",
+    "model_var_keywords": [
+      "array_x",
+      "array_y",
+      "num_common_x",
+      "num_common_y"
+    ],
+    "model_data_keywords": [
+      "size_x",
+      "size_y",
+      "domain_lb",
+      "domain_ub"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "sum",
+      "bool2int",
+      "in",
+      "forall"
+    ]
+  }
+}

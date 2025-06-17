@@ -1,0 +1,99 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 317
+- Name: Limerick Prime Finder
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is about finding a 'Limerick Prime'. A Limerick Prime is a prime number that has the form AABBA where A is an odd digit and B is any digit other than A. The task is to find such a prime number within the range of 10000 to 99999. The problem is inspired by a post from John D. Cook's blog where he discusses the concept of Limerick Primes and the smallest 14-digit prime number that follows the rhyme scheme of a Shakespearean sonnet.
+
+
+MiniZinc Model:
+int: n = 5;
+
+var 10000..99999: p;
+array[1..n] of var 0..9: x;
+
+var 0..9: A;
+var 0..9: B;
+
+predicate is_prime(var int: x) =
+   x > 1 
+   /\
+   forall(i in 2..1+ceil(sqrt(int2float(ub(x))))) ( 
+        (i < x) -> (x mod i > 0)
+   )
+;
+
+% channel array a <-> var int n
+predicate toNum10(array[int] of var int: a, var int: n) =
+          let { int: len = length(a) }
+          in
+          n = sum(i in 1..len) (
+            ceil(pow(10.0, int2float(len-i))) * a[i]
+          )
+          /\ forall(i in 1..len) (a[i] >= 0)
+;
+
+% arrays of 1d where both arguments are var int
+predicate cp1d(array[int] of var int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+     forall(i in index_set(x)) ( x[i] = y[i] ))
+; 
+
+
+% solve satisfy;
+solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+% p is a prime
+constraint
+   is_prime(p) /\ toNum10(x, p)
+;
+
+% """
+% A limerick prime has to have the form AABBA where A is an 
+% odd digit and B is any digit other than A. 
+% """
+constraint
+   cp1d(x, [A,A,B,B,A])
+   /\ 
+   A mod 2 = 1
+   /\
+   A != B
+;
+
+output [
+  "p: " ++ show(p) ++ "\n" ++
+  "x: " ++ show(x)
+]
+ ++ ["\n"]
+;
+
+Expected Output:
+{
+  "p": 11551,
+  "x": [
+    1,
+    1,
+    5,
+    5,
+    1
+  ],
+  "A": 1,
+  "B": 5
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

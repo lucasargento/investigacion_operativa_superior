@@ -1,0 +1,40 @@
+{
+  "description": "The problem is about finding an order m quasigroup, which is an mxm multiplication table of integers 1..m, where each element occurs exactly once in each row and column and certain multiplication axioms hold. In this case, the axiom 6 should hold, which is defined as (a*b)*b = a*(a*b). The constraints of the problem are: all rows and columns of the quasigroup must be different, the quasigroup must satisfy the multiplication axiom 6, the quasigroup must be idempotent (i.e., a*a = a for all a), and there are some symmetry-breaking constraints. The goal is to find a quasigroup that satisfies all these constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Order M Quasigroup",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "=",
+      "+",
+      ">=",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Order M Quasigroup",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "quasigroup",
+      "order",
+      "orderDomain"
+    ],
+    "model_data_keywords": [
+      "order"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "=",
+      "+",
+      ">=",
+      "forall"
+    ]
+  }
+}

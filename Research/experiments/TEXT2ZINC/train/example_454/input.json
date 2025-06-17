@@ -1,0 +1,58 @@
+{
+  "description": "The problem is about implementing the global constraint 'atleast_nvalue' in MiniZinc. The constraint 'atleast_nvalue' ensures that the number of distinct values taken by the variables of a collection is greater than or equal to a given value 'NVAL'. For example, if we have a collection <3, 1, 7, 1, 6> and NVAL is 2, the constraint holds since the collection involves at least 2 distinct values (in fact, it has 4 distinct values). The task is to define a model that takes an array of integers and a value 'nval', and checks if the array satisfies the 'atleast_nvalue' constraint with 'nval'. The model should also include a helper predicate to convert an array to a set, and a predicate 'cp1d' to ensure that two arrays have the same elements in the same order.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Atleast NValue Constraint",
+    "domain": "Constraint Programming",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "array_to_set",
+      "atleast_nvalue",
+      "compare_arrays",
+      "forall",
+      "in",
+      "not",
+      "exists",
+      "<->",
+      "card",
+      ">=",
+      "assert",
+      "=",
+      "and"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Atleast NValue Constraint",
+    "domain": "Constraint Programming",
+    "model_var_keywords": [
+      "num_elements",
+      "array_elements",
+      "num_distinct_values",
+      "set_elements"
+    ],
+    "model_data_keywords": [
+      "array1",
+      "array2"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "array_to_set",
+      "atleast_nvalue",
+      "compare_arrays",
+      "forall",
+      "in",
+      "not",
+      "exists",
+      "<->",
+      "card",
+      ">=",
+      "assert",
+      "=",
+      "and"
+    ]
+  }
+}

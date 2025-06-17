@@ -1,0 +1,46 @@
+{
+  "description": "A fashion company produces two types of nail paints , gel and acrylic . The profit per unit of gel is $ 80 and the profit per unit of acrylic is $ 200 . It takes 4 hours to produce the raw materials for one unit of gel , 3 hour to mix and 6 hours in packing . It takes 2 hours to produce the raw materials for one unit of acrylic , 5 hour to mix and 2.3 hours in packing . Per month , 290 hours are available for preparing the raw materials , 480 hours for mixing and 510 hours for packing the nail paints .   How many of each type of nail paint should be produced in order to maximize the total monthly profit ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Nail Paint Production Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Nail Paint Production Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "gel",
+      "acrylic",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "raw_material_time_gel",
+      "raw_material_time_acrylic",
+      "mixing_time_gel",
+      "mixing_time_acrylic",
+      "packing_time_gel",
+      "packing_time_acrylic",
+      "available_raw_material_time",
+      "available_mixing_time",
+      "available_packing_time",
+      "profit_per_unit_gel",
+      "profit_per_unit_acrylic"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "*",
+      "+"
+    ]
+  }
+}

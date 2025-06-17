@@ -1,0 +1,45 @@
+{
+  "description": "How many batches of each part should the manufacturer produce each month to maximize profit? The manufacturer has M machines and P parts to be produced. Each machine m has an associated cost of MachineCosts, time requirement TimeRequired, and availability Availability per month. Each part p has a selling price Prices and a production minimum requirement MinBatches.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "*",
+      "+",
+      "-"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "batches",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "time_required",
+      "machine_costs",
+      "availability",
+      "prices",
+      "min_batches"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "*",
+      "+",
+      "-"
+    ]
+  }
+}

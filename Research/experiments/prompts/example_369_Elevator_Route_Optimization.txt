@@ -1,0 +1,66 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 369
+- Name: Elevator Route Optimization
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+This problem is based on Martin Chlond's 'A Tokyo Elevator Puzzle'. The puzzle involves an elevator that needs to visit certain floors. The building has 6 floors and the elevator needs to make 3 visits, excluding the top and bottom floors. The data set 'c' represents the floors that the elevator needs to visit. Each row in the data set represents a different scenario, with 1s indicating the floors that need to be visited and 0s indicating the floors that can be skipped. The goal is to find the optimal route for the elevator to take in each scenario.
+
+
+MiniZinc Model:
+include "elevator_model.mzn";
+
+%
+% Data set for elevator puzzle
+% 6 floors, 3 visits (excluding top and bottom)
+% 
+m = 20;
+n = 6;
+
+c = array2d(1..m, 1..n,
+[
+1, 1, 1, 0, 0, 0, 
+1, 1, 0, 1, 0, 0, 
+1, 1, 0, 0, 1, 0, 
+1, 1, 0, 0, 0, 1, 
+1, 0, 1, 1, 0, 0, 
+1, 0, 1, 0, 1, 0, 
+1, 0, 1, 0, 0, 1, 
+1, 0, 0, 1, 1, 0, 
+1, 0, 0, 1, 0, 1, 
+1, 0, 0, 0, 1, 1, 
+0, 1, 1, 1, 0, 0, 
+0, 1, 1, 0, 1, 0, 
+0, 1, 1, 0, 0, 1, 
+0, 1, 0, 1, 1, 0, 
+0, 1, 0, 1, 0, 1, 
+0, 1, 0, 0, 1, 1, 
+0, 0, 1, 1, 1, 0, 
+0, 0, 1, 1, 0, 1, 
+0, 0, 1, 0, 1, 1,
+0, 0, 0, 1, 1, 1 
+])
+;
+
+% output [
+%  if i = 1 then 
+%    "summa: " ++ show(summa) ++ "\n"
+%  else "" endif ++
+%  show(i) ++ ": " ++ show(x[i]) ++ "\n"
+%  | i in 1..m
+% ];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

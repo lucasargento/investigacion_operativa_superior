@@ -1,0 +1,86 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 265
+- Name: Magic Sequence
+- Domain: Academic
+- Objective: satisfaction
+
+Problem Description:
+# Problem MagicSequence
+
+This is [Problem 019](https://www.csplib.org/Problems/prob019/) at CSPLib.
+
+A magic sequence of length n is a sequence of integers x between 0 and n−1, such that for all i in 0 to n−1,
+the number i occurs exactly x[i] times in the sequence.
+
+
+## Data
+  An integer n, the size of the sequence.
+
+## Example
+  A magic sequence for n=10.
+  ```
+    6 2 1 0 0 0 1 0 0 0
+  ```
+
+## Model
+  You can find a step-by-step modeling process in this [Jupyter notebook](https://pycsp.org/documentation/models/CSP/MagicSequence/).
+
+  constraints: [Cardinality](http://pycsp.org/documentation/constraints/Cardinality), [Sum](http://pycsp.org/documentation/constraints/Sum)
+
+## Execution
+```
+  python MagicSequence.py -data=number
+```
+
+## Tags
+ academic, notebook, csplib
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Size of the sequence
+int: n = 10;
+
+% Sequence of integers
+array[0..n-1] of var 0..n-1: x;
+
+% Cardinality constraints
+constraint forall(i in 0..n-1)(count(x, i, x[i]));
+
+% Sum constraints
+constraint sum(x) = n;
+
+solve satisfy;
+
+output ["Magic Sequence: "] ++ [show(x[i]) | i in 0..n-1];
+
+Expected Output:
+{
+  "x": [
+    6,
+    2,
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

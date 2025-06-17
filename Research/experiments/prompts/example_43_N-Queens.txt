@@ -1,0 +1,84 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 43
+- Name: N-Queens
+- Domain: Puzzles and Games
+- Objective: satisfaction
+
+Problem Description:
+The N-Queens problem is to place N queens on an N x N chessboard so that no two queens can attack each other. A queen attacks squares on the same row, column, or diagonal. The challenge is to find a set of positions for the queens where they do not attack each other.
+
+
+Input Data (data.dzn):
+n = 6;
+
+MiniZinc Model:
+% 
+% n queens problem in MiniZinc.
+% 
+% This MiniZinc model was created by Hakan Kjellerstrand, hakank@gmail.com
+% See also my MiniZinc page: http://www.hakank.org/minizinc
+%
+
+% Licenced under CC-BY-4.0 : http://creativecommons.org/licenses/by/4.0/
+
+include "globals.mzn";
+
+int: n;
+array[1..n] of var 1..n: queens;
+
+solve :: int_search(
+        queens, 
+        first_fail, 
+        indomain_min, 
+        complete) 
+    satisfy;
+
+% solve satisfy;
+
+constraint all_different(queens);
+
+constraint
+    forall(i, j in 1..n where i < j) (
+         queens[i] != queens[j] /\
+         queens[i] + i != queens[j] + j /\
+         queens[i] - i != queens[j] - j
+    ) 
+ ;
+
+output [
+  show(queens) ++ "\n"
+
+];
+
+
+
+
+
+
+
+
+Expected Output:
+{
+  "queens": [
+    4,
+    1,
+    5,
+    2,
+    6,
+    3
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

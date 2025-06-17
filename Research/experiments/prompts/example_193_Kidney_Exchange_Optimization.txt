@@ -1,0 +1,120 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 193
+- Name: Kidney Exchange Optimization
+- Domain: Healthcare
+- Objective: maximization
+
+Problem Description:
+The problem is a simple model of kidney exchange, inspired by Pascal Van Hentenryck's introduction of Discrete Optimization. The objective is to maximize the number of exchanges. The problem involves a number of people who are compatible to give or receive a kidney. The compatibility is represented as a directed graph where each person is a node and an edge from node i to node j represents that person i can give a kidney to person j. The decision variables represent who gets whose kidney. The constraints ensure that all the variables are different except for 0 and that anyone who gives a kidney also receives a kidney. The problem is to find an assignment of kidneys such that the number of exchanges is maximized.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: num_people;
+array[1..num_people] of set of int: compatible;
+
+% decision variables
+% who get who's kidney
+array[1..num_people] of var 0..num_people: x;
+
+var 0..num_people: z = sum([bool2int(x[i] > 0) | i in 1..num_people]);
+
+% solve satisfy;
+% solve maximize z;
+solve :: int_search(x, first_fail, indomain_min, complete) maximize z;
+
+constraint
+   alldifferent_except_0(x)
+   /\
+   forall(i in 1..num_people) (
+     (x[i] = 0)
+     \/
+     (
+        x[i] in compatible[i] /\
+        x[x[i]] > 0 % the giver must also receive a kidney
+     )
+   )
+;
+
+% constraint z = 6; % for solve satisfy of Pascal's example
+
+output [
+  "z: " ++ show(z) ++ "\n" ++
+  "x: " ++ show(x) ++ "\n"
+];
+
+
+%
+% data
+%
+
+% The compatibility matrix 
+% (from Pascal's introduction lecture)
+% who can give a kidney to person p
+% This is a directed graph
+num_people = 8;
+compatible = 
+  [
+    {2,3}, % 1
+    {1,6}, % 2
+    {1,4,7}, % 3
+    {2}, % 4  
+    {2}, % 5
+    {5}, % 6
+    {8}, % 7
+    {3}, % 8
+  ];
+  
+
+
+% Example from Al Roth's "CRCS Lunch Seminar" (YouTube)
+% about 23 min into the lecture.
+%
+% num_people = 13;
+% % who can give a kidney to person p
+% compatible = 
+%   [
+%     {}, % 1
+%     {1,4,5}, % 2
+%     {2}, % 3
+%     {3,9}, % 4  
+%     {6,8}, % 5
+%     {7}, % 6
+%     {}, % 7
+%     {}, % 8
+%     {10}, % 9
+%     {}, % 10
+%     {13}, % 11
+%     {11}, % 12
+%     {12}, % 13
+%   ];
+
+Expected Output:
+{
+  "x": [
+    0,
+    6,
+    7,
+    0,
+    2,
+    5,
+    8,
+    3
+  ],
+  "_objective": 6
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

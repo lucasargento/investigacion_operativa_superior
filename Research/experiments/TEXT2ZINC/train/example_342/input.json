@@ -1,0 +1,59 @@
+{
+  "description": "The Bridge and Torch problem, also known as The Midnight Train and Dangerous crossing, is a logic puzzle that deals with 4 people, a bridge and a torch. It is one of the category of river crossing puzzles, where a number of objects must move across a river, with some constraints. Four people come to a river in the night. There is a narrow bridge, but it can only hold two people at a time. Because it's night, the torch has to be used when crossing the bridge. Person A can cross the bridge in 1 minute, B in 2 minutes, C in 5 minutes, and D in 8 minutes. When two people cross the bridge together, they must move at the slower person's pace. The question is, can they all get across the bridge in 15 minutes or less?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Bridge and Torch Problem",
+    "domain": "Logic Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "exists",
+      "let",
+      "var",
+      "card",
+      "max",
+      "bool2int",
+      "in",
+      "<->",
+      "/\\",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Bridge and Torch Problem",
+    "domain": "Logic Puzzles",
+    "model_var_keywords": [
+      "num_persons",
+      "max_time",
+      "max_num_to_cross",
+      "start_point",
+      "end_point",
+      "cross_time",
+      "actions",
+      "times",
+      "torch_location",
+      "total_steps",
+      "total_time",
+      "transferred"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "exists",
+      "let",
+      "var",
+      "card",
+      "max",
+      "bool2int",
+      "in",
+      "<->",
+      "/\\",
+      "!="
+    ]
+  }
+}

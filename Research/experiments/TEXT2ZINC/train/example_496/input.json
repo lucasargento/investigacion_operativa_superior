@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about copying arrays in MiniZinc 2. The model includes several functions and predicates to copy 1-dimensional and 2-dimensional arrays of integers and sets of integers. The copying functions ensure that the source and destination arrays have the same size and that the elements of the source array are copied to the corresponding positions in the destination array. The model also includes a constraint section where these functions are used to copy specific arrays. The goal of the model is to find a solution that satisfies all the constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Array Copying",
+    "domain": "Array Operations",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "index_set",
+      "index_set_1of2",
+      "index_set_2of2"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Array Copying",
+    "domain": "Array Operations",
+    "model_var_keywords": [
+      "oneDimArray",
+      "twoDimArray",
+      "destinationArray"
+    ],
+    "model_data_keywords": [
+      "sourceArray",
+      "arraySize"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "index_set",
+      "index_set_1of2",
+      "index_set_2of2"
+    ]
+  }
+}

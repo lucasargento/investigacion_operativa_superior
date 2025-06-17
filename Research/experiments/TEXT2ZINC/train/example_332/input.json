@@ -1,0 +1,52 @@
+{
+  "description": "The problem is to create a matrix where all values on each row/column are different (except for the blanks). A set of hints is given: The (or some) first seen non blank of each upper row, lower row, left column, and right column seen from that view. The hints are coded as follows: blank -> 0, A -> 1, B -> 2, etc. The objective is to satisfy these conditions and fill the matrix accordingly. The size of the square matrix is 'n' and the numbers to place in each row/column is 'm'. The number of zeros is 'n-m'. The first 'visible' number except empty square for each row and column are given as hints. The problem is to find a solution that satisfies all these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Matrix Filling with Hints",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different_except_0",
+      "sum",
+      "bool2int",
+      "=",
+      "exists",
+      "forall",
+      "<",
+      ">",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Matrix Filling with Hints",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "matrix",
+      "row_upper",
+      "row_lower",
+      "col_left",
+      "col_right"
+    ],
+    "model_data_keywords": [
+      "n",
+      "m",
+      "num_zeros"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different_except_0",
+      "sum",
+      "bool2int",
+      "=",
+      "exists",
+      "forall",
+      "<",
+      ">",
+      "endif"
+    ]
+  }
+}

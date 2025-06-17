@@ -1,0 +1,62 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 384
+- Name: Non-linear Equation Solver
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+This is a standard non-linear problem. The problem is to find the values of three variables x, y, and z, each ranging from -20.0 to 20.0, that satisfy the following three equations: 
+
+1) 13.0 + y*y*(1.0+z*z) + z*(z - 24.0*y)  = 0.0 
+2) 13.0 + z*z*(1.0+x*x) + x*(x - 24.0*z)  = 0.0 
+3) 13.0 + x*x*(1.0+y*y) + y*(y - 24.0*x)  = 0.0 
+
+The solution should be found using a float search with a precision of 0.0001, input order, indomain split, and complete strategy. The output should be the values of x, y, and z that satisfy the constraints.
+
+
+MiniZinc Model:
+var -20.0..20.00: x;
+var -20.0..20.00: y;
+var -20.0..20.00: z;
+
+% var float: x;
+% var float: y;
+% var float: z;
+
+
+% solve satisfy;
+solve :: float_search([x,y,z], 0.0001, input_order, indomain_split, complete)  satisfy;
+
+constraint
+        13.0 + y*y*(1.0+z*z) + z*(z - 24.0*y)  = 0.0 /\
+        13.0 + z*z*(1.0+x*x) + x*(x - 24.0*z)  = 0.0 /\
+        13.0 + x*x*(1.0+y*y) + y*(y - 24.0*x)  = 0.0 
+ ;
+
+
+output [
+"x: " ++ show(x) ++ "\n"++
+"y: " ++ show(y) ++ "\n"++
+"z: " ++ show(z) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": -10.8577035996264,
+  "y": -0.779548045079157,
+  "z": -0.779548045079157
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

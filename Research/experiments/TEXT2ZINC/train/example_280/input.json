@@ -1,0 +1,40 @@
+{
+  "description": "# Problem BIBD\n\nThis is [Problem 28](http://www.csplib.org/Problems/prob028) at CSPLib:\n\nBalanced Incomplete Block Design (BIBD) generation is a standard combinatorial problem from design theory,\noriginally used in the design of statistical experiments but since finding other applications such as cryptography.\nIt is a special case of Block Design, which also includes Latin Square problems.\nBIBD generation is described in most standard textbooks on combinatorics.\nA BIBD is defined as an arrangement of v distinct objects into b blocks such that each block contains exactly k distinct objects,\neach object occurs in exactly r different blocks, and every two distinct objects occur together in exactly l blocks.\nAnother way of defining a BIBD is in terms of its incidence matrix, which is a v by b binary matrix with exactly r ones per row, k ones per column,\nand with a scalar product of l between any pair of distinct rows.\nA BIBD is therefore specified by its parameters (v,b,r,k,l).\n\n### Example\n  An example of a solution for (7,7,3,3,1) is:\n  ```\n    0 1 1 0 0 1 0\n    1 0 1 0 1 0 0\n    0 0 1 1 0 0 1\n    1 1 0 0 0 0 1\n    0 0 0 0 1 1 1\n    1 0 0 1 0 1 0\n    0 1 0 1 1 0 0\n  ```\n\n## Data\n  Five integers, corresponding to:\n    - v: the number of objects\n    - b: the number of blocks\n    - k: the number of distinct objects per block\n    - r: each object occurs in exactly r different blocks\n    - l: every two distinct objects occur together in exactly l blocks\n\n## Model(s)\n  There are two variants:\n    - a main variant\n    - another one (called aux) involving auxiliary variables.\n\n  You can also find a step-by-step modeling process in this [Jupyter notebook](https://pycsp.org/documentation/models/CSP/Bibd/).\n\n  constraints: [Lex](http://pycsp.org/documentation/constraints/Lex), [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n  - python BIBD.py -data=[number,number,number,number,number]\n  - python BIBD.py -data=[number,number,number,number,number] -variant=aux\n\n## Tags\n  academic, notebook, csplib",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Balanced Incomplete Block Design",
+    "domain": "Combinatorial",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Balanced Incomplete Block Design",
+    "domain": "Combinatorial",
+    "model_var_keywords": [
+      "X"
+    ],
+    "model_data_keywords": [
+      "v",
+      "b",
+      "k",
+      "r",
+      "l"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 109
+- Name: Custom Tees Advertising Campaign
+- Domain: Economic and Business Decisions
+- Objective: maximization
+
+Problem Description:
+Custom Tees is planning an online advertising campaign with different ad types across two web companies. The company has set a goal of in the number of clicks from visitors aged 18-25 and another for visitors older than 25. Additionally, there is a unique click goal for visitors from these two age categories as well. For each ad, there is an estimated percentage of clicks from the 18-25 range and an estimated percentage of clicks from the older visitors. Each ad also incurs a cost per 1000 clicks and has a maximum allowable number of clicks. Each ad also has an estimated percentage of unique visitors that is assumed to be the same across all age categories. If the company has a given advertising budget, how many clicks from each ad type should Custom Tees purchase to maximize the number of unique clicks within the budget?
+
+
+Input Data (data.dzn):
+A = 3;
+GoalYoung = 500;
+GoalOld = 600;
+GoalUniqueYoung = 250;
+GoalUniqueOld = 300;
+YoungClicks = [40, 30, 70];
+OldClicks = [60, 70, 30];
+Costs = [75, 100, 120];
+MaxClicks = [600, 300, 300];
+UniqueClicks = [40, 75, 90];
+Budget = 105000;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 703.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

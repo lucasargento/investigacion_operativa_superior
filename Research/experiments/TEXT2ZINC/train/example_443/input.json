@@ -1,0 +1,53 @@
+{
+  "description": "The Vehicle Routing Problem with Time Windows (VRPTW) involves the distribution of goods between depots and customers using VehicleCount vehicles. Each vehicle has to supply CustomerCount customers, and has a limited capacity, VehicleCapacity_i, for each vehicle i. Each customer, j, has an associated demand, CustomerDemand_j, that must be satisfied within the customer-specific time window, defined by the lower and upper bounds, CustomerLBTW_j and CustomerUBTW_j, respectively. The CustomerDistance_{i,j} parameter represents the distance between customer i to customer j, and CustomerServiceTime_j denotes the service time for customer j.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Vehicle Routing Problem with Time Windows",
+    "domain": "Transportation",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      ">=",
+      "/\\",
+      "+",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Vehicle Routing Problem with Time Windows",
+    "domain": "Transportation",
+    "model_var_keywords": [
+      "x",
+      "arrival_time",
+      "total_distance"
+    ],
+    "model_data_keywords": [
+      "num_customers",
+      "num_vehicles",
+      "customer_demand",
+      "customer_LBTW",
+      "customer_UBTW",
+      "customer_distance",
+      "customer_service_time",
+      "vehicle_capacity"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      ">=",
+      "/\\",
+      "+",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 289
+- Name: Abbot's Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+# Problem Abbots
+
+The Abbot's Puzzle, from "Amusements in Mathematics, Dudeney" (number 110).
+
+We know that 100 bushels of corn were distributed among 100 people.
+Each man received three bushels, each woman two, and each child half a bushel.
+There are five times as many women as men.
+How many men, women, and children were there?
+
+## Data
+  all integrated (single problem)
+
+## Execution
+```
+  python Abbots.py
+```
+
+## Links
+ - https://www.comp.nus.edu.sg/~henz/projects/puzzles/arith/index.html
+
+## Tags
+  single
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Variables
+var 0..100: men;
+var 0..100: women;
+var 0..100: children;
+
+% Constraints
+constraint men * 3 + women * 2 + children * 0.5 = 100;
+constraint men + women + children = 100;
+constraint women = 5 * men;
+
+% Solve
+solve satisfy;
+
+% Output
+output ["Men: " ++ show(men) ++ "\n", "Women: " ++ show(women) ++ "\n", "Children: " ++ show(children)];
+
+Expected Output:
+{
+  "men": 5,
+  "women": 25,
+  "children": 70
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

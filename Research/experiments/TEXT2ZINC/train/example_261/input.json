@@ -1,0 +1,45 @@
+{
+  "description": "# Problem PeacableQueens\n\nOn a board, put the maximal number of black and white queens while having no attack from opposing sides.\nThe number of black queens must be equal to the number of white queens.\n\nThe model, below, is close to (can be seen as the close translation of) the one submitted to the 2021 Minizinc challenge.\nThe model was created by Hendrik 'Henk' Bierlee, with a licence that seems to be like a MIT Licence.\n\n## Data\n  An integer n\n\n## Model\n  constraints: [Count](http://pycsp.org/documentation/constraints/Count), [Lex](http://pycsp.org/documentation/constraints/Lex), [Precedence](http://pycsp.org/documentation/constraints/Precedence), [Regular](http://pycsp.org/documentation/constraints/Regular)\n\n## Execution\n```\n  python PeacableQueens.py -data=[integer]\n```\n\n## Links\n  - https://link.springer.com/chapter/10.1007/978-3-540-24664-0_19\n  - https://oeis.org/A250000\n  - https://www.minizinc.org/challenge2021/results2021.html\n\n## Tags\n  academic, mzn21",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Peacable Queens",
+    "domain": "Puzzles",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "forall",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "min",
+      "maximize"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Peacable Queens",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "board",
+      "queens"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "sum",
+      "forall",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "min",
+      "maximize"
+    ]
+  }
+}

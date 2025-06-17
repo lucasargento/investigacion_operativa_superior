@@ -1,0 +1,55 @@
+{
+  "description": "How much regular and overtime labor should be utilized each week to assemble the baskets to maximize the profit over the season? The costs for regular and overtime labor are RegularCost and OvertimeCost, respectively. Each basket requires AssemblyTime to assemble, and the material cost per basket is MaterialCost. Baskets are sold at SellingPrice, with a holding cost of HoldingCost and a salvage value of SalvageValue at the end of the season. For each week w, the demand for baskets is Demand, with available regular and overtime labor given by RegularLabor and OvertimeLabor respectively.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Seasonal Gift Basket Production",
+    "domain": "Production Planning",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "+",
+      ">=",
+      "-",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Seasonal Gift Basket Production",
+    "domain": "Production Planning",
+    "model_var_keywords": [
+      "regular_used",
+      "overtime_used",
+      "regular_baskets",
+      "overtime_baskets",
+      "inventory",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "W",
+      "demand",
+      "regular_labor",
+      "overtime_labor",
+      "regular_cost",
+      "overtime_cost",
+      "assembly_time",
+      "material_cost",
+      "selling_price",
+      "holding_cost",
+      "salvage_value"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "+",
+      ">=",
+      "-",
+      "*"
+    ]
+  }
+}

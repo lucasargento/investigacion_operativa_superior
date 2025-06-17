@@ -1,0 +1,47 @@
+{
+  "description": "The problem is defined by a global constraint called 'roots'. The constraint is defined as follows: Given a set S, a set T, and a collection of variables, S is the set of indices of the variables in the collection taking their values in T; S = {i | VARIABLES[i].var in T}. For example, given the sets S = {2, 4, 5}, T = {2, 3, 8}, and the collection of variables <1, 3, 1, 2, 3>, the roots constraint holds since values 2 and 3 in T occur in the collection <1, 3, 1, 2, 3> only at positions S={2, 4, 5}. The value 8 in T does not occur within the collection <1, 3, 1, 2, 3>. The problem is to find the values of the variables in the collection that satisfy this constraint.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Roots Constraint Satisfaction",
+    "domain": "Constraint Satisfaction",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "<->",
+      "in",
+      "if",
+      "else",
+      "endif",
+      "roots"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Roots Constraint Satisfaction",
+    "domain": "Constraint Satisfaction",
+    "model_var_keywords": [
+      "x",
+      "s",
+      "t"
+    ],
+    "model_data_keywords": [
+      "num_vars",
+      "var_domain",
+      "s_domain",
+      "t_domain"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "<->",
+      "in",
+      "if",
+      "else",
+      "endif",
+      "roots"
+    ]
+  }
+}

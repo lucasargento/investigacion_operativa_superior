@@ -1,0 +1,39 @@
+{
+  "description": "# Problem AntimagicSquare\n\nAn anti-magic square of order n is an arrangement of the numbers 1 to n*n in a square,\nsuch that the sums of the n rows, the n columns and the two main diagonals form a sequence\nof 2n + 2 consecutive integers.\n\n## Data\n  A unique integer n\n\n## Model\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [Maximum](http://pycsp.org/documentation/constraints/Maximum), [Minimum](http://pycsp.org/documentation/constraints/Minimum), [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n  - python AntimagicSquare.py -data=[number]\n\n## Links\n  - https://en.wikipedia.org/wiki/Antimagic_square\n  - https://www.cril.univ-artois.fr/XCSP23/competitions/csp/csp\n\n## Tags\n  academic, recreational, xcsp23",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Antimagic Square",
+    "domain": "Academic, Recreational",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "sum",
+      "increasing"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Antimagic Square",
+    "domain": "Academic, Recreational",
+    "model_var_keywords": [
+      "square",
+      "sums",
+      "row_sum",
+      "column_sum"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "sum",
+      "increasing"
+    ]
+  }
+}

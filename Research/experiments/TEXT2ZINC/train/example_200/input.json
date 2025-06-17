@@ -1,0 +1,43 @@
+{
+  "description": "PROBLEM TYPE: LP\n\nINPUT FORMAT:\n\n{\n    \"routes\": [\n       {\n        \"start\": i,\n        \"end\": j,\n        \"C\": Cost_{i,j},\n       }\n    ],\n    \"demand\": [\n        {\n            \"destination\": l,\n            \"D\": Demand_{l}\n        }\n    ],\n    \"supply\": [\n        {\n            \"terminal\": k,\n            \"S\": Supply_{k}\n        }\n    ]\n}\n\nOBJECTIVE: What quantity of soybeans should they transport from source to destination to minimize transportation costs?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Soybean Transportation Optimization",
+    "domain": "Supply Chain Management",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Soybean Transportation Optimization",
+    "domain": "Supply Chain Management",
+    "model_var_keywords": [
+      "Transport",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "NumTerminals",
+      "NumDestinations",
+      "Cost",
+      "Demand",
+      "Supply"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "*"
+    ]
+  }
+}

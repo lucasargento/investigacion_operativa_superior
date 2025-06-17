@@ -1,0 +1,38 @@
+{
+  "description": "A cruise ship can take at most 1500 people . A profit of $ 500 is made on each long - term cruise ticket and a profit of $ 150 is made on each week - long cruise ticket . There are a minimum of 35 long - term cruise tickets available . However , at least 4 times as many people prefer to buy week - long cruise tickets than long - term cruise tickets . How many of each ticket should be sold to maximize profit ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Cruise Ticket Profit Maximization",
+    "domain": "Business",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Cruise Ticket Profit Maximization",
+    "domain": "Business",
+    "model_var_keywords": [
+      "long_term",
+      "week_long",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "max_people",
+      "profit_long_term_ticket",
+      "profit_week_long_ticket",
+      "min_long_term_tickets",
+      "preference_ratio"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">="
+    ]
+  }
+}

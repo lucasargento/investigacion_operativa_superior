@@ -1,0 +1,39 @@
+{
+  "description": "# Problem Abbots\n\nThe Abbot's Puzzle, from \"Amusements in Mathematics, Dudeney\" (number 110).\n\nWe know that 100 bushels of corn were distributed among 100 people.\nEach man received three bushels, each woman two, and each child half a bushel.\nThere are five times as many women as men.\nHow many men, women, and children were there?\n\n## Data\n  all integrated (single problem)\n\n## Execution\n```\n  python Abbots.py\n```\n\n## Links\n - https://www.comp.nus.edu.sg/~henz/projects/puzzles/arith/index.html\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Abbot's Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "=",
+      "*",
+      "+",
+      "5"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Abbot's Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "men",
+      "women",
+      "children"
+    ],
+    "model_data_keywords": [
+      "total_people",
+      "total_bushels"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "=",
+      "*",
+      "+",
+      "5"
+    ]
+  }
+}

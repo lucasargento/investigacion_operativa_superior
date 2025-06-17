@@ -1,0 +1,73 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 563
+- Name: Work-Shift Scheduling
+- Domain: Scheduling
+- Objective: satisfaction
+
+Problem Description:
+The problem is a work-shift scheduling problem. There are six workers: Alan, Bob, John, Mike, Scott, and Ted. These workers are to be assigned to three working shifts. The first shift needs at least one and at most four people; the second shift needs at least two and at most three people; and the third shift needs exactly two people. Alan does not work on the first shift; Bob works only on the third shift. The others can work any shift. The objective is to find a feasible assignment for this problem. The variables W1–W6 identify the shift to be assigned to each of the six workers: Alan, Bob, John, Mike, Scott, and Ted.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+int: s = 3; % 3 working shifts
+int: p = 6; % 6 workers
+
+array[1..s] of int: lower = [1,2,2];
+array[1..s] of int: upper = [4,3,2];
+array[1..p] of string: workers = ["Alan", "Bob", "John", "Mike", "Scott", "Ted"];
+        
+% Six workers (Alan, Bob, John, Mike, Scott and Ted)
+array[1..p] of var 1..s: x;
+
+
+solve satisfy;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+  global_cardinality_low_up(x, [i | i in 1..s], lower, upper)
+  /\
+  x[1] != 1 % Alan doesn't work on the first shift.
+  /\
+  x[2] = 3 % Bob works only on the third shift.
+;
+
+output [
+  "x: " ++ show(x)
+]
+++
+[
+  if worker = 1 then "\nShift " ++ show(shift) ++ ": " else "" endif ++
+    if (fix(x[worker]) = shift) then 
+       show(workers[worker]) ++ " "
+    else "" endif
+  | shift in 1..s, worker in 1..p
+]
+ ++ ["\n"]
+;
+
+Expected Output:
+{
+  "x": [
+    2,
+    3,
+    3,
+    2,
+    1,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

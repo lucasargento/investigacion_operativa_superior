@@ -1,0 +1,36 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 12
+- Name: Floppy Disk File Distribution
+- Domain: Scheduling
+- Objective: minimization
+
+Problem Description:
+Before going on vacation you want to make floppy disk backups of important files, sizes of which you are given. You have at your disposal several blank floppy disks of varying capacities. Assuming that you do not have any programs to compress the data and that you have enough floppy disks available for back up everything, how do you distribute these files on the floppy disks in order to minimize the number of floppy disks used.
+
+
+Input Data (data.dzn):
+N = 5;
+Capacity = 3;
+Size = [1, 2, 0.5, 1.5, 2.5];
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 3.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

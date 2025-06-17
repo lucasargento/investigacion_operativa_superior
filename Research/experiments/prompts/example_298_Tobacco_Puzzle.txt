@@ -1,0 +1,47 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 298
+- Name: Tobacco Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+This problem is known as the Tobacco puzzle or Clarke's tobacconist problem. It is a simple integer programming problem. The problem is to find two non-negative integers x[1] and x[2] such that the equation 25*x[1] + 49*x[2] = 2000 is satisfied. The problem was originally presented in the book 'Fun with Figures' by L.H. Clarke in 1954.
+
+
+MiniZinc Model:
+array[1..2] of var int: x;
+
+solve satisfy;
+
+constraint 
+  25*x[1] + 49*x[2] = 2000
+  /\
+  forall(i in 1..2) (
+    x[i] >= 0
+  )
+;
+
+
+output [show(x)];
+
+Expected Output:
+{
+  "x": [
+    80,
+    0
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

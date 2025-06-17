@@ -1,0 +1,70 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 284
+- Name: Crypto-Arithmetic Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+# Problem Alpha
+
+Well-known crypto-arithmetic puzzle of unknown origin (e.g., a model is present in Gecode)
+
+## Data
+  all integrated (single problem)
+
+## Model
+  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [Sum](http://pycsp.org/documentation/constraints/Sum)
+
+## Execution
+```
+  python Alpha.py
+  python Alpha.py -variant=var
+```
+
+## Tags
+  single
+
+
+MiniZinc Model:
+include "alldifferent.mzn";
+
+% Define the variables
+var 0..9: A; var 0..9: B; var 0..9: C; var 0..9: D; var 0..9: E; var 0..9: F; var 0..9: G; var 0..9: H; var 0..9: I; var 0..9: J;
+
+% Define the constraints
+constraint alldifferent([A, B, C, D, E, F, G, H, I, J]);
+constraint A + B + C + D + E + F + G + H + I + J = 45;
+
+% Define the objective function
+solve satisfy;
+
+% Output the solution
+output ["A=", show(A), " B=", show(B), " C=", show(C), " D=", show(D), " E=", show(E), " F=", show(F), " G=", show(G), " H=", show(H), " I=", show(I), " J=", show(J)];
+
+Expected Output:
+{
+  "A": 9,
+  "B": 8,
+  "C": 7,
+  "D": 6,
+  "E": 5,
+  "F": 4,
+  "G": 3,
+  "H": 2,
+  "I": 1,
+  "J": 0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

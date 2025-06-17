@@ -1,0 +1,39 @@
+{
+  "description": "The objective is to maximize the number of units of currency N that we end up with at the end of the day, through a sequence of currency transactions. We start with a certain amount Start for each currency, there is a limit Limit to the number of transactions we can perform for each currency, and the exchange rates are given by Rate.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Currency Exchange Maximization",
+    "domain": "Finance",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Currency Exchange Maximization",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "transactions",
+      "final_amount_of_currency_N"
+    ],
+    "model_data_keywords": [
+      "Start",
+      "Limit",
+      "Rate"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "="
+    ]
+  }
+}

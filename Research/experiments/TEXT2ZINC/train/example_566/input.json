@@ -1,0 +1,40 @@
+{
+  "description": "The problem is about coordinating relief efforts after catastrophes such as civil unrest and natural disasters. The map shows the locations of 20 villagers, each represented by a 'hut' icon. The villagers are in need of relief supplies contained in the crates attached to parachutes. There are two identical relief packages available. The only delivery option is by air drop. Each package can be dropped on any cell. After the crates are dropped, each villager will walk to the nearest drop location to pick up relief supplies. The distance between cells is calculated using a direct line. For example, the distance between A1 and A2 is 1km and the distance between A1 to B2 is 1.41 km. Each crate contains an unlimited amount of relief supplies. The problem is to determine which two drop locations will minimize the total distance that all villagers must travel.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Relief Effort Coordination",
+    "domain": "Logistics",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "calculateDistance",
+      "min",
+      "sum",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Relief Effort Coordination",
+    "domain": "Logistics",
+    "model_var_keywords": [
+      "dropLocations",
+      "distancesToNearestPackage",
+      "totalDistance"
+    ],
+    "model_data_keywords": [
+      "huts"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "calculateDistance",
+      "min",
+      "sum",
+      "<="
+    ]
+  }
+}

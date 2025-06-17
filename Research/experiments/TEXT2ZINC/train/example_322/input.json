@@ -1,0 +1,37 @@
+{
+  "description": "The problem is about seating arrangements in a movie theater. There are n couples who are to be seated in one row. Each person, except the two seated at the two ends, has two neighbors. The seating arrangement should be such that each neighbor of person k should either have the same gender or be the spouse of k. The goal is to find a seating arrangement that satisfies these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Movie Theater Seating Arrangement",
+    "domain": "Scheduling",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "mod",
+      "exists"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Movie Theater Seating Arrangement",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "seating_arrangement"
+    ],
+    "model_data_keywords": [
+      "num_couples",
+      "total_people"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "mod",
+      "exists"
+    ]
+  }
+}

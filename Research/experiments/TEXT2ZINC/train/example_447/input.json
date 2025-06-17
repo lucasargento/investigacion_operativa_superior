@@ -1,0 +1,41 @@
+{
+  "description": "The Car Selection Problem is a mixed integer programming model that aims to assign ParticipantNum participants to CarNum cars in a way that maximizes the total number of assignments. Each participant is interested in a subset of cars, represented by InterestMatrix_{p,c}, where p and c index participants and cars, respectively. The objective is to find the optimal assignment of participants to cars that satisfies certain constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Car Selection Problem",
+    "domain": "Transportation",
+    "objective": "maximization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "maximize"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Car Selection Problem",
+    "domain": "Transportation",
+    "model_var_keywords": [
+      "AssignMatrix",
+      "total_assignments"
+    ],
+    "model_data_keywords": [
+      "ParticipantNum",
+      "CarNum",
+      "InterestMatrix"
+    ],
+    "objective": "maximization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "maximize"
+    ]
+  }
+}

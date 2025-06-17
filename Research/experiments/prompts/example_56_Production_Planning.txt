@@ -1,0 +1,39 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 56
+- Name: Production Planning
+- Domain: Manufacturing and Production
+- Objective: maximization
+
+Problem Description:
+There are some products to be produced, each of which passes through several stages of production. For each product and stage of production, we are given the amount of time it takes for 1 unit of product to pass through the stage of production. Each stage of production has a maximum number of working hours and each product has a profit associated with its production. Determine the quantities to be produced such that all the production constraints are satisfied and the profit is maximized.
+
+
+Input Data (data.dzn):
+NumProducts = 2;
+NumMachines = 2;
+ProduceTime = array2d(1..2, 1..2, [1, 3, 2, 1]);
+AvailableTime = [200, 100];
+Profit = [20, 10];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 1000.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

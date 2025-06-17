@@ -1,0 +1,43 @@
+{
+  "description": "A construction company makes bulldozers and forklifts . Each bulldozer takes 3 hours on the assembly line and 2 hours of QC time . Each forklift takes 2 hours on the assembly line and 1.5 hours of QC time . There are 600 hours of assembly line time available and 400 hours of QC time available . If the profit per bulldozer is $ 7000 and the profit per forklift is $ 6000 , how many of each should the construction company make to maximize profit ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximize Construction Equipment Production Profit",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximize Construction Equipment Production Profit",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "bulldozers",
+      "forklifts",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "assembly_time_bulldozer",
+      "assembly_time_forklift",
+      "qc_time_bulldozer",
+      "qc_time_forklift",
+      "profit_per_bulldozer",
+      "profit_per_forklift",
+      "total_assembly_time",
+      "total_qc_time"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "*",
+      "+"
+    ]
+  }
+}

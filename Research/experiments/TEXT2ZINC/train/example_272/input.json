@@ -1,0 +1,38 @@
+{
+  "description": "# Problem Domino\n\nThis problem is described in the paper cited below.\nInformally the Domino problem is an undirected constraint graph with a cycle and a trigger constraint.\n\n## Data\n  a pair (n,d), where n is the number of variables and d the size of the domain\n\n## Model\n  There are two variants: a main one and a variant 'table' with constraints in extension.\n\n  constraints: [AllEqual](http://pycsp.org/documentation/constraints/AllEqual), [Table](http://pycsp.org/documentation/constraints/Table)\n\n## Execution\n```\n  python Domino.py\n  python Domino.py -data=[number,number]\n  python Domino.py -data=[number,number] -variant=table\n```\n\n## Links\n  - https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.103.1730&rep=rep1&type=pdf\n\n## Tags\n  academic",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Domino Problem",
+    "domain": "Academic",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "=",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Domino Problem",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "num_vars",
+      "domain_size",
+      "variant_type",
+      "node_values",
+      "objective"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "=",
+      "sum"
+    ]
+  }
+}

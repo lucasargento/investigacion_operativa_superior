@@ -1,0 +1,52 @@
+{
+  "description": "The task is to place domino pieces on a board. Each piece covers two fields and has two numbers. There are 28 pieces, from 0-0 to 6-6. The board is set up with a number in each field that must match the number of the domino piece placed on that field. The problem is to determine which piece to place in each cell such that each piece appears exactly twice and the numbers on the pieces match the numbers on the board. The pieces are placed in a von Neumann grid, i.e., they are connected just horizontally or vertically. The problem is solved when all pieces are assigned and the numbers on the pieces match the numbers on the board.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Domino Placement on Board",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "global_cardinality",
+      "exists",
+      "forall",
+      "abs",
+      "xor",
+      "=",
+      "<=",
+      ">=",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Domino Placement on Board",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "pieces",
+      "board"
+    ],
+    "model_data_keywords": [
+      "r",
+      "c",
+      "m",
+      "high",
+      "str"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "global_cardinality",
+      "exists",
+      "forall",
+      "abs",
+      "xor",
+      "=",
+      "<=",
+      ">=",
+      "/\\"
+    ]
+  }
+}

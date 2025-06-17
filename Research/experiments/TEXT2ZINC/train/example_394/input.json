@@ -1,0 +1,37 @@
+{
+  "description": "The problem is about Markov Chains and it is taken from the Swedish book 'Statistisk Dataanalys', page 299ff. The problem involves a transition matrix of market shares for three products A, B, and C. The transition matrix is as follows: \n\nFrom   To\nA    B     C\nA   0.7  0.1   0.2\nB   0.2  0.6   0.2\nC   0.4  0.1   0.5\n\nThe task is to find the stable state of the transitions. The stable state is a state that remains unchanged in the Markov Chain after a certain number of transitions. The problem also tests the reverse problem of generating a transition matrix given the stable state. The decision variables are represented by an array 'x' and the transition matrix is represented by a 2D array 'transitions'. The constraints ensure that the sum of the products of the transition probabilities and the corresponding state probabilities is equal to the state probability for each state, and the sum of all state probabilities is 1. The problem is solved when these constraints are satisfied.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Markov Chain Stable State",
+    "domain": "Statistics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Markov Chain Stable State",
+    "domain": "Statistics",
+    "model_var_keywords": [
+      "stateProbabilities",
+      "transitionProbabilities"
+    ],
+    "model_data_keywords": [
+      "numStates"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "*"
+    ]
+  }
+}

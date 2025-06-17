@@ -1,0 +1,42 @@
+{
+  "description": "A set of JobCount jobs need to be processed on a set of MachineCount machines in series. All jobs have the same processing order through all the machines, from machine 1 to machine MachineCount. Each machine can work in parallel. The workflow is as follows: the first job of the sequence goes to the first machine to be processed; meanwhile, other jobs wait. When the first machine has processed the first job, it goes to the second machine, and the second job of the sequence starts to be processed by the first machine; this process continues in sequence. The time required to process job j on machine m is ProcessingTime_{j,m}. The problem aims to minimize the total makespan, which is the time when all jobs have been processed. The goal is to find a sequence of jobs that minimizes the makespan.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Job Scheduling Minimization",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "alldifferent",
+      "=",
+      ">=",
+      "+",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Job Scheduling Minimization",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "JobSequence",
+      "StartTime",
+      "Makespan"
+    ],
+    "model_data_keywords": [
+      "JobCount",
+      "MachineCount",
+      "ProcessingTime"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "alldifferent",
+      "=",
+      ">=",
+      "+",
+      "forall"
+    ]
+  }
+}

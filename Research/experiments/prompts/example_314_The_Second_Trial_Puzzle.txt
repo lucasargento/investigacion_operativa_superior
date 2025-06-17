@@ -1,0 +1,79 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 314
+- Name: The Second Trial Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+This problem is known as 'The Second Trial' puzzle, originally from Smullyan, R., (1991), The Lady or The Tiger, Oxford University Press. The puzzle involves two doors and two prizes (1 = Lady, 2 = Tiger). Each door hides one prize. The puzzle is represented by two arrays: x[i,j] = 1 if door i hides prize j, else 0 and t[i] = 1 if the statement on door i is true, else 0. The constraints of the problem are as follows: each door hides 1 prize; if the statement on door 1 is true then t[1] = 1, else t[1] = 0; if the statement on door 2 is true then t[2] = 1, else t[2] = 0; and the statements on both doors are either both true or both false. The goal is to find a satisfying assignment for the arrays x and t that meets all these constraints.
+
+
+MiniZinc Model:
+int: door  = 2;
+int: prize = 2;  % 1 = Lady, 2 = Tiger
+
+array[1..door, 1..prize] of var 0..1: x; % x(i,j) = 1 if door i hides prize j, else 0
+array[1..door] of var 0..1: t;        %  t(i) = 1 if statement on door i is true, else 0
+
+solve satisfy;
+
+constraint
+  % each door hides 1 prize
+  forall(i in 1..door) (
+    sum(j in 1..prize) (x[i,j]) = 1
+  )
+  /\
+  % if statement on door 1 is true then t[1] = 1, else t[1] = 0
+  x[1,1]+x[2,1]-2*t[1] <= 0  /\
+  x[1,1]+x[2,1]-t[1] >= 0 /\
+
+  % if statement on door 2 is true then t[2] = 1, else t[2] = 0
+  t[2] = x[1,2] /\
+        
+  % statements either both true or both false
+  t[1] = t[2]
+;
+
+output 
+[
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i in 1..door, j in 1..prize
+] ++
+[
+ if i = 1 then "\n" else "" endif ++
+ show(t[i]) ++ "\n"
+ | i in 1..door
+];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "t": [
+    1,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

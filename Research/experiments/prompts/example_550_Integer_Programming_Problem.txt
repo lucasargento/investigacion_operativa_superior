@@ -1,0 +1,50 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 550
+- Name: Integer Programming Problem
+- Domain: Optimization
+- Objective: maximization
+
+Problem Description:
+This is a simple integer programming problem. The goal is to maximize the expression 5*smallset + 20*largeset. The variables smallset and largeset are both integers and must be greater than or equal to 0. There are two constraints: 1*smallset + 3*largeset must be less than or equal to 200, and 3*smallset + 2*largeset must be less than or equal to 160. The output should display the values of smallset and largeset.
+
+
+MiniZinc Model:
+var int: smallset;
+var int: largeset;
+
+solve maximize 5*smallset + 20*largeset;
+
+constraint
+  smallset >= 0 /\ largeset >= 0 
+  /\
+  1*smallset + 3*largeset <= 200
+  /\
+  3*smallset + 2*largeset <= 160
+;
+
+output
+[
+  "smallset: " ++ show(smallset) ++ "\n" ++
+  "largeset: " ++ show(largeset) ++ "\n"
+];
+
+Expected Output:
+{
+  "smallset": 2,
+  "largeset": 66,
+  "_objective": 1330
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

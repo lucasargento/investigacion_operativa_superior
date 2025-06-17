@@ -1,0 +1,40 @@
+{
+  "description": "A researcher is transporting their arsenal of imaging systems using two different methods , by delivery truck and by van . Transporting by delivery truck takes 12 hours and costs $ 300 per trip . Transporting by van takes 10 hours and costs $ 200 per trip . The researcher needs to transport 20 trips worth of equipment and has a budget of $ 5500 . Additionally , the number of transports by the delivery truck must be less than the number of transports by van . How many of each transportation method should they use to minimize the total number of hours spent on delivery ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimize Delivery Time",
+    "domain": "Transportation",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "<",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimize Delivery Time",
+    "domain": "Transportation",
+    "model_var_keywords": [
+      "truck",
+      "van"
+    ],
+    "model_data_keywords": [
+      "truck_cost_per_trip",
+      "van_cost_per_trip",
+      "truck_time_per_trip",
+      "van_time_per_trip",
+      "total_trips",
+      "budget"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "<",
+      "="
+    ]
+  }
+}

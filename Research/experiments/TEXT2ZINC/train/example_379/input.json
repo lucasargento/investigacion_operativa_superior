@@ -1,0 +1,41 @@
+{
+  "description": "This is a standard benchmark problem, known as Eq 10 in MiniZinc. The problem involves finding values for seven variables X1 to X7, each ranging from 0 to 10, that satisfy a set of ten equations. Each equation is a linear combination of the variables, with specific coefficients for each variable and a constant term. The goal is to find a solution that satisfies all the equations.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Eq 10 Benchmark Problem",
+    "domain": "Mathematical Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "=",
+      "*",
+      "+",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Eq 10 Benchmark Problem",
+    "domain": "Mathematical Optimization",
+    "model_var_keywords": [
+      "X1",
+      "X2",
+      "X3",
+      "X4",
+      "X5",
+      "X6",
+      "X7",
+      "decision_vars"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "=",
+      "*",
+      "+",
+      "/\\"
+    ]
+  }
+}

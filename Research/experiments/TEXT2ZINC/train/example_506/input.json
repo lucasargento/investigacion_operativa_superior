@@ -1,0 +1,37 @@
+{
+  "description": "The problem is to choose the minimum number of people which represents a complete given set. Each line of the input set represents one group, and the number represents the ID of the member in the group. Only one member should be chosen from each group. 2-tuple members will not be repeated, but members can be part of more than one group. For example, given the input set:\n\n1009 2000\n1009 2001\n1002 2002\n1003 2002\n\nThe answer would be 1009 and 2002, which represents the sets. 1009 is chosen because it is representing two teams and the same is the case for 2002. Another example would be:\n\n1009 2000\n1009 2001\n1002 2002\n1003 2002\n1004 2003\n\nThe answer can be { 1009 , 2002, 1004} or { 1009, 2002, 2003}. The goal is to find an algorithm that can solve this problem.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum Set Representation",
+    "domain": "Set Theory",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "in",
+      "xor",
+      "card"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum Set Representation",
+    "domain": "Set Theory",
+    "model_var_keywords": [
+      "chosen_ids"
+    ],
+    "model_data_keywords": [
+      "groups",
+      "unique_ids"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "in",
+      "xor",
+      "card"
+    ]
+  }
+}

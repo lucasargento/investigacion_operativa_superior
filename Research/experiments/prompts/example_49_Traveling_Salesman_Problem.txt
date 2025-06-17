@@ -1,0 +1,37 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 49
+- Name: Traveling Salesman Problem
+- Domain: Transportation and Logistics
+- Objective: minimization
+
+Problem Description:
+A traveler starts in one city and needs to visit several cities for business. We are given the distances between each pair of cities in miles. These distances are symmetric which means the distance from city a to city b is the same as the distance from city b to city a. The traveler must return to the city they started in after visiting all the cities. Determine the shortest route that the traveler can take to visit all the cities and return to back to the starting city.
+
+
+Input Data (data.dzn):
+N = 6;
+Distances = array2d(1..6, 1..6, [0, 182, 70, 399, 56, 214, 182, 0, 255, 229, 132, 267, 70, 255, 0, 472, 127, 287, 399, 229, 472, 0, 356, 484, 56, 132, 127, 356, 0, 179, 214, 267, 287, 484, 179, 0]);
+StartCity = 0;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 1256.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

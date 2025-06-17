@@ -1,0 +1,46 @@
+{
+  "description": "A dietician recommends his patient drink more juice and vitamin - added milk to increase her vitamin and hydration intake . Each cup of juice contains 12 units of vitamins and 8 units of hydration . Each vitamin - added milk contains 14 units of vitamins and 10 units of hydration . The patient needs to consume at least 180 units of vitamins and 140 units of hydration . Since the patient is slightly lactose - intolerant , there must be at most 10 % of all cups of drinks be vitamin - added milk . If each cup of vitamin - added milk contains 3 units of sugar and each cup of juice contains 10 units of sugar , how many cups of each should she drink to minimize her sugar intake ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Diet Optimization",
+    "domain": "Healthcare",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Diet Optimization",
+    "domain": "Healthcare",
+    "model_var_keywords": [
+      "juice",
+      "milk",
+      "total_sugar"
+    ],
+    "model_data_keywords": [
+      "juice_vitamins",
+      "juice_hydration",
+      "juice_sugar",
+      "milk_vitamins",
+      "milk_hydration",
+      "milk_sugar",
+      "min_vitamins",
+      "min_hydration",
+      "max_milk_percentage"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">=",
+      "*",
+      "+"
+    ]
+  }
+}

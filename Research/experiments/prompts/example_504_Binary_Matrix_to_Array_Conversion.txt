@@ -1,0 +1,115 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 504
+- Name: Binary Matrix to Array Conversion
+- Domain: Data Transformation
+- Objective: satisfaction
+
+Problem Description:
+The problem is about converting a binary matrix to an array and vice versa in MiniZinc. The binary matrix is of size 4x4 and the array is of size 4. The binary matrix is represented by 'x' and the array is represented by 'a'. The conversion from the binary matrix to the array is done using the 'bin2array' predicate. This predicate ensures that for each row in the binary matrix, the corresponding value in the array is the column index where the value is 1. The 'cp2d' predicate is used to copy the values from a 2D array to the binary matrix 'x'. The problem is to find a solution that satisfies these constraints.
+
+
+MiniZinc Model:
+int: n = 4; 
+int: m = 4;
+array[1..n, 1..m] of var 0..1: x; % the binary matrix
+array[1..n] of var 1..n: a;       % the array to convert into
+
+%
+% binary matrix  <-> array with the corresponding value
+% (dual direction)
+%
+predicate bin2array(array[int,int] of var 0..1: x, array[int] of var int: a) =
+
+  forall(i in index_set_1of2(x)) (
+    a[i] = sum(j in index_set_2of2(x)) (j*x[i,j])
+    /\
+    sum(j in index_set_2of2(x)) (x[i,j]) = 1
+  )
+;
+
+predicate cp2d(array[int,int] of int: x, array[int,int] of var int: y) =
+  assert(index_set_1of2(x) = index_set_1of2(y) /\
+         index_set_2of2(x) = index_set_2of2(y),
+           "cp2d: x and y have different sizes",
+      forall(i in index_set_1of2(x), j in index_set_2of2(x)) (
+         y[i,j] = x[i,j]
+     ) 
+  )
+; 
+
+
+solve satisfy;
+% solve :: int_search(x, "first_fail", "indomain", "complete") satisfy;
+
+constraint
+   cp2d(array2d(1..n, 1..m, 
+        [ 0,0,1,0,
+          0,1,0,0,
+          0,0,0,1,
+          1,0,0,0]),x)
+    /\
+   bin2array(x,a)
+%   /\
+%   a =  [3,2,4,1]
+;
+
+output [
+  "a: ", show(a), "\n",
+  "x: ",
+] ++
+[
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i in 1..n, j in 1..m
+
+] ++ ["\n"];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ]
+  ],
+  "a": [
+    3,
+    2,
+    4,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

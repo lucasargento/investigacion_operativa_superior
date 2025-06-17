@@ -1,0 +1,90 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 484
+- Name: Max Min Position in Array
+- Domain: Array Operations
+- Objective: satisfaction
+
+Problem Description:
+The given MiniZinc code defines four predicates to find the position of the maximum and minimum elements in an array. The array 'x' is of size 'n' and contains elements from 1 to 'n'. The variable 'pos' is the position of the maximum or minimum element in the array. The four predicates are: 
+
+1. argmax_gt: This predicate checks if 'pos' is the position of the maximum element in the array. There can be only one maximum value.
+
+2. argmax_ge: This predicate checks if 'pos' is the position of the maximum element(s) in the array. There can be multiple maximum values.
+
+3. argmin_lt: This predicate checks if 'pos' is the position of the minimum element in the array. There can be only one minimum value.
+
+4. argmin_le: This predicate checks if 'pos' is the position of the minimum element(s) in the array. There can be multiple minimum values.
+
+The problem is to find a solution that satisfies all the constraints, i.e., all elements in the array 'x' are different, 'pos' is the position of the maximum element, and 2 is the position of the minimum element in the array.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+int: n = 5;
+
+array[1..n] of var 1..n: x;
+var lb_array(x)..ub_array(x): pos;
+
+% p is the position of the maximum element
+predicate argmax_gt(var int: p, array[int] of var int: x) =
+  forall(i in index_set(x)) ( p != i -> (x[p] > x[i]) )
+; 
+
+% p is the position(s) of the maximum element(s)
+predicate argmax_ge(var int: p, array[int] of var int: x) =
+  forall(i in index_set(x)) ( x[p] >= x[i] )
+; 
+
+% p is the position of the minimum element
+predicate argmin_lt(var int: p, array[int] of var int: x) =
+  forall(i in index_set(x)) ( p != i -> (x[p] < x[i]) )
+; 
+
+% p is the position(s) of the minimum element(s)
+predicate argmin_le(var int: p, array[int] of var int: x) =
+  forall(i in index_set(x)) ( x[p] <= x[i] )
+; 
+
+
+solve satisfy;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+  alldifferent(x) /\
+  argmax_gt(pos,x) /\
+  % pos = 1 /\
+  argmin_lt(2,x) 
+;
+
+output
+[
+  "x: " ++ show(x) ++ "\n" ++
+  "pos: " ++ show(pos) ++ "\n"
+  
+];
+
+Expected Output:
+{
+  "x": [
+    5,
+    1,
+    4,
+    3,
+    2
+  ],
+  "pos": 1
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

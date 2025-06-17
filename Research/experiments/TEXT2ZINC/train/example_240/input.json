@@ -1,0 +1,44 @@
+{
+  "description": "Fit the 'best' straight line Y = bX + a to this set of data points. The objective is to minimise the sum of absolute deviations of each observed value of Y from the value predicted by the linear relationship.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Linear Regression with Absolute Deviations",
+    "domain": "Statistics",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "-",
+      "*",
+      "+",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Linear Regression with Absolute Deviations",
+    "domain": "Statistics",
+    "model_var_keywords": [
+      "intercept",
+      "slope",
+      "deviation",
+      "total_deviation"
+    ],
+    "model_data_keywords": [
+      "Y",
+      "X"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "-",
+      "*",
+      "+",
+      "sum"
+    ]
+  }
+}

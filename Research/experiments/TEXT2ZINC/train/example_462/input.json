@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about implementing the global constraint cond_lex_cost in MiniZinc. The cond_lex_cost constraint is defined such that a given VECTOR is assigned to the COSTth item of the collection PREFERENCE_TABLE. The VECTOR and PREFERENCE_TABLE are both arrays of integers. The COST is an integer representing the position of the VECTOR in the PREFERENCE_TABLE. The problem is to find a VECTOR and its position in the PREFERENCE_TABLE such that the cond_lex_cost constraint holds. The PREFERENCE_TABLE is a 2-dimensional array of size n by m, where n and m are integers. The VECTOR is a 1-dimensional array of size m. The position is an integer between 1 and n. The problem is solved when the VECTOR is found in the PREFERENCE_TABLE at the specified position.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Implementing cond_lex_cost Constraint",
+    "domain": "Constraint Programming",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "exists",
+      "forall",
+      "=",
+      "copy_2d_array",
+      "cond_lex_cost"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Implementing cond_lex_cost Constraint",
+    "domain": "Constraint Programming",
+    "model_var_keywords": [
+      "preference_table",
+      "vector",
+      "position"
+    ],
+    "model_data_keywords": [
+      "n",
+      "m"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "exists",
+      "forall",
+      "=",
+      "copy_2d_array",
+      "cond_lex_cost"
+    ]
+  }
+}

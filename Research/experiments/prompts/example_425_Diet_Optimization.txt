@@ -1,0 +1,57 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 425
+- Name: Diet Optimization
+- Domain: Healthcare
+- Objective: minimization
+
+Problem Description:
+A dietician recommends his patient drink more juice and vitamin - added milk to increase her vitamin and hydration intake . Each cup of juice contains 12 units of vitamins and 8 units of hydration . Each vitamin - added milk contains 14 units of vitamins and 10 units of hydration . The patient needs to consume at least 180 units of vitamins and 140 units of hydration . Since the patient is slightly lactose - intolerant , there must be at most 10 % of all cups of drinks be vitamin - added milk . If each cup of vitamin - added milk contains 3 units of sugar and each cup of juice contains 10 units of sugar , how many cups of each should she drink to minimize her sugar intake ?
+
+
+MiniZinc Model:
+var int: juice;
+% number of cups of milk
+var int: milk;
+
+% number of cups are non-negative
+constraint juice >= 0;
+constraint milk >= 0;
+
+% patient needs to consume at least 180 units of vitamins
+% juice contains 12 units of vitamins and milk contains 14 units of vitamins
+constraint 12*juice + 14*milk >= 180;
+% patient needs to consume at least 140 units of hydration
+% juice contains 8 units of hydration and milk contains 10 units of hydration
+constraint 8*juice + 10*milk >= 140;
+
+% there must be at most 10% of all cups of drinks be vitamin-added milk
+constraint milk <= 0.1*(juice + milk);
+
+% juice contains 10 units of sugar and milk contains 3 units of sugar
+var int: sugar = 10*juice + 3*milk;
+
+% minize sugar intake
+solve minimize sugar;
+
+output ["Juice: " ++ show(juice) ++ "\nMilk: " ++ show(milk)];
+
+Expected Output:
+{
+  "juice": 17,
+  "milk": 1,
+  "_objective": 173
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

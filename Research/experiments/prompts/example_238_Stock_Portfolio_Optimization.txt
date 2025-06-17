@@ -1,0 +1,60 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 238
+- Name: Stock Portfolio Optimization
+- Domain: Finance
+- Objective: maximization
+
+Problem Description:
+We want to know how many shares the investor needs to sell in order to raise the needed money, net of capital gains and transaction costs, K, while maximizing the expected value of his portfolio next year. The investor initially bought Bought shares at a purchase price of BuyPrice per share. The current market price and expected future market price of the shares are CurrentPrice and FuturePrice, respectively. The transaction cost rate per share sold is TransactionRate, and the capital gains tax rate is TaxRate.
+
+
+Input Data (data.dzn):
+N = 3;
+Bought = [100, 150, 80];
+BuyPrice = [50, 40, 30];
+CurrentPrice = [60, 35, 32];
+FuturePrice = [65, 44, 34];
+TransactionRate = 1.0;
+TaxRate = 15.0;
+K = 5000;
+
+MiniZinc Model:
+% Parameters
+int: N; % Number of stocks
+array[1..N] of float: Bought; % Number of shares bought for each stock
+array[1..N] of float: BuyPrice; % Purchase price for each stock
+array[1..N] of float: CurrentPrice; % Current price for each stock
+array[1..N] of float: FuturePrice; % Expected future price for each stock
+float: TransactionRate; % Transaction cost rate
+float: TaxRate; % Capital gains tax rate
+float: K; % Amount of money to raise
+
+% Decision Variables
+array[1..N] of var 0.0..Bought[i]: Sell; % Number of shares to sell for each stock
+
+% Constraints
+constraint forall(i in 1..N) (
+    % The amount of money raised should be net of capital gains and transaction costs
+    (CurrentPrice[i] * Sell[i]) * (1 - TransactionRate/100) * (1 - TaxRate/100) >= K
+);
+
+% Objective
+var float: PortfolioValue = sum(i in 1..N) ((Bought[i] - Sell[i]) * FuturePrice[i]);
+solve maximize PortfolioValue;
+
+% Output
+output ["sell: " ++ show(Sell)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

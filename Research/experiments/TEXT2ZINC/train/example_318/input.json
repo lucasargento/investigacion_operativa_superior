@@ -1,0 +1,49 @@
+{
+  "description": "The problem is a puzzle known as 'The Sixth Trial' from Smullyan, R., (1991), The Lady or The Tiger, Oxford University Press. The puzzle involves two doors and two prizes, a lady and a tiger. Each door hides one prize. The statements on the doors provide clues about what is behind the doors. The statement on door i is true if and only if door i hides prize i. If the statement on door 1 is true (i.e., if the prizes behind doors 1 and 2 are the same), then the variable t[1] is set to 1; otherwise, it is set to 0. Similarly, if the statement on door 2 is true, then the variable t[2] is set to 1; otherwise, it is set to 0. The goal is to find a configuration of prizes behind the doors that satisfies all these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "The Sixth Trial Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      ">=",
+      "-",
+      "*",
+      "/"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "The Sixth Trial Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "door_prize",
+      "truth_value",
+      "dummy_vars"
+    ],
+    "model_data_keywords": [
+      "num_doors",
+      "num_prizes",
+      "Doors",
+      "Prizes"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      ">=",
+      "-",
+      "*",
+      "/"
+    ]
+  }
+}

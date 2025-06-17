@@ -1,0 +1,40 @@
+{
+  "description": "The problem is about finding the individual numbers from their pairwise sums given in non-decreasing order. If the sum is corrupted, the output should be -1. For example, if the input is [4, 5, 7, 10, 12, 13], the output should be [1, 3, 4, 9] because these numbers' pairwise sums in non-decreasing order are the given input. The problem is modeled and solved using the MiniZinc constraint programming language. The model includes constraints to ensure that the pairwise sums of the individual numbers match the given input and that the individual numbers are in increasing order.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Pairwise Sums to Individual Numbers",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "let",
+      "<",
+      "+",
+      "=",
+      "increasing"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Pairwise Sums to Individual Numbers",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "pairwise_sums",
+      "num_individual_numbers",
+      "individual_numbers"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "let",
+      "<",
+      "+",
+      "=",
+      "increasing"
+    ]
+  }
+}

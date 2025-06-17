@@ -1,0 +1,262 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 142
+- Name: Killer Sudoku
+- Domain: Games and Puzzles
+- Objective: satisfaction
+
+Problem Description:
+---
+Title: Killer Sudoku
+Proposer: Peter Nightingale
+Category: Games and puzzles
+---
+
+Killer Sudoku is a puzzle played on a $\\{9\times 9\\}$ grid containing 81 cells. 
+The cells are filled in with numbers from the set $\\{1\ldots 9\\}$.
+Each row and column must contain all numbers $\\{1\ldots 9\\}$. Each of the 9
+non-overlapping $3\times 3$ subsquares (named *boxes*) must also contain all numbers $\\{1\ldots 9\\}$.
+
+Each Killer Sudoku puzzle has a set of *cages*. A cage is a set of contiguous cells
+and a total; the numbers in the cells must add up to the total. Also, the cells in
+a cage cannot contain the same number more than once. The cages do not overlap, 
+and they cover all cells. Cages typically contain two to four cells. 
+Typically a Killer Sudoku puzzle will have exactly one solution. 
+
+An example Killer Sudoku puzzle is shown below. Each cage is shown as an area of one colour.
+
+<center>
+<figure>
+  <img src="assets/Killersudoku_color.svg" alt="Killer Sudoku Puzzle">
+  <figcaption>A Killer Sudoku Puzzle (public domain image from Wikipedia)</figcaption>
+</figure>
+</center>
+
+The solution of the above puzzle is shown below. 
+
+<center>
+<figure>
+  <img src="assets/Killersudoku_color_solution.svg" alt="Killer Sudoku Puzzle Solution">
+  <figcaption>A Killer Sudoku Puzzle Solution (public domain image from Wikipedia)</figcaption>
+</figure>
+</center>
+
+
+Generalisation to $n \times n$ grids
+------
+
+There is a straightforward generalisation of Killer Sudoku. For any $n$ that has
+an integer square root, we have an $n \times n$ grid and each cell takes any
+value in $\\{1\ldots n\\}$. In a solution each row and column contains all numbers $\\{1\ldots n\\}$,
+and the $n$ non-overlapping $\sqrt{n} \times \sqrt{n}$ boxes also contain all
+numbers $\\{1\ldots n\\}$. Cages function in the same way in the generalised 
+problem as in the $\\{9\times 9\\}$ problem.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+int: n = 9;
+array[1..n, 1..n] of var 1..9: x;
+
+% For a better view of the problem, see
+%  http://en.wikipedia.org/wiki/File:Killersudoku_color.svg
+%
+
+%
+% segments
+%
+int: num_segments = 29; % number of segments
+
+array[1..n, 1..n] of int: segments =
+array2d(1..n, 1..n,
+[
+  1, 1, 2, 2, 2, 3, 4, 5, 6, % 1
+  7, 7, 8, 8, 3, 3, 4, 5, 6, % 2
+  7, 7, 9, 9, 3,10,11,11, 6, % 3
+ 13,14,14, 9,15,10,11,12, 6, % 4
+ 13,16,16,17,15,10,12,12,18, % 5
+ 19,16,20,17,15,21,22,22,18, % 6
+ 19,20,20,17,23,21,21,24,24, % 7
+ 19,25,26,23,23,27,27,24,24, % 8
+ 19,25,26,23,28,28,28,29,29, % 9
+]);
+
+array[1..num_segments] of int: segment_sums =
+[
+   3, % 1
+  15, % 2
+  22, % 3
+   4, % 4
+  16, % 5
+  15, % 6
+  25, % 7
+  17, % 8
+   9, % 9
+   8, % 10
+  20, % 11
+  17, % 12
+   6, % 13
+  14, % 14
+  17, % 15
+  13, % 16
+  20, % 17
+  12, % 18
+  27, % 19
+   6, % 20
+  20, % 21
+   6, % 22
+  10, % 23
+  14, % 24
+   8, % 25
+  16, % 26
+  15, % 27
+  13, % 28
+  17  % 29
+];
+
+% solve satisfy;
+solve :: int_search([x[i,j] | i,j in 1..n], first_fail, indomain_min, complete) satisfy;
+
+% Standard Sudoku constraints
+constraint
+  % rows and columns
+  forall(i in 1..n) (
+     all_different([x[i,j] | j in 1..n]) /\
+     all_different([x[j,i] | j in 1..n])
+  )
+  /\ % blocks
+  forall(i in 0..2,j in 0..2) (
+    all_different([x[r,c] | r in i*3+1..i*3+3, c in j*3+1..j*3+3] )
+  )
+;
+
+% Handle the segments
+constraint
+  forall(p in 1..num_segments) (
+    segment_sums[p] = sum([x[i,j] | i,j in 1..n where segments[i,j] = p])
+  )
+;
+
+output [
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i,j in 1..n
+];
+
+Expected Output:
+{
+  "x": [
+    [
+      2,
+      1,
+      5,
+      6,
+      4,
+      7,
+      3,
+      9,
+      8
+    ],
+    [
+      3,
+      6,
+      8,
+      9,
+      5,
+      2,
+      1,
+      7,
+      4
+    ],
+    [
+      7,
+      9,
+      4,
+      3,
+      8,
+      1,
+      6,
+      5,
+      2
+    ],
+    [
+      5,
+      8,
+      6,
+      2,
+      7,
+      4,
+      9,
+      3,
+      1
+    ],
+    [
+      1,
+      4,
+      2,
+      5,
+      9,
+      3,
+      8,
+      6,
+      7
+    ],
+    [
+      9,
+      7,
+      3,
+      8,
+      1,
+      6,
+      4,
+      2,
+      5
+    ],
+    [
+      8,
+      2,
+      1,
+      7,
+      3,
+      9,
+      5,
+      4,
+      6
+    ],
+    [
+      6,
+      5,
+      9,
+      4,
+      2,
+      8,
+      7,
+      1,
+      3
+    ],
+    [
+      4,
+      3,
+      7,
+      1,
+      6,
+      5,
+      2,
+      8,
+      9
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

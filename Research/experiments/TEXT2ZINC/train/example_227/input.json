@@ -1,0 +1,41 @@
+{
+  "description": "We want to know how many times should we execute each process to maximize the revenue for the next month (you can assume that the number of times that each process is executed is a floating point number). The problem involves O options, P price points, and L processes with Allocated resources, Price at each price point, Input required for each option in each process, Output produced for each price point in each process, and Cost for each process.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Oil Refinery Production Optimization",
+    "domain": "Industrial Engineering",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "<=",
+      ">=",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Oil Refinery Production Optimization",
+    "domain": "Industrial Engineering",
+    "model_var_keywords": [
+      "revenue",
+      "execute"
+    ],
+    "model_data_keywords": [
+      "Allocated",
+      "Price",
+      "Input",
+      "Output",
+      "Cost"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "<=",
+      ">=",
+      "forall"
+    ]
+  }
+}

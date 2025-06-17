@@ -1,0 +1,44 @@
+{
+  "description": "How to distribute these files on the floppy disks in order to minimize the number of floppy disks used, given that each floppy disk has a Capacity and there are N different files with sizes represented by Size.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Floppy Disk File Distribution",
+    "domain": "Resource Allocation",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "if",
+      "else",
+      "endif",
+      "<=",
+      "max"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Floppy Disk File Distribution",
+    "domain": "Resource Allocation",
+    "model_var_keywords": [
+      "n_disks",
+      "whichdisk"
+    ],
+    "model_data_keywords": [
+      "capacity",
+      "size"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "if",
+      "else",
+      "endif",
+      "<=",
+      "max"
+    ]
+  }
+}

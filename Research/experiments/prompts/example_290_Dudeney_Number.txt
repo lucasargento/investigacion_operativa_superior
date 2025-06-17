@@ -1,0 +1,78 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 290
+- Name: Dudeney Number
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+# Problem Dudeney
+
+In number theory, a Dudeney number in a given number base b is a natural number
+equal to the perfect cube of another natural number such that the digit sum
+of the first natural number is equal to the second.
+The name derives from Henry Dudeney, who noted the existence of these numbers in one of his puzzles.
+
+There are 5 non-trivial numbers for base 10, and the highest such number is formed of 5 digits.
+Below, the model is given for base 10.
+
+## Data
+  all integrated (single problem)
+
+## Model
+  constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)
+
+## Execution
+```
+  python Dudeney.py
+```
+
+## Links
+  - https://en.wikipedia.org/wiki/Dudeney_number
+
+## Tags
+  single
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the range of possible numbers
+set of int: NUM = 1..99999;
+
+% Define the variable for the Dudeney number
+var NUM: dudeney_number;
+
+% Define the variable for the cube root of the Dudeney number
+var 1..215: cube_root;
+
+% The Dudeney number is the cube of another number
+constraint dudeney_number = cube_root * cube_root * cube_root;
+
+% The sum of the digits of the Dudeney number is equal to the cube root
+constraint sum([dudeney_number div 10^i mod 10 | i in 0..4]) = cube_root;
+
+% Find the Dudeney numbers
+solve satisfy;
+
+% Output the Dudeney numbers
+output ["Dudeney number: " ++ show(dudeney_number) ++ "\nCube root: " ++ show(cube_root) ++ "\n"];
+
+Expected Output:
+{
+  "dudeney_number": 1,
+  "cube_root": 1
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

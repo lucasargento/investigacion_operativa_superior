@@ -1,0 +1,46 @@
+{
+  "description": "This problem is about decentralization and is taken from H. Paul Williams' 'Model Building in Mathematical Programming'. The problem involves 5 departments that need to be located in 3 cities: Bristol, Brighton, and London. Each department has a certain benefit associated with each city, and there are communication costs between each pair of cities. The goal is to maximize the total cost, which is the sum of the benefits of each department in each city minus the communication costs between each pair of departments in each pair of cities. The constraints are that each department must be located in one city, and there can be at most 3 departments in each city. The decision variables are binary and indicate whether a department is in a city and whether a pair of departments are in a pair of cities.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Department City Assignment",
+    "domain": "Operations Research",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "=",
+      "-",
+      "*",
+      "int2float"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Department City Assignment",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "d",
+      "g",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "Benefits",
+      "CommCosts",
+      "CommQuantities"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "=",
+      "-",
+      "*",
+      "int2float"
+    ]
+  }
+}

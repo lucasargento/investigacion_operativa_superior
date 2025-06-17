@@ -1,0 +1,131 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 190
+- Name: Set Partition Problem
+- Domain: Combinatorial Optimization
+- Objective: satisfaction
+
+Problem Description:
+This is a set partition problem. Given a set S = {1, 2, ..., n}, the task is to find two sets A and B such that: A union B equals S, the cardinality of A equals the cardinality of B, the sum of elements in A equals the sum of elements in B, and the sum of squares of elements in A equals the sum of squares of elements in B. The number n must be a multiple of 4. The sets A and B must be disjoint, meaning that they do not share any common elements. The problem is solved when all these conditions are met.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 20;
+set of 1..n: S = 1..n;
+int: num_sets = 2;
+array[1..num_sets] of var set of S: a;
+array[1..num_sets] of var 0..n*n: sums;
+array[1..num_sets] of var 0..n*n*n*n: sum_squared;
+
+
+%
+% set_sum
+% sums the elements in the set s
+% 
+predicate set_sum(var set of int: s, var int: the_sum) =
+   the_sum = sum(i in ub(s)) (bool2int(i in s)*i)
+;
+
+predicate set_sum_squared(var set of int: s, var int: the_sum) =
+   the_sum = sum(i in ub(s)) (bool2int(i in s)*i*i)
+;
+
+% solve satisfy;
+solve :: set_search(a, first_fail, indomain_min, complete) satisfy;
+% solve maximize sums[1];
+
+constraint
+  assert(n mod 4 == 0, "n must be a multiple of 4")
+;
+
+constraint
+   % use all the elements in S and it should be disjoint sets
+   partition_set(a, S)
+   /\
+   forall(i in 1..num_sets) (   
+     a[i] `set_sum` sums[i] 
+     /\ a[i] `set_sum_squared` sum_squared[i]
+   )
+   /\
+   forall(i in 2..num_sets) (
+     card(a[i]) > 0 /\ % this is needed by eclipse
+     card(a[i]) = card(a[i-1]) /\
+     sums[i] = sums[i-1] 
+     /\ sum_squared[i] = sum_squared[i-1] 
+   )
+
+  % symmetry breaking
+  /\ 1 in a[1]
+
+;
+
+output [
+   "a: " ++ show(a) ++ "\n" ++
+   "sums: " ++ show(sums) ++ "\n" ++ 
+   "sum_squared: " ++ show(sum_squared) ++ "\n" 
+];
+
+% For model seeker
+% output [
+%    show(set2array(fix(a[i]))) ++ ","
+%   | i in 1..num_sets
+% ];
+
+Expected Output:
+{
+  "a": [
+    {
+      "set": [
+        [
+          1,
+          2
+        ],
+        4,
+        10,
+        [
+          12,
+          16
+        ],
+        18
+      ]
+    },
+    {
+      "set": [
+        3,
+        [
+          5,
+          9
+        ],
+        11,
+        17,
+        [
+          19,
+          20
+        ]
+      ]
+    }
+  ],
+  "sums": [
+    105,
+    105
+  ],
+  "sum_squared": [
+    1435,
+    1435
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

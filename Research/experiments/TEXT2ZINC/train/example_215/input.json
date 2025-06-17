@@ -1,0 +1,41 @@
+{
+  "description": "The goal is to find the minimal number of nurses the hospital needs to hire for a planning period of Period. The hospital has a known demand for nurses across a week, specified by the array Demand, where each element corresponds to the demand for a particular day in the period.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Hospital Night Shift Scheduling",
+    "domain": "Healthcare",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "forall",
+      "mod",
+      ">=",
+      "max"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Hospital Night Shift Scheduling",
+    "domain": "Healthcare",
+    "model_var_keywords": [
+      "start",
+      "total"
+    ],
+    "model_data_keywords": [
+      "T",
+      "Period",
+      "Demand"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "forall",
+      "mod",
+      ">=",
+      "max"
+    ]
+  }
+}

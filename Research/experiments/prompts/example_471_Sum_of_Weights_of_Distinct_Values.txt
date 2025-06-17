@@ -1,0 +1,103 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 471
+- Name: Sum of Weights of Distinct Values
+- Domain: Constraints
+- Objective: satisfaction
+
+Problem Description:
+The problem is about a constraint called 'sum_of_weights_of_distinct_values'. This constraint is applied to a collection of variables, a collection of values, and a cost. All variables in the VARIABLES collection take a value in the VALUES collection. In addition, COST is the sum of the weight attributes associated with the distinct values taken by the variables of VARIABLES. For example, if VARIABLES = <1,6,1>, VALUES = <val-1 weight-5, val-2 weight-3, val-6 weight-7>, and COST = 12, the constraint holds since COST=12 is equal to the sum 5+7 of the weights of the values 1 and 6 that occur within the VARIABLES collection. The goal is to find the variables, values, and cost that satisfy this constraint.
+
+
+MiniZinc Model:
+int: n = 3;
+int: m = 3;
+array[1..n] of var 1..6: variables;
+array[1..m, 1..2] of var 1..7: values;
+var 1..1000: cost;
+
+predicate sum_of_weights_of_distinct_values(array[int] of var int: variables,
+                                            array[int,int] of var int: values,
+                                            var int: cost) =
+   cost = sum(i in index_set_1of2(values)) (
+              values[i,2]*bool2int(exists(j in index_set(variables)) (
+                 variables[j] = values[i,1]
+              ))
+          )
+
+;
+
+predicate cp1d(array[int] of var int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+     forall(i in index_set(x)) ( x[i] = y[i] ))
+; 
+
+predicate cp2d(array[int,int] of var int: x, array[int,int] of var int: y) =
+  assert(index_set_1of2(x) = index_set_1of2(y) /\
+         index_set_2of2(x) = index_set_2of2(y),
+           "cp2d: x and y have different sizes",
+     forall(i in index_set_1of2(x), j in index_set_2of2(x)) (
+         y[i,j] = x[i,j]
+    ) 
+  )
+; 
+
+solve satisfy;
+
+constraint
+   cp1d(variables, [1,6,1]) /\
+   cost = 12 /\
+   cp2d(values, array2d(1..m, 1..2, [
+                     1,5,
+                     2,3,
+                     6,7
+                    ]))
+
+   /\
+   sum_of_weights_of_distinct_values(variables, values, cost)  
+;
+
+
+output [
+"variables: " ++ show(variables) ++ "\n"++
+"values: " ++ show(values) ++ "\n"++
+"cost: " ++ show(cost) ++ "\n"
+];
+
+Expected Output:
+{
+  "variables": [
+    1,
+    6,
+    1
+  ],
+  "values": [
+    [
+      1,
+      5
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      6,
+      7
+    ]
+  ],
+  "cost": 12
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

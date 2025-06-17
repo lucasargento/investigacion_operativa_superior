@@ -1,0 +1,326 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 529
+- Name: Steiner Triplet Problem
+- Domain: Combinatorial Optimization
+- Objective: satisfaction
+
+Problem Description:
+A woman plans to invite 15 friends to dinner. For 35 days she wants to have dinner with exactly three friends a day, and she wants to arrange the triplets so that each pair of friends will only come once. The problem is to determine if this arrangement is possible. This is a Steiner triplet problem, where the goal is to arrange sets (in this case, sets of friends) such that each pair appears together exactly once. The solution should provide the arrangement of friends for each day, if it exists.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+int: num_persons_per_meeting = 3;
+int: num_days = 35;
+
+set of int: persons = 1..15;
+array[1..num_days] of var set of persons: days;
+
+solve satisfy;
+% solve :: set_search(days, input_order, indomain_min, complete) satisfy;
+
+constraint
+  all_different(days)  % different triplets (i.e. day)
+  /\
+  forall(i in 1..num_days) (
+     card(days[i]) = num_persons_per_meeting
+  )
+  /\ % max 1 common person in each days
+  forall(i,j in 1..num_days where i != j) (     
+    card(days[i] intersect days[j]) <= 1
+  )
+;
+
+output [
+  show(days), "\n",
+]
+
+Expected Output:
+{
+  "days": [
+    {
+      "set": [
+        7,
+        [
+          11,
+          12
+        ]
+      ]
+    },
+    {
+      "set": [
+        7,
+        10,
+        13
+      ]
+    },
+    {
+      "set": [
+        7,
+        9,
+        14
+      ]
+    },
+    {
+      "set": [
+        [
+          7,
+          8
+        ],
+        15
+      ]
+    },
+    {
+      "set": [
+        6,
+        11,
+        13
+      ]
+    },
+    {
+      "set": [
+        6,
+        10,
+        12
+      ]
+    },
+    {
+      "set": [
+        6,
+        9,
+        15
+      ]
+    },
+    {
+      "set": [
+        6,
+        8,
+        14
+      ]
+    },
+    {
+      "set": [
+        5,
+        11,
+        14
+      ]
+    },
+    {
+      "set": [
+        5,
+        10,
+        15
+      ]
+    },
+    {
+      "set": [
+        5,
+        9,
+        12
+      ]
+    },
+    {
+      "set": [
+        5,
+        8,
+        13
+      ]
+    },
+    {
+      "set": [
+        4,
+        11,
+        15
+      ]
+    },
+    {
+      "set": [
+        4,
+        10,
+        14
+      ]
+    },
+    {
+      "set": [
+        4,
+        9,
+        13
+      ]
+    },
+    {
+      "set": [
+        4,
+        8,
+        12
+      ]
+    },
+    {
+      "set": [
+        3,
+        [
+          13,
+          14
+        ]
+      ]
+    },
+    {
+      "set": [
+        3,
+        12,
+        15
+      ]
+    },
+    {
+      "set": [
+        3,
+        [
+          9,
+          10
+        ]
+      ]
+    },
+    {
+      "set": [
+        3,
+        8,
+        11
+      ]
+    },
+    {
+      "set": [
+        3,
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "set": [
+        [
+          3,
+          4
+        ],
+        7
+      ]
+    },
+    {
+      "set": [
+        2,
+        13,
+        15
+      ]
+    },
+    {
+      "set": [
+        2,
+        12,
+        14
+      ]
+    },
+    {
+      "set": [
+        2,
+        9,
+        11
+      ]
+    },
+    {
+      "set": [
+        2,
+        8,
+        10
+      ]
+    },
+    {
+      "set": [
+        2,
+        5,
+        7
+      ]
+    },
+    {
+      "set": [
+        2,
+        4,
+        6
+      ]
+    },
+    {
+      "set": [
+        1,
+        [
+          14,
+          15
+        ]
+      ]
+    },
+    {
+      "set": [
+        1,
+        [
+          12,
+          13
+        ]
+      ]
+    },
+    {
+      "set": [
+        1,
+        [
+          10,
+          11
+        ]
+      ]
+    },
+    {
+      "set": [
+        1,
+        [
+          8,
+          9
+        ]
+      ]
+    },
+    {
+      "set": [
+        1,
+        [
+          6,
+          7
+        ]
+      ]
+    },
+    {
+      "set": [
+        1,
+        [
+          4,
+          5
+        ]
+      ]
+    },
+    {
+      "set": [
+        [
+          1,
+          3
+        ]
+      ]
+    }
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

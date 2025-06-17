@@ -1,0 +1,304 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 110
+- Name: Maximum Density Still Life
+- Domain: Games and Puzzles
+- Objective: maximization
+
+Problem Description:
+---
+Title:    Maximum density still life
+Proposer: Barbara Smith
+Category: Games and puzzles
+---
+
+This problem arises from the Game of Life, invented by John Horton Conway in the 1960s and popularized by Martin Gardner in his
+Scientific American columns.
+
+Life is played on a squared board, considered to extend to infinity in all directions. Each square of the board is a cell, which at any time during the game is either alive or dead. A cell has eight neighbours:
+
+<center>
+![Magic Hexagon](assets/neighbours.jpg)
+</center>
+
+The configuration of live and dead cells at time *t* leads to a new configuration at time *t+1* according to the rules of the game:
+
+- if a cell has exactly three living neighbours at time *t*, it is alive at time *t+1*
+- if a cell has exactly two living neighbours at time *t* it is in the same state at time *t+1* as it was at time *t*
+- otherwise, the cell is dead at time *t+1*
+
+A stable pattern, or *still-life*, is not changed by these rules. Hence, every cell that has exactly three live neighbours is alive, and every cell that has fewer than two or more than three live neighbours is dead. (An empty board is a still-life, for instance.)
+
+What is the densest possible still-life pattern, i.e. the pattern with the largest number of live cells, that can be fitted into an *n* x *n* section of the board, with all the rest of the board dead?
+
+
+(Note that another definition of a still-life requires the pattern to be a single *object* - see for instance [Mark Niemiec's Definitions of Life Terms](https://conwaylife.com/ref/mniemiec/lifeterm.htm) page.
+On this definition, the 8 x 8 pattern below is a *pseudo still-life*.)
+
+### Examples of  optimal solutions
+
+A 3 x 3 still-life with 6 live cells and an 8 x 8 still-life with 36 live cells.
+
+<center>
+![Life 3](assets/life3.jpg)
+
+![Life 8](assets/life8.jpg)
+</center>
+
+
+MiniZinc Model:
+int: size = 7; % to change
+
+set of int: objFunctionBoardCoord      = 2..size+1;
+set of int: checkConstraintsBoardCoord = 1..size+2;
+set of int: augmentedBoardCoord        = 0..size+3;
+
+% Search space: The set of all possible assignments of 0s (dead) and 1s (live) 
+% to the cells of the board section. However, to be able to easily express 
+% constraints on "boundary" cells, we take as search space the set of 0/1 
+% boards of size n+4 by n+4: the actual stable pattern appears in the sub-board 
+% defined by ignoring the first/last two rows/columns.
+array[augmentedBoardCoord,augmentedBoardCoord] of var 0..1: grid;
+
+var int: z = sum(r in objFunctionBoardCoord, c in objFunctionBoardCoord) (grid[r,c]);
+
+% Objective function: Maximize the number of live cells in the sub-board defined 
+% by ignoring the first/last two/ rows/columns.
+
+
+% solve maximize z;
+solve :: int_search(
+        [grid[i,j] | i,j in augmentedBoardCoord], 
+        smallest, 
+        indomain_max, 
+        complete) 
+    maximize z;
+
+constraint
+
+  % C1: Cells in the first/last two rows/columns are all 0 (dead)
+  forall(x in augmentedBoardCoord) (
+    grid[0,x] = 0 /\
+    grid[1,x] = 0 /\
+    grid[size+2,x] = 0 /\  
+    grid[size+3,x] = 0 /\
+    grid[x,0] == 0 /\       
+    grid[x,1] == 0 /\
+    grid[x,size+2] = 0 /\  
+    grid[x,size+3] = 0 
+  )
+  /\
+  forall(r in checkConstraintsBoardCoord,c in checkConstraintsBoardCoord) (
+    % C2: Each cell of the board (except those of the first/last row/column) 
+    %     that has exactly three live neighbors is alive. 
+    %     Together with constraint C1, this implies that cells in the
+    %     second/last-but-one row/column cannot have three live neighbors.
+    (
+      ( ( grid[r-1,c-1] + grid[r-1,c] + grid[r-1,c+1] + 
+          grid[r,c-1] + grid[r,c+1] + 
+          grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1]
+          ) = 3 
+       ) -> (grid[r,c] = 1)
+    )
+    /\    
+
+    % C3: Each live cell must have 2 or 3 live neighbors (cells of the first/last 
+    % row/column may be ignored by this constraint)
+    (
+       (grid[r,c] = 1) -> 
+                      (
+                        2 <= 
+                        ( grid[r-1,c-1] + grid[r-1,c] + grid[r-1,c+1] +
+                          grid[r,c-1] + grid[r,c+1] +
+                          grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1] 
+                          )
+                        /\
+                        ( grid[r-1,c-1] + grid[r-1,c] + grid[r-1,c+1] +
+                          grid[r,c-1] + grid[r,c+1] +
+                          grid[r+1,c-1] + grid[r+1,c] + grid[r+1,c+1] 
+                          ) <= 3
+                      )
+    )
+  )
+  
+  /\
+  % SBSO: Symmetry-breaking by selective ordering
+  % The assignment is forced to respect an ordering on the values that occur in corner entries
+  % of the board. In particular:  
+  % - if the NW-corner cell is dead, the SE-corner cell
+  % must be dead too 
+  % - if the NE-corner cell is dead, the SW-corner cell must be dead too
+  % 
+  grid[2,2] >= grid[size+1,size+1] /\
+  grid[2,size+1] >= grid[size+1,2]
+;
+
+
+output [
+  if j = 0 then "\n" else " " endif ++
+    show(grid[i,j])
+  | i,j in augmentedBoardCoord
+];
+
+Expected Output:
+{
+  "grid": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "_objective": 28
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 201
+- Name: Linear Regression with Minimax Criterion
+- Domain: Statistics
+- Objective: minimization
+
+Problem Description:
+Fit the ‘best’ straight line y = bx + a where the objective is to minimize the maximum deviation of all the K observed values of Y from the value predicted by the linear relationship. The observed values of y are given by Y and the observed values of x are given by X.
+
+
+Input Data (data.dzn):
+Here is the data in ".dzn" format:
+
+```
+NumObs = 19;
+Y = [1.0, 0.9, 0.7, 1.5, 2.0, 2.4, 3.2, 2.0, 2.7, 3.5, 1.0, 4.0, 3.6, 2.7, 5.7, 4.6, 6.0, 6.8, 7.3];
+X = [0.0, 0.5, 1.0, 1.5, 1.9, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 5.5, 6.0, 6.6, 7.0, 7.6, 8.5, 9.0, 10.0];
+```
+
+MiniZinc Model:
+% Define the parameters
+int: NumObs; % Number of observations
+array[1..NumObs] of float: Y; % Observed values of y
+array[1..NumObs] of float: X; % Observed values of x
+
+% Define the decision variables
+var float: intercept; % Intercept of the fitted line
+var float: slope; % Slope of the fitted line
+array[1..NumObs] of var float: deviation; % Deviation of observed y from predicted y
+
+% Constraints
+constraint forall(i in 1..NumObs) (
+    deviation[i] >= Y[i] - (slope * X[i] + intercept) /\
+    deviation[i] >= (slope * X[i] + intercept) - Y[i]
+);
+
+% Objective: Minimize the maximum deviation
+solve minimize max(deviation);
+
+% Output the solution
+output ["intercept: ", show(intercept), "\nslope: ", show(slope)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

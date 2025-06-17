@@ -1,0 +1,39 @@
+{
+  "description": "# Problem Grocery\n\nA kid goes into a grocery store and buys four items.\nThe cashier charges $7.11, the kid pays and is about to leave when the cashier calls the kid back, and says:\n\"Hold on, I multiplied the four items instead of adding them;\n  I'll try again;\n  Hah, with adding them the price still comes to $7.11 \".\nWhat were the prices of the four items?\n\n\n## Data\n  all integrated (single problem)\n\n## Model\n  constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n```\n  python Grocery.py\n```\n\n## Links\n  - http://mozart2.org/mozart-v1/doc-1.4.0/fdt/index.html\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Grocery Store Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "*",
+      "=",
+      "alldifferent"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Grocery Store Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "price_item1",
+      "price_item2",
+      "price_item3",
+      "price_item4"
+    ],
+    "model_data_keywords": [
+      "total_price"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "sum",
+      "*",
+      "=",
+      "alldifferent"
+    ]
+  }
+}

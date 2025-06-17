@@ -1,0 +1,46 @@
+{
+  "description": "# Problem QueensKnights\n\nThe goal is to put m queens in a chess board such that none of the queens can attack each other, and to put n knights such that\nall knights form a cycle. Note that the size of the board si n.\n\n## Data\n  A pair (n,m) where n is the size of the chess board and n the number of queens.\n\n## Model\n  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)\n\n## Execution\n  - python QueensKnights.py -data=[number,number]\n\n## Links\n  - https://dblp.org/rec/conf/ecai/BoussemartHLS04.html\n\n## Tags\n  academic",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Queens and Knights on Chess Board",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "!=",
+      "/\\",
+      "abs",
+      "<=",
+      ">",
+      "solve satisfy"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Queens and Knights on Chess Board",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "Q",
+      "K"
+    ],
+    "model_data_keywords": [
+      "boardSize",
+      "numQueens"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "forall",
+      "!=",
+      "/\\",
+      "abs",
+      "<=",
+      ">",
+      "solve satisfy"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "description": "The problem is a 5x5 puzzle, also known as the Five puzzle. The puzzle consists of a 5x5 grid where each square can be in one of two states: lit (represented by 1) or unlit (represented by 0). If a square is clicked, that square and each of its orthogonal neighbors will toggle between the two states. Each click constitutes one move and the objective of the puzzle is to light all 25 squares in the least number of moves. The problem is to find the configuration that minimizes the sum of the states of all squares, i.e., lights up all squares with the least number of moves.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Five Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "+",
+      "where",
+      ">=",
+      "<=",
+      "/\\",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Five Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "squareState",
+      "moves",
+      "totalState"
+    ],
+    "model_data_keywords": [
+      "puzzleSize",
+      "Indices"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "sum",
+      "+",
+      "where",
+      ">=",
+      "<=",
+      "/\\",
+      "!="
+    ]
+  }
+}

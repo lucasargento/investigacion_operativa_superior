@@ -1,0 +1,37 @@
+{
+  "description": "# Problem Dudeney\n\nIn number theory, a Dudeney number in a given number base b is a natural number\nequal to the perfect cube of another natural number such that the digit sum\nof the first natural number is equal to the second.\nThe name derives from Henry Dudeney, who noted the existence of these numbers in one of his puzzles.\n\nThere are 5 non-trivial numbers for base 10, and the highest such number is formed of 5 digits.\nBelow, the model is given for base 10.\n\n## Data\n  all integrated (single problem)\n\n## Model\n  constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n```\n  python Dudeney.py\n```\n\n## Links\n  - https://en.wikipedia.org/wiki/Dudeney_number\n\n## Tags\n  single",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Dudeney Number",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "=",
+      "sum",
+      "div",
+      "mod"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Dudeney Number",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "dudeney_number",
+      "cube_root"
+    ],
+    "model_data_keywords": [
+      "NUM"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "=",
+      "sum",
+      "div",
+      "mod"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 291
+- Name: Magic Modulo Number
+- Domain: Number Theory
+- Objective: minimization
+
+Problem Description:
+# Problem MagicModuloNumber
+
+A number with an interesting property: when I divide it by v, the remainder is v-1, and this from v ranging from 2 to 9.
+It's not a small number, but it's not really big, either.
+When I looked for a smaller number with this property I couldn't find one.
+Can you find it?
+
+## Data
+  all integrated (single problem)
+
+## Execution
+```
+  python MagicModuloNumber.py
+```
+
+## Links
+  - see Model in OscaR
+
+## Tags
+  single
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the Magic Modulo Number
+var 1..1000: magic_modulo_number;
+
+% The property of the Magic Modulo Number
+constraint forall(v in 2..9)(magic_modulo_number mod v = v-1);
+
+% The task is to find the smallest Magic Modulo Number
+solve minimize magic_modulo_number;
+
+% Output the Magic Modulo Number
+output ["Magic Modulo Number: " ++ show(magic_modulo_number)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

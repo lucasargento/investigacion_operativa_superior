@@ -1,0 +1,37 @@
+{
+  "description": "Maximize the total value of the packed items, where the knapsack has a capacity of C. Each item k has a value of Value and a size of Size.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Knapsack Problem",
+    "domain": "Integer Programming",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Knapsack Problem",
+    "domain": "Integer Programming",
+    "model_var_keywords": [
+      "isincluded",
+      "total_value"
+    ],
+    "model_data_keywords": [
+      "C",
+      "value",
+      "size"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "<=",
+      "*"
+    ]
+  }
+}

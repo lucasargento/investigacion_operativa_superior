@@ -1,0 +1,67 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 216
+- Name: Auto Parts Manufacturer Optimization
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+How many batches of each part should the manufacturer produce each month to maximize profit, considering the following parameters: number of machines (M), number of parts (P), time required (TimeRequired), machine costs (MachineCosts), machine availability (Availability), selling prices (Prices), minimum batches required (MinBatches), extra costs (ExtraCosts), and maximum extra hours (MaxExtra)?
+
+
+Input Data (data.dzn):
+time_required = [|2, 1, 3, 2|4, 2, 1, 2|6, 2, 1, 2|];
+machine_costs = [160, 10, 15];
+availability = [200, 300, 500];
+prices = [570, 250, 585, 430];
+min_batches = [10, 10, 10, 10];
+extra_costs = [0, 15, 22.5];
+max_extra = [0, 80, 80];
+
+MiniZinc Model:
+% Parameters
+int: M; % Number of machines
+int: P; % Number of parts
+array[1..M, 1..P] of int: time_required; % Time required to produce each part on each machine
+array[1..M] of int: machine_costs; % Cost per hour for each machine
+array[1..M] of int: availability; % Availability of each machine
+array[1..P] of int: prices; % Selling price for each part
+array[1..P] of int: min_batches; % Minimum batches required for each part
+array[1..M] of int: extra_costs; % Extra cost for each machine
+array[1..M] of int: max_extra; % Maximum extra hours for each machine
+
+% Decision Variables
+array[1..P] of var 0..1000: batches; % Number of batches for each part
+array[1..M] of var 0..max_extra[m]: extra_time; % Extra time for each machine
+
+% Objective
+var int: total_profit;
+maximize total_profit;
+
+% Constraints
+constraint forall(m in 1..M)(
+    sum(p in 1..P)(time_required[m,p]*batches[p]) <= availability[m] + extra_time[m]
+);
+
+constraint forall(p in 1..P)(
+    batches[p] >= min_batches[p]
+);
+
+constraint forall(m in 1..M)(
+    extra_time[m] <= max_extra[m]
+);
+
+constraint total_profit = sum(p in 1..P)(prices[p]*batches[p]) - sum(m in 1..M)(machine_costs[m]*(availability[m] + extra_time[m])) - sum(m in 1..M)(extra_costs[m]*extra_time[m]);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

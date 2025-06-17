@@ -1,0 +1,42 @@
+{
+  "description": "The combinatorial auction problem is an auction in which bidders can place bids on combinations of items, or 'packages,' rather than just individual items. The problem is specified as follows: Given a set of items Q = {q1,...,qn} and a set of bids B = {b1,...,bm} such that each bid is bi = (Qi, ri), where Qi is a subset of Q and ri is a strictly positive real number. The task is to find a subset of bids B' such that any two bids in B' do not share an item, with the goal of maximizing the sum of the ri values of the selected bids. The problem is to ensure that each item is selected at most once. An example auction could be as follows: b1 = {1,2,3,4}, r1 = 8; b2 = {2,3,6}, r2 = 6; b3 = {1,4,5}, r3 = 5; b4 = {2,8}, r4 = 2; b5 = {5,6}, r5 = 2. The optimal assignment in this case would be the bids 2 and 3: {2,3,6} and {1,4,5} to a cost of 6+5 = 11.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Combinatorial Auction",
+    "domain": "Auction Theory",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "bool2int",
+      "<=",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Combinatorial Auction",
+    "domain": "Auction Theory",
+    "model_var_keywords": [
+      "x",
+      "total"
+    ],
+    "model_data_keywords": [
+      "num_items",
+      "max_item",
+      "items",
+      "num_bids",
+      "packages",
+      "bids"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "sum",
+      "bool2int",
+      "<=",
+      "forall"
+    ]
+  }
+}

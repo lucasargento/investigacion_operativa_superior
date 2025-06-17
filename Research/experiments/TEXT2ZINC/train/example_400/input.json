@@ -1,0 +1,43 @@
+{
+  "description": "The mayor has a budget of up to $ 3500 to invest in city infrastructure . He can invest his money on roads and housing . Each dollar invested in housing yields a $ 0.95 profit .   Each dollar invested on roads yields a $ 0.32 profit . No less than $ 750 must be in housing and no less than 24 % of all money invested must be in roads . Formulate an LP that can be used to maximize total profit earned from his investment .",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "City Infrastructure Investment Optimization",
+    "domain": "Finance",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "City Infrastructure Investment Optimization",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "housing",
+      "roads",
+      "total_investment",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "max_investment",
+      "housing_profit_rate",
+      "roads_profit_rate",
+      "min_housing_investment",
+      "min_roads_investment_rate"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">=",
+      "*",
+      "+"
+    ]
+  }
+}

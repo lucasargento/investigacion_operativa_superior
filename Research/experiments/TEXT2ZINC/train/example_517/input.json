@@ -1,0 +1,46 @@
+{
+  "description": "The problem is a cryptarithmetic puzzle where each letter represents a unique digit from 0 to 9. The puzzle is represented as follows: GATHER + HOMAGE = MARTIN. Additionally, the problem has two more constraints: AxA = H and GxG = O. The first digits in each word (G, H, M) must not be 0. The goal is to find the unique solution that satisfies all these constraints. The solution is represented as an array x of 10 digits, where each digit corresponds to a letter in the order [G, A, T, H, E, R, O, M, I, N].",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Cryptarithmetic Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "=",
+      ">",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Cryptarithmetic Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "G",
+      "A",
+      "T",
+      "H",
+      "E",
+      "R",
+      "O",
+      "M",
+      "I",
+      "N",
+      "letters"
+    ],
+    "model_data_keywords": [
+      "num_letters"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "=",
+      ">",
+      "*"
+    ]
+  }
+}

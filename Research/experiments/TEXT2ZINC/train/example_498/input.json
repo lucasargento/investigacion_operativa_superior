@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about finding prime numbers in a given range. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. The range is from 1 to a given number 'n'. The problem requires to find all the prime numbers in this range and also the total number of prime numbers found. A number 'x' is considered prime if it is greater than 1 and for all numbers 'i' from 2 to the square root of 'x', 'x' is not divisible by 'i'.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Prime Numbers in Range",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "in",
+      "<->",
+      "isPrime",
+      ">",
+      "mod"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Prime Numbers in Range",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "primeNumbers",
+      "primeCount"
+    ],
+    "model_data_keywords": [
+      "upperLimit"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "in",
+      "<->",
+      "isPrime",
+      ">",
+      "mod"
+    ]
+  }
+}

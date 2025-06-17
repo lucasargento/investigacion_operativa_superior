@@ -1,0 +1,30 @@
+{
+  "description": "This problem is based on Martin Chlond's 'A Tokyo Elevator Puzzle'. The puzzle involves an elevator that needs to visit certain floors. The building has 6 floors and the elevator needs to make 3 visits, excluding the top and bottom floors. The data set 'c' represents the floors that the elevator needs to visit. Each row in the data set represents a different scenario, with 1s indicating the floors that need to be visited and 0s indicating the floors that can be skipped. The goal is to find the optimal route for the elevator to take in each scenario.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Elevator Route Optimization",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "array"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Elevator Route Optimization",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "num_scenarios",
+      "num_floors",
+      "floor_visits"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "array"
+    ]
+  }
+}

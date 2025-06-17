@@ -1,0 +1,53 @@
+{
+  "description": "The problem is about modeling family relations using MiniZinc. The family database is ported from the book 'Programming with Constraints' by Marriott & Stuckey. The family consists of 9 members, each represented by a unique integer. The family relations are represented as father and mother relations. The father relations are represented as a 2D array of size 6x2, and the mother relations are represented as a 2D array of size 2x2. The age of each family member is also given. The problem defines several predicates to represent different family relations such as father, mother, parent, sibling, and cousin. The problem also defines a predicate to determine if one family member is older than another. The problem is to find a family member X who is a cousin of Peter and is older than Peter.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Family Relations",
+    "domain": "Logic",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "is_father",
+      "is_mother",
+      "is_parent",
+      "is_sibling",
+      "is_cousin",
+      "is_older",
+      "exists",
+      ">",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Family Relations",
+    "domain": "Logic",
+    "model_var_keywords": [
+      "X",
+      "Y"
+    ],
+    "model_data_keywords": [
+      "num_family_members",
+      "num_father_relations",
+      "num_mother_relations",
+      "FamilyMembers",
+      "father_relations",
+      "mother_relations",
+      "age"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "is_father",
+      "is_mother",
+      "is_parent",
+      "is_sibling",
+      "is_cousin",
+      "is_older",
+      "exists",
+      ">",
+      "!="
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "description": "The problem is a puzzle called 'Tri-Puzzle', a three-cornered conundrum. The puzzle consists of 16 triangles, each with three spots. Each spot has a color, and there are 6 possible colors: red, green, white, blue, black, and yellow. The triangles can be placed in 16 positions and in 3 possible orientations. The goal is to place all the triangles in such a way that the colors of the spots match certain conditions. Each position must be occupied by one triangle in one orientation, and each triangle must be in one position and one orientation. The spot colors must be consistent with the piece positions and orientations. There are also specific color matches that must be met, both on the outer and inner parts of the puzzle.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Tri-Puzzle Solver",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<=",
+      "/\\",
+      "array"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Tri-Puzzle Solver",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "y"
+    ],
+    "model_data_keywords": [
+      "num_triangles",
+      "num_positions",
+      "num_orientations",
+      "num_spots",
+      "num_colors",
+      "piece_col"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<=",
+      "/\\",
+      "array"
+    ]
+  }
+}

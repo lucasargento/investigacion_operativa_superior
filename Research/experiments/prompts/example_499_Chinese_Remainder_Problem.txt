@@ -1,0 +1,68 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 499
+- Name: Chinese Remainder Problem
+- Domain: Mathematics
+- Objective: minimization
+
+Problem Description:
+The Chinese Remainder Problem is a mathematical problem that aims to find a number 'n' that, when divided by some given divisors, leaves given remainders. The problem is to determine the lowest number 'n' that satisfies these conditions. For example, what is the lowest number 'n' that when divided by 3 leaves a remainder of 2, when divided by 5 leaves a remainder of 3, and when divided by 7 leaves a remainder of 2? In this MiniZinc model, the divisors and remainders are given as input arrays, and the model aims to minimize the value of 'n' that satisfies all the given conditions.
+
+
+MiniZinc Model:
+int: n;
+array[1..n] of int: divs;
+array[1..n] of int: rems;
+
+% decision variables
+var 1..10000: x;
+
+solve minimize x;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+predicate crt(array[int] of var int: divs, 
+              array[int] of var int: rems,
+              var int: n) =
+  forall(i in index_set(divs)) (
+     n mod divs[i] = rems[i]
+  )
+
+;
+
+constraint
+  crt(divs,rems, x)
+;
+
+output [
+  "divs: ", show(divs), "\n", 
+  "rems: ", show(rems), "\n",
+  show(x)
+];
+
+
+% n = 3;
+% divs = [3,5,7];
+% rems = [2,3,2];
+
+n = 5;
+divs = [3,5,7,11,13];
+rems = [2,3,2,4,1];
+
+Expected Output:
+{
+  "x": 1808,
+  "_objective": 1808
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

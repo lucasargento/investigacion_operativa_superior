@@ -1,0 +1,38 @@
+{
+  "description": "The problem is about finding Limerick primes. A Limerick prime has to have the form AABBA where A is an odd digit and B is any digit other than A. The task is to find such primes in the range of 10000 to 99999. The problem is solved when a prime number that satisfies these conditions is found.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Limerick Prime Finder",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "is_prime",
+      "toNum10",
+      "mod",
+      "=",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Limerick Prime Finder",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "num_digits",
+      "prime_num",
+      "digits"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "is_prime",
+      "toNum10",
+      "mod",
+      "=",
+      "!="
+    ]
+  }
+}

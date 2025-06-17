@@ -1,0 +1,44 @@
+{
+  "description": "# Problem Dubois\n\nThis problem has been conceived by Olivier Dubois, and submitted to the second DIMACS Implementation Challenge.\nDubois's generator produces contradictory 3-SAT instances that seem very difficult to be solved by any general method.\nGiven an integer n, called the degree, Dubois's process allows us to construct a 3-SAT contradictory instance with 3 * n variables and 2 * n clauses,\neach of them having 3 literals.\n\n## Data\n  A number n, each clause of the problem has 3*n variables and 2*n clauses.\n\n## Model\n  a model can be found in this jupyter notebook [GitHub page](https://github.com/xcsp3team/pycsp3/blob/master/problems/csp/academic/Dubois.py).\n\n  constraints: [Table](http://pycsp.org/documentation/constraints/Table)\n\n## Execution\n```\n  python Dubois.py -data=number\n```\n\n## Tags\n  academic",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Dubois Problem",
+    "domain": "Academic",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "bool_clause",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Dubois Problem",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "vars",
+      "clauses",
+      "obj"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "bool_clause",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "sum"
+    ]
+  }
+}

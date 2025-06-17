@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about converting a binary matrix to an array and vice versa in MiniZinc. The binary matrix is of size 4x4 and the array is of size 4. The binary matrix is represented by 'x' and the array is represented by 'a'. The conversion from the binary matrix to the array is done using the 'bin2array' predicate. This predicate ensures that for each row in the binary matrix, the corresponding value in the array is the column index where the value is 1. The 'cp2d' predicate is used to copy the values from a 2D array to the binary matrix 'x'. The problem is to find a solution that satisfies these constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Binary Matrix to Array Conversion",
+    "domain": "Data Transformation",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "binaryMatrixToArray",
+      "copy2DArray",
+      "forall",
+      "sum",
+      "=",
+      "assert"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Binary Matrix to Array Conversion",
+    "domain": "Data Transformation",
+    "model_var_keywords": [
+      "x",
+      "a"
+    ],
+    "model_data_keywords": [
+      "matrixSize"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "binaryMatrixToArray",
+      "copy2DArray",
+      "forall",
+      "sum",
+      "=",
+      "assert"
+    ]
+  }
+}

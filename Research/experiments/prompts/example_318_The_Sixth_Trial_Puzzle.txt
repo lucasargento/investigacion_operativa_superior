@@ -1,0 +1,93 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 318
+- Name: The Sixth Trial Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is a puzzle known as 'The Sixth Trial' from Smullyan, R., (1991), The Lady or The Tiger, Oxford University Press. The puzzle involves two doors and two prizes, a lady and a tiger. Each door hides one prize. The statements on the doors provide clues about what is behind the doors. The statement on door i is true if and only if door i hides prize i. If the statement on door 1 is true (i.e., if the prizes behind doors 1 and 2 are the same), then the variable t[1] is set to 1; otherwise, it is set to 0. Similarly, if the statement on door 2 is true, then the variable t[2] is set to 1; otherwise, it is set to 0. The goal is to find a configuration of prizes behind the doors that satisfies all these conditions.
+
+
+MiniZinc Model:
+int: door = 2;
+int: prize = 2;		% 1 = Lady, 2 = Tiger
+
+set of 1..door: D = 1..door;
+set of 1..prize: P = 1..prize;
+array[D,P] of var 0..1: x;   % x(i,j) = 1 if door i hides prize j, else 0
+array[D] of var 0..1: t;    % t(i) = 1 if statement on door i is true, else 0
+array[1..2] of var 0..1: d;    % dummy variables
+
+solve satisfy;
+
+constraint
+  % each door hides 1 prize
+  forall(i in D) (
+    sum(j in P) (x[i,j]) = 1 
+  )
+  /\ % if door i hides prize i then statement i is true else false
+  forall(i in D) (
+    x[i,i] = t[i]
+  )
+
+  /\ % if statement on door 1 is true [i.e. x[1,1]=x[2,1]] then set t[1] = 1, else t[1] = 0
+  x[1,1]-x[2,1]-2*d[1] <= -1  /\
+  x[1,1]-x[2,1]-d[1] >= -1 /\
+
+  x[1,1]-x[2,1]+2*d[2] >= 1 /\ 
+  x[1,1]-x[2,1]+2*d[2] <= 2 /\ 
+
+  d[1]+d[2]-t[1] <= 1 /\ 
+  d[1]+d[2]-2*t[1] >= 0 
+
+  /\  % if statement on door 2 is true then set t[2] = 1, else t[2] = 0
+  x[1,1] = t[2]
+;
+
+output 
+[
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i in D, j in P
+] ++
+[
+ if i = 1 then "\n" else "" endif ++
+ show(t[i]) ++ "\n"
+ | i in D
+];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "t": [
+    0,
+    0
+  ],
+  "d": [
+    0,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,44 @@
+{
+  "description": "The problem is about detecting arbitrage loops in currency exchange markets. An arbitrage loop is a sequence of currency exchanges that results in a profit when converted back to the base currency. For example, given the exchange rates between USD, EUR, JPY, and BTC, one could trade $100 to \u20ac77.79, then trade \u20ac77.79 to .8751375 BTC, and finally trade .8751375 BTC for $101.20965, resulting in a profit. The goal is to find such arbitrage loops given a set of exchange rates between different currencies. The program should determine the sequence of currencies to exchange (represented by the decision variable 'y') and the profit at each step (represented by the decision variable 'profit'), with the objective of maximizing the total profit ('z'). The constraints ensure that each currency is used only once in the sequence and that the sequence starts and ends with the same currency. The program does not consider real-world factors such as broker's fees.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Currency Arbitrage Detection",
+    "domain": "Finance",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "totalProfit >= 0.0",
+      "all_different",
+      "=",
+      "forall",
+      "product"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Currency Arbitrage Detection",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "currencySequence",
+      "profitAtEachStep",
+      "totalProfit"
+    ],
+    "model_data_keywords": [
+      "totalCurrencies",
+      "involvedCurrencies",
+      "exchangeRates",
+      "currencyNames",
+      "initialAmount"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "totalProfit >= 0.0",
+      "all_different",
+      "=",
+      "forall",
+      "product"
+    ]
+  }
+}

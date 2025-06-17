@@ -1,0 +1,79 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 210
+- Name: Economic Production Planning
+- Domain: Economics
+- Objective: maximization
+
+Problem Description:
+Maximize total production in the last two years using the given constraints on production inputs from two resource types (InputOne and InputTwo), manpower allocations (ManpowerOne and ManpowerTwo), stock levels (Stock), capacities (Capacity), and the upper limit of manpower (ManpowerLimit).
+
+
+Input Data (data.dzn):
+The data in ".dzn" format would look like this:
+
+```
+inputone = array2d(1..3, 1..3, [0.1, 0.1, 0.2, 0.5, 0.1, 0.1, 0.5, 0.2, 0.2]);
+manpowerone = array1d(1..3, [0.6, 0.3, 0.2]);
+inputtwo = array2d(1..3, 1..3, [0.0, 0.1, 0.2, 0.7, 0.1, 0.1, 0.9, 0.2, 0.2]);
+manpowertwo = array1d(1..3, [0.4, 0.2, 0.1]);
+stock = array1d(1..3, [150, 80, 100]);
+capacity = array1d(1..3, [300, 350, 280]);
+manpower_limit = 470000000.0;
+```
+
+MiniZinc Model:
+% Parameters
+int: K; % Number of industries
+int: T; % Number of years
+array[1..K, 1..K] of float: inputone;
+array[1..K] of float: manpowerone;
+array[1..K, 1..K] of float: inputtwo;
+array[1..K] of float: manpowertwo;
+array[1..K] of int: stock;
+array[1..K] of int: capacity;
+float: manpower_limit;
+
+% Decision Variables
+array[1..K, 1..T] of var 0..capacity[K]: produce;
+array[1..K, 1..T] of var 0..capacity[K]: buildcapa;
+array[1..K, 1..T] of var 0..capacity[K]: stockhold;
+
+% Constraints
+constraint forall(k in 1..K, t in 1..T) (
+    produce[k, t] + buildcapa[k, t] + stockhold[k, t] <= capacity[k]
+);
+
+constraint forall(k in 1..K, t in 2..T) (
+    produce[k, t] + buildcapa[k, t] + stockhold[k, t] <= produce[k, t-1] + stock[k]
+);
+
+constraint forall(k in 1..K, t in 1..T) (
+    sum(j in 1..K) (inputone[k, j] * produce[j, t]) + manpowerone[k] <= manpower_limit
+);
+
+constraint forall(k in 1..K, t in 1..T) (
+    sum(j in 1..K) (inputtwo[k, j] * buildcapa[j, t]) + manpowertwo[k] <= manpower_limit
+);
+
+% Objective
+var int: total_production = sum(k in 1..K) (produce[k, T-1] + produce[k, T]);
+solve maximize total_production;
+
+% Output
+output [ "produce: " ++ show(produce) ++ "\n" ++
+         "buildcapa: " ++ show(buildcapa) ++ "\n" ++
+         "stockhold: " ++ show(stockhold) ++ "\n" ];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

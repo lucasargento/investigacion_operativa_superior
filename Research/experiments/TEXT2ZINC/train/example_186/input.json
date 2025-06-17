@@ -1,0 +1,40 @@
+{
+  "description": "Given a set of numbers, the problem is to partition the set into two subsets such that the sum of the numbers in each subset is equal. For example, given the set {3, 1, 1, 2, 2, 1,5,2,7}, it can be partitioned into two subsets {3,2,7} and {1,1,2,1,5,2} where the sum of each subset is 12. The problem requires determining if such a partition is possible and if so, finding the partition. The problem is solved using a constraint satisfaction approach where each number in the set is assigned to one of the two subsets such that the sum of the numbers in each subset is equal.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Equal Subset Partition",
+    "domain": "Combinatorial Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "==",
+      "bool2int",
+      "constraint"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Equal Subset Partition",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "n",
+      "num_subsets",
+      "s"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "==",
+      "bool2int",
+      "constraint"
+    ]
+  }
+}

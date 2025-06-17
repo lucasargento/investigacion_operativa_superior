@@ -1,0 +1,57 @@
+{
+  "description": "This problem involves a pyramid of numbers with 5 rows. Each brick of the pyramid is the sum of the two bricks situated below it. The pyramid is structured as follows:            [ 151]                                  [  ][  ]         [40][  ][  ]       [  ][  ][  ][  ]     [ X][11][ Y][ 4][ Z]Of the three missing numbers at the base of the pyramid, the middle one is the sum of the other two (that is, Y = X + Z). The goal is to find the values of X, Y, and Z that satisfy these conditions. The pyramid is represented in the code as an array of integers, where each element is the sum of the two elements below it in the pyramid. The pyramid is also represented as a 1D array, where the index of each element corresponds to its position in the pyramid. The problem is solved when the values of X, Y, and Z are found that satisfy the conditions of the pyramid.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Pyramid Number Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "exists",
+      "assert",
+      "index_set",
+      "forall",
+      "arrays_equal",
+      "contains",
+      ">=",
+      "length",
+      "not",
+      "=",
+      "+",
+      "and"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Pyramid Number Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "num_rows",
+      "total_bricks",
+      "triangle_numbers",
+      "addition_indices",
+      "pyramid",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "exists",
+      "assert",
+      "index_set",
+      "forall",
+      "arrays_equal",
+      "contains",
+      ">=",
+      "length",
+      "not",
+      "=",
+      "+",
+      "and"
+    ]
+  }
+}

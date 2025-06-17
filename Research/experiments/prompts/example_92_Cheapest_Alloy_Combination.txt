@@ -1,0 +1,40 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 92
+- Name: Cheapest Alloy Combination
+- Domain: Manufacturing and Production
+- Objective: minimization
+
+Problem Description:
+A manufacturer wishes to produce an amount in lb of an alloy that consists of several kinds of metals. We know that by weight, the alloy we want contains a target quantity of each type of metal. Several other kinds of alloys are available at various prices and these alloys can be melted together to get the alloy we want. We know the price at which each alloy is sold per unit and the ratio of each metal in the alloys. Find the cheapest combination of quantities of alloys that reaches the target quantity of each type of metal.
+
+
+Input Data (data.dzn):
+K = 5;
+M = 2;
+AlloyQuantity = 1000;
+Target = [300, 700];
+Ratio = array2d(1..5, 1..2, [0.1, 0.9, 0.25, 0.75, 0.5, 0.5, 0.75, 0.25, 0.95, 0.05]);
+Price = [5, 4, 3, 2, 1.5];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 3800.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

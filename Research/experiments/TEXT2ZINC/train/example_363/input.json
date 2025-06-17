@@ -1,0 +1,50 @@
+{
+  "description": "The problem is to find the smallest difference between two numbers X - Y, where all the digits from 0 to 9 must be used exactly once. In other words, we need to minimize the difference between ABCDE - FGHIJ, where each letter represents a digit from 0 to 9. The difference must be positive. The problem is modeled and solved using the MiniZinc constraint programming language.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum Difference with Unique Digits",
+    "domain": "Mathematics",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "scalar_product",
+      "all_different",
+      ">"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum Difference with Unique Digits",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "X",
+      "Y",
+      "difference",
+      "allDigits"
+    ],
+    "model_data_keywords": [
+      "numDigits",
+      "halfDigits",
+      "baseValues",
+      "digits"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "scalar_product",
+      "all_different",
+      ">"
+    ]
+  }
+}

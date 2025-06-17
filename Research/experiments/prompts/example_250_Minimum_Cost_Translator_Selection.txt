@@ -1,0 +1,63 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 250
+- Name: Minimum Cost Translator Selection
+- Domain: Workforce Scheduling
+- Objective: minimization
+
+Problem Description:
+Select the combination of translators that ensures all required languages can be translated into, at the minimum possible cost. There are N translators, each with an associated cost of Cost. Each translator i is capable of translating a set of languages Languages. The objective is to meet the translation needs for M required languages, listed in RequiredLanguages.
+
+
+Input Data (data.dzn):
+The data can be converted into a ".dzn" format as follows:
+
+```minizinc
+translators = 6;
+translator_costs = [12000, 16000, 13000, 15000, 9000, 7000];
+translator_languages = [| 1, 0, 1, 0, 1, 0, 0, 0 | 
+                         | 0, 0, 0, 1, 0, 1, 0, 0 | 
+                         | 0, 1, 0, 0, 0, 1, 0, 0 | 
+                         | 1, 0, 0, 0, 1, 0, 1, 1 | 
+                         | 1, 0, 1, 1, 1, 0, 0, 0 | 
+                         | 0, 0, 1, 0, 1, 0, 0, 1 |];
+required_languages = [1, 1, 1, 1, 1, 1, 1, 1];
+```
+
+In the `translator_languages` matrix, each row represents a translator and each column represents a language. The value 1 indicates that the translator can translate the corresponding language, and 0 indicates that they cannot. The languages are ordered as follows: ['FR', 'AR', 'GE', 'RU', 'SP', 'CH', 'IT', 'PO'].
+
+MiniZinc Model:
+% Parameters
+int: translators; % Number of translators
+array[1..translators] of int: translator_costs; % Cost of each translator
+array[1..translators, 1..8] of 0..1: translator_languages; % Languages each translator can translate
+array[1..8] of 0..1: required_languages; % Required languages
+
+% Decision Variables
+array[1..translators] of var 0..1: selected_translators; % Whether each translator is selected or not
+
+% Objective
+var int: total_cost = sum(i in 1..translators) (selected_translators[i] * translator_costs[i]);
+minimize total_cost;
+
+% Constraints
+constraint forall(j in 1..8) (
+    sum(i in 1..translators) (selected_translators[i] * translator_languages[i,j]) >= required_languages[j]
+);
+
+% Output
+solve satisfy;
+output ["selected_translators: ", show(selected_translators), "\n", "total_cost: ", show(total_cost)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

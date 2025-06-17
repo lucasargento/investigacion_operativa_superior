@@ -1,0 +1,57 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 392
+- Name: Nonlinear Optimization Problem
+- Domain: Operations Research
+- Objective: maximization
+
+Problem Description:
+This is a nonlinear optimization problem. The problem is to find the values of L, w, and h that maximize the product of w and h (wh), subject to the following constraints: L, w, and h are all non-negative integers; wh is at least 625; the sum of twice w and twice h equals L; L is at most 100; and h is at least 2. The optimal solution, according to Taha's 'Operations Research', is when w equals h equals L/4.
+
+
+MiniZinc Model:
+var int: L; % >= 0;
+var int: w; % >= 0;
+var int: h; % >= 0;
+
+var int: wh = w*h;
+
+solve maximize wh;
+% solve satisfy;
+
+constraint
+  L >= 0 /\ w >= 0 /\ h >= 0 /\
+  wh >= 625 /\
+  L >= 0 /\ w >= 0 /\ h >= 0 /\
+  2*(w+h) = L /\
+  L <= 100 /\
+  h >= 2
+;
+
+
+output 
+[
+  show([L,w,h,wh]), "\n",
+  "[w,h,L/4]: ", show([w,h,L div 4])
+];
+
+Expected Output:
+{
+  "L": 100,
+  "w": 25,
+  "h": 25,
+  "_objective": 625
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

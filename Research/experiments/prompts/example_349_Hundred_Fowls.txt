@@ -1,0 +1,56 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 349
+- Name: Hundred Fowls
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Hundred Fowls Puzzle is a problem posed by a Chinese mathematician Qiujian Zhang in the late fifth and early sixth century. The problem is as follows: Assume that a cock is worth 5 coins each, a hen 3 coins, and three chicks together 1 coin, and that one buys 100 fowls with 100 coins, then how many cocks, hens and chicks are there respectively?
+
+
+MiniZinc Model:
+var 0..100: cocks; % number of cocks
+var 0..100: hens; % number of hens
+var 0..100: chicks; % number of chicks
+
+% constraints
+% chicks must be bought 3 for 1 coin
+constraint chicks mod 3 = 0; 
+% one has 100 coins
+% cocks cost 5 coins, hens cost 3 coins, 3 chicks for 1 coin
+constraint 5 * 3 * cocks + 3 * 3 * hens + chicks = 100 * 3;
+% one buys 100 fowl
+constraint cocks + hens + chicks = 100;
+
+% satisfaction
+solve satisfy;
+
+% output as json
+output [
+  "{\n",
+  "  \"cocks\": " ++ show(cocks) ++ ",\n",
+  "  \"hens\": " ++ show(hens) ++ ",\n",
+  "  \"chicks\": " ++ show(chicks) ++ "\n",
+  "}"
+];
+
+Expected Output:
+{
+  "cocks": 0,
+  "hens": 25,
+  "chicks": 75
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

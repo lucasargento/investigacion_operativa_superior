@@ -1,0 +1,54 @@
+{
+  "description": "What is the capacity expansion plan that results in the minimum cost, given the Demand in period T, the maximum oil capacity OilCap in period T, the CoalCost per unit, the NukeCost per unit, the maximum nuclear capacity MaxNuke, the lifetime of a coal plant CoalLife, and the lifetime of a nuclear plant NukeLife?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Electricity Capacity Planning",
+    "domain": "Energy",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "<=",
+      "sum",
+      "*",
+      "if",
+      "else",
+      "true",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Electricity Capacity Planning",
+    "domain": "Energy",
+    "model_var_keywords": [
+      "CoalCap",
+      "NukeCap",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "Demand",
+      "OilCap",
+      "CoalCost",
+      "NukeCost",
+      "MaxNuke",
+      "CoalLife",
+      "NukeLife"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "<=",
+      "sum",
+      "*",
+      "if",
+      "else",
+      "true",
+      "endif"
+    ]
+  }
+}

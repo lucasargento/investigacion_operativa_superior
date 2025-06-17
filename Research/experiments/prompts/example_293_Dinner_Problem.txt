@@ -1,0 +1,68 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 293
+- Name: Dinner Problem
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+# Problem Dinner
+
+My son came to me the other day and said, "Dad, I need help with a math problem."
+The problem went like this:
+ - We're going out to dinner taking 1-6 grandparents, 1-10 parents and/or 1-40 children
+ - Grandparents cost $3 for dinner, parents $2 and children $0.50
+ - There must be 20 total people at dinner, and it must cost $20
+How many grandparents, parents and children are going to dinner?
+
+## Data
+  all integrated (single problem)
+
+## Execution
+```
+  python Dinner.py
+```
+
+## Tags
+  single
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the variables
+var 1..6: grandparents;
+var 1..10: parents;
+var 1..40: children;
+
+% Define the constraints
+constraint grandparents + parents + children = 20;
+constraint 3*grandparents + 2*parents + 0.5*children = 20;
+
+% Define the objective function
+solve satisfy;
+
+% Output the solution
+output ["Number of grandparents: " ++ show(grandparents) ++ "\n" ++
+        "Number of parents: " ++ show(parents) ++ "\n" ++
+        "Number of children: " ++ show(children)];
+
+Expected Output:
+{
+  "grandparents": 1,
+  "parents": 5,
+  "children": 14
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

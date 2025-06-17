@@ -1,0 +1,104 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 518
+- Name: Divisibility by Unit Digit
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is based on a Martin Gardner problem. The task is to find how many whole numbers between 10 and 50 have the property that they are divisible by their unit digits. The unit digit of a number is the digit in the ones place. For example, the unit digit of 64 is 4, and 64 is divisible by 4. The problem is to find all such numbers between 10 and 50.
+
+
+MiniZinc Model:
+int: n = 2;
+
+% decision variables
+int: ll = 10;
+int: uu = 50;
+
+array[ll..uu] of var 0..1: x;
+% var set of ll..uu: x; % set based
+
+solve satisfy;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+   forall(i in ll..uu) (
+       i mod (i mod 10) = 0 <-> x[i] = 1 % array based
+       % i mod (i mod 10) = 0 <-> i in x     % set based
+   )
+;
+
+output 
+[
+  "sum: " ++ show(sum(x)) ++ "\n" % array based
+  % "sum: " ++ show(card(x)) ++ "\n"  % set based
+  ++ 
+  show(x) ++ "\n"
+]
+++
+[ % array based
+  if fix(x[i]) == 1 then show(i) ++ " " else "" endif
+  | i in ll..uu
+]
+;
+
+Expected Output:
+{
+  "x": [
+    0,
+    1,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    1,
+    1,
+    0,
+    0,
+    1,
+    0,
+    0
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

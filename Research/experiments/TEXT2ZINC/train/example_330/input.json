@@ -1,0 +1,42 @@
+{
+  "description": "This problem is known as Dudeney's bishop placement problem II. The problem is to place bishops on an 8x8 chessboard in such a way that every square is either occupied by a bishop or attacked by a bishop. The objective is to maximize the number of bishops placed on the board. A square is considered attacked if it is on the diagonal of a bishop. The problem is represented by two 8x8 matrices, 'x' and 'a'. 'x(i,j)' is 1 if square (i,j) is occupied by a bishop, and 0 otherwise. 'a(i,j)' is 1 if square (i,j) is attacked by a bishop, and 0 otherwise. The sum of all elements in 'x' gives the total number of bishops placed on the board. The constraints ensure that every square is either occupied or attacked, and that a square is considered attacked if it is on the diagonal of a bishop.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Dudeney's Bishop Placement Problem II",
+    "domain": "Puzzles",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "=",
+      "+",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Dudeney's Bishop Placement Problem II",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "a",
+      "total_bishops"
+    ],
+    "model_data_keywords": [
+      "size"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "=",
+      "+",
+      "!="
+    ]
+  }
+}

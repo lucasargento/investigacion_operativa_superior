@@ -1,0 +1,60 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 404
+- Name: Arcade Machine Optimization
+- Domain: Resource Allocation
+- Objective: minimization
+
+Problem Description:
+An arcade is implementing two systems , a card - based system and a coin - based system . A card - based system can accept 60 guests per hour . Conversely , a coin - based system can only accept 45 guests per hour . The card - based machine needs 6 units of electricity every hour while the coin - based machine needs only 4 units of electricity every hour . The arcade needs to be able to accept at least 1500 guests per hour but only has access to 145 units of electricity every hour . Since most guests prefer to use cards , there must be more card - based than coin - based machines . How many of each machine should be kept in the arcade to minimize the total number of machines in the arcade ?
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% number of card-based machines
+var int: card_machines;
+% number of coin-based machines
+var int: coin_machines;
+
+% number of each machine must be non-negative
+constraint card_machines >= 0;
+constraint coin_machines >= 0;
+
+% total number of guests accepted per hour must be greater than 1500
+% card machines can accept 60 guests per hour and coin machines can accept 45 guests per hour
+constraint card_machines * 60 + coin_machines * 45 >= 1500;
+
+% total units of electricity used per hour must be less than 145
+% card machines use 6 units of electricity per hour and coin machines use 4 units of electricity per hour
+constraint card_machines * 6 + coin_machines * 4 <= 145;
+
+% the number of card machines must be greater than the number of coin machines
+constraint card_machines > coin_machines;
+
+% minimize total machines
+var int: total_machines = card_machines + coin_machines;
+solve minimize total_machines;
+
+% Output
+output ["Number of card-based machines: " ++ show(card_machines) ++ "\nNumber of coin-based machines: " ++ show(coin_machines)];
+
+Expected Output:
+{
+  "card_machines": 16,
+  "coin_machines": 12,
+  "_objective": 28
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

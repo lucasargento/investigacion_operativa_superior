@@ -1,0 +1,37 @@
+{
+  "description": "The problem is based on a Martin Gardner problem. The task is to find how many whole numbers between 10 and 50 have the property that they are divisible by their unit digits. The unit digit of a number is the digit in the ones place. For example, the unit digit of 64 is 4, and 64 is divisible by 4. The problem is to find all such numbers between 10 and 50.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Divisibility by Unit Digit",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "mod",
+      "=",
+      "<->"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Divisibility by Unit Digit",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "is_divisible_by_unit_digit"
+    ],
+    "model_data_keywords": [
+      "lower_bound",
+      "upper_bound"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "mod",
+      "=",
+      "<->"
+    ]
+  }
+}

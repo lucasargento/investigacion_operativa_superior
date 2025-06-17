@@ -1,0 +1,37 @@
+{
+  "description": "The problem is about finding permutations and their corresponding permutation numbers. A permutation number is the number of transpositions in a permutation. The problem requires to find an array 'x' of size 'n' such that all elements in 'x' are different and satisfy a certain permutation number. The permutation number is calculated by counting the number of elements in the array 'x' that are lower than the current element for each element in the array. The problem also requires to determine if the permutation number is even or odd. The solution should output the array 'x', the permutation number, and whether the permutation number is even or odd.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Permutation Number and Parity",
+    "domain": "Combinatorics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "permutation_number",
+      "mod"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Permutation Number and Parity",
+    "domain": "Combinatorics",
+    "model_var_keywords": [
+      "x",
+      "perm_num",
+      "even_odd",
+      "transpositions"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "permutation_number",
+      "mod"
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 236
+- Name: Food Manufacturing Optimization
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+A company is dealing with I different items over a planning horizon of M months. The buy price of item i in month m is given by BuyPrice. All items can be sold after refining for the same SellPrice. Each item is either a vegetable or not, which is indicated by IsVegetable. There is a limited refining capability where at most MaxVegetableRefiningPerMonth of vegetables and MaxNonVegetableRefiningPerMonth of non-vegetables can be refined in any given month. The company has a storage size of StorageSize and incurs a StorageCost for storing items per month. The refined products must fall within a hardness range of MinHardness to MaxHardness, where the hardness of item i is Hardness. Initially, the storage contains an amount of InitialAmount of items. What buying, storing, and manufacturing policy should the company pursue in order to maximize profit?
+
+
+Input Data (data.dzn):
+M = 6;
+I = 5;
+BuyPrice = [|110, 120, 130, 110, 115
+            |130, 130, 110, 90, 115
+            |110, 140, 130, 100, 95
+            |120, 110, 120, 120, 125
+            |100, 120, 150, 110, 105
+            |90, 100, 140, 80, 135|];
+SellPrice = 150;
+IsVegetable = [true, true, false, false, false];
+MaxVegetableRefiningPerMonth = 200;
+MaxNonVegetableRefiningPerMonth = 250;
+StorageSize = 1000;
+StorageCost = 5;
+MinHardness = 3;
+MaxHardness = 6;
+Hardness = [8.8, 6.1, 2.0, 4.2, 5.0];
+InitialAmount = 500;
+
+MiniZinc Model:
+% Parameters
+int: M; % Number of months
+int: I; % Number of items
+array[1..M, 1..I] of int: BuyPrice; % Buy price of item i in month m
+int: SellPrice; % Sell price of all items
+array[1..I] of bool: IsVegetable; % Whether item i is a vegetable
+int: MaxVegetableRefiningPerMonth; % Maximum vegetable refining per month
+int: MaxNonVegetableRefiningPerMonth; % Maximum non-vegetable refining per month
+int: StorageSize; % Storage size
+int: StorageCost; % Storage cost per month
+float: MinHardness; % Minimum hardness of the product
+float: MaxHardness; % Maximum hardness of the product
+array[1..I] of float: Hardness; % Hardness of item i
+int: InitialAmount; % Initial amount of items in storage
+
+% Decision Variables
+array[1..M, 1..I] of var 0..StorageSize: buy; % Amount of item i to buy in month m
+array[1..M, 1..I] of var 0..StorageSize: refine; % Amount of item i to refine in month m
+array[1..M, 1..I] of var 0..StorageSize: storage; % Amount of item i to store in month m
+
+% Objective: Maximize profit
+var int: profit;
+constraint profit = sum(m in 1..M, i in 1..I) ((SellPrice - BuyPrice[m,i] - StorageCost) * refine[m,i]) - sum(m in 1..M, i in 1..I) (BuyPrice[m,i] * buy[m,i]);
+solve maximize profit;
+
+% Constraints
+% Initial and final storage amounts
+constraint forall(i in 1..I) (storage[1,i] = InitialAmount);
+constraint forall(i in 1..I) (storage[M,i] = InitialAmount);
+
+% Storage capacity
+constraint forall(m in 1..M, i in 1..I) (storage[m,i] <= StorageSize);
+
+% Refining capacity
+constraint forall(m in 1..M) (sum(i in 1..I where IsVegetable[i]) (refine[m,i]) <= MaxVegetableRefiningPerMonth);
+constraint forall(m in 1..M) (sum(i in 1..I where not IsVegetable[i]) (refine[m,i]) <= MaxNonVegetableRefiningPerMonth);
+
+% Hardness range
+constraint forall(m in 1..M) (sum(i in 1..I) (Hardness[i] * refine[m,i]) / sum(i in 1..I) (refine[m,i]) >= MinHardness);
+constraint forall(m in 1..M) (sum(i in 1..I) (Hardness[i] * refine[m,i]) / sum(i in 1..I) (refine[m,i]) <= MaxHardness);
+
+% Storage update
+constraint forall(m in 1..M-1, i in 1..I) (storage[m+1,i] = storage[m,i] + buy[m,i] - refine[m,i]);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,68 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 479
+- Name: Distinct and Consecutive Variables
+- Domain: Constraint Satisfaction
+- Objective: satisfaction
+
+Problem Description:
+The problem is about enforcing two constraints on a collection of variables. The first constraint is that all variables in the collection must take distinct values. The second constraint is that the difference between the largest and the smallest values of the variables collection must be equal to the number of variables minus one, which means there are no holes at all within the used values. An example of a valid collection of variables would be (5,4,3,6). The problem is modeled in MiniZinc, a high-level constraint modeling language.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 4;
+int: m = 10;
+
+array[1..n] of var 1..m: x;
+
+solve satisfy;
+
+predicate all_different_consecutive_values(array[int] of var int: variables) =
+
+   alldifferent(variables) 
+   /\
+   max(variables) - min(variables) = length(variables) - 1
+;
+
+% copy 
+predicate cp1d(array[int] of int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+    forall(i in index_set(x)) (
+        x[i] = y[i]
+    )
+  )
+; 
+
+
+constraint
+  % cp1d([5,4,3,6], x) /\
+  all_different_consecutive_values(x)
+;
+
+output [ "x: " ++ show(x) ++ "\n" ];
+
+Expected Output:
+{
+  "x": [
+    4,
+    3,
+    2,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

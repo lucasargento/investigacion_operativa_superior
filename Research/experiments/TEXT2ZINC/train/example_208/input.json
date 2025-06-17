@@ -1,0 +1,44 @@
+{
+  "description": "How many batches of each part should the manufacturer produce each month to maximize profit, taking into account the number of machines (M), the number of types of parts (P), the time required to produce a batch on machine m for part p (TimeRequired), the cost of operating machine m for a month (MachineCosts), the time each machine m is available for production each month (Availability), the price at which part p can be sold (Prices), and the setup time required before producing a batch of part p (SetupTime)?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Auto Parts Manufacturer Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "batches",
+      "setup_flags",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "time_required",
+      "machine_costs",
+      "availability",
+      "prices",
+      "setup_time"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "*"
+    ]
+  }
+}

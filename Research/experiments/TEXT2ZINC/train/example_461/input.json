@@ -1,0 +1,48 @@
+{
+  "description": "The problem is about implementing the global constraint cardinality_atleast in MiniZinc. The cardinality_atleast constraint is defined as the minimum number of times that a value from a given set of values is taken by the variables of a given collection. The constraint holds if the first argument, ATLEAST, is assigned to the minimum number of times that the values from the given set occur in the collection. For example, given the values 3 and 8 and the collection <3, 3, 8>, the values 3 and 8 are respectively used 2, and 1 times. The cardinality_atleast constraint holds since its first argument ATLEAST = 1 is assigned to the minimum number of times that values 3 and 8 occur in the collection <3, 3, 8>.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Cardinality Atleast Constraint",
+    "domain": "Constraints",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "cardinality_atleast",
+      "arrays_equal",
+      "forall",
+      "sum",
+      "bool2int",
+      "=",
+      ">=",
+      "assert",
+      "index_set"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Cardinality Atleast Constraint",
+    "domain": "Constraints",
+    "model_var_keywords": [
+      "num_variables",
+      "num_values",
+      "variables",
+      "values",
+      "min_occurrences"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "cardinality_atleast",
+      "arrays_equal",
+      "forall",
+      "sum",
+      "bool2int",
+      "=",
+      ">=",
+      "assert",
+      "index_set"
+    ]
+  }
+}

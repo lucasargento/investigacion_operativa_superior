@@ -1,0 +1,44 @@
+{
+  "description": "A lab has 20000 mg of mRNA anti - viral available to make children 's and adult vaccines . Each children 's vaccine contains 50 mg of mRNA and 50 mg of fever suppressant . Each adult vaccine contains 75 mg of mRNA and 75 mg of fever suppressant . Since adult vaccines are more essential , at least 70 % of vaccines should be adult vaccines . However , at least 50 children 's vaccines should be made . How many of each vaccine should be made to minimize the amount of fever suppressant used ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Vaccine Production Optimization",
+    "domain": "Healthcare",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Vaccine Production Optimization",
+    "domain": "Healthcare",
+    "model_var_keywords": [
+      "children_vaccines",
+      "adult_vaccines",
+      "total_fever_suppressant"
+    ],
+    "model_data_keywords": [
+      "mRNA_Available",
+      "mRNA_Children_Vaccine",
+      "mRNA_Adult_Vaccine",
+      "Fever_Suppressant_Children_Vaccine",
+      "Fever_Suppressant_Adult_Vaccine",
+      "Min_Children_Vaccines",
+      "Min_Adult_Vaccine_Percentage"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">=",
+      "*",
+      "+"
+    ]
+  }
+}

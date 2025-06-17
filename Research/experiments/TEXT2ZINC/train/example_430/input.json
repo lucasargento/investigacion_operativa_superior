@@ -1,0 +1,52 @@
+{
+  "description": "The capacitated warehouse location problem is the problem of locating NumberOfLocations warehouses which have to service NumberOfCustomers customers, at minimum cost. Each customer has an associated demand CustomerDemand. There are constraints on the total demand that can be met from a warehouse, as specified by WarehouseCapacity. Costs are incurred when allocating service to customers from warehouses ServiceAllocationCost, and warehouses have a fixed operating cost WarehouseFixedCost. Additionally, there is a lower limit MinimumDemandFromWarehouse on the amount of demand that a warehouse must meet if it is opened, as well as constraints on the minimum MinimumOpenWarehouses and maximum MaximumOpenWarehouses number of warehouses that can be operational.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Capacitated Warehouse Location",
+    "domain": "Supply Chain Management",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "sum",
+      ">=",
+      "<=",
+      "forall",
+      "=",
+      "*",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Capacitated Warehouse Location",
+    "domain": "Supply Chain Management",
+    "model_var_keywords": [
+      "WarehouseOpen",
+      "ServiceAllocation",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "NumberOfLocations",
+      "NumberOfCustomers",
+      "CustomerDemand",
+      "ServiceAllocationCost",
+      "WarehouseCapacity",
+      "MinimumDemandFromWarehouse",
+      "MinimumOpenWarehouses",
+      "MaximumOpenWarehouses",
+      "WarehouseFixedCost"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "sum",
+      ">=",
+      "<=",
+      "forall",
+      "=",
+      "*",
+      "<="
+    ]
+  }
+}

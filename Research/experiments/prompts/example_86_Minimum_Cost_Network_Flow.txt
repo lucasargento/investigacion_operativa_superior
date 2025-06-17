@@ -1,0 +1,43 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 86
+- Name: Minimum Cost Network Flow
+- Domain: Network and Security
+- Objective: minimization
+
+Problem Description:
+Consider a communication network consisting of nodes. These nodes are con­nected by communication links. We are given a collection of one-way transmission links, described by a starting and an ending node. Each communication link can carry up to its capacity in data. There is a positive cost per unit of data transmitted along each link. Further, there are pairs of nodes between which data which is generated at the source node and must be transmitted to the destination node. Data with the same origin and destination may be split and transmitted along different paths. Find paths along which all data reach their intended destinations, while minimizing the total cost.
+
+
+Input Data (data.dzn):
+NumLinks = 4;
+StartNode = [1, 2, 2, 3];
+EndNode = [2, 3, 4, 4];
+Capacity = [50, 40, 60, 50];
+Cost = [2, 3, 1, 1];
+NumFlowReqs = 2;
+SourceNode = [1, 2];
+DestinationNode = [4, 3];
+DataRate = [40, 30];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 190.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,43 @@
+{
+  "description": "---\nTitle:    Water Bucket Problem \nProposer: Toby Walsh\nCategory: \n    - Bin packing\n    - Partitioning and related problems\n---\n\n\nGiven the promise of SAT and CSP techniques for solving \"classical\" planning problems, I decided to propose this puzzle.\n\nYou are given an 8 pint bucket of water, and two empty buckets which can contain 5 and 3 pints respectively. You are required to divide the water into two by pouring water between buckets (that is, to end up with 4 pints in the 8 pint bucket, and 4 pints in the 5 pint bucket).\n\nWhat is the minimum number of transfers of water between buckets? The challenge is to solve this as a planning problem (encoded into satisfiability or constraint satisfaction) with an efficiency approaching (or exceeding) a simple [enumeration](models/enumerate.pl).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Water Bucket Problem",
+    "domain": "Bin packing, Partitioning and related problems",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Water Bucket Problem",
+    "domain": "Bin packing, Partitioning and related problems",
+    "model_var_keywords": [
+      "state",
+      "goal_step"
+    ],
+    "model_data_keywords": [
+      "nb_buckets",
+      "max_step",
+      "buckets",
+      "steps",
+      "capacity",
+      "start",
+      "goal"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "!="
+    ]
+  }
+}

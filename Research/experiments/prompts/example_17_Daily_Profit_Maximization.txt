@@ -1,0 +1,45 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 17
+- Name: Daily Profit Maximization
+- Domain: Economic and Business Decisions
+- Objective: maximization
+
+Problem Description:
+A company produces several kinds of products. Each product of a given type requires a given number of hours of assembly labor, hours of testing, and raw materials (measured in $). Given the current personnel of the company, there is a limit on the number of hours of assembly labor and hours of testing each day. Each type of product has a price. The company also has an upper limit on the number of hours of overtime assembly labor that can be scheduled at an overtime rate in hours. Suppose that a raw material supplier provides a percentage discount if the daily bill is above a given $ threshold. Maximize the daily profit of the company, which is the total revenue minus the total cost.
+
+
+Input Data (data.dzn):
+N = 2;
+AssemblyHour = [0.25, 0.3333];
+TestingHour = [0.125, 0.3333];
+MaterialCost = [1.2, 0.9];
+MaxAssembly = 10;
+MaxTesting = 70;
+Price = [9, 8];
+MaxOvertimeAssembly = 50;
+OvertimeAssemblyCost = 5;
+MaterialDiscount = 10;
+DiscountThreshold = 300;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 339000.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

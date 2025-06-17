@@ -1,0 +1,35 @@
+{
+  "description": "The given MiniZinc code defines four predicates to find the position of the maximum and minimum elements in an array. The array 'x' is of size 'n' and contains elements from 1 to 'n'. The variable 'pos' is the position of the maximum or minimum element in the array. The four predicates are: \n\n1. argmax_gt: This predicate checks if 'pos' is the position of the maximum element in the array. There can be only one maximum value.\n\n2. argmax_ge: This predicate checks if 'pos' is the position of the maximum element(s) in the array. There can be multiple maximum values.\n\n3. argmin_lt: This predicate checks if 'pos' is the position of the minimum element in the array. There can be only one minimum value.\n\n4. argmin_le: This predicate checks if 'pos' is the position of the minimum element(s) in the array. There can be multiple minimum values.\n\nThe problem is to find a solution that satisfies all the constraints, i.e., all elements in the array 'x' are different, 'pos' is the position of the maximum element, and 2 is the position of the minimum element in the array.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Max Min Position in Array",
+    "domain": "Array Operations",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent",
+      "is_max_position",
+      "is_min_position"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Max Min Position in Array",
+    "domain": "Array Operations",
+    "model_var_keywords": [
+      "x",
+      "pos"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "alldifferent",
+      "is_max_position",
+      "is_min_position"
+    ]
+  }
+}

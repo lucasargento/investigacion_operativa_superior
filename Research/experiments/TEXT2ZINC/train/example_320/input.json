@@ -1,0 +1,40 @@
+{
+  "description": "The problem is a puzzle known as 'The Fifth Trial' from Smullyan, R., (1991), The Lady or The Tiger, Oxford University Press. The puzzle involves two doors and two prizes (1 = Lady, 2 = Tiger). Each door hides one prize. The puzzle is represented by two sets, D (doors) and P (prizes), and two arrays, x and t. The array x[i,j] is 1 if door i hides prize j, else 0. The array t[i] is 1 if the statement on door i is true, else 0. The constraints of the problem are as follows: each door hides 1 prize, if door i hides prize i then statement i is true else false, if the statement on door 1 is true [i.e. x[1,1]+x[2,1]>=2] then set t[1] = 1, else t[1] = 0, and if the statement on door 2 is true then set t[2] = 1, else t[2] = 0. The goal is to find a configuration of prizes behind doors and truth values of statements that satisfies all these constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "The Fifth Trial Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "The Fifth Trial Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "t"
+    ],
+    "model_data_keywords": [
+      "door",
+      "prize",
+      "D",
+      "P"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">="
+    ]
+  }
+}

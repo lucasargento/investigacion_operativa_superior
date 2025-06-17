@@ -1,0 +1,37 @@
+{
+  "description": "The Clock Triplet Problem, originally posed by Dean Clark and presented by Martin Gardner, involves the twelve numbers on the face of a clock. The task is to rearrange the numbers (keeping them in a circle) so no triplet of adjacent numbers has a sum higher than 21. This is the smallest value that the highest sum of a triplet can have. The problem is to find such an arrangement of numbers. The numbers are represented as an array of variables 'x' where each element can take a value from 1 to 12. The sum of the triplets is represented by the variable 'triplet_sum'. The constraints ensure that all numbers are different, the sum of any triplet of adjacent numbers is less than or equal to 'triplet_sum', and the number 12 is at the 0th position of the array. The problem is to find a satisfying assignment for the variables that meets all the constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Clock Triplet Problem",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "<=",
+      "+",
+      "forall"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Clock Triplet Problem",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "clock_numbers",
+      "max_triplet_sum"
+    ],
+    "model_data_keywords": [
+      "Clock_Numbers"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "<=",
+      "+",
+      "forall"
+    ]
+  }
+}

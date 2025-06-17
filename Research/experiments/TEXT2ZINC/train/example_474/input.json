@@ -1,0 +1,45 @@
+{
+  "description": "The problem is about arranging k-dimensional objects in a way that no two objects overlap. Each object is defined by a shape, which is a set of rectangles. Each rectangle in a shape is defined by its size in each dimension and its offset from the base position of the object. The base position of each object and the shape used by each object are decision variables. The problem also involves defining the lower and upper limits for each dimension. The objective is to minimize the sum of the upper limits. The problem is constrained such that each object must use a shape from a specific group of shapes. The problem is illustrated with an example where the objects are 2-dimensional shapes defined by a set of rectangles. The shapes are grouped into three groups, each group representing a different type of shape. The problem is to arrange these shapes in a 2-dimensional space such that no two shapes overlap and the sum of the upper limits in each dimension is minimized.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "K-Dimensional Object Arrangement",
+    "domain": "Geometry",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "geost_bb",
+      "forall",
+      "in"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "K-Dimensional Object Arrangement",
+    "domain": "Geometry",
+    "model_var_keywords": [
+      "x",
+      "kind",
+      "lower",
+      "upper",
+      "sum_upper"
+    ],
+    "model_data_keywords": [
+      "num_dimensions",
+      "num_shapes",
+      "num_rectangles",
+      "rectangle_size",
+      "rectangle_offset",
+      "shape",
+      "num_shape_groups",
+      "shape_groups"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "geost_bb",
+      "forall",
+      "in"
+    ]
+  }
+}

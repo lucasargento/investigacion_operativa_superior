@@ -1,0 +1,37 @@
+{
+  "description": "This problem is taken from the Numerica book, page 21. The problem is to find two real numbers, x[1] and x[2], such that the following two conditions are satisfied: 1) The sum of the squares of x[1] and x[2] is equal to 1. 2) The square of x[1] is equal to x[2]. The search space for the variables x[1] and x[2] is from -10^8 to 10^8. The problem is to find all solutions that satisfy these conditions. The problem also includes an optional additional constraint that x[1] must be greater than or equal to 0.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Numerica Problem",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "=",
+      "+",
+      "*",
+      "pow"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Numerica Problem",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "lower_bound",
+      "upper_bound"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "=",
+      "+",
+      "*",
+      "pow"
+    ]
+  }
+}

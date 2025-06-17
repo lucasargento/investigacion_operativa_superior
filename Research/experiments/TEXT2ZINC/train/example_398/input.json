@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about calculating mortgage payments over a certain time period. Given a time period (T), an interest rate (I), and a repayment amount (R), the goal is to calculate the principal amount (P) of the mortgage. The mortgage is represented as an array where each element represents the remaining mortgage amount after each time period. The mortgage amount for each time period is calculated as the previous mortgage amount plus the interest on the previous mortgage amount minus the repayment amount. The problem can also be used to calculate the interest rate or the repayment amount given the other two variables. The goal is to minimize the principal amount.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Mortgage Payment Calculation",
+    "domain": "Finance",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "+",
+      "-",
+      "*",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Mortgage Payment Calculation",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "P",
+      "I",
+      "R",
+      "mortgage"
+    ],
+    "model_data_keywords": [
+      "T"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "+",
+      "-",
+      "*",
+      ">="
+    ]
+  }
+}

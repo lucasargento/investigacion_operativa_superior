@@ -1,0 +1,43 @@
+{
+  "description": "The problem is about finding the minimum and maximum values in a set. Given a set S of size 4, with elements ranging from 1 to 10, the task is to find the minimum and maximum values in the set. The minimum value 'mn' is defined as a value that is in the set and for all elements 'e' in the set, 'mn' is less than or equal to 'e'. Similarly, the maximum value 'mx' is defined as a value that is in the set and for all elements 'e' in the set, 'mx' is greater than or equal to 'e'. The goal is to satisfy these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum and Maximum in Set",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "is_min_of_set",
+      "is_max_of_set",
+      "card",
+      "=",
+      "<=",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum and Maximum in Set",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "S",
+      "mn",
+      "mx"
+    ],
+    "model_data_keywords": [
+      "setSize",
+      "elementRange"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "is_min_of_set",
+      "is_max_of_set",
+      "card",
+      "=",
+      "<=",
+      ">="
+    ]
+  }
+}

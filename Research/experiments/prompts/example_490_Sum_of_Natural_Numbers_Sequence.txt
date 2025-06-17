@@ -1,0 +1,66 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 490
+- Name: Sum of Natural Numbers Sequence
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is about identifying the sequence and sum of N natural increasing numbers. The sequence is written in groups: 1; 2,3; 4,5,6; 7,8,9,10; ... and the task is to add the groups. This is also known as the 'sum of the next n natural numbers'. The sequence M(n) of magic constants for n X n magic squares (numbered 1 through n^2) from n=3 begins M(n) = 15, 34, 65, 111, 175, 260, .. The number of solutions (without the 'identify constraint') for n is n*n-n. The problem is to find an array of n natural numbers (x) and their sum (z) such that all numbers in x are different, x is in increasing order, the difference between the last and first number in x is n-1, and the sum z equals n*(n*n + 1) / 2. The problem is inspired by the 'farmer and cows' problem where n=9.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 9; % the farmer and cows problem
+
+% decision variables
+array[1..n] of var 1..n*n: x;
+var 0..n*n*n: z = sum(x);
+
+
+% solve satisfy;
+solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+   alldifferent(x) /\
+   increasing(x) /\
+   x[n] - x[1] = n-1
+
+   % "identify constraint"
+   % identify the sequence for the "farmer and cows" solution
+   /\ z = n*(n*n + 1) div 2
+;
+
+output [
+  "z: " ++ show(z) ++ "\n" ++
+  "x: " ++ show(x) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

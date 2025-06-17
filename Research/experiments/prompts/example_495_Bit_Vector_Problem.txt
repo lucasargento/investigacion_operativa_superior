@@ -1,0 +1,134 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 495
+- Name: Bit Vector Problem
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is a bit vector problem. Alice picks a number and multiplies it by two. She then inverts the last 4 bits of the obtained result. The problem is to find the number that Alice picked, if the obtained result is the same as the initial pick. The problem is solved using MiniZinc, a medium-level constraint modelling language. The model gives multiple solutions for different bit lengths. For example, for a bit length of 16, the model gives 2048 solutions. The problem is to find all such numbers that satisfy the given conditions.
+
+
+MiniZinc Model:
+int: bits = 16;
+
+array[1..bits] of var 0..1: num_x;
+var int: num;
+
+array[1..bits] of var 0..1: num2_x;
+var int: num2;
+
+array[1..bits] of var 0..1: num3_x;
+var int: num3;
+
+
+predicate toNum(array[int] of var int: a, var int: n,  float: base) =
+          let { int: len = length(a) }
+          in
+          n = sum(i in 1..len) (
+            ceil(pow(base, int2float(len-i))) * a[i]
+          )
+          /\ forall(i in 1..len) (a[i] >= 0)
+;
+
+
+% solve satisfy;
+solve :: int_search(num_x ++ num2_x ++ num3_x, smallest, indomain_min, complete) satisfy;
+
+constraint
+   toNum(num_x, num, 2.0) 
+   /\
+   num2 = num*2
+   /\
+   toNum(num2_x, num2, 2.0)
+   /\
+   toNum(num3_x, num3, 2.0)
+   /\
+   forall(i in bits-3..bits) (
+      num3_x[i] = 1 <-> num2_x[i] = 0
+   )
+   /\
+   num = num3
+;
+
+output [
+  "num : " ++ show(num)  ++ " num_x : " ++ show(num_x)  ++ "\n" ++
+  "num2: " ++ show(num2) ++ " num2_x: " ++ show(num2_x) ++ "\n" ++
+  "num3: " ++ show(num3) ++ " num3_x: " ++ show(num3_x) ++ "\n"
+]
+ ++ ["\n"]
+;
+
+Expected Output:
+{
+  "num_x": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1
+  ],
+  "num": 5,
+  "num2_x": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "num2": 10,
+  "num3_x": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    1
+  ],
+  "num3": 5
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

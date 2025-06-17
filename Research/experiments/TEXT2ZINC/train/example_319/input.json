@@ -1,0 +1,37 @@
+{
+  "description": "This problem is known as Tommy's Birthday Coins puzzle. The problem is to find the number of each type of coin Tommy received on his birthday. There are three types of coins, with values of 30, 12, and 6. The total value of all coins Tommy received is 306, and the total number of coins he received is 15. Each type of coin must be represented at least once. The goal is to determine how many of each type of coin Tommy received.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Tommy's Birthday Coins Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Tommy's Birthday Coins Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "num_coin_types",
+      "CoinTypes",
+      "num_coins",
+      "coin_values",
+      "total_value",
+      "total_coins"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "sum",
+      "=",
+      "*"
+    ]
+  }
+}

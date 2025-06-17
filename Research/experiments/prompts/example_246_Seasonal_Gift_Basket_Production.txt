@@ -1,0 +1,80 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 246
+- Name: Seasonal Gift Basket Production
+- Domain: Production Planning
+- Objective: maximization
+
+Problem Description:
+How much regular and overtime labor should be utilized each week to assemble the baskets to maximize the profit over the season? The costs for regular and overtime labor are RegularCost and OvertimeCost, respectively. Each basket requires AssemblyTime to assemble, and the material cost per basket is MaterialCost. Baskets are sold at SellingPrice, with a holding cost of HoldingCost and a salvage value of SalvageValue at the end of the season. For each week w, the demand for baskets is Demand, with available regular and overtime labor given by RegularLabor and OvertimeLabor respectively.
+
+
+Input Data (data.dzn):
+regular_cost = 30;
+overtime_cost = 45;
+assembly_time = 0.4;
+material_cost = 25;
+selling_price = 65;
+holding_cost = 4;
+salvage_value = 30;
+demand = [700, 1500, 2800, 1800];
+regular_labor = [450, 550, 600, 600];
+overtime_labor = [40, 200, 320, 160];
+
+MiniZinc Model:
+% Parameters
+int: regular_cost;
+int: overtime_cost;
+float: assembly_time;
+int: material_cost;
+int: selling_price;
+int: holding_cost;
+int: salvage_value;
+array[1..4] of int: demand;
+array[1..4] of int: regular_labor;
+array[1..4] of int: overtime_labor;
+
+% Variables
+array[1..4] of var 0..regular_labor[i]: regular_used;
+array[1..4] of var 0..overtime_labor[i]: overtime_used;
+array[1..4] of var 0..demand[i]: regular_baskets;
+array[1..4] of var 0..demand[i]: overtime_baskets;
+array[1..4] of var 0..sum(i in 1..4)(regular_baskets[i] + overtime_baskets[i]): inventory;
+var int: total_profit;
+
+% Constraints
+constraint forall(i in 1..4) (
+    regular_used[i] <= regular_labor[i] / assembly_time
+    /\ overtime_used[i] <= overtime_labor[i] / assembly_time
+    /\ regular_baskets[i] + overtime_baskets[i] >= demand[i]
+    /\ regular_baskets[i] <= regular_used[i] * assembly_time
+    /\ overtime_baskets[i] <= overtime_used[i] * assembly_time
+);
+
+constraint forall(i in 2..4) (
+    inventory[i] = inventory[i-1] + regular_baskets[i] + overtime_baskets[i] - demand[i]
+);
+
+constraint inventory[1] = regular_baskets[1] + overtime_baskets[1] - demand[1];
+
+% Objective
+solve maximize total_profit = sum(i in 1..4) (
+    selling_price * (regular_baskets[i] + overtime_baskets[i])
+    - regular_cost * regular_used[i]
+    - overtime_cost * overtime_used[i]
+    - material_cost * (regular_baskets[i] + overtime_baskets[i])
+    - holding_cost * inventory[i]
+) + salvage_value * inventory[4];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

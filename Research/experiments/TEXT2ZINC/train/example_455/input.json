@@ -1,0 +1,50 @@
+{
+  "description": "The problem is about scheduling tasks within a sliding time window. The tasks are represented as a collection, each with an origin and duration. The sliding time window is defined by a start time and a window size. The sum of the intersections of all the tasks with the interval [START, START+WINDOW_SIZE-1] should be less than or equal to a given limit. An intersection here refers to the duration of a task that falls within the time window. The goal is to find a schedule that satisfies these constraints. For example, given a window size of 9, a limit of 6, and tasks with origins and durations of (10,3), (5,1), and (6,2), the intersections of these tasks with the interval [5, 13] are 3, 1, and 2 respectively. The sum of these intersections (3+1+2) does not exceed the limit of 6, so the schedule is valid.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Sliding Time Window Task Scheduling",
+    "domain": "Scheduling",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "assert",
+      "index_set_1of2",
+      "index_set_2of2",
+      "array2d",
+      "sliding_time_window_from_start",
+      "copy_2d_array"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Sliding Time Window Task Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "num_tasks",
+      "max_time",
+      "tasks",
+      "window_size",
+      "limitx",
+      "start_time",
+      "occupied"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "assert",
+      "index_set_1of2",
+      "index_set_2of2",
+      "array2d",
+      "sliding_time_window_from_start",
+      "copy_2d_array"
+    ]
+  }
+}

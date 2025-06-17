@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 411
+- Name: Minimize Pollution in Cow Transportation
+- Domain: Transportation
+- Objective: minimization
+
+Problem Description:
+A farmer decides to move his cows to a nearby farm using helicopters and trucks . A helicopter can take 3 cows per trip and creates 5 units of pollution . A truck can take 7 cows per trip and creates 10 units of pollution . The farmer needs to transport 80 cows and he only has enough money for at most 8 truck trips . How many of each type of trip should be taken to minimize the total amount of pollution produced ?
+
+
+MiniZinc Model:
+var int: helicopters; 
+% number of truck trips
+var int: trucks;
+
+% number of trips are non-negative
+constraint helicopters >= 0;
+constraint trucks >= 0;
+
+% the farmer needs to transport 80 cows
+% a helicopter can take 3 cows per trip and a truck can take 7 cows per trip
+constraint 3*helicopters + 7*trucks >= 80;
+
+% helicopter trips cause 5 units of pollution and truck trips cause 10 units of pullution
+var int: pollution = 5*helicopters + 10*trucks;
+
+% he only has enough money for at most 8 truck trips
+constraint trucks <= 8;
+
+% minimize pollution
+solve minimize pollution;
+
+% Output the solution
+output ["Number of helicopter trips: " ++ show(helicopters) ++ "\n" ++ "Number of truck trips: " ++ show(trucks)];
+
+Expected Output:
+{
+  "helicopters": 8,
+  "trucks": 8,
+  "_objective": 120
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

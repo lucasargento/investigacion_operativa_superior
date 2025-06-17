@@ -1,0 +1,42 @@
+{
+  "description": "The problem is about generating balanced brackets of size m*2 using MiniZinc. A balanced bracket is a string that consists of only brackets, which can be either open '[' or closed ']', and is balanced if it starts with an open bracket, ends with a closed bracket, and at any point in the string, the number of open brackets is greater than or equal to the number of closed brackets. The number of solutions generated for m follows the Catalan numbers sequence. The model uses an array x of size n (which is m*2) where each element can be either 0 (representing an open bracket) or 1 (representing a closed bracket), and an array c of size n which is a counter (cumulative) that increments by 1 if the corresponding element in x is 0 (open bracket) and decrements by 1 if it is 1 (closed bracket). The model aims to find a solution that satisfies these constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Balanced Brackets Generation",
+    "domain": "Combinatorial Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "+",
+      "/\\",
+      "int_search"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Balanced Brackets Generation",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "x",
+      "c"
+    ],
+    "model_data_keywords": [
+      "m",
+      "n",
+      "s",
+      "t"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "+",
+      "/\\",
+      "int_search"
+    ]
+  }
+}

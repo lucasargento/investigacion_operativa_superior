@@ -1,0 +1,47 @@
+{
+  "description": "The problem is to construct the largest possible rectangle out of line segments of given lengths. The lengths can be added but not broken in between. The goal is to maximize the area of the rectangle. For example, given an array of lengths [4,2,4,4,6,8], the best we can do is make a rectangle of sides 8 and 6, giving an area of 8 * 6 = 48. The problem is to determine on which side each segment should be placed to achieve the maximum area. The constraints are that the upper and lower sides of the rectangle must be of the same length, and the left and right sides must also be of the same length. The problem is solved using integer programming, with the decision variable being the assignment of segments to sides, and the objective function being the area of the rectangle.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximum Rectangle Area from Segments",
+    "domain": "Geometry",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "=",
+      "maximize",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximum Rectangle Area from Segments",
+    "domain": "Geometry",
+    "model_var_keywords": [
+      "side_sums",
+      "num_segments_on_side",
+      "segment_assignment",
+      "area"
+    ],
+    "model_data_keywords": [
+      "num_segments",
+      "segment_lengths",
+      "num_sides"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "=",
+      "maximize",
+      "<=",
+      "*"
+    ]
+  }
+}

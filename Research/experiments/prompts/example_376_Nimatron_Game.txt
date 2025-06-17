@@ -1,0 +1,185 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 376
+- Name: Nimatron Game
+- Domain: Game Theory
+- Objective: minimization
+
+Problem Description:
+The problem is a variant of the game of Nim, known as Nimatron. The game is played with a number of heaps, each containing a certain number of items. Two players take turns removing items from the heaps, with the goal of forcing the other player to take the last item. In this variant, the maximum number of heaps that can be changed in a move is specified by the parameter 'k'. If 'k' is greater than 1, the game becomes Moore's game. The maximum number allowed in any heap is determined by the parameter 'col', which represents the columns for binary representation of position after move. The goal of the problem is to compute a move to a safe position, if available. A position is considered safe if it is already in a winning position, i.e., a position from which the player can always win the game regardless of the opponent's moves. The problem is to minimize the number of heaps changed. If the solution is zero, then the current position is already safe.
+
+
+MiniZinc Model:
+int: heap = 5; 
+
+% columns for binary representation of position after move
+int: col = 4;  
+
+% maximum number of heaps to change (if k>1 then Moore's game) ! number of squares per side
+int: k = 1; 
+
+% maximum number allowed in any heap
+int: nmax = ceil(pow(2.0,int2float(col-1)));
+
+% number in each heap before move;
+array[1..heap] of var int: n; 
+
+
+% variables
+% binary values of position after move
+array[1..heap, 1..col] of var 0..1: x ; 
+
+% 1 if heap changed, 0 otherwise
+array[1..heap] of var 0..1: d; 
+
+% number taken from heap
+array[1..heap] of var int: s; 
+
+% number in each heap after move
+array[1..heap] of var int: m;
+
+% dummy variables for winning position test 
+array[1..col] of var int: w; 
+
+% number of heaps changed
+var int: heapch = sum(i in 1..heap) (d[i]);
+
+% minimise number of heaps changed - 
+% if solution is zero then current position already safe
+solve minimize heapch;
+
+
+constraint
+  forall(i in 1..heap) (
+     s[i] >= 0
+     /\
+     m[i] >= 0
+  )
+  /\
+  forall(i in 1..col) (
+     w[i] >= 0
+  )
+
+  /\ % convert heap numbers [after move] to binary
+  forall(i in 1..heap) (
+     sum(j in 1..col) ( ceil(pow(2.0, int2float((j-1))))*x[i,j]  ) = m[i]
+  )
+
+  /\ % ensures safe position after move
+   forall(j in 1..col) (
+        sum(i in 1..heap) (x[i,j]) = (k+1)*w[j]
+   )
+
+   /\ % positions before and after are consistent with move
+  forall(i in 1..heap) (
+    n[i]-s[i] = m[i]
+  )
+ 
+  /\ % dummy set to 1 if heap changed
+  forall(i in 1..heap) (
+    s[i]-nmax*d[i] <= 0
+  )
+;
+
+%output [
+% "heapch: ", show(heapch), "\n",
+% "d: ", show(d), "\n",
+% "m: ", show(m), "\n",
+% "s: ", show(s), "\n",
+% "w: ", show(w), "\n",
+%
+%];
+
+output [
+  show(s[i]) ++ " " ++ show(m[i]) ++ "\n"
+  | i in 1..heap
+];
+
+%
+% data
+%
+n = [5,4,3,2,1];
+
+Expected Output:
+{
+  "n": [
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "x": [
+    [
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "d": [
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "s": [
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "m": [
+    5,
+    4,
+    3,
+    2,
+    0
+  ],
+  "w": [
+    1,
+    1,
+    1,
+    0
+  ],
+  "_objective": 1
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

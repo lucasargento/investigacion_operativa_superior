@@ -1,0 +1,53 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 319
+- Name: Tommy's Birthday Coins Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+This problem is known as Tommy's Birthday Coins puzzle. The problem is to find the number of each type of coin Tommy received on his birthday. There are three types of coins, with values of 30, 12, and 6. The total value of all coins Tommy received is 306, and the total number of coins he received is 15. Each type of coin must be represented at least once. The goal is to determine how many of each type of coin Tommy received.
+
+
+MiniZinc Model:
+int: coin = 3;
+set of int: C = 1..coin;
+array[C] of var int: x;
+array[C] of int: value = [30,12,6];
+
+solve satisfy;
+
+constraint
+   forall(i in C) (x[i] >= 1) 
+   /\
+   sum(i in C) (value[i]*x[i]) = 306
+   /\ 
+   sum(i in C) (x[i]) = 15
+;
+
+
+output [
+  "x: ", show(x)
+];
+
+Expected Output:
+{
+  "x": [
+    8,
+    4,
+    3
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

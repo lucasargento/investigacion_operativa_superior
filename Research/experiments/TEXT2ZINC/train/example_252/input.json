@@ -1,0 +1,66 @@
+{
+  "description": "How many of which system should DEC produce and using what memories and disks to maximize the profit for the next quarter? The parameters involved are the number of systems N, whether a system is a workstation or not for each system IsWorkstation, the price for each system Price, the number of disk drives for each system DiskDrives, the number of 256K memory boards for each system MemoryBoards, the maximum number of CPUs available MaxCpu, the minimum and maximum total disk drives in the system MinDisk and MaxDisk respectively, the minimum and maximum total memory boards MinMemory and MaxMemory respectively, the demand for each system Demand, the demand for general purpose systems DemandGP and for workstations DemandWS, the number of preordered systems Preorder, the number of alternative memory configurations possible AltMemory, and the compatibility of alternative memory with each system AltCompatible.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "DEC System Production Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "<=",
+      "sum",
+      "*",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "DEC System Production Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "num_produced",
+      "total_256K_boards_used",
+      "total_alt_boards_used",
+      "total_disk_drives_used",
+      "profit"
+    ],
+    "model_data_keywords": [
+      "IsWorkstation",
+      "Price",
+      "DiskDrives",
+      "MemoryBoards",
+      "Demand",
+      "Preorder",
+      "AltCompatible",
+      "MaxCpu",
+      "MinDisk",
+      "MaxDisk",
+      "MinMemory",
+      "MaxMemory",
+      "DemandGP",
+      "DemandWS",
+      "AltMemory"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "<=",
+      "sum",
+      "*",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "="
+    ]
+  }
+}

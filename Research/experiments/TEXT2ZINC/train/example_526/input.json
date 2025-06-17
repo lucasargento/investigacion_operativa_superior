@@ -1,0 +1,46 @@
+{
+  "description": "The problem is to arrange the digits 1 to 9 in two multiplications which give the same product. The digits are arranged as follows: ABC * DE = FG * HI = s, where A, B, C, D, E, F, G, H, I are distinct digits from 1 to 9, and s is the product. The goal is to find the arrangement of digits that satisfies this equation. The problem has 11 solutions, and the maximum product is 7448.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Digit Arrangement for Equal Products",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "=",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Digit Arrangement for Equal Products",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "product"
+    ],
+    "model_data_keywords": [
+      "digits",
+      "digitArray"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "=",
+      "<=",
+      "*"
+    ]
+  }
+}

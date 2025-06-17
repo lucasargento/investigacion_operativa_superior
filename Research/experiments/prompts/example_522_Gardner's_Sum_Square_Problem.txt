@@ -1,0 +1,81 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 522
+- Name: Gardner's Sum Square Problem
+- Domain: Mathematics
+- Objective: minimization
+
+Problem Description:
+The problem is known as Gardner's Sum Square problem. The task is to find distinct elements a, b, c, d, e, f, g, h from the set {-7,-5,-3,-2,2,4,6,13} such that the value of (a+b+c+d)^2 + (e+f+g+h)^2 is minimized. The elements in the subsets {a, b, c, d} and {e, f, g, h} must be in increasing order and the value of 'a' must be less than 'e'.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+set of int: S = {-7,-5,-3,-2,2,4,6,13};
+
+var S: a;
+var S: b;
+var S: c;
+var S: d;
+var S: e;
+var S: f;
+var S: g;
+var S: h;
+
+array[1..8] of var S: x = [a,b,c,d,e,f,g,h];
+
+var int: V;
+
+% solve satisfy;
+% solve minimize V;
+solve :: int_search(x, 
+        max_regret, 
+        indomain_min, 
+        complete) minimize V;
+
+constraint
+  alldifferent(x) 
+  /\
+  V = (a+b+c+d)*(a+b+c+d) + (e+f+g+h)*(e+f+g+h)
+
+  /\ % symmetry breaking
+  increasing([a,b,c,d])
+  /\
+  increasing([e,f,g,h])
+  /\
+  a < e
+;
+
+output [
+  "x: " ++ show(x) ++ "\n" ++
+  "V: " ++ show(V)
+]
+ ++ ["\n"]
+;
+
+Expected Output:
+{
+  "a": -7,
+  "b": -5,
+  "c": 2,
+  "d": 13,
+  "e": -3,
+  "f": -2,
+  "g": 4,
+  "h": 6,
+  "V": 34,
+  "_objective": 34
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

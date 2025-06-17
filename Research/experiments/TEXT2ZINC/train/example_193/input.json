@@ -1,0 +1,44 @@
+{
+  "description": "The problem is a simple model of kidney exchange, inspired by Pascal Van Hentenryck's introduction of Discrete Optimization. The objective is to maximize the number of exchanges. The problem involves a number of people who are compatible to give or receive a kidney. The compatibility is represented as a directed graph where each person is a node and an edge from node i to node j represents that person i can give a kidney to person j. The decision variables represent who gets whose kidney. The constraints ensure that all the variables are different except for 0 and that anyone who gives a kidney also receives a kidney. The problem is to find an assignment of kidneys such that the number of exchanges is maximized.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Kidney Exchange Optimization",
+    "domain": "Healthcare",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "alldifferent_except_0",
+      "forall",
+      "bool2int",
+      ">",
+      "=",
+      "\\/",
+      "in"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Kidney Exchange Optimization",
+    "domain": "Healthcare",
+    "model_var_keywords": [
+      "x",
+      "num_exchanges"
+    ],
+    "model_data_keywords": [
+      "num_people",
+      "compatible"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "alldifferent_except_0",
+      "forall",
+      "bool2int",
+      ">",
+      "=",
+      "\\/",
+      "in"
+    ]
+  }
+}

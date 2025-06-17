@@ -1,0 +1,44 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 67
+- Name: Factory Production Planning
+- Domain: Manufacturing and Production
+- Objective: maximization
+
+Problem Description:
+We are trying to determine the optimal selling, storing, and manufacturing policy for a company to maximize its profit. We are given the number of machines the company has and the number of different products it produces. Each product has a known profit. For each product, we are also given the time required on each machine. For the present month (January) and the following months, some machines will be down for maintenance. For each machine, we know for how many months it must be down for maintenance. Additionally, there is a limitation of how much of each product may be produced in each month. Further, to store products, there is a limit of 100 of each type at a cost per unit per month. The company originally starts with no stock of any type of product, but there is a minimum stock that should be stored of each type of product at the end of subsequent months. Assuming that the factory works six days a week for two shifts of a fixed number of hours a day and that a month has exactly 24 days for convenience if no sequencing problems need to be considered, what selling, storing, and manufacturing policy should the company pursue to maximize profit?
+
+
+Input Data (data.dzn):
+M = 5;
+K = 7;
+NumMachines = [4, 2, 3, 1, 1];
+Profit = [10, 6, 8, 4, 11, 9, 3];
+Time = array2d(1..6, 1..5, [0.5, 0.1, 0.2, 0.05, 0.0, 0.7, 0.2, 0.0, 0.03, 0.0, 0.0, 0.0, 0.8, 0.0, 0.01, 0.0, 0.3, 0.0, 0.07, 0.0, 0.3, 0.0, 0.0, 0.1, 0.05, 0.5, 0.0, 0.6, 0.08, 0.05]);
+Downtime = array2d(1..1, 1..5, [0, 1, 1, 1, 1]);
+Limit = array2d(1..7, 1..6, [500, 600, 300, 200, 0, 500, 1000, 500, 600, 300, 100, 500, 300, 200, 0, 400, 500, 100, 300, 0, 0, 500, 100, 300, 800, 400, 500, 200, 1000, 1100, 200, 300, 400, 0, 300, 500, 100, 150, 100, 100, 0, 60]);
+StorePrice = 0.5;
+KeepQuantity = 100;
+WorkHours = 8.0;
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 93715.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

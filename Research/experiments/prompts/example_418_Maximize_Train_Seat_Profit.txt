@@ -1,0 +1,51 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 418
+- Name: Maximize Train Seat Profit
+- Domain: Transportation
+- Objective: maximization
+
+Problem Description:
+In a cold region , a train service offers heated seats and regular seats . The train has 100 seats available . The trains reserves at least 15 seats to be heated . However , at least 3 times as many people prefer regular seats to heated seats . If the profit per heated seat is $ 20 and the profit per regular seat is $ 15 , how many of each seat type should be sold to maximize profit ?
+
+
+MiniZinc Model:
+include "globals.mzn";
+  
+  % number of heated seats
+  var 15..100: heated_seats;
+  % number of regular seats
+  var 0..100: regular_seats;
+  
+  % total seats should not exceed 100
+  constraint heated_seats + regular_seats <= 100;
+  % at least 3 times as many people prefer regular seats to heated seats
+  constraint regular_seats >= 3 * heated_seats;
+  
+  % profit per heated seat is $20 and per regular seat is $15
+  var int: profit = 20 * heated_seats + 15 * regular_seats;
+  
+  % maximize profit
+  solve maximize profit;
+  
+  output ["Heated Seats: " ++ show(heated_seats) ++ "\n" ++ "Regular Seats: " ++ show(regular_seats) ++ "\n" ++ "Profit: $" ++ show(profit)];
+
+Expected Output:
+{
+  "heated_seats": 25,
+  "regular_seats": 75,
+  "_objective": 1625
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

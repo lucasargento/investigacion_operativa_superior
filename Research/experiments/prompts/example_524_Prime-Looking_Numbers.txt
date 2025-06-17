@@ -1,0 +1,54 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 524
+- Name: Prime-Looking Numbers
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is based on a Martin Gardner Problem. A number is called 'prime-looking' if it is composite but not divisible by 2, 3, or 5. The three smallest prime-looking numbers are 49, 77, and 91. There are 168 prime numbers less than 1000. The problem is to find how many prime-looking numbers are there less than 1000. The problem is modeled in MiniZinc, a medium-level constraint modeling language. The model includes two variables, d1 and d2, which are factors of a number x. The number x is considered 'prime-looking' if it is not divisible by 2, 3, or 5. The goal is to find the number x that satisfies these conditions.
+
+
+MiniZinc Model:
+int: n = 999;
+var 2..n: x;
+var 2..n: d1;
+var 2..n: d2;
+
+% solve satisfy;
+% solve minimize x;
+solve :: int_search([x,d1,d2], first_fail, indomain_min, complete) satisfy;
+
+constraint
+   x = d1*d2 /\ d1 <= d2
+   /\
+   forall(i in {2,3,5}) (
+      x mod i > 0
+   )
+;
+
+output [
+  "x: " ++ show(x) ++ " (" ++ show(d1) ++ "*" ++ show(d2) ++ ")\n"
+]
+ ++ ["\n"]
+;
+
+Expected Output:
+{
+  "x": 49,
+  "d1": 7,
+  "d2": 7
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

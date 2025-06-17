@@ -1,0 +1,46 @@
+{
+  "description": "Consider a directed graph G described by a collection of nodes. The task is to select a subset of arcs of G such that the corresponding graph is symmetric. This means that if there is an arc from node i to node j, there must also be an arc from node j to i. For example, consider the following nodes and their successors: \n\nindex-1 succ-{1,2,3},\nindex-2 succ-{1,3},\nindex-3 succ-{1,2},\nindex-4 succ-{5,6},\nindex-5 succ-{4},\nindex-6 succ-{4}\n\nThe symmetric constraint holds since the nodes collection depicts a symmetric graph. The problem is to find such a symmetric subset of arcs for a given directed graph.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Symmetric Subset of Arcs in Directed Graph",
+    "domain": "Graph Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "isEqual",
+      "isSymmetric",
+      "forall",
+      "<->",
+      "in",
+      "index_set",
+      "assert",
+      "=",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Symmetric Subset of Arcs in Directed Graph",
+    "domain": "Graph Theory",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "isEqual",
+      "isSymmetric",
+      "forall",
+      "<->",
+      "in",
+      "index_set",
+      "assert",
+      "=",
+      "/\\"
+    ]
+  }
+}

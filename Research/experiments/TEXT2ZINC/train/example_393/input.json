@@ -1,0 +1,34 @@
+{
+  "description": "The problem is to find the intersection of a circle and a parabola. The circle is defined by the equation x^2 + y^2 = 1 and the parabola is defined by the equation x^2 = y. The goal is to find the values of x and y that satisfy both equations. The problem is solved using a constraint satisfaction approach, where the constraints are the two equations. The solution space is searched using a floating point search strategy with a precision of 0.00000000000001. The output is the values of x and y that satisfy the constraints.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Circle and Parabola Intersection",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "x*x + y*y = 1.0",
+      "x*x = y"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Circle and Parabola Intersection",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "x",
+      "y"
+    ],
+    "model_data_keywords": [
+      "precision",
+      "range"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "x*x + y*y = 1.0",
+      "x*x = y"
+    ]
+  }
+}

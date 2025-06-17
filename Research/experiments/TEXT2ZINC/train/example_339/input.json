@@ -1,0 +1,37 @@
+{
+  "description": "The problem is to find a four-digit whole number n, such that the last four digits of n^2 are in fact the original number n. The number n is within the range of 1000 to 9999. The number n^2 is within the range of 1000000 to 99980001. The problem also involves converting the number n and n^2 into arrays of their digits. The problem is solved when the last four digits of n^2 match the digits of n and the square of n equals n^2.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Four-Digit Number Squaring",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "digitsToNumber",
+      "forall",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Four-Digit Number Squaring",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "n",
+      "n_digits",
+      "n_squared",
+      "n_squared_digits"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "digitsToNumber",
+      "forall",
+      "=",
+      "*"
+    ]
+  }
+}

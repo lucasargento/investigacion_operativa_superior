@@ -1,0 +1,36 @@
+{
+  "description": "The problem is to find integers A, B, and C that satisfy the Pythagorean theorem, where A, B, and C are all greater than or equal to 1, and A is less than B which is less than C. The Pythagorean theorem states that in a right-angled triangle, the square of the length of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the lengths of the other two sides. This can be written as: A^2 + B^2 = C^2.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Pythagorean Triplets",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "<",
+      "=",
+      "+",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Pythagorean Triplets",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "<",
+      "=",
+      "+",
+      "*"
+    ]
+  }
+}

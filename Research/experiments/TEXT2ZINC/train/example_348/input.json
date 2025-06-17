@@ -1,0 +1,62 @@
+{
+  "description": "The numbers from 1 to 26 are assigned to the letters of the alphabet. The numbers beside each word are the total of the values assigned to the letters in the word (e.g. for LYRE: L, Y, R, E might be to equal 5, 9, 20 and 13, or any other combination that add up to 47). Find the value of each letter under the equations: BALLET 45, CELLO 43, CONCERT 74, FLUTE 30, FUGUE 50, GLEE 66, JAZZ 58, LYRE 47, OBOE 53, OPERA 65, POLKA 59, QUARTET 50, SAXOPHONE 134, SCALE 51, SOLO 37, SONG 61, SOPRANO 82, THEME 72, VIOLIN 100, WALTZ 34. The solution should assign a unique number from 1 to 26 to each letter of the alphabet such that the sum of the numbers assigned to the letters in each word equals the given total for that word.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Standard Benchmark Crypto Problem",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "mod",
+      "=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Standard Benchmark Crypto Problem",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "mod",
+      "=",
+      "*",
+      "+"
+    ],
+    "links": []
+  }
+}

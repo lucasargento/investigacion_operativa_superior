@@ -1,0 +1,47 @@
+{
+  "description": "This problem is a port of the ILOG OPL example talent.mod (and talent.dat) to MiniZinc. The problem involves a set of actors and scenes. Each actor has a pay rate and each scene has a duration. An actor can be in multiple scenes. The goal is to minimize the total cost of having actors wait between their scenes. The cost of an actor waiting is calculated as the actor's pay rate times the duration of the scenes they are not in but occur between their first and last scenes. The problem also involves determining the order of the scenes and the slots in which they occur. The constraints ensure that each actor's first and last slots are correctly calculated based on the scenes they are in, and that the waiting time for each actor is correctly calculated. The problem also ensures that the scene and slot assignments are inverses of each other, meaning that if a scene is assigned to a slot, that slot is assigned to that scene.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Actor Scene Scheduling",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "min",
+      "max",
+      "sum",
+      "bool2int",
+      "inverse"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Actor Scene Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "scene",
+      "slot",
+      "firstSlot",
+      "lastSlot",
+      "actorWait",
+      "idleCost"
+    ],
+    "model_data_keywords": [
+      "numActors",
+      "numScenes",
+      "actorPay",
+      "sceneDuration",
+      "actorInScene"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "min",
+      "max",
+      "sum",
+      "bool2int",
+      "inverse"
+    ]
+  }
+}

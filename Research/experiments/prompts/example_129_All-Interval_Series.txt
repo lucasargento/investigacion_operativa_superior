@@ -1,0 +1,86 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 129
+- Name: All-Interval Series
+- Domain: Combinatorial Mathematics
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    All-Interval Series
+Category: Combinatorial mathematics
+Proposer: Holger Hoos
+---
+
+Given the twelve standard pitch-classes (c, c#, d, ...), represented by numbers 0,1,...,11, find a series in which each pitch-class occurs exactly once and in which the musical intervals between neighbouring notes cover the full set of intervals from the minor second (1 semitone) to the major seventh (11 semitones). That is, for each of the intervals, there is a pair of neighbouring pitch-classes in the series, between which this interval appears. 
+
+The problem of finding such a series can be easily formulated as an instance of a more general arithmetic problem on $\mathbb Z_n$, the set of integer residues modulo $n$. Given $n \in \mathbb N$, find a vector $s = (s_1, ..., s_n)$, such that 
+
+ 1. $s$ is a permutation of $\mathbb Z_n = \{0,1,...,n-1\}$; and 
+ 2. the interval vector $v = (|s_2-s_1|, |s_3-s_2|, ... |s_n-s_{n-1}|)$ is a permutation of $ \mathbb Z_n \setminus \\{0\\} = \\{1,2,...,n-1\\}$. 
+ 
+A vector $v$ satisfying these conditions is called an all-interval series of size $n$; the problem of finding such a series is the all-interval series problem of size $n$. We may also be interested in finding all possible series of a given size. 
+
+The All-Interval Series is a special case of the {prob053} in which the graph is a line.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: n = 12;
+set of int: classes = 0..n-1;
+
+% Search space: The set of permutations of integer range [0..n-1]
+array[classes] of var classes: series;
+
+solve :: int_search(series, first_fail, indomain_median, complete) satisfy;
+
+constraint
+  % C1: Each pitch class occurs exactly once
+  % GCAD: Exploitation of alldifferent() global constraint
+  all_different(series)
+  /\
+
+  % C2: Differences between neighbouring notes are all different
+  % GCAD: Exploitation of alldifferent() global constraint
+  % alldifferent(all (i in classes: i <> n-1) abs(series[i+1] - series[i]));
+  all_different( 
+         [ abs(series[i+1] - series[i]) | i in classes where i != n-1]
+  )
+  
+;
+
+output [
+  show(series)
+];
+
+Expected Output:
+{
+  "series": [
+    5,
+    6,
+    4,
+    7,
+    3,
+    8,
+    2,
+    9,
+    1,
+    10,
+    0,
+    11
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,59 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 432
+- Name: Aircraft Assignment Problem
+- Domain: Transportation
+- Objective: minimization
+
+Problem Description:
+The Aircraft Assignment Problem is a mathematical programming model that aims to assign TotalAircraft aircraft to TotalRoutes routes in order to minimize the total cost while satisfying availability and demand constraints. The availability for each aircraft i is Availability_i and it represents the maximum number of routes that the aircraft can be assigned to. The demand for each route j is Demand_j and it denotes the number of aircraft required to fulfill the passenger or cargo needs of the route. The capability of each aircraft i for each route j is given by Capacity_{i,j} and it defines whether the aircraft can service the route, considering factors such as range, size, and suitability. Finally, Cost_{i,j} represents the cost of assigning aircraft i to route j, which includes operational, fuel, and potential opportunity costs.
+
+
+Input Data (data.dzn):
+TotalAircraft = 5;
+TotalRoutes = 5;
+Availability = [10, 19, 25, 15, 0];
+Demand = [250, 120, 180, 90, 600];
+Capacity = [|16, 15, 28, 23, 81|0, 10, 14, 15, 57|0, 5, 0, 7, 29|9, 11, 22, 17, 55|1, 1, 1, 1, 1|];
+Costs = [|17, 5, 18, 17, 7|15, 20, 9, 5, 18|15, 13, 8, 5, 19|13, 14, 6, 16, 8|13, 14, 14, 10, 7|];
+
+MiniZinc Model:
+% Parameters
+int: TotalAircraft;
+int: TotalRoutes;
+array[1..TotalAircraft] of int: Availability;
+array[1..TotalRoutes] of int: Demand;
+array[1..TotalAircraft, 1..TotalRoutes] of int: Capacity;
+array[1..TotalAircraft, 1..TotalRoutes] of int: Costs;
+
+% Decision Variables
+array[1..TotalAircraft, 1..TotalRoutes] of var 0..1: Assign;
+
+% Objective: Minimize total cost
+var int: TotalCost = sum(i in 1..TotalAircraft, j in 1..TotalRoutes)(Assign[i,j]*Costs[i,j]);
+minimize TotalCost;
+
+% Constraints
+% Each aircraft can be assigned to a maximum of its availability
+constraint forall(i in 1..TotalAircraft)(sum(j in 1..TotalRoutes)(Assign[i,j]) <= Availability[i]);
+
+% The total capacity assigned to each route must meet its demand
+constraint forall(j in 1..TotalRoutes)(sum(i in 1..TotalAircraft)(Assign[i,j]*Capacity[i,j]) >= Demand[j]);
+
+% An aircraft can only be assigned to a route if it has the capacity to service it
+constraint forall(i in 1..TotalAircraft, j in 1..TotalRoutes)(Assign[i,j] <= Capacity[i,j]);
+
+solve satisfy;
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

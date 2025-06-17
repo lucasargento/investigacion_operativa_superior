@@ -1,0 +1,396 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 83
+- Name: Capacitated Warehouse Location
+- Domain: Transportation and Logistics
+- Objective: minimization
+
+Problem Description:
+The capacitated warehouse location problem involves locating warehouses which are to service customers, at minimum cost. Each customer has an associated demand. There are constraints on the total demand that can be met from each warehouse. Costs are incurred when allocating service to customers from warehouses, and warehouses have a fixed operating cost. Additionally, there is a lower limit on the amount of demand that a warehouse must meet if it is opened, as well as constraints on the minimum and maximum number of warehouses that can be operational. The objective is to allocate customers to warehouses and which warehouses to open in order to minimize the total cost.
+
+
+Input Data (data.dzn):
+NumberOfLocations = 10;
+NumberOfCustomers = 20;
+CustomerDemand = [117, 86, 69, 53, 110, 74, 136, 140, 126, 79, 54, 86, 114, 76, 136, 73, 144, 51, 53, 120];
+ServiceAllocationCost = [|80, 94, 44, 51, 190, 44, 129, 178, 129, 91, 172, 119, 177, 150, 90, 51, 53, 97, 184, 87|139, 33, 104, 135, 50, 176, 97, 121, 47, 29, 186, 163, 149, 108, 156, 169, 100, 160, 153, 85|153, 36, 18, 170, 18, 181, 178, 68, 171, 106, 159, 110, 21, 106, 91, 29, 144, 140, 155, 116|103, 59, 78, 125, 14, 11, 152, 95, 76, 173, 36, 148, 75, 132, 59, 153, 113, 74, 185, 71|193, 186, 130, 145, 114, 150, 33, 154, 20, 75, 103, 30, 137, 131, 167, 32, 53, 150, 176, 166|159, 130, 156, 65, 36, 59, 199, 124, 104, 72, 180, 73, 43, 152, 143, 90, 161, 65, 172, 141|173, 121, 110, 127, 22, 159, 195, 137, 47, 10, 87, 11, 154, 66, 126, 60, 152, 54, 20, 25|181, 34, 186, 152, 109, 195, 133, 198, 30, 65, 69, 19, 109, 143, 108, 196, 59, 133, 10, 123|82, 113, 147, 21, 88, 24, 38, 16, 70, 122, 148, 192, 116, 108, 18, 20, 143, 18, 116, 142|176, 170, 87, 91, 195, 183, 124, 89, 72, 97, 89, 23, 45, 196, 97, 27, 83, 81, 171, 148|];
+WarehouseCapacity = [3010, 2910, 4530, 4720, 4920, 3750, 4930, 2970, 3310, 2460];
+MinimumDemandFromWarehouse = [64, 55, 27, 71, 93, 90, 89, 87, 43, 50];
+MinimumOpenWarehouses = 3;
+MaximumOpenWarehouses = 8;
+WarehouseFixedCost = [8517, 5068, 9433, 6127, 6033, 5966, 7762, 9406, 6602, 7040];
+
+MiniZinc Model:
+% ============================================================
+% CAPACITATED WAREHOUSE LOCATION PROBLEM
+% ============================================================
+%
+% DESCRIPTION:
+% A company must decide which warehouses to open and assign customers to
+% these warehouses in order to service all customer demands at minimum cost.
+% Each customer has an associated demand, and each warehouse has a limited
+% capacity as well as a fixed operating cost if opened. Additionally, if a
+% warehouse is opened, it must service at least a minimum amount of demand.
+% There are also constraints on the total number of warehouses that can be
+% open.
+%
+% OBJECTIVE:
+% Minimize the total cost of serving customers which includes the cost of
+% allocating service and the fixed cost of operating the warehouses.
+%
+% PARAMETERS (provided in input.json):
+%   - NumberOfLocations: Total potential warehouse locations.
+%   - NumberOfCustomers: Total customers to be serviced.
+%   - CustomerDemand: Demand for each customer.
+%   - ServiceAllocationCost: Cost matrix for serving each customer from each warehouse.
+%   - WarehouseCapacity: Capacity of each warehouse.
+%   - MinimumDemandFromWarehouse: Lower limit on demand that must be met if a warehouse is open.
+%   - MinimumOpenWarehouses: Minimum number of warehouses that must be open.
+%   - MaximumOpenWarehouses: Maximum number of warehouses that can be open.
+%   - WarehouseFixedCost: Fixed operating cost for each warehouse.
+%
+% OUTPUT:
+%   - WarehouseOpen: Binary array indicating which warehouses are open.
+%   - CustomerAssignment: Binary matrix indicating which warehouse serves each customer.
+%   - TotalCost: Total cost of the chosen configuration.
+%
+% ============================================================
+
+
+% -----------------------------
+% 1) PARAMETERS
+% -----------------------------
+int: NumberOfLocations;
+int: NumberOfCustomers;
+
+array[1..NumberOfCustomers] of int: CustomerDemand;
+array[1..NumberOfLocations, 1..NumberOfCustomers] of int: ServiceAllocationCost;
+array[1..NumberOfLocations] of int: WarehouseCapacity;
+array[1..NumberOfLocations] of int: MinimumDemandFromWarehouse;
+
+int: MinimumOpenWarehouses;
+int: MaximumOpenWarehouses;
+array[1..NumberOfLocations] of int: WarehouseFixedCost;
+
+
+% -----------------------------
+% 2) DECISION VARIABLES
+% -----------------------------
+% WarehouseOpen[i] = 1 if warehouse i is open, 0 otherwise.
+array[1..NumberOfLocations] of var 0..1: WarehouseOpen;
+
+% CustomerAssignment[i,j] = 1 if customer j is assigned to warehouse i, 0 otherwise.
+array[1..NumberOfLocations, 1..NumberOfCustomers] of var 0..1: CustomerAssignment;
+
+
+% -----------------------------
+% 3) CONSTRAINTS
+% -----------------------------
+
+% (C1) Each customer must be assigned to exactly one warehouse.
+constraint
+  forall(j in 1..NumberOfCustomers) (
+    sum(i in 1..NumberOfLocations)(CustomerAssignment[i,j]) = 1
+  );
+
+% (C2) A customer can only be assigned to an open warehouse.
+constraint
+  forall(i in 1..NumberOfLocations, j in 1..NumberOfCustomers) (
+    CustomerAssignment[i,j] <= WarehouseOpen[i]
+  );
+
+% (C3) The total demand served by each warehouse cannot exceed its capacity.
+constraint
+  forall(i in 1..NumberOfLocations) (
+    sum(j in 1..NumberOfCustomers)(CustomerDemand[j] * CustomerAssignment[i,j]) <= WarehouseCapacity[i]
+  );
+
+% (C4) If a warehouse is open, it must serve at least its minimum demand.
+constraint
+  forall(i in 1..NumberOfLocations) (
+    sum(j in 1..NumberOfCustomers)(CustomerDemand[j] * CustomerAssignment[i,j]) >= MinimumDemandFromWarehouse[i] * WarehouseOpen[i]
+  );
+
+% (C5) The total number of open warehouses must be within the allowed limits.
+constraint
+    sum(i in 1..NumberOfLocations)(WarehouseOpen[i]) >= MinimumOpenWarehouses /\
+    sum(i in 1..NumberOfLocations)(WarehouseOpen[i]) <= MaximumOpenWarehouses;
+
+
+% -----------------------------
+% 4) OBJECTIVE FUNCTION
+% -----------------------------
+% TotalCost = Sum(service allocation costs) + Sum(fixed warehouse costs).
+var int: TotalCost =
+    sum(i in 1..NumberOfLocations, j in 1..NumberOfCustomers)(
+         ServiceAllocationCost[i,j] * CustomerDemand[j] * CustomerAssignment[i,j]
+    )
+  + sum(i in 1..NumberOfLocations)(
+         WarehouseFixedCost[i] * WarehouseOpen[i]
+    );
+
+solve minimize TotalCost;
+
+
+% -----------------------------
+% 5) OUTPUT
+% -----------------------------
+output [
+    "Warehouse Open: ", show(WarehouseOpen), "\n",
+    "Customer Assignment:\n",
+    concat([ "  Warehouse " ++ show(i) ++ ": " ++ show([CustomerAssignment[i,j] | j in 1..NumberOfCustomers]) ++ "\n"
+             | i in 1..NumberOfLocations ]),
+    "Total Cost: ", show(TotalCost), "\n"
+];
+
+Expected Output:
+{
+  "WarehouseOpen": [
+    0,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0
+  ],
+  "CustomerAssignment": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "_objective": 88241
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

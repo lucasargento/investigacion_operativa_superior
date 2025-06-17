@@ -1,0 +1,37 @@
+{
+  "description": "Professor ABC sells his economics textbook as paperback or hardcover versions . Paperback books yield a profit of $ 150 USD whereas hardcover versions yield a profit of $ 200 USD . Since hardcover versions are more sturdy and contain some extra supplementary materials , there must be at least three times as many hardcover than paperback textbooks . However , because paperback books are less expensive , at least 100 paperback versions must be created . If the professor sells at least 1000 textbooks every year , how many of each version should he request the publisher to print to maximize the profit ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Textbook Profit Maximization",
+    "domain": "Economics",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      ">=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Textbook Profit Maximization",
+    "domain": "Economics",
+    "model_var_keywords": [
+      "paperback",
+      "hardcover",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "profit_paperback",
+      "profit_hardcover"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      ">=",
+      "*",
+      "+"
+    ]
+  }
+}

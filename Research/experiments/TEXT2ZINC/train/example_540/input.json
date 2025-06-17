@@ -1,0 +1,50 @@
+{
+  "description": "The problem involves four students: Algy, Bertie, Charlie and Digby, who share a flat. Four newspapers are delivered to the house: the Financial Times, the Guardian, the Daily Express and the Sun. Each of the students reads all of the newspapers, in a particular order and for a specified amount of time. Algy gets up at 8:30, Bertie and Charlie at 8:45 and Digby at 9:30. The task is to determine the earliest time that they can all set off for college, given their reading schedules. The reading order for Algy is: FT, Guardian, Express, Sun. For Bertie, it's: Guardian, Express, FT, Sun. For Charlie, it's: Express, Guardian, FT, Sun. And for Digby, it's: Sun, FT, Guardian, Express. The goal is to minimize the latest end time of reading the newspapers.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Newspaper Reading Schedule Optimization",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">=",
+      "=",
+      "<=",
+      "cumulative",
+      "if",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Newspaper Reading Schedule Optimization",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "reading_times",
+      "reading_order",
+      "start_times",
+      "max_time",
+      "reading_start",
+      "reading_end",
+      "earliest_end_time"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">=",
+      "=",
+      "<=",
+      "cumulative",
+      "if",
+      "else",
+      "endif"
+    ]
+  }
+}

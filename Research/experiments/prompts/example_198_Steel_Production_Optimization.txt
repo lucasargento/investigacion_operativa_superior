@@ -1,0 +1,64 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 198
+- Name: Steel Production Optimization
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+How much of each alloy should the company use in each type of steel, and how much of each steel type should be produced to maximize profit? The company has A different alloys and S different steel types. For each alloy a in 1, ..., A, there is an available amount of AvailableAlloy, a carbon content of CarbonContent, a nickel content of NickelContent, and an alloy price of AlloyPrice. For each steel type s in 1, ..., S, there is a steel price of SteelPrice, a minimum required carbon content of CarbonMin, and a maximum allowed nickel content of NickelMax.
+
+
+Input Data (data.dzn):
+available = [40, 50, 80];
+carbon = [3, 4, 3.5];
+nickel = [1, 1.5, 1.8];
+alloy_prices = [380, 400, 440];
+steel_prices = [650, 600];
+carbon_min = [3.6, 3.4];
+nickel_max = [1.5, 1.7];
+
+MiniZinc Model:
+% Define parameters
+int: A; % Number of alloys
+int: S; % Number of steel types
+array[1..A] of int: available; % Available amount of each alloy
+array[1..A] of float: carbon; % Carbon content of each alloy
+array[1..A] of float: nickel; % Nickel content of each alloy
+array[1..A] of int: alloy_prices; % Price of each alloy
+array[1..S] of int: steel_prices; % Price of each steel type
+array[1..S] of float: carbon_min; % Minimum required carbon content for each steel type
+array[1..S] of float: nickel_max; % Maximum allowed nickel content for each steel type
+
+% Define decision variables
+array[1..A, 1..S] of var 0..max(available): alloy_use; % Amount of each alloy used in each type of steel
+array[1..S] of var 0..sum(available): total_steel; % Total amount of each steel type produced
+
+% Define objective function
+var int: total_profit = sum(s in 1..S)(steel_prices[s]*total_steel[s]) - sum(a in 1..A, s in 1..S)(alloy_prices[a]*alloy_use[a,s]);
+
+% Define constraints
+constraint forall(a in 1..A)(sum(s in 1..S)(alloy_use[a,s]) <= available[a]); % Do not use more alloy than available
+constraint forall(s in 1..S)(sum(a in 1..A)(alloy_use[a,s]*carbon[a]) >= carbon_min[s]*total_steel[s]); % Meet minimum carbon content
+constraint forall(s in 1..S)(sum(a in 1..A)(alloy_use[a,s]*nickel[a]) <= nickel_max[s]*total_steel[s]); % Do not exceed maximum nickel content
+constraint forall(s in 1..S)(sum(a in 1..A)(alloy_use[a,s]) = total_steel[s]); % Total steel produced is the sum of all alloys used
+constraint forall(s in 1..S)(alloy_use[1,s] <= 0.4*total_steel[s]); % At most 40% of alloy 1 can be used in any steel type
+
+% Maximize profit
+solve maximize total_profit;
+
+% Output
+output ["alloy_use: ", show(alloy_use), "\n", "total_steel: ", show(total_steel), "\n", "total_profit: ", show(total_profit)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,93 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 232
+- Name: Production and Inventory Schedule Optimization
+- Domain: Operations Research
+- Objective: minimization
+
+Problem Description:
+Minimize the total cost of the production and inventory schedule over T periods, given Deliver for each period, a StorageCost for holding inventory, and a SwitchCost for changing production between periods.
+
+
+Input Data (data.dzn):
+T = 12;
+Deliver = [100, 120, 110, 130, 150, 100, 90, 110, 95, 125, 130, 100];
+StorageCost = 5;
+SwitchCost = 10;
+
+MiniZinc Model:
+% Parameters
+int: T; % Number of periods
+array[1..T] of int: Deliver; % Units to be delivered each period
+int: StorageCost; % Cost per unit per period for storage
+int: SwitchCost; % Cost for changing production level
+
+% Decision Variables
+array[1..T] of var 0..sum(Deliver): x; % Units produced each period
+array[1..T] of var 0..sum(Deliver): inventory; % Units in inventory each period
+
+% Objective
+var int: cost; % Total cost
+
+% Constraints
+constraint inventory[1] = x[1] - Deliver[1];
+constraint forall(i in 2..T) (
+    inventory[i] = inventory[i-1] + x[i] - Deliver[i]
+);
+constraint forall(i in 2..T) (
+    cost >= SwitchCost * abs(x[i] - x[i-1])
+);
+constraint cost >= sum(i in 1..T) (StorageCost * inventory[i]);
+
+% Objective
+solve minimize cost;
+
+% Output
+output ["x: ", show(x), "\ncost: ", show(cost)];
+
+Expected Output:
+{
+  "x": [
+    100,
+    120,
+    116,
+    140,
+    134,
+    110,
+    86,
+    104,
+    98,
+    122,
+    130,
+    106
+  ],
+  "inventory": [
+    0,
+    0,
+    6,
+    16,
+    0,
+    10,
+    6,
+    0,
+    3,
+    0,
+    0,
+    6
+  ],
+  "cost": 240,
+  "_objective": 240
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

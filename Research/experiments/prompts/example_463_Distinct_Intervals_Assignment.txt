@@ -1,0 +1,118 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 463
+- Name: Distinct Intervals Assignment
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is about enforcing all variables of a collection to belong to distinct intervals. The intervals are defined by [SIZE_INTERVAL*k, SIZE_INTERVAL*k+SIZE_INTERVAL-1] where k is an integer. For example, if we have a collection of variables (2,3,10) and SIZE_INTERVAL=3, it defines the following family of intervals [3*k, 3*k+2], where k is an integer. Since the three variables of the collection take values that are respectively located within the three following distinct intervals [0, 2], [3, 5] and [9, 11], the alldifferent_interval constraint holds. The problem is to find such intervals for a given collection of variables and a SIZE_INTERVAL.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 3;
+array[1..n] of var 1..10: x;
+array[1..n, 1..2] of var 0..10*2: intervals;
+var 1..9: size_interval;
+
+
+%
+% alldifferent_interval(VARIABLES, SIZE_INTERVAL, INTERVALS)
+%
+predicate alldifferent_interval(array[int] of var int: variables, 
+                                var int: size_interval, 
+                                array[int, int] of var int: intervals) =
+  let {
+     int: lbx = min(index_set(variables)),
+     int: ubx = max(index_set(variables))
+  } 
+  in
+  all_different(variables)
+
+  /\ % interval[i] > interval[i-1]
+   forall(i in lbx+1..ubx) (  
+     intervals[i,1] > intervals[i-1,2]
+  )
+  /\ % assure the size of interval 
+     % and check that x[i] is in the i'th interval
+  forall(i in lbx..ubx) (  
+    intervals[i, 2] - intervals[i, 1] = size_interval - 1
+    /\
+    variables[i] >= intervals[i, 1]
+    /\
+    variables[i] <= intervals[i, 2]      
+  )
+  /\ % get the k
+  exists(k in lbx..ubx) (
+    intervals[k, 1] = size_interval*k
+    /\
+    intervals[k, 2] = size_interval*k+size_interval-1
+  )
+;
+
+predicate cp1d(array[int] of int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+    forall(i in index_set(x)) (
+       x[i] = y[i]
+    )
+  )
+; 
+
+
+solve satisfy;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+  cp1d([2, 3, 10],x)
+  /\
+  alldifferent_interval(x, size_interval, intervals)
+  %/\ 
+  %size_interval = 3
+;
+
+
+output [
+  "x: " ++ show(x) ++ "\n" ++
+  "size_interval: " ++ show(size_interval) ++ "\n" ++
+  "intervals: " ++ show(intervals) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    2,
+    3,
+    10
+  ],
+  "intervals": [
+    [
+      0,
+      2
+    ],
+    [
+      3,
+      5
+    ],
+    [
+      9,
+      11
+    ]
+  ],
+  "size_interval": 3
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

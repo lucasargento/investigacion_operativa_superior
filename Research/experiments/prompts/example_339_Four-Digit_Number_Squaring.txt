@@ -1,0 +1,85 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 339
+- Name: Four-Digit Number Squaring
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is to find a four-digit whole number n, such that the last four digits of n^2 are in fact the original number n. The number n is within the range of 1000 to 9999. The number n^2 is within the range of 1000000 to 99980001. The problem also involves converting the number n and n^2 into arrays of their digits. The problem is solved when the last four digits of n^2 match the digits of n and the square of n equals n^2.
+
+
+MiniZinc Model:
+var 1000..9999: n;
+array[1..4] of var 0..9: n_a;
+var 1000000..99980001: n_squared;
+array[1..8] of var 0..9: n_squared_a;
+
+predicate toNum(array[int] of var int: number, var int: num_sum,  float: base) =
+          let { int: len = length(number) }
+          in
+          num_sum = sum(i in 1..len) (
+            ceil(pow(base, int2float(len-i))) * number[i]
+          )
+          /\ forall(i in 1..len) (number[i] >= 0)
+;
+
+
+solve satisfy;
+% solve :: int_search(x, "first_fail", "indomain", "complete") satisfy;
+
+constraint
+   % doing it the hard way ...
+   toNum(n_a, n, 10.0)
+   /\
+   toNum(n_squared_a, n_squared, 10.0)
+   /\
+   forall(i in 5..8) (
+      n_a[i-4] = n_squared_a[i]
+   )
+   /\
+   n*n = n_squared
+;
+
+output
+[
+  "n: " ++ show(n) ++ "\n" ++ 
+  "n_a: " ++ show(n_a) ++ "\n" ++ 
+  "n_squared: " ++ show(n_squared) ++ "\n" ++ 
+  "n_squared_a: " ++ show(n_squared_a) ++ "\n"
+];
+
+Expected Output:
+{
+  "n": 9376,
+  "n_a": [
+    9,
+    3,
+    7,
+    6
+  ],
+  "n_squared": 87909376,
+  "n_squared_a": [
+    8,
+    7,
+    9,
+    0,
+    9,
+    3,
+    7,
+    6
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

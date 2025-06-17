@@ -1,0 +1,41 @@
+{
+  "description": "The Hundred Fowls Puzzle is a problem posed by a Chinese mathematician Qiujian Zhang in the late fifth and early sixth century. The problem is as follows: Assume that a cock is worth 5 coins each, a hen 3 coins, and three chicks together 1 coin, and that one buys 100 fowls with 100 coins, then how many cocks, hens and chicks are there respectively?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Hundred Fowls",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "mod",
+      "=",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Hundred Fowls",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "cocks",
+      "hens",
+      "chicks"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "mod",
+      "=",
+      "*",
+      "+"
+    ],
+    "links": [
+      "http://www.f1compiler.com/samples/Hundred%20Fowls.f1.html"
+    ]
+  }
+}

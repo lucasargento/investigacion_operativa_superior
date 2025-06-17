@@ -1,0 +1,15 @@
+The data can be converted into a ".dzn" format as follows:
+
+```minizinc
+translators = 6;
+translator_costs = [12000, 16000, 13000, 15000, 9000, 7000];
+translator_languages = [| 1, 0, 1, 0, 1, 0, 0, 0 | 
+                         | 0, 0, 0, 1, 0, 1, 0, 0 | 
+                         | 0, 1, 0, 0, 0, 1, 0, 0 | 
+                         | 1, 0, 0, 0, 1, 0, 1, 1 | 
+                         | 1, 0, 1, 1, 1, 0, 0, 0 | 
+                         | 0, 0, 1, 0, 1, 0, 0, 1 |];
+required_languages = [1, 1, 1, 1, 1, 1, 1, 1];
+```
+
+In the `translator_languages` matrix, each row represents a translator and each column represents a language. The value 1 indicates that the translator can translate the corresponding language, and 0 indicates that they cannot. The languages are ordered as follows: ['FR', 'AR', 'GE', 'RU', 'SP', 'CH', 'IT', 'PO'].

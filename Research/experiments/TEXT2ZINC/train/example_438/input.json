@@ -1,0 +1,40 @@
+{
+  "description": "Consider a production problem. Given a set of products ProductNum. Each product p is produced at a rate of ProductionRate_p tons per hour. There are AvailableHours hours available in a week. The profit per ton for each product p is ProfitPerTon_p. There is a lower limit MinimumSale_p and an upper limit MaximumSale_p on the tons of each product p sold in a week. The problem aims to maximize the total profit from selling all products. It is constrained that the total of hours used by all products may not exceed the hours available. How to decide the tons of each product p to be produced?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Product Production Optimization",
+    "domain": "Production Planning",
+    "objective": "maximization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "sum",
+      "<=",
+      "/"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Product Production Optimization",
+    "domain": "Production Planning",
+    "model_var_keywords": [
+      "TonsProduced",
+      "TotalProfit"
+    ],
+    "model_data_keywords": [
+      "ProductNum",
+      "ProductionRate",
+      "ProfitPerTon",
+      "MinimumSale",
+      "MaximumSale",
+      "AvailableHours"
+    ],
+    "objective": "maximization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "sum",
+      "<=",
+      "/"
+    ]
+  }
+}

@@ -1,0 +1,483 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 112
+- Name: Balanced Incomplete Block Design Generation
+- Domain: Design and Configuration
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    Balanced Incomplete Block Designs
+Proposer: Steven Prestwich
+Category:
+    - Design and configuration
+    - Combinatorial mathematics
+---
+
+Balanced Incomplete Block Design (BIBD) generation is a standard combinatorial problem from design theory, originally used in the design of statistical experiments but since finding other applications such as cryptography. It is a special case of Block Design, which also includes Latin Square problems.
+
+BIBD generation is described in most standard textbooks on combinatorics. A BIBD is defined as an arrangement of $v$ distinct objects into $b$ blocks such that each block contains exactly $k$ distinct objects, each object occurs in exactly $r$ different blocks, and every two distinct objects occur together in exactly $\lambda$ blocks. Another way of defining a BIBD is in terms of its incidence matrix, which is a $v$ by $b$ binary matrix with exactly $r$ ones per row, $k$ ones per column, and with a scalar product
+of $\lambda$ between any pair of distinct rows. A BIBD is therefore specified by its parameters $(v,b,r,k,\lambda)$. An example of a solution for $(7,7,3,3,1)$ is:
+
+    0 1 1 0 0 1 0
+    1 0 1 0 1 0 0
+    0 0 1 1 0 0 1
+    1 1 0 0 0 0 1
+    0 0 0 0 1 1 1
+    1 0 0 1 0 1 0
+    0 1 0 1 1 0 0 
+
+Lam's problem {prob025} is that of finding a BIBD with parameters $(111,111,11,11,1)$.
+
+
+Input Data (data.dzn):
+% Affine plane problem:
+% v = n^2, k = n, lambda = 1
+
+v = 16;
+k = 4;
+lambda = 1;
+
+% A solution:
+%   10000000010000100101
+%   10000000000110010010
+%   01000000100010001001
+%   01000001000001000110
+%   00001010001000000011
+%   00010100000001010001
+%   00100100000000101010
+%   00010010000100001100
+%   00100000101000010100
+%   00001001010000011000
+%   00001000100101100000
+%   00010001001010100000
+%   00100010010011000000
+%   01000100011100000000
+%   10000111100000000000
+%   11111000000000000000
+
+MiniZinc Model:
+include "lex_lesseq.mzn";
+
+int: v;
+int: k;
+int: lambda;
+
+int: b = (lambda * v * (v - 1)) div (k * (k - 1));
+int: r = (lambda * (v - 1)) div (k - 1);
+
+set of int: rows = 1..v;
+set of int: cols = 1..b;
+
+array [rows, cols] of var bool: m;
+
+    % Every row must sum to r.
+    %
+constraint forall (i in rows) (sum (j in cols) (bool2int(m[i, j])) = r);
+
+    % Every column must sum to k.
+    %
+constraint forall (j in cols) (sum (i in rows) (bool2int(m[i, j])) = k);
+
+    % The dot product of every pair of distinct rows must be lambda.
+    %
+constraint
+    forall (i_a, i_b in rows where i_a < i_b) (
+        sum (j in cols) (bool2int(m[i_a, j] /\ m[i_b, j])) = lambda
+    );
+
+    % Break row symmetry in the incidence matrix.
+    %
+constraint forall(i in rows diff {max(rows)})(
+        lex_lesseq([m[i, j] | j in cols], [m[i+1, j] | j in cols])
+    );
+
+    % Break column symmetry in the incidence matrix.
+    %
+constraint forall(j in cols diff {max(cols)})(
+        lex_lesseq([m[i, j] | i in rows], [m[i, j+1] | i in rows])
+    );
+
+solve :: bool_search([m[i, j] | i in rows, j in cols],
+    input_order, indomain_min, complete)
+    satisfy;
+
+output  ["bibd: (v = ", show(v), ", b = ", show(b), ", r = ", show(r),
+        ", k = ", show(k), ", lambda = ", show(lambda), ")\n\n"] ++
+        [ ( if j > b then "\n" else show(bool2int(m[i, j])) endif )
+        | i in rows, j in 1..(b + 1)
+        ];
+
+%----------------------------------------------------------------------------%
+%----------------------------------------------------------------------------%
+
+Expected Output:
+{
+  "m": [
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    [
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    [
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    [
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    [
+      true,
+      false,
+      true,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

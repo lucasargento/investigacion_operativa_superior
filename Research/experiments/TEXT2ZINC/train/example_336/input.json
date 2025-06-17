@@ -1,0 +1,48 @@
+{
+  "description": "Unknown Failure.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Magic and Water Square Optimization",
+    "domain": "Mathematics",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "sum",
+      "=",
+      "forall",
+      "+",
+      "maximum",
+      "minimum",
+      "<"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Magic and Water Square Optimization",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "magic",
+      "water",
+      "z"
+    ],
+    "model_data_keywords": [
+      "n",
+      "total",
+      "assoc"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "sum",
+      "=",
+      "forall",
+      "+",
+      "maximum",
+      "minimum",
+      "<"
+    ]
+  }
+}

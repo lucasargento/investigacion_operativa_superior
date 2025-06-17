@@ -1,0 +1,37 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 82
+- Name: Hospital Night Shift Scheduling
+- Domain: Healthcare and Human Systems
+- Objective: minimization
+
+Problem Description:
+A hospital wants to make a weekly night shift (12pm-8am) schedule for its nurses. If each nurse works x number of days in a row on the night shift, followed by 7 - x number of days off, given the demand of nurses per night shift of each day of the week, find the minimal number of nurses the hospital needs to hire and their configuration.
+
+
+
+Input Data (data.dzn):
+Period = 4;
+Demand = [0, 5, 9, 15, 4, 7, 3];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 15.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

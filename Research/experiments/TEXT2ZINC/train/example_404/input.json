@@ -1,0 +1,43 @@
+{
+  "description": "An arcade is implementing two systems , a card - based system and a coin - based system . A card - based system can accept 60 guests per hour . Conversely , a coin - based system can only accept 45 guests per hour . The card - based machine needs 6 units of electricity every hour while the coin - based machine needs only 4 units of electricity every hour . The arcade needs to be able to accept at least 1500 guests per hour but only has access to 145 units of electricity every hour . Since most guests prefer to use cards , there must be more card - based than coin - based machines . How many of each machine should be kept in the arcade to minimize the total number of machines in the arcade ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Arcade Machine Optimization",
+    "domain": "Resource Allocation",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "*",
+      ">=",
+      "<=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Arcade Machine Optimization",
+    "domain": "Resource Allocation",
+    "model_var_keywords": [
+      "card_machines",
+      "coin_machines",
+      "total_machines"
+    ],
+    "model_data_keywords": [
+      "guests_per_hour_card",
+      "guests_per_hour_coin",
+      "electricity_per_hour_card",
+      "electricity_per_hour_coin",
+      "min_guests_per_hour",
+      "max_electricity_per_hour"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "*",
+      ">=",
+      "<=",
+      "+"
+    ]
+  }
+}

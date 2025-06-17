@@ -1,0 +1,65 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 207
+- Name: Steel Manufacturing Optimization
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+How should the manufacture manage the steel to maximize profit? The manufacture has to decide on the optimal quantity of SteelQuantity tons of steel to produce, taking into account the required ManganesePercent percent manganese and ensuring the silicon content is between SiliconMinPercent percent and SiliconMaxPercent percent. The available stocks contain SiliconContent percent Silicon and ManganeseContent percent Manganese. The price of manganese is set at ManganesePrice per ton, and the material cost for each stock is MaterialCost. The company sells the steel at a price of SellingPrice per ton but also incurs a melting cost of MeltingPrice per ton.
+
+
+Input Data (data.dzn):
+n_steel_quant = 1000;
+mn_percent = 0.45;
+si_min = 3.25;
+si_max = 5.0;
+contsi = [4.0, 1.0, 0.6];
+contmn = [0.45, 0.5, 0.4];
+mang_price = 8.0;
+cost = [21, 25, 15];
+sell_price = 0.45;
+melt_price = 0.005;
+
+MiniZinc Model:
+% Parameters
+int: n_steel_quant; % Quantity of steel to produce
+float: mn_percent; % Required manganese percentage
+float: si_min; % Minimum silicon percentage
+float: si_max; % Maximum silicon percentage
+array[1..3] of float: contsi; % Silicon content in each stock
+array[1..3] of float: contmn; % Manganese content in each stock
+float: mang_price; % Price of manganese per ton
+array[1..3] of int: cost; % Material cost for each stock
+float: sell_price; % Selling price per ton of steel
+float: melt_price; % Melting cost per ton
+
+% Decision Variables
+var 0..n_steel_quant: amount[1..3]; % Amount of each mineral to melt
+var 0..n_steel_quant: num_mang; % Amount of manganese to add
+
+% Constraints
+constraint sum(amount) + num_mang = n_steel_quant; % Total steel produced
+constraint sum([contsi[i]*amount[i] | i in 1..3]) >= si_min*n_steel_quant; % Minimum silicon content
+constraint sum([contsi[i]*amount[i] | i in 1..3]) <= si_max*n_steel_quant; % Maximum silicon content
+constraint sum([contmn[i]*amount[i] | i in 1..3]) + num_mang*mn_percent >= mn_percent*n_steel_quant; % Manganese content
+
+% Objective Function
+var float: profit = sell_price*n_steel_quant - (sum([cost[i]*amount[i] | i in 1..3]) + mang_price*num_mang + melt_price*sum(amount));
+solve maximize profit;
+
+% Output
+output ["amount: ", show(amount), "\n", "num_mang: ", show(num_mang)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

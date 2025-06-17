@@ -1,0 +1,45 @@
+{
+  "description": "We are aiming at maximizing total net income subject to the Cash availability and machine capacity limitations. The problem parameters include: the initial Cash available, the Hour(s) required to produce each of the P products, the Cost to produce each of the products, the Price at which each product can be sold, the InvestPercentage of income from each product to be reinvested, the UpgradeHours required for upgrading the machinery, the UpgradeCost associated with upgrading, and the total available AvailableHours for machine operation.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximize Net Income",
+    "domain": "Finance",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "maximize"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximize Net Income",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "Production",
+      "Upgrade",
+      "NetIncome"
+    ],
+    "model_data_keywords": [
+      "Cash",
+      "Hour",
+      "Cost",
+      "Price",
+      "InvestPercentage",
+      "UpgradeHours",
+      "UpgradeCost",
+      "AvailableHours"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      "sum",
+      "maximize"
+    ]
+  }
+}

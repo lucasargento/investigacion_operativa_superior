@@ -1,0 +1,52 @@
+{
+  "description": "The problem is about generating all the subsets of a set in MiniZinc. The model uses the binary representation of integers from 0 to 2^n-1 to represent the subsets. For example, the binary representation 0 0 0 represents an empty subset, 0 0 1 represents a subset containing the element 1, 0 1 0 represents a subset containing the element 2, and so on. The goal is to generate all possible subsets of a set with n elements. The subsets are represented as an array of sets, where each set is a subset of the original set. The problem is solved when all subsets are generated.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Generate All Subsets of a Set",
+    "domain": "Combinatorics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "arrayToNum",
+      "generatePowerSet",
+      "forall",
+      "in",
+      "<->",
+      "sum",
+      "ceil",
+      "pow",
+      "int2float",
+      ">=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Generate All Subsets of a Set",
+    "domain": "Combinatorics",
+    "model_var_keywords": [
+      "subsets",
+      "binaryRepresentation"
+    ],
+    "model_data_keywords": [
+      "n",
+      "p"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "arrayToNum",
+      "generatePowerSet",
+      "forall",
+      "in",
+      "<->",
+      "sum",
+      "ceil",
+      "pow",
+      "int2float",
+      ">=",
+      "="
+    ]
+  }
+}

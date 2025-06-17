@@ -1,0 +1,101 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 264
+- Name: Number Partitioning
+- Domain: Academic
+- Objective: satisfaction
+
+Problem Description:
+# Problem NumberPartitioning
+
+This is [Problem 049](https://www.csplib.org/Problems/prob049/) at CSPLib.
+
+This problem consists in finding a partition of the set of numbers {1, 2, ..., n} into two sets A and B such that:
+  - A and B have the same cardinality
+  - the sum of numbers in A is equal to the sum of numbers in B
+  - the sum of squares of numbers in A is equal to the sum of squares of numbers in B
+
+## Data
+  An integer n
+
+## Example
+  A solution for n=8 : A = {1, 4, 6, 7} and B = {2,3,5,7}
+
+## Model
+  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [Sum](http://pycsp.org/documentation/constraints/Sum)
+
+## Execution
+  - python NumberPartitioning.py -data=number
+
+## Links
+  - https://www.csplib.org/Problems/prob049/
+  - https://www.cril.univ-artois.fr/XCSP22/competitions/csp/csp
+
+## Tags
+  academic, recreational, csplib, xcsp22
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the range of numbers
+int: n = 8;
+
+% Define the sets A and B
+set of int: A = 1..n;
+set of int: B = 1..n;
+
+% Define the variables for the elements in sets A and B
+array[A] of var 0..1: a;
+array[B] of var 0..1: b;
+
+% Define the constraints
+constraint forall(i in A)(sum(j in A)(a[j]*j) = sum(j in B)(b[j]*j));
+constraint forall(i in A)(sum(j in A)(a[j]*j*j) = sum(j in B)(b[j]*j*j));
+constraint sum(i in A)(a[i]) = sum(i in B)(b[i]);
+
+% Ensure that the elements in both sets are different
+constraint forall(i in A)(a[i] + b[i] <= 1);
+
+% Solve the problem
+solve satisfy;
+
+% Output the solution
+output [ "A = ", show([ i | i in A where a[i] = 1 ]), "\n", "B = ", show([ i | i in B where b[i] = 1 ]) ];
+
+Expected Output:
+{
+  "a": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "b": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

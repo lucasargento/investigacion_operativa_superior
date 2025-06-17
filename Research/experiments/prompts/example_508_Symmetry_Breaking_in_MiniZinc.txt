@@ -1,0 +1,71 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 508
+- Name: Symmetry Breaking in MiniZinc
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is about symmetry breaking in MiniZinc. The task is to find seven integers A, B, C, D, E, F, G in the range of 1 to 50 that satisfy the following conditions: The sum of the cubes of A, B, C, and D is equal to the sum of the cubes of E, F, and G. Additionally, the integers must satisfy the following symmetry conditions: A is less than or equal to B, B is less than or equal to C, C is less than or equal to D, E is less than or equal to F, F is less than or equal to G, and A is less than or equal to E.
+
+
+MiniZinc Model:
+var 1..50: A;
+var 1..50: B;
+var 1..50: C;
+var 1..50: D;
+var 1..50: E;
+var 1..50: F;
+var 1..50: G;
+
+solve satisfy;
+
+constraint
+   A*A*A + B*B*B + C*C*C + D*D*D = E*E*E + F*F*F + G*G*G /\
+
+   % symmetries in left side
+   A <= B /\
+   B <= C /\
+   C <= D /\
+
+   % symmetries in right side
+   E <= F /\
+   F <= G /\
+ 
+   % and between the sides
+   A <= E
+;
+
+output [
+  show(A), "^3 + ",
+  show(B), "^3 +",
+  show(C), "^3 + ",
+  show(D), "^3 = ",
+  show(E), "^3 + ",
+  show(F), "^3 + ",
+  show(G), "^3 ","\n"
+];
+
+Expected Output:
+{
+  "A": 1,
+  "B": 4,
+  "C": 4,
+  "D": 6,
+  "E": 1,
+  "F": 1,
+  "G": 7
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

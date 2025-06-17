@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 302
+- Name: Remainder Puzzle
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+The problem is a remainder puzzle, inspired by a puzzle from Boris Kordemsky's 'The Moscow Puzzles'. The puzzle involves an array of 4 integers, x[1] to x[4], and another integer n. The goal is to minimize n. The constraints are that all elements of the array x must be greater than or equal to 1, n must be greater than or equal to 1, and the following equations must hold: -3*x[1] + n = 1, -4*x[2] + n = 2, -5*x[3] + n = 3, -6*x[4] + n = 4. The output is the array x and the integer n.
+
+
+MiniZinc Model:
+array[1..4] of var int: x;
+var int: n;
+
+solve minimize n;
+
+constraint
+   forall(i in 1..4) (x[i] >= 1)  /\
+   n >= 1 /\
+   -3*x[1] + n = 1 /\
+   -4*x[2] + n = 2 /\
+   -5*x[3] + n = 3 /\
+   -6*x[4] + n = 4
+;
+
+output [
+"x: " ++ show(x) ++ "\n"++
+"n: " ++ show(n) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    19,
+    14,
+    11,
+    9
+  ],
+  "n": 58,
+  "_objective": 58
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,48 @@
+{
+  "description": "The given MiniZinc code defines a problem of generating a powerset of a set of size 'n'. A powerset is the set of all subsets of a set, including the empty set and the set itself. The code defines two types of powersets: 'ps1' and 'ps2'. 'ps1' is a binary matrix where each row represents a subset of the set {1,2,...,n} in binary format. 'ps2' is a matrix where each row represents a subset of the set {1,2,...,n} in a different format: each element in a row is the product of the corresponding element in the binary representation and the position of the element in the set (counting from the end). The problem is to find such matrices 'ps1' and 'ps2' that satisfy these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Powerset Generation",
+    "domain": "Combinatorics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "powerset",
+      "powerset2",
+      "toNum",
+      "forall",
+      "sum",
+      "pow",
+      "*",
+      "=",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Powerset Generation",
+    "domain": "Combinatorics",
+    "model_var_keywords": [
+      "ps1",
+      "ps2"
+    ],
+    "model_data_keywords": [
+      "setSize",
+      "powersetSize"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "powerset",
+      "powerset2",
+      "toNum",
+      "forall",
+      "sum",
+      "pow",
+      "*",
+      "=",
+      "/\\"
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 435
+- Name: Minimize Alloy Production Cost
+- Domain: Manufacturing
+- Objective: minimization
+
+Problem Description:
+The goal is to minimize the price of an alloy produced from other alloys available on the market. There are AlloysOnMarket different alloys that can be bought to blend into the final product. The needed composition of the end alloy requires RequiredElements elements. Each alloy on the market has a known composition given by CompositionDataPercentage_{e,a}, which indicates the percentage of element e in alloy a. The desired percentage of each element in the final blend is specified by DesiredBlendPercentage_e. Furthermore, each alloy a on the market comes with a price AlloyPrice_a. The objective of the optimization problem is to determine the quantity of each available alloy that should be used to achieve the desired blend percentages at the minimum total cost, without exceeding the availability of the alloys.
+
+
+Input Data (data.dzn):
+AlloysOnMarket = 9;
+RequiredElements = 3;
+CompositionDataPercentage = [|0.1, 0.1, 0.4, 0.6, 0.3, 0.3, 0.3, 0.5, 0.2|, 
+                             |0.1, 0.3, 0.5, 0.3, 0.3, 0.4, 0.2, 0.4, 0.3|, 
+                             |0.8, 0.6, 0.1, 0.1, 0.4, 0.3, 0.5, 0.1, 0.5|];
+DesiredBlendPercentage = [0.3, 0.3, 0.4];
+AlloyPrice = [10, 16, 17, 17, 12, 12, 12, 11, 10];
+
+MiniZinc Model:
+% Parameters
+int: AlloysOnMarket;
+int: RequiredElements;
+array[1..RequiredElements, 1..AlloysOnMarket] of float: CompositionDataPercentage;
+array[1..RequiredElements] of float: DesiredBlendPercentage;
+array[1..AlloysOnMarket] of int: AlloyPrice;
+
+% Decision Variables
+array[1..AlloysOnMarket] of var 0..100: AlloyQuantity;
+
+% Constraints
+constraint forall(e in 1..RequiredElements)(
+    sum(a in 1..AlloysOnMarket)(CompositionDataPercentage[e,a]*AlloyQuantity[a]) = DesiredBlendPercentage[e]*sum(a in 1..AlloysOnMarket)(AlloyQuantity[a])
+);
+
+% Objective
+var int: TotalCost = sum(a in 1..AlloysOnMarket)(AlloyPrice[a]*AlloyQuantity[a]);
+solve minimize TotalCost;
+
+% Output
+output ["AlloyQuantity: ", show(AlloyQuantity), "\n", "TotalCost: ", show(TotalCost)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,36 @@
+{
+  "description": "The problem is based on a puzzle from Martin Gardner (June 1961) titled 'The Square Root of Wonderful'. The puzzle is as follows: 'The Square Root of Wonderful' was the name of a play on Broadway. If each letter in WONDERFUL stands for a different digit (zero excluded) and if OODDF, using the same code, represent the square root, then what is the square root of wonderful? The task is to assign each letter in WONDERFUL a unique digit from 1 to 9 such that the square of the number represented by OODDF equals the number represented by WONDERFUL. The solution should satisfy the constraints that all digits are different and greater than zero, and the numbers WONDERFUL and OODDF are formed by concatenating the digits represented by the respective letters.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Square Root of Wonderful Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Square Root of Wonderful Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "letters",
+      "WONDERFUL",
+      "OODDF"
+    ],
+    "model_data_keywords": [
+      "num_letters"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "=",
+      "*"
+    ]
+  }
+}

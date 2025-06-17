@@ -1,0 +1,57 @@
+{
+  "description": "The problem is based on the M12 puzzle, which is inspired by Rubik's Cube. The puzzle has a length of 12 (2*6) and two operations: merge (shuffle) and inverse (reverse). The puzzle starts with some initial configuration. The goal is to find the sequence of operations that transforms the initial configuration into a sequence from 1 to 12. The operations are represented as permutations. The problem is modeled as a constraint satisfaction problem where the constraints ensure that each row of the puzzle is different and that each row is a permutation of the previous row according to one of the operations. The problem is solved by minimizing the index of the row that first matches the sequence from 1 to 12. Additional constraints are added to break symmetries and improve the efficiency of the solution.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "M12 Puzzle Solver",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "permutation3",
+      "cp1d",
+      "alldifferent",
+      "forall",
+      "let",
+      "=",
+      ">",
+      "<",
+      "->",
+      "/\\",
+      "assert"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "M12 Puzzle Solver",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x",
+      "init",
+      "check_ix",
+      "operations"
+    ],
+    "model_data_keywords": [
+      "rows",
+      "num_moves",
+      "t",
+      "moves",
+      "moves_str"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "permutation3",
+      "cp1d",
+      "alldifferent",
+      "forall",
+      "let",
+      "=",
+      ">",
+      "<",
+      "->",
+      "/\\",
+      "assert"
+    ]
+  }
+}

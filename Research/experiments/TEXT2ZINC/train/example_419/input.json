@@ -1,0 +1,40 @@
+{
+  "description": "A chemical company is transporting their hydrogen using two different methods , high pressure tube trailers and liquefied hydrogen tankers . The first method is a high - pressure tube trailer which can transport 50 cubic meters each per trip at a cost of $ 500 . The second method is using liquefied hydrogen tankers which can transport 30 cubic meters each per trip at a cost of $ 200 . The company needs to transport at least 1000 cubic meters of hydrogen and they have budget of $ 3750 available . In addition , the number of transports done by the high pressure tube trailer method has to be less than the number of transports done by the liquefied hydrogen tanker method . How many of each transportation method should they use to minimize the total number of trips ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Hydrogen Transportation Optimization",
+    "domain": "Logistics",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">=",
+      "<"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Hydrogen Transportation Optimization",
+    "domain": "Logistics",
+    "model_var_keywords": [
+      "tube_trailers",
+      "hydrogen_tankers"
+    ],
+    "model_data_keywords": [
+      "tube_trailer_capacity",
+      "tanker_capacity",
+      "tube_trailer_cost",
+      "tanker_cost",
+      "total_hydrogen",
+      "total_budget"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">=",
+      "<"
+    ]
+  }
+}

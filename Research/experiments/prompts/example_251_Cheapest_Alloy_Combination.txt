@@ -1,0 +1,57 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 251
+- Name: Cheapest Alloy Combination
+- Domain: Manufacturing
+- Objective: minimization
+
+Problem Description:
+The manufacturer wishes to find the amounts of the various alloys needed and to determine the cheapest combination given AlloyQuantity, the total quantity of alloy to produce, Target, the quantity of target components in the alloy, Ratio, the ratio of each component k in alloy m, and Price, the price of each alloy k.
+
+
+Input Data (data.dzn):
+Here is the data in ".dzn" format:
+
+```
+alloy_quant = 1000;
+target = [300, 700];
+ratio = [|0.1, 0.9|, |0.25, 0.75|, |0.5, 0.5|, |0.75, 0.25|, |0.95, 0.05|];
+price = [5, 4, 3, 2, 1.5];
+```
+
+MiniZinc Model:
+% Define parameters
+int: alloy_quant; % Total quantity of alloy to produce
+array[1..M] of int: target; % Quantity of target components in the alloy
+array[1..K, 1..M] of float: ratio; % Ratio of each component in each alloy
+array[1..K] of float: price; % Price of each alloy
+
+% Define decision variables
+array[1..K] of var 0..alloy_quant: amount; % Amount of each alloy to buy
+
+% Define constraints
+constraint forall(m in 1..M) (
+    sum(k in 1..K) (amount[k] * ratio[k,m]) >= target[m]
+);
+
+% Define objective function
+var float: total_cost = sum(k in 1..K) (amount[k] * price[k]);
+
+% Minimize the total cost
+solve minimize total_cost;
+
+% Output the solution
+output ["amount: " ++ show(amount)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

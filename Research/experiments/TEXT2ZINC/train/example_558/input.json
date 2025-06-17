@@ -1,0 +1,46 @@
+{
+  "description": "The problem is about scheduling tasks for building a house. There are a number of tasks, each with a specific duration and height. The total duration is the sum of the durations of all tasks. There are also a number of precedences, which are pairs of tasks where the first task must be completed before the second can start. The goal is to find the start and end times for each task, such that the total time (makespan) is minimized. There is also a limit on the cumulative height of the tasks that can be performed at the same time. The problem is solved using the MiniZinc constraint programming language.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "House Building Scheduling",
+    "domain": "Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "max",
+      "cumulative",
+      "forall",
+      "<=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "House Building Scheduling",
+    "domain": "Scheduling",
+    "model_var_keywords": [
+      "start",
+      "end",
+      "limitx",
+      "makespan"
+    ],
+    "model_data_keywords": [
+      "num_tasks",
+      "duration",
+      "height",
+      "total_duration",
+      "num_precedences",
+      "precedences"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "max",
+      "cumulative",
+      "forall",
+      "<=",
+      "+"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Consider a problem where we have a set ElementSet. For each element j in ElementSet, we have a parameter CoefficientA_j, a parameter ProfitCoefficientC_j, and a parameter UpperBoundU_j. We also have a global parameter GlobalParameterB. We have a variable DecisionVariableX_j for each j in ElementSet. The goal is to maximize the total profit, which is the sum of ProfitCoefficientC_j * DecisionVariableX_j for all j in ElementSet. The constraints are that the sum of (1/CoefficientA_j) * DecisionVariableX_j for all j in ElementSet should be less than or equal to GlobalParameterB, and DecisionVariableX_j should be between 0 and UpperBoundU_j for all j in ElementSet.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximize Total Profit",
+    "domain": "Finance",
+    "objective": "maximization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "sum",
+      "<=",
+      "forall",
+      ">=",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximize Total Profit",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "DecisionVariableX"
+    ],
+    "model_data_keywords": [
+      "ElementNum",
+      "CoefficientA",
+      "ProfitCoefficientC",
+      "UpperBoundU",
+      "GlobalParameterB"
+    ],
+    "objective": "maximization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "sum",
+      "<=",
+      "forall",
+      ">=",
+      "/\\"
+    ]
+  }
+}

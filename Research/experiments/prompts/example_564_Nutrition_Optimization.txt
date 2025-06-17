@@ -1,0 +1,85 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 564
+- Name: Nutrition Optimization
+- Domain: Operations Research
+- Objective: minimization
+
+Problem Description:
+The problem is a standard Operations Research example, where the goal is to minimize the cost of products while meeting certain nutritional requirements. The products in this case are different types of food, each with a specific cost and nutritional content. The nutritional content is measured in terms of calories, chocolate (in ounces), sugar (in ounces), and fat (in ounces). The foods are: Chocolate Cake (1 slice), Chocolate ice cream (1 scoop), Cola (1 bottle), and Pineapple cheesecake (1 piece). The problem is to determine the quantity of each food to purchase (represented by the variable 'x') such that the total cost is minimized and the nutritional requirements are met. The nutritional requirements are represented by the 'limits' array, and the cost of each food is represented by the 'price' array. The nutritional content of each food is represented by the 'calories', 'chocolate', 'sugar', and 'fat' arrays. The total cost is calculated as the sum of the product of the quantity and price of each food. The constraints ensure that the quantity of each food is non-negative and that the total nutritional content meets the requirements.
+
+
+MiniZinc Model:
+int: n; 
+int: p = 4;
+array[1..n] of var int: x;
+array[1..n] of var int: price;
+
+array[1..p] of int: limits;
+array[1..n] of int: calories;
+array[1..n] of int: chocolate;
+array[1..n] of int: sugar;
+array[1..n] of int: fat;
+
+var int: cost = sum(i in 1..n) (price[i]*x[i]); 
+
+solve minimize cost ;
+% solve satisfy;
+
+constraint
+          forall(i in index_set(x)) (x[i] >= 0)
+       /\ sum(i in 1..n) (x[i]*calories[i])  >= limits[1]
+       /\ sum(i in 1..n) (x[i]*chocolate[i]) >= limits[2]
+       /\ sum(i in 1..n) (x[i]*sugar[i])     >= limits[3]
+       /\ sum(i in 1..n) (x[i]*fat[i])       >= limits[4]
+       /\ cost <= 90 % for solve satisfy
+;
+
+
+% data
+n = 4;
+price  = [ 50, 20, 30, 80]; % in cents
+limits = [500,  6, 10,  8]; % requirements for each nutrition type
+
+% nutritions for each product
+calories  = [400, 200, 150, 500];
+chocolate = [3,2,0,0];
+sugar     = [2,2,4,4];
+fat       = [2,4,1,5];
+
+
+output 
+[
+  "cost: " ++ show(cost) ++ "\n" ++
+  "x: " ++ show(x) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    0,
+    3,
+    1,
+    0
+  ],
+  "price": [
+    50,
+    20,
+    30,
+    80
+  ],
+  "_objective": 90
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

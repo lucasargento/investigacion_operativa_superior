@@ -1,0 +1,47 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 381
+- Name: Wilkinson's Problem
+- Domain: Non-linear Optimization
+- Objective: minimization
+
+Problem Description:
+This problem is known as Wilkinson's problem, a non-linear problem. The problem is to find a value for 'x' in the range of -100.00 to 10.00 that minimizes 'x' and satisfies the constraint that 0.0 equals the product of (x+n) for n from 1 to 20 plus 0.00000011920928955078 times x to the power of 19. The solution to this problem is a real number that is approximately -20.84690810148.
+
+
+MiniZinc Model:
+var -100.00..10.00: x; 
+
+solve minimize x;
+% solve::float_search([x], 0.000001, input_order, indomain_split, complete) minimize x;
+
+output [
+ show(x)
+];
+
+constraint
+%   x >= -100.0 /\ x <= 10.0
+%   /\
+  0.0 = (x+1.0)*(x+2.0)*(x+3.0)*(x+4.0)*(x+5.0)*(x+6.0)*(x+7.0)*(x+8.0)*(x+9.0)*(x+10.0)*(x+11.0)*(x+12.0)*(x+13.0)*(x+14.0)*(x+15.0)*(x+16.0)*(x+17.0)*(x+18.0)*(x+19.0)*(x+20.0)
+      + 0.00000011920928955078*x*x*x*x*x*x*x*x*x*x*x*x*x*x*x*x*x*x*x
+                              % this is x**19
+;
+
+Expected Output:
+{
+  "x": -20.8469081014822,
+  "_objective": -20.8469081014822
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,30 @@
+{
+  "description": "This problem is based on the 'Tokyo Elevator Puzzle' by Martin Chlond. The puzzle involves an elevator in a building with 8 floors. The elevator makes 70 trips, and the data for each trip is represented in a 2D array. Each row in the array represents a trip, and each column represents a floor. A '1' in a cell indicates that the elevator stopped at that floor during the trip, while a '0' indicates that it did not. The goal of the puzzle is to find a pattern or strategy for the elevator's stops that minimizes the total time or distance traveled.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Tokyo Elevator Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "array2d"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Tokyo Elevator Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "m",
+      "n",
+      "c"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "array2d"
+    ]
+  }
+}

@@ -1,0 +1,179 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 305
+- Name: Logical Labyrinth Puzzle
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Logical Labyrinth is a puzzle where there are 9 doors, each hiding a prize. The prizes are either a Lady, a Tiger, or Empty. Each door has a statement on it that can be either true or false. The goal is to find the door that hides the Lady. The constraints of the puzzle are as follows: 
+
+1. If the statement on door 1 is true, then exactly one of the doors 1, 3, 5, 7, 9 hides the Lady. 
+2. If the statement on door 2 is true, then door 2 is empty. 
+3. If the statement on door 3 is true, then either the statement on door 5 is true or door 1 hides the Lady. 
+4. If the statement on door 4 is true, then the statement on door 1 is false. 
+5. If the statement on door 5 is true, then either the statement on door 2 is true or the statement on door 4 is true. 
+6. If the statement on door 6 is true, then the statement on door 3 is false. 
+7. If the statement on door 7 is true, then door 1 does not hide the Lady. 
+8. If the statement on door 8 is true, then door 8 hides the Tiger and door 9 is empty. 
+9. If the statement on door 9 is true, then door 9 hides the Tiger and the statement on door 3 is true. 
+
+Additionally, each door hides exactly one prize, only one door hides the Lady, the sign on the Lady's door is true, and the signs on the Tigers' doors are false. If room 8 is not empty, then there is enough information to deduce where the Lady is.
+
+
+MiniZinc Model:
+int: door  = 9;
+int: prize = 3; % 1 = Lady, 2 = Tiger, 3 = Empty
+
+array[1..door, 1..prize] of var 0..1: x; % x(i,j) = 1 if door i hides prize j, else 0
+array[1..door] of var 0..1: t; %! t(i) = 1 if statement on door i is true, else 0
+
+solve satisfy;
+
+constraint
+
+  % if statement on door 1 is true [i.e. x[1,1]+x[3,1]+x[5,1]+x[7,1]+x[9,1] = 1 ] 
+  %                                       then t[1] = 1, else t[1] = 0
+  t[1] = x[1,1]+x[3,1]+x[5,1]+x[7,1]+x[9,1] 
+
+  /\ % if statement on door 2 is true [i.e. x[2,3]=1] then t[2] = 1, else t[2] = 0
+  t[2] = x[2,3] 
+
+  /\ % if statement on door 3 is true [i.e. t[5]+x[1,1] > 1 ] then t[3] = 1, else t[3] = 0
+  t[5]+x[1,1]-2*t[3] <= 0 /\ 
+  t[5]+x[1,1]-t[3] >= 0 
+
+  /\ % if statement on door 4 is true [i.e. t[1] = 0] then t[4] = 1, else t[4] = 0
+  t[4] = 1-t[1] 
+
+  /\ % if statement on door 5 is true [i.e. t[2]+t[4] > 1] then t[5] = 1, else t[5] = 0
+  t[2]+t[4]-2*t[5] <= 0 /\ 
+  t[2]+t[4]-t[5] >= 0 /\ 
+
+  % if statement on door 6 is true [i.e. t[3] = 0 ] then t[6] = 1, else t[6] = 0
+  t[6] = 1-t[3] /\ 
+
+  % if statement on door 7 is true [i.e. x[1,1] = 0] then t[7] = 1, else t[7] = 0
+  t[7] = 1-x[1,1] /\ 
+
+  % if statement on door 8 is true [i.e. x[8,2]+x[9,3] = 2 ] then t[8] = 1, else t[8] = 0
+  x[8,2]+x[9,3]-2*t[8] <= 1 /\ 
+  x[8,2]+x[9,3]-2*t[8] >= 0 /\ 
+
+  % if statement on door 9 is true [i.e. x[9,2]+t[3] = 2] then t[9] = 1, else t[9] = 0
+  x[9,2]+t[3]-2*t[9] <= 1 /\ 
+  x[9,2]+t[3]-2*t[9] >= 0 /\ 
+
+  % each door hides 1 prize
+  forall(i in 1..door) (
+     sum(j in 1..prize) (x[i,j]) = 1 
+  )
+  /\
+  % only one room contains lady
+  sum(i in 1..door) (x[i,1]) = 1
+  /\
+  % sign on lady's door is true
+  forall(i in 1..door) (
+    t[i] >= x[i,1] 
+  )
+  /\
+  % sign on tigers' doors are false
+  forall(i in 1..door) (
+     t[i] <= 1 - x[i,2]
+  )
+  /\
+
+  % if room 8 is empty then not enough information to pinpoint lady
+  % min and max x[7,1] give different results
+  % room 8 is empty
+  % x[8,3] = 1 /\
+
+  % if room 8 is not empty then enough information
+  % min and max x[7,1] gives same results
+  % if the prisoner was able to deduce where the lady was then
+  % room 8 must not have been empty
+
+  % room 8 is not empty
+  x[8,3] = 0
+;
+
+output [
+  if j = 1 then "\n" else " " endif ++
+  show(x[i,j])
+  | i in 1..door, j in 1..prize
+] ++ ["\n"];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ]
+  ],
+  "t": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    0,
+    0
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

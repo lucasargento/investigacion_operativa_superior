@@ -1,0 +1,44 @@
+{
+  "description": "This problem is a puzzle presented by Martin Gardner in July 1971. The puzzle is as follows: ABCD are four consecutive digits in increasing order, DBCA are the same four in decreasing order. The four dots represent the same four digits in an unknown order. If the sum of ABCD, DBCA, and the number represented by the four dots is 12300, what number is represented by the four dots? The task is to find the values of A, B, C, D, and the number represented by the four dots that satisfy these conditions.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Martin Gardner's Four Digits Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      "increasing",
+      "toNumber",
+      "=",
+      "contains"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Martin Gardner's Four Digits Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "increasingDigits",
+      "unknownOrderDigits",
+      "dotsNumber",
+      "ABCD",
+      "DCBA"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      "increasing",
+      "toNumber",
+      "=",
+      "contains"
+    ]
+  }
+}

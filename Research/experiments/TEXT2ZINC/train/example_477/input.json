@@ -1,0 +1,40 @@
+{
+  "description": "The problem is about enforcing two vectors to differ from at least K positions. Given two vectors, VECTOR1 and VECTOR2, and an integer K, the task is to ensure that VECTOR1 and VECTOR2 differ from at least K positions. For example, if K=2, VECTOR1=<2, 5, 2, 0>, and VECTOR2=<3, 6, 2, 1>, the constraint holds since the first and second vectors differ from 3 positions, which is greater than or equal to K=2.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Vector Difference Constraint",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "assign_constant_array",
+      "differ_from_at_least_k_pos",
+      "=",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Vector Difference Constraint",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "vector1",
+      "vector2",
+      "k",
+      "differing_positions"
+    ],
+    "model_data_keywords": [
+      "n",
+      "vector_domain"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "assign_constant_array",
+      "differ_from_at_least_k_pos",
+      "=",
+      ">="
+    ]
+  }
+}

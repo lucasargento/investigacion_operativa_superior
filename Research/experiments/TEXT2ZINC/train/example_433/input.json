@@ -1,0 +1,43 @@
+{
+  "description": "The optimization problem is focused on efficiently allocating goods from a set of origins, denoted by OriginNum, to a set of destinations, represented by DestinationNum. Each originating point has a certain supply of goods, Supply_i, where i is an origin. Correspondingly, each destination point has a specific demand, Demand_j, where j is a destination. The cost associated with sending goods from origin i to destination j is represented by Cost_{i,j}. The objective is to minimize the total transportation cost while meeting the demands at the destinations without exceeding the supplies at the origins.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Goods Transportation Optimization",
+    "domain": "Supply Chain Management",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "<=",
+      "=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Goods Transportation Optimization",
+    "domain": "Supply Chain Management",
+    "model_var_keywords": [
+      "Transport",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "OriginNum",
+      "DestinationNum",
+      "Supply",
+      "Demand",
+      "Cost"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "<=",
+      "=",
+      "sum",
+      "*"
+    ]
+  }
+}

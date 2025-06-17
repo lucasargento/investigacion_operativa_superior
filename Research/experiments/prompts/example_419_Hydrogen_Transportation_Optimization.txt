@@ -1,0 +1,48 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 419
+- Name: Hydrogen Transportation Optimization
+- Domain: Logistics
+- Objective: minimization
+
+Problem Description:
+A chemical company is transporting their hydrogen using two different methods , high pressure tube trailers and liquefied hydrogen tankers . The first method is a high - pressure tube trailer which can transport 50 cubic meters each per trip at a cost of $ 500 . The second method is using liquefied hydrogen tankers which can transport 30 cubic meters each per trip at a cost of $ 200 . The company needs to transport at least 1000 cubic meters of hydrogen and they have budget of $ 3750 available . In addition , the number of transports done by the high pressure tube trailer method has to be less than the number of transports done by the liquefied hydrogen tanker method . How many of each transportation method should they use to minimize the total number of trips ?
+
+
+MiniZinc Model:
+var int: tube_trailers;
+% number of trips by hydrogen tanker
+var int: hydrogen_tankers;
+
+% trips are non-negative
+constraint tube_trailers >= 0;
+constraint hydrogen_tankers >= 0;
+
+% the company needs to transport at least 1000 cubic meters of hydrogen
+% high-pressure tube trailer can transport 50 cubic meters each per trip and hydrogen_tankers 30 cubic meters per trip
+constraint tube_trailers * 50 + hydrogen_tankers * 30 >= 1000;
+% they have budget of $ 3750 available
+% cost of trip is 500 per tube trailer and 200 per hydrogen tanker
+constraint tube_trailers * 500 + hydrogen_tankers * 200 <= 3750;
+
+% the number of transports done by the high pressure tube trailer method has to be less than the number of transports done by the liquefied hydrogen tanker method
+constraint tube_trailers < hydrogen_tankers;
+
+% minimize total number of trips
+solve minimize tube_trailers + hydrogen_tankers;
+
+% output
+output ["High Pressure Tube Trailers: " ++ show(tube_trailers) ++ "\nLiquefied Hydrogen Tankers: " ++ show(hydrogen_tankers)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

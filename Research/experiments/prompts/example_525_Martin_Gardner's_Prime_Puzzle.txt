@@ -1,0 +1,106 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 525
+- Name: Martin Gardner's Prime Puzzle
+- Domain: Mathematical Puzzles
+- Objective: satisfaction
+
+Problem Description:
+This problem is known as Martin Gardner's Prime puzzle. The task is to solve the operation: mP * nP = (m+n)P, where mP and nP are strings of m and n prime digits (2,3,5 or 7) respectively. The length of mP is 4 and the length of nP is 3. The goal is to find the values of mP, nP and (m+n)P that satisfy the operation.
+
+
+MiniZinc Model:
+int: M; % length of m
+int: N; % length of n
+
+set of int: p = {2,3,5,7};
+var int: mP;
+array[1..M] of var p: mP_a;
+var int: nP;
+array[1..N] of var p: nP_a;
+
+var int: mnP;
+array[1..M+N] of var p: mnP_a;
+
+
+% solve satisfy;
+solve :: int_search(mP_a ++ nP_a ++ mnP_a ++ [mP, nP, mnP], first_fail, indomain_min, complete) satisfy;
+
+predicate toNum(array[int] of var int: n_a, var int: n_sum) =
+          let { int: len = length(n_a) }
+          in
+          n_sum = sum(i in 1..len) (
+            ceil(pow(10.0, int2float(len-i))) * n_a[i]
+          )
+          /\ forall(i in 1..len) (n_a[i] >= 0)
+;
+
+
+constraint
+
+   toNum(mP_a, mP) 
+   /\
+   toNum(nP_a, nP) 
+   /\
+   toNum(mnP_a, mnP) 
+   /\
+   mP * nP = mnP
+
+;
+
+% output [
+%   "mP: ", show(mP),"\n",
+%   "nP: ", show(nP),"\n",
+%   "mnP: ", show(mnP),"\n",
+% ];
+
+output [
+   show(mP), " * ", show(nP), " = ", show(mnP), "\n"
+];
+
+
+%
+% data 
+%
+M = 4;
+N = 3;
+
+Expected Output:
+{
+  "mP": 3235,
+  "mP_a": [
+    3,
+    2,
+    3,
+    5
+  ],
+  "nP": 735,
+  "nP_a": [
+    7,
+    3,
+    5
+  ],
+  "mnP": 2377725,
+  "mnP_a": [
+    2,
+    3,
+    7,
+    7,
+    7,
+    2,
+    5
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

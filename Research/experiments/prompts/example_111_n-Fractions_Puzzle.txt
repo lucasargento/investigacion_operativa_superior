@@ -1,0 +1,117 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 111
+- Name: n-Fractions Puzzle
+- Domain: Combinatorial mathematics, Games and puzzles
+- Objective: satisfaction
+
+Problem Description:
+---
+Title:    The n-Fractions Puzzle
+Proposer: 
+    - Alan Frisch
+    - Christopher Jefferson
+    - Ian Miguel
+    - Toby Walsh
+Category: 
+    - Combinatorial mathematics
+    - Games and puzzles
+---
+
+
+
+# Original Specification
+
+The original fractions puzzle is specified as follows. Find 9 distinct non-zero digits that satisfy:
+
+```
+A    D    G
+-- + -- + -- == 1
+BC   EF   HI
+```
+
+where `BC` is shorthand for `10B+C`, `EF` for `10E+F` and `HI` for `10H+I`.
+
+
+# n-Fractions
+
+A simple generalisation is as follows. Find 3n non-zero digits satisfying: $ 1 = \sum_{i \in 1..n} x_i / y_iz_i $
+
+where $y_iz_i$ is shorthand for $10y_i+z_i$ and the number of occurrences of each digit in $1..9$ is between $1$ and $ceil(n/3)$.
+
+Since each fraction is at least $1/99$, this family of problems has solutions for at most $n <= 99$.
+An interesting problem would be to find the greatest $n$ such that at least one solution exists.
+A further generalisation might specify that the fractions sum to $ceil(n/3)$.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+var 1..9: A;
+var 1..9: B;
+var 1..9: C;
+var 1..9: D;
+var 1..9: E;
+var 1..9: F;
+var 1..9: G;
+var 1..9: H;
+var 1..9: I;
+array[1..9] of var 1..9: Vars=[A,B,C,D,E,F,G,H,I];
+
+var 1..81: D1;
+var 1..81: D2;
+var 1..81: D3;
+
+
+
+% solve satisfy;
+solve :: int_search(Vars ++ [D1,D2,D3], first_fail, indomain_min, complete) satisfy;
+
+constraint
+   all_different(Vars) /\
+   D1 = 10*B+C /\
+   D2 = 10*E+F /\
+   D3 = 10*H+I /\
+   A*D2*D3 + D*D1*D3 + G*D1*D2 = D1*D2*D3 /\
+   % break the symmetry
+   A*D2 >= D*D1 /\
+   D*D3 >= G*D2 /\
+   %redundant constraints
+   3*A >= D1 /\
+   3*G <= D2
+
+;
+
+output [
+  show(Vars), "\n"
+]
+;
+
+Expected Output:
+{
+  "A": 9,
+  "B": 1,
+  "C": 2,
+  "D": 5,
+  "E": 3,
+  "F": 4,
+  "G": 7,
+  "H": 6,
+  "I": 8,
+  "D1": 12,
+  "D2": 34,
+  "D3": 68
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

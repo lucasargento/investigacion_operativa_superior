@@ -1,0 +1,41 @@
+{
+  "description": "This is a cutting stock problem. Given a roll of width RollWidth and a set of widths Widths to be cut. Each width i has a certain number of orders Orders_i. There are NumPatterns patterns and each pattern j has a certain number of rolls of each width i NumRollsWidthPattern_{i,j}. The problem aims to minimize the total number of raw rolls cut. It is constrained that for each width i, the total number of rolls cut meets the total orders. The decision to be made concerns how to decide the number of rolls cut using each pattern j.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Cutting Stock Problem",
+    "domain": "Operations Research",
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Cutting Stock Problem",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "NumRollsPattern"
+    ],
+    "model_data_keywords": [
+      "NumWidths",
+      "Widths",
+      "RollWidth",
+      "Orders",
+      "NumPatterns",
+      "NumRollsWidthPattern"
+    ],
+    "objective": "minimization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "*"
+    ]
+  }
+}

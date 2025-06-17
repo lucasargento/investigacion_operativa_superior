@@ -1,0 +1,83 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 509
+- Name: Clock Triplet Problem
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Clock Triplet Problem, originally posed by Dean Clark and presented by Martin Gardner, involves the twelve numbers on the face of a clock. The task is to rearrange the numbers (keeping them in a circle) so no triplet of adjacent numbers has a sum higher than 21. This is the smallest value that the highest sum of a triplet can have. The problem is to find such an arrangement of numbers. The numbers are represented as an array of variables 'x' where each element can take a value from 1 to 12. The sum of the triplets is represented by the variable 'triplet_sum'. The constraints ensure that all numbers are different, the sum of any triplet of adjacent numbers is less than or equal to 'triplet_sum', and the number 12 is at the 0th position of the array. The problem is to find a satisfying assignment for the variables that meets all the constraints.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+array[0..11] of var 1..12: x;
+var 0..100: triplet_sum; % the sum of the triplets
+
+
+% solve minimize triplet_sum; % checks if 21 really is the highest value
+solve satisfy;
+
+
+constraint
+    triplet_sum <= 21
+    /\
+    all_different(x)
+    /\
+    x[0] = 12 /\      
+    x[1] > x[11] /\   
+    forall(i in 2..11) (
+      x[i] + x[i-1] + x[i-2] <= triplet_sum
+    )
+    /\ % and around the corners
+    x[10] + x[11] + x[0]  <= triplet_sum /\ 
+    x[11] + x[0]  + x[1]  <= triplet_sum
+;
+
+
+output [
+    "triplet_sum: ", show(triplet_sum), "\n",
+    "       ", show(x[0]), "\n",
+    "     ", show(x[11]), "    ", show(x[1]), "\n",
+    "   ", show(x[10]), "       ", show(x[2]), "\n",
+    "  ", show(x[9]), "         ", show(x[3]), "\n",
+    "   ", show(x[8]), "        ",show(x[4]), "\n",
+    "     ",  show(x[7]), "    ", show(x[5]), "\n",
+    "       ", show(x[6]), "\n",
+]
+++
+[ "x: " ++ show(x) ++ "\n"]
+;
+
+Expected Output:
+{
+  "x": [
+    12,
+    7,
+    1,
+    11,
+    6,
+    4,
+    9,
+    8,
+    3,
+    10,
+    5,
+    2
+  ],
+  "triplet_sum": 21
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

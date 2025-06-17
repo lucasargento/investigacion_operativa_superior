@@ -1,0 +1,536 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 174
+- Name: Powerset Generation
+- Domain: Combinatorics
+- Objective: satisfaction
+
+Problem Description:
+The given MiniZinc code defines a problem of generating a powerset of a set of size 'n'. A powerset is the set of all subsets of a set, including the empty set and the set itself. The code defines two types of powersets: 'ps1' and 'ps2'. 'ps1' is a binary matrix where each row represents a subset of the set {1,2,...,n} in binary format. 'ps2' is a matrix where each row represents a subset of the set {1,2,...,n} in a different format: each element in a row is the product of the corresponding element in the binary representation and the position of the element in the set (counting from the end). The problem is to find such matrices 'ps1' and 'ps2' that satisfy these conditions.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 5;
+int: m = pow(2,n)-1;
+
+% decision variables
+array[1..m, 1..n] of var 0..1: ps1; % 0..1
+
+array[1..m, 1..n] of var 0..n: ps2; % 0..n
+
+
+predicate toNum(array[int] of var int: a, var int: n, int: base) =
+    let { int: len = length(a) }
+    in
+    n = sum(i in 1..len) (
+      pow(base, len-i) * a[i]
+    )
+;
+
+predicate powerset(int: s, array[int,int] of var int: p) =
+  let {
+    int: mm = pow(2,s)-1
+  } in
+   forall(i in 1..mm) (
+      toNum([p[i,j] | j in 1..s], i, 2)
+   )
+;
+
+%
+% powerset as a matrix of 0..n
+%
+predicate powerset2(int: s, array[int,int] of var int: p) =
+  let {
+    int: mm = pow(2,s)-1,
+    array[1..mm, 1..s] of var 0..1: ps
+  } in
+  powerset(s,ps)
+  /\
+  forall(i in 1..mm) (
+     forall(j in 1..s) (
+        p[i,j] = (s-j+1)*ps[i,j]
+     )
+  )
+;
+
+
+solve satisfy;
+% solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+constraint
+   powerset(n, ps1) /\
+   powerset2(n, ps2)
+;
+
+output 
+[
+  if j = 1 then "\n" else " " endif ++
+    show(ps1[i,j])
+  | i in 1..m, j in 1..n
+]
+++
+[ "\n"] 
+++
+[
+  if j = 1 then "\n" else " " endif ++
+    show(ps2[i,j])
+  | i in 1..m, j in 1..n
+]
+;
+
+Expected Output:
+{
+  "ps1": [
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1
+    ]
+  ],
+  "ps2": [
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      2,
+      1
+    ],
+    [
+      0,
+      0,
+      3,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      3,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      3,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      3,
+      2,
+      1
+    ],
+    [
+      0,
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      4,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      4,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      4,
+      0,
+      2,
+      1
+    ],
+    [
+      0,
+      4,
+      3,
+      0,
+      0
+    ],
+    [
+      0,
+      4,
+      3,
+      0,
+      1
+    ],
+    [
+      0,
+      4,
+      3,
+      2,
+      0
+    ],
+    [
+      0,
+      4,
+      3,
+      2,
+      1
+    ],
+    [
+      5,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      5,
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      5,
+      0,
+      0,
+      2,
+      1
+    ],
+    [
+      5,
+      0,
+      3,
+      0,
+      0
+    ],
+    [
+      5,
+      0,
+      3,
+      0,
+      1
+    ],
+    [
+      5,
+      0,
+      3,
+      2,
+      0
+    ],
+    [
+      5,
+      0,
+      3,
+      2,
+      1
+    ],
+    [
+      5,
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      5,
+      4,
+      0,
+      0,
+      1
+    ],
+    [
+      5,
+      4,
+      0,
+      2,
+      0
+    ],
+    [
+      5,
+      4,
+      0,
+      2,
+      1
+    ],
+    [
+      5,
+      4,
+      3,
+      0,
+      0
+    ],
+    [
+      5,
+      4,
+      3,
+      0,
+      1
+    ],
+    [
+      5,
+      4,
+      3,
+      2,
+      0
+    ],
+    [
+      5,
+      4,
+      3,
+      2,
+      1
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

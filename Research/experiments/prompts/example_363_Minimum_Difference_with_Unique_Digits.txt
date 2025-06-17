@@ -1,0 +1,115 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 363
+- Name: Minimum Difference with Unique Digits
+- Domain: Mathematics
+- Objective: minimization
+
+Problem Description:
+The problem is to find the smallest difference between two numbers X - Y, where all the digits from 0 to 9 must be used exactly once. In other words, we need to minimize the difference between ABCDE - FGHIJ, where each letter represents a digit from 0 to 9. The difference must be positive. The problem is modeled and solved using the MiniZinc constraint programming language.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+% use letters for a readable representation 
+int: n = 10;
+int: m = n div 2;
+array[1..m] of int: bases = [ceil(pow(10.0,int2float(m-i))) | i in 1..m];
+
+% decision variables
+set of int: digits = 0..9; % declare the range 
+var digits: A;
+var digits: B;
+var digits: C;
+var digits: D;
+var digits: E;
+
+var digits: F;
+var digits: G;
+var digits: H;
+var digits: I;
+var digits: J;
+
+% and using an array for the all_different predicate
+array[1..n] of var digits: FD =  [A, B, C, D, E, F, G, H, I, J];
+
+var int: X;
+var int: Y;
+var int: difference = X - Y;
+
+
+%
+% scalar_product(a1, a2, result)
+% - a1, a2: two arrays of equal lengths
+% - result: the result of summing the product of a1[i]*a2[i]
+% 
+predicate scalar_product(array[int] of var int: arr1, array[int] of var int: arr2, var int: result) =
+          assert(card(index_set(arr1)) == card(index_set(arr2)), 
+            "scalar_product: arr1 and arr2 must be of same length.",
+             result = sum(i in index_set(arr1)) (
+                arr1[i] * arr2[i]
+             )
+          )
+;
+
+constraint
+      % more general model
+      scalar_product(bases, [A,B,C,D,E], X) /\
+      scalar_product(bases, [F,G,H,I,J], Y) /\
+
+      % Instead of using scalar_product, it could be modelled instead as:
+      % X = (10000*A +1000*B +100*C +10*D + E) /\
+      % Y = (10000*F +1000*G +100*H +10*I + J) /\
+
+      % all number must be equal
+      all_different(FD) /\
+
+      % the difference must be positive
+      % difference = X - Y /\
+      difference > 0
+; 
+
+
+
+% solve minimize difference;
+
+% this solve hint makes it somewhat faster
+solve :: int_search(FD, max_regret, indomain_min, complete) minimize difference;
+      
+
+% result
+output [
+  show(FD) ++ "\n" ++
+  show(X) ++ " - " ++ show(Y) ++ " = " ++ show(difference) ++ "\n"
+];
+
+Expected Output:
+{
+  "A": 5,
+  "B": 0,
+  "C": 1,
+  "D": 2,
+  "E": 3,
+  "F": 4,
+  "G": 9,
+  "H": 8,
+  "I": 7,
+  "J": 6,
+  "X": 50123,
+  "Y": 49876,
+  "_objective": 247
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

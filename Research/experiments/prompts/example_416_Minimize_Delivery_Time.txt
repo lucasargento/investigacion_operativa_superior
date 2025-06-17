@@ -1,0 +1,60 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 416
+- Name: Minimize Delivery Time
+- Domain: Transportation
+- Objective: minimization
+
+Problem Description:
+A researcher is transporting their arsenal of imaging systems using two different methods , by delivery truck and by van . Transporting by delivery truck takes 12 hours and costs $ 300 per trip . Transporting by van takes 10 hours and costs $ 200 per trip . The researcher needs to transport 20 trips worth of equipment and has a budget of $ 5500 . Additionally , the number of transports by the delivery truck must be less than the number of transports by van . How many of each transportation method should they use to minimize the total number of hours spent on delivery ?
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% number of trips by delivery truck and van
+var int: truck;
+var int: van;
+
+% transporting by delivery truck costs $300 per trip and transporting by van costs $200 per trip
+var int: total_cost = truck * 300 + van * 200;
+
+% transporting by delivery truck takes 12 hours and transporting by van takes 10 hours
+var int: total_time = truck * 12 + van * 10;
+
+% trips must be non-negative
+constraint truck >= 0;
+constraint van >= 0;
+
+% the researcher has a budget of 5500
+constraint total_cost <= 5500;
+% the number of transports by the delivery truck must be less than the number of transports by van
+constraint truck < van;
+% the researcher needs to transport 20 trips worth of equipment
+constraint truck + van = 20;
+
+% Objective
+solve minimize total_time;
+
+% Output
+output ["Truck: " ++ show(truck) ++ "\nVan: " ++ show(van)];
+
+Expected Output:
+{
+  "truck": 0,
+  "van": 20,
+  "_objective": 200
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

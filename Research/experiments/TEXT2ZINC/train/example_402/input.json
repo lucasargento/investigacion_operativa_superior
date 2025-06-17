@@ -1,0 +1,41 @@
+{
+  "description": "A pharmaceutical company has two labs , lab 1 and lab 2 , where they make heart and lung medication in pill form . At lab 1 , they can produce 20 heart medication pills and 30 lung medication pills per hour . At lab 2 , they can produce 30 heart medication pills and 40 lung medication pills per hour . Each session at lab 1 requires 3 hours of worker labor while each session at lab 2 requires 5 hours of worker labor . The company has 1500 worker hours available and must make at least 20000 heart medication pills and at least 30000 lung medication pills . How many hours at each lab should be run to minimize the total time needed ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Pharmaceutical Lab Optimization",
+    "domain": "Healthcare",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Pharmaceutical Lab Optimization",
+    "domain": "Healthcare",
+    "model_var_keywords": [
+      "lab1_hours",
+      "lab2_hours"
+    ],
+    "model_data_keywords": [
+      "available_worker_hours",
+      "min_heart_pills",
+      "min_lung_pills",
+      "lab1_heart_rate",
+      "lab1_lung_rate",
+      "lab2_heart_rate",
+      "lab2_lung_rate",
+      "lab1_labor_hours",
+      "lab2_labor_hours"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "<=",
+      ">="
+    ]
+  }
+}

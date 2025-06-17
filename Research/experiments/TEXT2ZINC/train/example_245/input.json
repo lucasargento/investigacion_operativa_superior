@@ -1,0 +1,42 @@
+{
+  "description": "Determine the assignment of consultants to projects that minimizes the total cost, given the fixed FixedCosts for each project, AdditionalCosts for assigning consultant i to project j, and the MaxProjectsPerConsultant that can be handled by a single consultant.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Consultant Assignment Optimization",
+    "domain": "Operations Research",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Consultant Assignment Optimization",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "assignments",
+      "consultant_hired",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "fixed_costs",
+      "additional_costs",
+      "max_projects_per_consultant"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "description": "The problem is about partitioning the integers from 1 to n according to a function. The function can be a modulus operation, a division operation, or a boolean test (e.g., i > 3). The model creates a binary matrix to indicate which integer is included in which partition. The model also calculates the sum of the integers in each partition. The constraints ensure that each integer is only in one partition and that the sum of the integers in each partition and the binary matrix are correctly calculated. The output is the partitions, the sum of the integers in each partition, and the binary matrix.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Integer Partitioning",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "partition_set",
+      "forall",
+      "in",
+      "set_sum",
+      "link_set_to_booleans"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Integer Partitioning",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "partitions",
+      "partition_sums",
+      "partition_matrix"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "partition_set",
+      "forall",
+      "in",
+      "set_sum",
+      "link_set_to_booleans"
+    ]
+  }
+}

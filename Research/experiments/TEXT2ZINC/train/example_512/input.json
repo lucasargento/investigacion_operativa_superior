@@ -1,0 +1,42 @@
+{
+  "description": "The problem is to find prime numbers (2, 3, 5, or 7) for each P such that the following multiplication is correct: \n\nPPP\n* PP\n---------\nPPPP\nPPPP\n---------\nPPPPP\n\nThe multiplication is represented as follows:\n\nABC\n* DE\n---------\nFGHI\nJKLM\n---------\nNOPQR\n\nThe goal is to find the values of ABC, DE, FGHI, JKLM, and NOPQR such that the multiplication is correct and all the digits are prime numbers (2, 3, 5, or 7).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Prime Number Multiplication Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "to_num",
+      "*",
+      "=",
+      "+",
+      "10"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Prime Number Multiplication Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "abc",
+      "de",
+      "fghi",
+      "jklm",
+      "nopqr"
+    ],
+    "model_data_keywords": [
+      "PrimeNumbers"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "to_num",
+      "*",
+      "=",
+      "+",
+      "10"
+    ]
+  }
+}

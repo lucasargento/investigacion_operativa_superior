@@ -1,0 +1,46 @@
+{
+  "description": "As the manager of a Popsicle stand, you are required to hire and set the weekly work schedule for your employees. The required levels for the week are as follows: Monday = 5, Tuesday = 7, Wednesday = 7, Thursday = 10, Friday = 16, Saturday = 18, Sunday = 12. Assume the same staffing requirements continue week after week. Full-time employees work five consecutive days and earn $100 per day. Part-time employees work two consecutive days and earn $150 per day. The problem is to determine the minimal weekly staffing cost you can achieve while meeting the required staffing levels.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimal Weekly Staffing Cost",
+    "domain": "Workforce Scheduling",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "let",
+      "array1d",
+      "sum",
+      ">=",
+      "<="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimal Weekly Staffing Cost",
+    "domain": "Workforce Scheduling",
+    "model_var_keywords": [
+      "full_time",
+      "part_time",
+      "total_full_time",
+      "total_part_time",
+      "total_employees",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "num_days",
+      "demand"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "let",
+      "array1d",
+      "sum",
+      ">=",
+      "<="
+    ]
+  }
+}

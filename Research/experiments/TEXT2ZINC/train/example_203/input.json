@@ -1,0 +1,39 @@
+{
+  "description": "How many officers should the town assign to each shift in order to minimize the total cost, given that there are S shifts, defined by the number of officers needed for each shift OfficersNeeded, and the respective costs of assigning an officer to each shift ShiftCosts?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Police Shift Scheduling",
+    "domain": "Workforce Scheduling",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Police Shift Scheduling",
+    "domain": "Workforce Scheduling",
+    "model_var_keywords": [
+      "OfficersAssigned",
+      "TotalCost"
+    ],
+    "model_data_keywords": [
+      "NumShifts",
+      "OfficersNeeded",
+      "ShiftCosts"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "*"
+    ]
+  }
+}

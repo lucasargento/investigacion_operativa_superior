@@ -1,0 +1,41 @@
+{
+  "description": "How many of each product should the sports produce in order to maximize its profit for the month, given the N different raw materials available, where each material i has an available amount of Available, and each product j has a requirement of Requirements units of material i, a selling price of Prices, a production cost of Costs, and a market demand of Demands?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Sports Product Production Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Sports Product Production Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "amount",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "available",
+      "requirements",
+      "prices",
+      "costs",
+      "demands"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      "*"
+    ]
+  }
+}

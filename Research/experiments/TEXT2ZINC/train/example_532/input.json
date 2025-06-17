@@ -1,0 +1,40 @@
+{
+  "description": "The Minimum Vertex Cover Problem is a network problem where we have a network G = (V, E), where V is a set of nodes, E is a set of arcs. The goal is to find a subset V' within V such that each edge (i,j) in E has at least one of its endpoints in V' and which minimizes the sum of node weights w(i) over V'. In this specific implementation, the weight of each vertex is 1. The problem is to minimize the sum of the weights of the vertices included in V'. The constraint is that each edge (i,j) must have node i or j (or both) in V'.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum Vertex Cover Problem",
+    "domain": "Network Optimization",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum Vertex Cover Problem",
+    "domain": "Network Optimization",
+    "model_var_keywords": [
+      "x",
+      "z",
+      "w"
+    ],
+    "model_data_keywords": [
+      "num_nodes",
+      "num_edges",
+      "E"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">=",
+      "sum",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 430
+- Name: Capacitated Warehouse Location
+- Domain: Supply Chain Management
+- Objective: minimization
+
+Problem Description:
+The capacitated warehouse location problem is the problem of locating NumberOfLocations warehouses which have to service NumberOfCustomers customers, at minimum cost. Each customer has an associated demand CustomerDemand. There are constraints on the total demand that can be met from a warehouse, as specified by WarehouseCapacity. Costs are incurred when allocating service to customers from warehouses ServiceAllocationCost, and warehouses have a fixed operating cost WarehouseFixedCost. Additionally, there is a lower limit MinimumDemandFromWarehouse on the amount of demand that a warehouse must meet if it is opened, as well as constraints on the minimum MinimumOpenWarehouses and maximum MaximumOpenWarehouses number of warehouses that can be operational.
+
+
+Input Data (data.dzn):
+Here is the data in ".dzn" format:
+
+```
+NumberOfLocations = 10;
+NumberOfCustomers = 20;
+CustomerDemand = [117, 86, 69, 53, 110, 74, 136, 140, 126, 79, 54, 86, 114, 76, 136, 73, 144, 51, 53, 120];
+ServiceAllocationCost = [|80, 94, 44, 51, 190, 44, 129, 178, 129, 91, 172, 119, 177, 150, 90, 51, 53, 97, 184, 87|139, 33, 104, 135, 50, 176, 97, 121, 47, 29, 186, 163, 149, 108, 156, 169, 100, 160, 153, 85|153, 36, 18, 170, 18, 181, 178, 68, 171, 106, 159, 110, 21, 106, 91, 29, 144, 140, 155, 116|103, 59, 78, 125, 14, 11, 152, 95, 76, 173, 36, 148, 75, 132, 59, 153, 113, 74, 185, 71|193, 186, 130, 145, 114, 150, 33, 154, 20, 75, 103, 30, 137, 131, 167, 32, 53, 150, 176, 166|159, 130, 156, 65, 36, 59, 199, 124, 104, 72, 180, 73, 43, 152, 143, 90, 161, 65, 172, 141|173, 121, 110, 127, 22, 159, 195, 137, 47, 10, 87, 11, 154, 66, 126, 60, 152, 54, 20, 25|181, 34, 186, 152, 109, 195, 133, 198, 30, 65, 69, 19, 109, 143, 108, 196, 59, 133, 10, 123|82, 113, 147, 21, 88, 24, 38, 16, 70, 122, 148, 192, 116, 108, 18, 20, 143, 18, 116, 142|176, 170, 87, 91, 195, 183, 124, 89, 72, 97, 89, 23, 45, 196, 97, 27, 83, 81, 171, 148|];
+WarehouseCapacity = [3010, 2910, 4530, 4720, 4920, 3750, 4930, 2970, 3310, 2460];
+MinimumDemandFromWarehouse = [64, 55, 27, 71, 93, 90, 89, 87, 43, 50];
+MinimumOpenWarehouses = 3;
+MaximumOpenWarehouses = 8;
+WarehouseFixedCost = [8517, 5068, 9433, 6127, 6033, 5966, 7762, 9406, 6602, 7040];
+```
+
+MiniZinc Model:
+% Parameters
+int: NumberOfLocations;
+int: NumberOfCustomers;
+array[1..NumberOfCustomers] of int: CustomerDemand;
+array[1..NumberOfLocations, 1..NumberOfCustomers] of int: ServiceAllocationCost;
+array[1..NumberOfLocations] of int: WarehouseCapacity;
+array[1..NumberOfLocations] of int: MinimumDemandFromWarehouse;
+int: MinimumOpenWarehouses;
+int: MaximumOpenWarehouses;
+array[1..NumberOfLocations] of int: WarehouseFixedCost;
+
+% Decision Variables
+array[1..NumberOfLocations] of var 0..1: WarehouseOpen; % 1 if warehouse is open, 0 otherwise
+array[1..NumberOfLocations, 1..NumberOfCustomers] of var 0..1: ServiceAllocation; % 1 if customer is served by warehouse, 0 otherwise
+
+% Constraints
+constraint sum(WarehouseOpen) >= MinimumOpenWarehouses;
+constraint sum(WarehouseOpen) <= MaximumOpenWarehouses;
+
+% Each customer is served by exactly one warehouse
+constraint forall(i in 1..NumberOfCustomers) (
+    sum(j in 1..NumberOfLocations) (ServiceAllocation[j, i]) = 1
+);
+
+% If a warehouse is open, it serves at least the minimum demand
+constraint forall(i in 1..NumberOfLocations) (
+    WarehouseOpen[i] * MinimumDemandFromWarehouse[i] <= sum(j in 1..NumberOfCustomers) (ServiceAllocation[i, j] * CustomerDemand[j])
+);
+
+% A warehouse cannot serve more than its capacity
+constraint forall(i in 1..NumberOfLocations) (
+    sum(j in 1..NumberOfCustomers) (ServiceAllocation[i, j] * CustomerDemand[j]) <= WarehouseCapacity[i]
+);
+
+% If a warehouse is closed, it cannot serve any customers
+constraint forall(i in 1..NumberOfLocations, j in 1..NumberOfCustomers) (
+    ServiceAllocation[i, j] <= WarehouseOpen[i]
+);
+
+% Objective Function: Minimize total cost
+var int: TotalCost = sum(i in 1..NumberOfLocations) (WarehouseOpen[i] * WarehouseFixedCost[i]) + sum(i in 1..NumberOfLocations, j in 1..NumberOfCustomers) (ServiceAllocation[i, j] * ServiceAllocationCost[i, j]);
+solve minimize TotalCost;
+
+% Output
+output ["Total Cost: ", show(TotalCost), "\n"];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

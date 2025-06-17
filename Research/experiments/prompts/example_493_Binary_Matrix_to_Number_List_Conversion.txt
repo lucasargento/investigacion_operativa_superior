@@ -1,0 +1,148 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 493
+- Name: Binary Matrix to Number List Conversion
+- Domain: Matrix Operations
+- Objective: satisfaction
+
+Problem Description:
+The problem is about converting a binary matrix to a list of numbers. Given a binary matrix of size n x n, where n is 5, the task is to convert this matrix into a list of numbers. The conversion is done using two methods. The first method, binmatrix2num, requires support of <-> (i.e. not IP models) and the second method, binmatrix2num_ip, is for IP models. The output is the list of numbers obtained from the binary matrix. The problem also includes constraints to ensure that the sizes of the input and output arrays match.
+
+
+MiniZinc Model:
+int: n = 5;
+array[1..n, 1..n] of var 0..1: x;
+array[1..n] of var 0..n: num_list;
+
+%
+% converts a binary matrix to a number array.
+% Requires support of <-> (i.e. not IP models)
+predicate binmatrix2num(array[int,int] of var int: x, array[int] of var int: nums) =
+
+  forall(i in index_set_1of2(x), j in index_set_2of2(x)) (
+     nums[i] = j <-> x[i,j] = 1
+  )
+;
+
+%
+% For IP models
+%
+predicate binmatrix2num_ip(array[int,int] of var int: x, array[int] of var int: nums) =
+
+  forall(i in index_set_1of2(x)) (
+     nums[i] =  sum(j in index_set_2of2(x)) (j*x[i,j])
+  )
+  /\
+  forall(i in index_set_1of2(x)) (
+      sum(j in index_set_2of2(x)) (x[i,j]) = 1
+  )
+  /\
+  forall(i in index_set_2of2(x)) (
+      sum(j in index_set_1of2(x)) (x[i,j]) = 1
+  )
+;
+
+predicate cp1d(array[int] of var int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+     forall(i in index_set(x)) ( x[i] = y[i] ))
+; 
+predicate cp2d(array[int,int] of var int: x, array[int,int] of var int: y) =
+  assert(index_set_1of2(x) = index_set_1of2(y) /\
+         index_set_2of2(x) = index_set_2of2(y),
+           "cp2d: x and y have different sizes",
+     forall(i in index_set_1of2(x), j in index_set_2of2(x)) (
+         y[i,j] = x[i,j]
+    ) 
+  )
+; 
+
+
+solve satisfy;
+% solve :: int_search(x, "first_fail", "indomain", "complete") satisfy;
+
+constraint
+%    cp2d(x,array2d(1..n, 1..n,  
+%         [
+%           0,0,1,0,0,
+%           0,0,0,1,0,
+%           0,1,0,0,0,
+%           1,0,0,0,0,
+%           0,0,0,0,1,
+%         ]))
+%    /\
+   cp1d(num_list,[4,5,2,3,1])
+   /\
+   % binmatrix2num(x, num_list)
+   binmatrix2num_ip(x, num_list)
+;
+
+
+output [ "num_list: ", show(num_list), "\n" ] ++
+[
+  if j = 1 then "\n" else " " endif ++
+    show(x[i,j])
+  | i,j in 1..n
+
+] ++ ["\n"];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "num_list": [
+    4,
+    5,
+    2,
+    3,
+    1
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

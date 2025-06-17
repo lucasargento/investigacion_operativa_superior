@@ -1,0 +1,173 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 261
+- Name: Peacable Queens
+- Domain: Puzzles
+- Objective: maximization
+
+Problem Description:
+# Problem PeacableQueens
+
+On a board, put the maximal number of black and white queens while having no attack from opposing sides.
+The number of black queens must be equal to the number of white queens.
+
+The model, below, is close to (can be seen as the close translation of) the one submitted to the 2021 Minizinc challenge.
+The model was created by Hendrik 'Henk' Bierlee, with a licence that seems to be like a MIT Licence.
+
+## Data
+  An integer n
+
+## Model
+  constraints: [Count](http://pycsp.org/documentation/constraints/Count), [Lex](http://pycsp.org/documentation/constraints/Lex), [Precedence](http://pycsp.org/documentation/constraints/Precedence), [Regular](http://pycsp.org/documentation/constraints/Regular)
+
+## Execution
+```
+  python PeacableQueens.py -data=[integer]
+```
+
+## Links
+  - https://link.springer.com/chapter/10.1007/978-3-540-24664-0_19
+  - https://oeis.org/A250000
+  - https://www.minizinc.org/challenge2021/results2021.html
+
+## Tags
+  academic, mzn21
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Define the size of the board
+int: n = 8;
+
+% Define the variables
+array[1..n, 1..n] of var 0..2: board;
+
+% Define the number of queens
+var 0..n: queens;
+
+% The number of black and white queens must be equal
+constraint sum(i in 1..n, j in 1..n)(board[i,j] = 1) = queens;
+constraint sum(i in 1..n, j in 1..n)(board[i,j] = 2) = queens;
+
+% No queen is under attack from an opposing queen
+constraint forall(i in 1..n, j in 1..n) (
+  if board[i,j] = 1 then
+    forall(k in (i+1)..n)(board[k,j] != 2) /\
+    forall(k in (j+1)..n)(board[i,k] != 2) /\
+    forall(k in 1..min(n-i,n-j))(board[i+k,j+k] != 2)
+  elseif board[i,j] = 2 then
+    forall(k in (i+1)..n)(board[k,j] != 1) /\
+    forall(k in (j+1)..n)(board[i,k] != 1) /\
+    forall(k in 1..min(n-i,n-j))(board[i+k,j+k] != 1)
+  else
+    true
+  endif
+);
+
+% Maximize the number of queens
+solve maximize queens;
+
+% Output the solution
+output [ if fix(board[i,j]) = 1 then "B" else if fix(board[i,j]) = 2 then "W" else "_" endif endif | i in 1..n, j in 1..n];
+
+Expected Output:
+{
+  "board": [
+    [
+      0,
+      0,
+      0,
+      0,
+      2,
+      2,
+      2,
+      2
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      2,
+      2,
+      2,
+      2
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "queens": 8,
+  "_objective": 8
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

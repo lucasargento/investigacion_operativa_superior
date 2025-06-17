@@ -1,0 +1,50 @@
+{
+  "description": "The problem is known as the Lichtenstein coloring problem. Liechtenstein is divided into 11 communes, which do not satisfy the connectivity requirement of the four color map theorem. Just four of the communes consist of a single connected area (Ruggell, Schellenberg and Mauren in the north, and Triesen in the south). In the map, each commune is assigned its own color, and so we have an 11-coloring. The problem is to find out if we could make do with fewer colors. There is a five-clique within the map; that is, there are five communes that all share a segment of border with one another. It follows that a four-coloring is impossible. The question is, is there a five-coloring? What is the chromatic number of Liechtenstein? The problem is modeled and solved using the MiniZinc constraint programming language. The model includes constraints for the communes, enclaves/exclaves, neighbors, colors for the en-/exclaves, colors for the communes, what colors are used (for minimizing number of colors), and number of colors used. The goal is to minimize the number of colors used.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Lichtenstein Coloring Problem",
+    "domain": "Graph Theory",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "exists",
+      "!=",
+      "=",
+      "->",
+      "<->",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Lichtenstein Coloring Problem",
+    "domain": "Graph Theory",
+    "model_var_keywords": [
+      "commune_of_enclave",
+      "neighbours",
+      "enclave_color",
+      "commune_color",
+      "color_used",
+      "n_colors"
+    ],
+    "model_data_keywords": [
+      "num_communes",
+      "num_colors",
+      "num_edges",
+      "num_enclaves"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "exists",
+      "!=",
+      "=",
+      "->",
+      "<->",
+      "sum"
+    ]
+  }
+}

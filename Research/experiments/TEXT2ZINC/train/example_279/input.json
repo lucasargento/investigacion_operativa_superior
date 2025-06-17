@@ -1,0 +1,25 @@
+{
+  "description": "# Problem PropStress\n\nThe model, below, is close to (can be seen as the close translation of) the one submitted to the 2009 Minizinc challenge.\nNo Licence was explicitly mentioned (MIT Licence assumed).\n\n## Data\n  An integer n\n\n## Execution\n```\n  python PropStress.py -data=number\n```\n\n## Links\n  - https://www.minizinc.org/challenge2009/results2009.html\n\n## Tags\n  academic, mzn09",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "PropStress",
+    "domain": "Academic",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": []
+  },
+  "unverified_metadata": {
+    "name": "PropStress",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "n",
+      "obj"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": []
+  }
+}

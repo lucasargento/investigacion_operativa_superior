@@ -1,0 +1,48 @@
+{
+  "description": "---\nTitle:    Number Partitioning\nProposer: Daniel Diaz\nCategory: Combinatorial mathematics\n---\n\n\nThis problem consists in finding a partition of numbers $1..N$ into two sets A and B such that:\n\n1. A and B have the same cardinality\n2. sum of numbers in $A$ = sum of numbers in $B$\n3. sum of squares of numbers in $A$ = sum of squares of numbers in $B$\n\nThere is no solution for $N < 8$.\n\nHere is an example for$ N = 8$:$ A = (1,4,6,7)$ and $B = (2,3,5,8)$\n\nThen from $N \\>= 8$, there is no solution if $N$ is not a multiple of $4$.\n\n### Generalisation\n\nMore constraints can thus be added, e.g also impose the equality on the sum of cubes, ...\n\nLet $C_k$ be the constraint about the power $k$ defined as the equality :\n\n$\\Sigma_{i=1}^{N/2} A_i^k = \\Sigma_{i=1}^{N/2} B_i^k$\n\nCondition (a) corresponds to $k=0$. Condition (b) to $k=1$. Condition (c) to $k=2$.\n\nThis generalized problem can be seen as a conjunction of constraints $C_k$ until a power P $(C_0 /\\\\ C_1 /\\\\ ... /\\\\ C_P)$. The above problem corresponds to $P = 2$.\n\nEmpirically, I played with $P = 0, 1, 2, 3, 4$:\n\nThe sums of powers is known :\n\n-   $\\Sigma_{i=1}^{N} i^0 = N$\n-   $\\Sigma_{i=1}^{N} i^1 = N \\* (N+1) / 2$\n-   $\\Sigma_{i=1}^{N} i^2 = N \\* (N+1) \\* (2\\*N + 1) / 6$\n-   $\\Sigma_{i=1}^{N} i^3 = N^2 \\* (N+1)^2 / 4$\n-   $\\Sigma_{i=1}^{N} i^4 = N \\* (N+1) \\* (6\\*N^3 + 9\\*N^2 + N - 1) / 30$\n\n\nRecall in our case we need the half sums. The problem has no solution if the above sums are not even numbers. For P = 0 this implies N is a multiple of 2 (groups A and B have the same cardinality). For P = 1 (knowing N is multiple of 2 due to P = 0) then N \\* (N + 1) / 2 is even iff N is multiple of 4.\n\nHere are the first solutions computed:\n\n-   $P = 0$: first solutions found for $N = 2, 4, 6, 8, 10, 12, ...$ (obviously for every multiple of 2)\n-   $P = 1$: first solutions found for $N = 4, 8, 12, 16, 20, 24, 28, 32$ (then for every multiple of 4 ?)\n-   $P = 2$: first solutions found for $N = 8, 12, 16, 20, 24, 28, 32, 36$ (then for every multiple of 4 ?)\n-   $P = 3$: first solutions found for$ N = 16, 24, 32, 40 $(then for every multiple of 8 ?)\n-   $P = 4$: first solutions found for$ N = 32, 40, 48, 56, 64$ (then forevery multiple of 8 ?)\n\nFrom these tests, it seems the smallest N for which a solution exists is $2^{P+1}$. Can this be proved ?\n\nAfter that, it seems there are only solutions for N multiple of 2 (P= 0), 4 (P = 1 or 2), 8 (P = 3 or 4). Is this a constant depending on P ?\n\nAnother way to generalize this problem consists in increasing the numbers of groups (for instance consider 3 groups A, B, C).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Number Partitioning",
+    "domain": "Combinatorial Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "assert",
+      "mod",
+      "partition_set",
+      "forall",
+      "set_sum",
+      "set_sum_squared",
+      "card",
+      "in"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Number Partitioning",
+    "domain": "Combinatorial Mathematics",
+    "model_var_keywords": [
+      "a",
+      "sums",
+      "sum_squared"
+    ],
+    "model_data_keywords": [
+      "n",
+      "S",
+      "num_sets"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "assert",
+      "mod",
+      "partition_set",
+      "forall",
+      "set_sum",
+      "set_sum_squared",
+      "card",
+      "in"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "description": "This problem is based on the Enigma 1530 problem from New Scientist magazine, January 28, 2009. The problem is a cryptarithm puzzle related to Tom Daley, the youngest European diving champion on record. The puzzle is as follows: TOM * 13 = DALEY. Each letter stands for a different digit, and no number starts with a zero. The task is to find the five-digit number represented by DALEY. The constraints of the problem are that all digits must be different, the first digit of TOM and DALEY cannot be zero, and the multiplication of TOM by 13 must equal DALEY.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Enigma 1530 Cryptarithm",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_different",
+      ">",
+      "toNum",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Enigma 1530 Cryptarithm",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "T",
+      "O",
+      "M",
+      "D",
+      "A",
+      "L",
+      "E",
+      "Y",
+      "TOM",
+      "DALEY"
+    ],
+    "model_data_keywords": [
+      "Digits",
+      "cryptarithm"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_different",
+      ">",
+      "toNum",
+      "=",
+      "*"
+    ]
+  }
+}

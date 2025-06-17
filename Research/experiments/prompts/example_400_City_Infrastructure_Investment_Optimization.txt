@@ -1,0 +1,39 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 400
+- Name: City Infrastructure Investment Optimization
+- Domain: Finance
+- Objective: maximization
+
+Problem Description:
+The mayor has a budget of up to $ 3500 to invest in city infrastructure . He can invest his money on roads and housing . Each dollar invested in housing yields a $ 0.95 profit .   Each dollar invested on roads yields a $ 0.32 profit . No less than $ 750 must be in housing and no less than 24 % of all money invested must be in roads . Formulate an LP that can be used to maximize total profit earned from his investment .
+
+
+MiniZinc Model:
+var int: housing;
+var int: roads;
+var int: total_investment;
+
+constraint total_investment = housing + roads;
+constraint total_investment <= 3500;
+constraint housing >= 750;
+constraint roads >= 0.24 * total_investment;
+
+var float: profit;
+
+constraint profit = 0.95 * housing + 0.32 * roads;
+
+solve maximize profit;
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

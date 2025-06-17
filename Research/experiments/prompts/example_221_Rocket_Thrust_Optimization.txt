@@ -1,0 +1,63 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 221
+- Name: Rocket Thrust Optimization
+- Domain: Physics
+- Objective: minimization
+
+Problem Description:
+The objective is to minimize the maximum thrust required, which is max_t |a_t| over the duration T, with initial conditions set by X0, V0, and final conditions set by XT and VT.
+
+
+Input Data (data.dzn):
+X0 = 0;
+V0 = 0;
+XT = 1;
+VT = 0;
+T = 20;
+
+MiniZinc Model:
+% Parameters
+int: X0; % Initial position
+int: V0; % Initial velocity
+int: XT; % Final position
+int: VT; % Final velocity
+int: T;  % Duration
+
+% Decision Variables
+array[0..T] of var int: x; % Position at each time step
+array[0..T] of var int: v; % Velocity at each time step
+array[0..T] of var int: a; % Acceleration (thrust) at each time step
+
+% Objective
+var int: max_thrust; % Maximum thrust required
+constraint max_thrust = max([abs(a[t]) | t in 0..T]);
+solve minimize max_thrust;
+
+% Constraints
+% Initial conditions
+constraint x[0] = X0;
+constraint v[0] = V0;
+
+% Final conditions
+constraint x[T] = XT;
+constraint v[T] = VT;
+
+% Discrete-time model
+constraint forall(t in 0..T-1) (
+    x[t+1] = x[t] + v[t],
+    v[t+1] = v[t] + a[t]
+);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

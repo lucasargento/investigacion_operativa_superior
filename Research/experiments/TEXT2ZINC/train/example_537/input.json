@@ -1,0 +1,50 @@
+{
+  "description": "A human resource office has information about all employees including: salary, marital status, age, etc. The task is to create a decision model that calculates minimal, maximal, and average salaries along with a number of high-paid employees using rules like 'Salary > 85000'. The data includes the following fields: Name, Marital Status, Gender, Age, and Salary. The model should also calculate the mean age of the employees and identify the employees who are low paid (salary <= 30000).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Employee Salary Statistics",
+    "domain": "Human Resources",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "max",
+      "min",
+      "sum",
+      "div",
+      "card",
+      "true"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Employee Salary Statistics",
+    "domain": "Human Resources",
+    "model_var_keywords": [
+      "max_salary",
+      "min_salary",
+      "avg_salary",
+      "high_paid_employees",
+      "num_high_paid",
+      "low_paid_employees",
+      "mean_age"
+    ],
+    "model_data_keywords": [
+      "num_employees",
+      "MaritalStatus",
+      "Gender",
+      "EmployeeName",
+      "employee_data"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "max",
+      "min",
+      "sum",
+      "div",
+      "card",
+      "true"
+    ]
+  }
+}

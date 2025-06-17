@@ -1,0 +1,55 @@
+{
+  "description": "The problem is about implementing four global constraints: cond_lex_less, cond_lex_lesseq, cond_lex_greater, and cond_lex_greatereq in MiniZinc. These constraints are used to compare two vectors, VECTOR1 and VECTOR2, based on a preference table. The preference table is a collection where VECTOR1 and VECTOR2 are assigned to the Ith and Jth items such that I < J. The constraints are defined as follows: \n\n- cond_lex_less: VECTOR1 is less than VECTOR2\n- cond_lex_lesseq: VECTOR1 is less than or equal to VECTOR2\n- cond_lex_greater: VECTOR1 is greater than VECTOR2\n- cond_lex_greatereq: VECTOR1 is greater than or equal to VECTOR2\n\nThe problem also involves a generalized version of these constraints, cond_lex_op, which takes an additional parameter, xop, to specify the type of comparison operator. The comparison operator can be one of the following: -2 for less than, -1 for less than or equal, 0 for equal, 1 for greater than or equal, 2 for greater than, and any other value for not equal. \n\nThe problem is to find assignments for VECTOR1 and VECTOR2 such that the specified constraint holds. The vectors and the preference table are represented as arrays in MiniZinc. The problem is solved when the constraint is satisfied.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Vector Comparison with Preference Table",
+    "domain": "Constraints",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "min",
+      "max",
+      "forall",
+      "<",
+      "<=",
+      "=",
+      ">=",
+      ">",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Vector Comparison with Preference Table",
+    "domain": "Constraints",
+    "model_var_keywords": [
+      "numItems",
+      "numElements",
+      "preferenceTable",
+      "vector1",
+      "vector2"
+    ],
+    "model_data_keywords": [
+      "compare",
+      "cond_lex_op",
+      "cond_lex_less",
+      "cond_lex_lesseq",
+      "cond_lex_greater",
+      "cond_lex_greatereq"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "min",
+      "max",
+      "forall",
+      "<",
+      "<=",
+      "=",
+      ">=",
+      ">",
+      "!="
+    ]
+  }
+}

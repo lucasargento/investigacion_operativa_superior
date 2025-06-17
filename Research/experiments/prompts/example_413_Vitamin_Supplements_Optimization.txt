@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 413
+- Name: Vitamin Supplements Optimization
+- Domain: Healthcare
+- Objective: minimization
+
+Problem Description:
+A man takes two forms of vitamin supplements to get his vitamin B and vitamin D requirements . He needs at least 14 units of vitamin B and 24 units of vitamin D. Per serving , a gummy vitamin contains 2 units of vitamin B and 7 units of vitamin D. Per serving , a powder vitamin contains 6 units of vitamin B and 2 units of vitamin D. If the cost per serving for a gummy vitamin is $ 1 and the cost per serving of powder vitamin is $ 3 , how many of each should he take to minimize his cost ?
+
+
+MiniZinc Model:
+var int: gummy; 
+% number of units of powder
+var int: powder;
+
+% units are non-negative
+constraint gummy >= 0;
+constraint powder >= 0;
+
+% man needs at least 14 units of vitamin B. 
+% vitamin B from gummy bears is 2 units each and from powder is 6 units each
+constraint 2*gummy + 6*powder >= 14;
+
+% man needs at least 24 units of vitamin D. 
+%vitamin D from gummy bears is 7 units each and from powder is 2 units each
+constraint 7*gummy + 2*powder >= 24;
+
+% cost of gummy is $1 each and powder is $3 each
+var int: cost = gummy + 3*powder;
+
+% minimize cost
+solve minimize cost; 
+
+output ["Gummy: " ++ show(gummy) ++ "\nPowder: " ++ show(powder)];
+
+Expected Output:
+{
+  "gummy": 7,
+  "powder": 0,
+  "_objective": 7
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

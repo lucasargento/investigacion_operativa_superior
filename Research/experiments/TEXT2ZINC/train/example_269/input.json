@@ -1,0 +1,36 @@
+{
+  "description": "# Problem ChangeMaking\n\nThe change-making problem addresses the question of finding the minimum number of coins (of certain denominations) that\nadd up to a given amount of money. It is a special case of the integer knapsack problem, and has applications wider than\njust currency.\nIt is also the most common variation of the coin change problem, a general case of partition in which, given the\navailable denominations of an infinite set of coins, the objective is to find out the number of possible ways\nof making a change for a specific amount of money, without considering the order of the coins.\n\n### Example\n  For n=13, one needs at least 4 coins:\n  ``` 13 = 3x1 + 10```\n\n## Data\n  a number n, the given amount of money\n\n## Model\n  There are two variants: a main one and a compact one (with fewer variables).\n\n  constraints: [Sum](http://pycsp.org/documentation/constraints/Sum)\n\n## Execution\n  - python ChangeMaking.py -data=number\n  - python ChangeMaking.py -data=number -variant=compact\n\n## Links\n  - https://en.wikipedia.org/wiki/Change-making_problem\n\n## Tags\n  academic",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Change Making Problem",
+    "domain": "Academic",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "=",
+      "minimize"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Change Making Problem",
+    "domain": "Academic",
+    "model_var_keywords": [
+      "num_coins",
+      "total_coins"
+    ],
+    "model_data_keywords": [
+      "n",
+      "Coins"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "sum",
+      "=",
+      "minimize"
+    ]
+  }
+}

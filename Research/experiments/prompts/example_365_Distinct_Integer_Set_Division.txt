@@ -1,0 +1,74 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 365
+- Name: Distinct Integer Set Division
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is to find a set of distinct positive integers such that, for every pair of them, their difference divides their sum. The size of the set is defined by the variable 'n'. The maximum value that any integer in the set can take is defined by the variable 'max_val'. The problem also requires that the sum of all integers in the set, represented by the variable 'z', is divisible by 'n'. The integers in the set are represented by the array 'x'. The problem is solved when a set of integers that satisfies all these conditions is found. The solution should be ordered in increasing order and the difference between any two integers in the set should not be 1.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 7;
+int: max_val = 100;
+
+% decision variables
+array[1..n] of var 1..max_val: x;
+var 1..max_val*n: z;
+
+
+
+% solve satisfy;
+solve :: int_search(x, max_regret, indomain_min, complete) satisfy;
+
+constraint
+  alldifferent(x) /\
+
+  % ordered
+  increasing(x) /\
+
+  z = sum(x) /\
+
+  z mod n = 0 /\
+
+  forall(i,j in 1..n where i < j) (
+    %  abs(x[i]-x[j]) > 1 /\ % extra: not allowing differences of 1.
+    z mod abs(x[i]-x[j]) = 0
+  )
+;
+
+output
+[
+  "x: " ++ show(x) ++ "\n" ++
+  "z: " ++ show(z) ++ "\n" 
+];
+
+Expected Output:
+{
+  "x": [
+    39,
+    46,
+    53,
+    60,
+    67,
+    74,
+    81
+  ],
+  "z": 420
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

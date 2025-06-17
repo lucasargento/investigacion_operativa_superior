@@ -1,0 +1,37 @@
+{
+  "description": "The problem is about implementing the global constraint sum_set in MiniZinc. The sum_set constraint is defined as follows: Given a set SV, a collection of VALUES with attributes 'val' and 'coef', a comparison operator CTR, and a variable VAR, the sum of the 'coef' attributes of the VALUES collection for which the corresponding 'val' values occur in the set SV should satisfy the comparison operator CTR with the variable VAR. For example, if SV = {2, 3, 6}, VALUES = <val-2 coef-7, val-9 coef-1, val-5 coef-7, val-6 coef-2>, CTR = '=', and VAR = 9, the sum_set constraint holds since the sum of the 'coef' attributes 7+2 for which the corresponding 'val' attribute belongs to SV is equal to VAR. The problem is to find such a set SV, collection of VALUES, and variable VAR that satisfy the sum_set constraint.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Sum Set Constraint Satisfaction",
+    "domain": "Constraint Satisfaction",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "copy_2d_array",
+      "value_set",
+      "sum_set",
+      "total_sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Sum Set Constraint Satisfaction",
+    "domain": "Constraint Satisfaction",
+    "model_var_keywords": [
+      "num_values",
+      "values_and_coefs",
+      "value_set",
+      "total_sum"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "copy_2d_array",
+      "value_set",
+      "sum_set",
+      "total_sum"
+    ]
+  }
+}

@@ -1,0 +1,106 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 464
+- Name: Balance Modulo Constraint
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+The problem is about implementing the balance_modulo constraint in MiniZinc. The balance_modulo constraint is defined as follows: Given a set of variables, consider the largest set S1 and the smallest set S2 of variables that have the same remainder when divided by a given number M. The balance_modulo constraint is satisfied if the difference between the cardinality of S2 and the cardinality of S1 is equal to a given balance. The problem requires to enforce a balanced assignment of values, no matter how many distinct equivalence classes will be used. In this case, the maximum value of the balance_modulo constraint is minimized. The problem is modeled by creating an array of variables, a balance variable, and a modulo number. The balance_modulo predicate is defined to check the balance_modulo constraint. The problem is solved by satisfying the balance_modulo constraint.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 5;
+array[1..n] of var 1..7: x;
+var 0..n: bal;
+int: m = 3;
+
+predicate min_except_0(var int: min_val, array[int] of var int: x) =
+
+     exists(i in index_set(x)) (
+       min_val = x[i] /\ 
+       forall(j in index_set(x) where i != j) (
+         x[i] <= x[j]
+         \/ % ignore 0
+         x[j] = 0
+       )
+     )
+     /\
+     min_val > 0
+;
+
+
+predicate balance_modulo(var int: bal, array[int] of var int: x, int: m) =
+   let {
+     int: lbx = min(index_set(x)),
+     int: ubx = max(index_set(x)),
+     array[0..m-1] of var 0..ubx: counts,
+     var 0..ubx: c_max,
+     var 0..ubx: c_min
+   }
+   in
+   forall(i in 0..m-1) (
+      counts[i] = sum(j in index_set(x)) ( bool2int( (x[j] mod m) = i))
+   )
+   /\ 
+   c_max = max(counts)
+   /\
+   min_except_0(c_min, counts)
+   /\
+   bal = c_max - c_min
+;
+
+predicate cp1d(array[int] of int: x, array[int] of var int: y) =
+  assert(index_set(x) = index_set(y),
+           "cp1d: x and y have different sizes",
+  forall(i in index_set(x)) (
+      x[i] = y[i]
+  )
+  )
+; 
+
+
+% solve :: int_search(x ++ [bal], first_fail, indomain_min, complete) satisfy;
+solve satisfy;
+
+constraint
+  cp1d([6,1,7,1,5], x)
+  /\
+  balance_modulo(bal, x, m)
+  %/\
+  %bal = 2
+
+;
+
+
+output [
+  "x: ", show(x), "\n",
+  "bal: ", show(bal), "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    6,
+    1,
+    7,
+    1,
+    5
+  ],
+  "bal": 2
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

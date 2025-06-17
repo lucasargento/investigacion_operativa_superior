@@ -1,0 +1,56 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 412
+- Name: Vaccine Production Optimization
+- Domain: Healthcare
+- Objective: minimization
+
+Problem Description:
+A lab has 20000 mg of mRNA anti - viral available to make children 's and adult vaccines . Each children 's vaccine contains 50 mg of mRNA and 50 mg of fever suppressant . Each adult vaccine contains 75 mg of mRNA and 75 mg of fever suppressant . Since adult vaccines are more essential , at least 70 % of vaccines should be adult vaccines . However , at least 50 children 's vaccines should be made . How many of each vaccine should be made to minimize the amount of fever suppressant used ?
+
+
+MiniZinc Model:
+var int: children_vaccines; 
+% number of adult vaccines
+var int: adult_vaccines; 
+
+% vaccines produced are non-negative
+constraint children_vaccines >= 0;
+constraint adult_vaccines >= 0;
+
+% 20000 mg of mRNA anti-viral is available
+% children's vaccines contains 50mg of mRNA and adult vaccine contains 75mg of mRNA
+constraint children_vaccines * 50 + adult_vaccines * 75 <= 20000; 
+% at least 70% of vaccines should be adult vacines
+constraint adult_vaccines >= 0.7 * (children_vaccines + adult_vaccines); 
+% at least 50 children's vaccines should be made
+constraint children_vaccines >= 50;
+
+% each children 's vaccine contains 50 mg of fever suppressant and each adult vaccine contains 75 mg of fever suppressant
+var int: total_fever_suppressant = children_vaccines * 50 + adult_vaccines * 75;
+
+% minimize the amount of fever suppressant used
+solve minimize total_fever_suppressant;
+
+% output
+output ["Children's Vaccines: " ++ show(children_vaccines) ++ "\nAdult Vaccines: " ++ show(adult_vaccines)];
+
+Expected Output:
+{
+  "children_vaccines": 50,
+  "adult_vaccines": 117,
+  "_objective": 11275
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

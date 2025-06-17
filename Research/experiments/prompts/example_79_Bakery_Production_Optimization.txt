@@ -1,0 +1,112 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 79
+- Name: Bakery Production Optimization
+- Domain: Mathematical Modeling
+- Objective: minimization
+
+Problem Description:
+A bakery wants to optimize its croissant production while minimizing total baking time. There are two types of croissants: almond and pistachio. Each type requires a certain amount of butter and flour, and the total available ingredients place a limit on how many can be made. Since almond croissants are more popular, their production must be at least a fixed multiple of the pistachio croissant production. Additionally, the time required to bake each type varies, so the goal is to determine the optimal number of each croissant to produce while using ingredients efficiently and keeping baking time as low as possible.
+
+
+Input Data (data.dzn):
+ButterPerAlmond = 5;
+ButterPerPistachio = 3;
+FlourPerAlmond = 8;
+FlourPerPistachio = 6;
+
+TotalButter = 600;
+TotalFlour = 800;
+
+TimePerAlmond = 12;
+TimePerPistachio = 10;
+
+MinAlmondRatio = 3;
+
+MiniZinc Model:
+% ============================================================
+% Bakery Production Optimization - MiniZinc Model
+% ============================================================
+
+% -----------------------------
+% 1) PARAMETERS
+% -----------------------------
+
+int: ButterPerAlmond;
+int: ButterPerPistachio;
+int: FlourPerAlmond;
+int: FlourPerPistachio;
+
+int: TotalButter;
+int: TotalFlour;
+
+int: TimePerAlmond;
+int: TimePerPistachio;
+
+int: MinAlmondRatio;
+
+% -----------------------------
+% 2) DECISION VARIABLES
+% -----------------------------
+
+var 0..TotalButter div ButterPerAlmond: AlmondCroissants;
+var 0..TotalButter div ButterPerPistachio: PistachioCroissants;
+var int: TotalTime;
+
+% -----------------------------
+% 3) CONSTRAINTS
+% -----------------------------
+
+% (C1) Butter Constraint: Total butter used must not exceed available butter
+constraint
+    AlmondCroissants * ButterPerAlmond + PistachioCroissants * ButterPerPistachio <= TotalButter;
+
+% (C2) Flour Constraint: Total flour used must not exceed available flour
+constraint
+    AlmondCroissants * FlourPerAlmond + PistachioCroissants * FlourPerPistachio <= TotalFlour;
+
+% (C3) Production Ratio: Almond croissants must be at least MinAlmondRatio times pistachio croissants
+constraint
+    AlmondCroissants >= MinAlmondRatio * PistachioCroissants;
+
+% (C4) Total Production Time Calculation
+constraint
+    TotalTime = AlmondCroissants * TimePerAlmond + PistachioCroissants * TimePerPistachio;
+
+% -----------------------------
+% 4) OBJECTIVE FUNCTION
+% -----------------------------
+
+solve minimize TotalTime;
+
+% -----------------------------
+% 5) OUTPUT
+% -----------------------------
+
+output [
+    "Optimal Production Plan:\n",
+    "  Almond Croissants: ", show(AlmondCroissants), "\n",
+    "  Pistachio Croissants: ", show(PistachioCroissants), "\n",
+    "  Total Baking Time: ", show(TotalTime), "\n"
+];
+
+Expected Output:
+{
+  "AlmondCroissants": 0,
+  "PistachioCroissants": 0,
+  "TotalTime": 0,
+  "_objective": 0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

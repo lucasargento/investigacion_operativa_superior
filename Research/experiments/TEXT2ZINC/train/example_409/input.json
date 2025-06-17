@@ -1,0 +1,40 @@
+{
+  "description": "A meat processing plant has a machine that makes ham and bacon . Each kg of ham takes 15 minutes of machine time and each kg of bacon takes 8 minutes of machine time .   In a week the machine is only available for 2000 minutes . The plant can also make at most 200 kg of ham and at most 220 kg of bacon per week . If the profit per kg of ham is $ 20 and the profit per kg of bacon is $ 12 , how many of each should the plant make to maximize profit ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Meat Processing Plant Optimization",
+    "domain": "Manufacturing",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Meat Processing Plant Optimization",
+    "domain": "Manufacturing",
+    "model_var_keywords": [
+      "ham",
+      "bacon",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "max_machine_time",
+      "max_ham",
+      "max_bacon",
+      "ham_machine_time",
+      "bacon_machine_time",
+      "ham_profit",
+      "bacon_profit"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "*"
+    ]
+  }
+}

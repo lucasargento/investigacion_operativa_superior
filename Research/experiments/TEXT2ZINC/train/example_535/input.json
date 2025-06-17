@@ -1,0 +1,38 @@
+{
+  "description": "Tom Cruise, Freddy Prinze Jr, Harrison Ford, and Matt LeBlanc are marooned on a desert island with Jennifer Anniston, Courtney Cox, Gwynneth Paltrow, and Julia Roberts. A 'compatibility matrix' indicates how much happiness each couple would experience if they spend all their time together. The happiness earned by a couple is proportional to the fraction of time they spend together. The optimal solution requires that each person spend all their time with one person of the opposite sex, so this result is often referred to as the Marriage Theorem. The goal is to maximize the total happiness, represented by the 'total_cost' variable, by assigning each male to a female such that each person is paired with exactly one person of the opposite sex.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Marriage Theorem",
+    "domain": "Optimization",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "1"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Marriage Theorem",
+    "domain": "Optimization",
+    "model_var_keywords": [
+      "x",
+      "total_happiness"
+    ],
+    "model_data_keywords": [
+      "num_people",
+      "compatibility"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "1"
+    ]
+  }
+}

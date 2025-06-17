@@ -1,0 +1,40 @@
+{
+  "description": "The problem is known as the Magno puzzle. It is a mathematical puzzle where we have an array of 5 integers, all of which are non-negative. The puzzle is defined by a set of constraints: -3 times the first integer plus the second integer equals 1, -3 times the second integer plus 2 times the third integer equals 2, -3 times the third integer plus 2 times the fourth integer equals 2, and -3 times the fourth integer plus 2 times the fifth integer equals 2. The goal of the puzzle is to find the values of the integers that satisfy these constraints and minimize the value of the fifth integer.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Magno Puzzle",
+    "domain": "Mathematical Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">=",
+      "=",
+      "*",
+      "+",
+      "-"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Magno Puzzle",
+    "domain": "Mathematical Puzzles",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "num_integers"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">=",
+      "=",
+      "*",
+      "+",
+      "-"
+    ]
+  }
+}

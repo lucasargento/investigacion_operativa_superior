@@ -1,0 +1,41 @@
+{
+  "description": "The problem is about enforcing two constraints on a collection of variables. The first constraint is that all variables in the collection must take distinct values. The second constraint is that the difference between the largest and the smallest values of the variables collection must be equal to the number of variables minus one, which means there are no holes at all within the used values. An example of a valid collection of variables would be (5,4,3,6). The problem is modeled in MiniZinc, a high-level constraint modeling language.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Distinct and Consecutive Variables",
+    "domain": "Constraint Satisfaction",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "all_distinct_consecutive_values",
+      "alldifferent",
+      "max",
+      "min",
+      "length",
+      "-"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Distinct and Consecutive Variables",
+    "domain": "Constraint Satisfaction",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "n",
+      "m"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "all_distinct_consecutive_values",
+      "alldifferent",
+      "max",
+      "min",
+      "length",
+      "-"
+    ]
+  }
+}

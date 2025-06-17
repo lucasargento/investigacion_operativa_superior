@@ -1,0 +1,41 @@
+{
+  "description": "A tourist is planning a trip to the mountains and needs to pack his knapsack. The knapsack can carry a maximum of 4kg (400 decagrams). The tourist has a list of 22 potential items to bring, each with a specific weight and a value representing its importance for the trip. The items include a map, compass, water, sandwich, glucose, tin, banana, apple, cheese, beer, suntan cream, camera, T-shirt, trousers, umbrella, waterproof trousers, waterproof overclothes, note-case, sunglasses, towel, socks, and a book. The tourist can choose any combination of items from the list, but only one of each item is available. He cannot cut or diminish the items, so he can only take whole units of any item. The problem is to determine which items the tourist should carry in his knapsack so that their total weight does not exceed 400 decagrams and their total value is maximized.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Knapsack Problem for Mountain Trip",
+    "domain": "Optimization",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "sum",
+      "*",
+      "maximize"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Knapsack Problem for Mountain Trip",
+    "domain": "Optimization",
+    "model_var_keywords": [
+      "x",
+      "total_weight",
+      "total_value"
+    ],
+    "model_data_keywords": [
+      "num_items",
+      "max_weight",
+      "items",
+      "items_str"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "sum",
+      "*",
+      "maximize"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "description": "This problem is known as 'Joshua and his rats' puzzle. Joshua has 9 rats, each of which is assigned a number from 1 to 20. The problem is to find the assignment of numbers to the rats such that the total sum of the numbers is minimized. The numbers assigned to the rats must be in increasing order, i.e., the number assigned to the i-th rat must be greater than or equal to the number assigned to the (i-1)-th rat plus 1. Additionally, for any three rats i, j, and k where j < i and k < j, the difference between twice the number assigned to rat j and the sum of the numbers assigned to rats i and k must be between 1 and 18 inclusive. The problem is to find the assignment of numbers to the rats that minimizes the total sum of the numbers.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Joshua and his Rats Puzzle",
+    "domain": "Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">=",
+      "let",
+      "diff",
+      "<=",
+      "sum"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Joshua and his Rats Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "rat_numbers",
+      "difference",
+      "total_sum"
+    ],
+    "model_data_keywords": [
+      "num_rats",
+      "Rats"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">=",
+      "let",
+      "diff",
+      "<=",
+      "sum"
+    ]
+  }
+}

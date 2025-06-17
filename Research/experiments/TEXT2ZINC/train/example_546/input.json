@@ -1,0 +1,39 @@
+{
+  "description": "The Bus driver scheduling problem is a set partitioning problem derived from small bus driver scheduling problems. It consists of a given set of tasks (pieces of work) to cover and a large set of possible shifts, where each shift covers a subset of the tasks and has an associated cost. The goal is to select a subset of possible shifts that covers each piece of work once and only once: this is called a partition. The main aim is to reduce the number of shifts used in the solution partition and the total cost of the partition is secondary. To simplify the problem, the cost of each shift is made the same. This means that the goal is to minimise the number of shifts. The problems come from four different bus companies: Reading (r1 to r5a), CentreWest Ealing area (c1, c1a, c2), the former London Transport (t1 and t2). The problems have differing regulations and features (e.g. urban and short distance rural bus schedules can have very different features).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Bus Driver Scheduling",
+    "domain": "Transportation",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "forall",
+      ">=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Bus Driver Scheduling",
+    "domain": "Transportation",
+    "model_var_keywords": [
+      "num_work",
+      "num_shifts",
+      "min_num_shifts",
+      "shifts",
+      "x",
+      "tot_shifts"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "sum",
+      "forall",
+      ">=",
+      "="
+    ]
+  }
+}

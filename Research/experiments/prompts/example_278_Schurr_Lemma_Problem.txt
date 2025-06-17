@@ -1,0 +1,83 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 278
+- Name: Schurr Lemma Problem
+- Domain: Academic
+- Objective: satisfaction
+
+Problem Description:
+# Problem SchurrLemma
+
+This is [Problem 015](https://www.csplib.org/Problems/prob015/) at CSPLib.
+
+The problem is to put n balls labelled 1,...,n into 3 boxes so that for any triple of balls (x,y,z) with x+y=z,
+not all are in the same box.
+The variant 'mod' has been proposed by Bessiere Meseguer Freuder Larrosa, "On forward checking for non-binary constraint satisfaction", 2002.
+
+## Example
+  A solution for 5 integers to put inside 4 boxes:
+  ```
+    1 2 1 2 3
+  ```
+
+## Data
+  A pair (n,d) where n is the number of balls, d the number of boxes
+
+## Model
+  There are two variants of this problem, one with NValues, the other one with AllDifferent
+
+  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent), [NValues](http://pycsp.org/documentation/constraints/NValues)
+
+## Execution
+  - python SchurrLemma.py -data=[number,number]
+  - python SchurrLemma.py -data=[number,number] -variant=mod
+
+## Tags
+  academic, csplib
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Number of balls
+int: n = 5;
+
+% Number of boxes
+int: d = 4;
+
+% Array to hold the box number for each ball
+array[1..n] of var 1..d: box;
+
+% Constraint: For any three balls (x, y, z) where x + y = z, all three balls are not placed in the same box
+constraint forall(i in 1..n, j in i+1..n, k in j+1..n) (
+  if i + j = k then
+    box[i] != box[j] \/ box[i] != box[k] \/ box[j] != box[k]
+  endif
+);
+
+% NValues variant: The number of distinct values (or labels) in each box is equal to the total number of boxes
+constraint forall(i in 1..d) (
+  sum(j in 1..n) (box[j] = i) = d
+);
+
+% AllDifferent variant: All balls in each box have different labels
+constraint forall(i in 1..d) (
+  alldifferent([box[j] | j in 1..n where box[j] = i])
+);
+
+solve satisfy;
+
+output ["Box for ball " ++ show(i) ++ ": " ++ show(box[i]) ++ "\n" | i in 1..n];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

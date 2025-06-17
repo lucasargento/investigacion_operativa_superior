@@ -1,0 +1,50 @@
+{
+  "description": "A portfolio manager with a fixed budget of $100 million is considering eight investment opportunities. The manager must choose an investment level for each alternative ranging from $0 to $40 million. The permissible allocations are discretized to intervals of $10 million. A unit of investment is defined as $10 million. The budget is 10 and the amounts to invest are the integers in the range from 0 to 4. The net annual returns from the investment opportunities are expressed in millions of dollars. A ninth opportunity, not shown in the table, is available for funds left over from the first eight investments. The return is 5% per year for the amount invested, or equivalently, $0.5 million for each $10 million invested. The manager's goal is to maximize the total annual return without exceeding the budget. The problem is to find the optimal investment strategy that maximizes the total annual return.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Investment Portfolio Optimization",
+    "domain": "Finance",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "total_return",
+      "sum",
+      "not_invested",
+      "budget",
+      "opportunity_returns",
+      "returns",
+      "investment_levels"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Investment Portfolio Optimization",
+    "domain": "Finance",
+    "model_var_keywords": [
+      "num_investment_levels",
+      "num_opportunities",
+      "returns",
+      "investment_levels",
+      "opportunity_returns",
+      "budget",
+      "not_invested_returns",
+      "not_invested",
+      "total_return"
+    ],
+    "model_data_keywords": [
+      "returns"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "total_return",
+      "sum",
+      "not_invested",
+      "budget",
+      "opportunity_returns",
+      "returns",
+      "investment_levels"
+    ]
+  }
+}

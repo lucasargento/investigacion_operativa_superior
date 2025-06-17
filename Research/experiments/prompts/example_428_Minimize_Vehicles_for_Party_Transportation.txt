@@ -1,0 +1,50 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 428
+- Name: Minimize Vehicles for Party Transportation
+- Domain: Transportation
+- Objective: minimization
+
+Problem Description:
+A party organizer needs to transport party goers either by limousine or bus . Limousines can carry 12 people and buses can carry 18 people . They need to transport at least 400 people . Because limousines are more attractive , at least 70 % of the vehicles must be limousines . How many of each type of vehicle should be used to minimize the total number of limousines and buses used ?
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Number of limousines and buses
+var 0..100: limousines;
+var 0..100: buses;
+
+% they need to transport at least 400 people
+% limousines can carry 12 people and buses can carry 18 people 
+constraint limousines * 12 + buses * 18 >= 400;
+
+% at least 70 % of the vehicles must be limousines
+constraint limousines >= 0.7 * (limousines + buses);
+
+% minimize the total number of limousines and buses used
+solve minimize limousines + buses;
+
+% output
+output ["Number of limousines: ", show(limousines), "\n", "Number of buses: ", show(buses)];
+
+Expected Output:
+{
+  "limousines": 23,
+  "buses": 7,
+  "_objective": 30
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

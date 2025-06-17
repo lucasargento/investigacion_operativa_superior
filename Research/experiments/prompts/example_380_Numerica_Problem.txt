@@ -1,0 +1,53 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 380
+- Name: Numerica Problem
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+This problem is taken from the Numerica book, page 21. The problem is to find two real numbers, x[1] and x[2], such that the following two conditions are satisfied: 1) The sum of the squares of x[1] and x[2] is equal to 1. 2) The square of x[1] is equal to x[2]. The search space for the variables x[1] and x[2] is from -10^8 to 10^8. The problem is to find all solutions that satisfy these conditions. The problem also includes an optional additional constraint that x[1] must be greater than or equal to 0.
+
+
+MiniZinc Model:
+float: v = pow(10.0,8.0);
+
+array[1..2] of var -v..v: x;
+
+
+% solve satisfy;
+solve :: float_search(x, 0.00000000000001, input_order, indomain_split, complete) satisfy;
+
+constraint
+   x[1]*x[1] + x[2]*x[2] = 1.0 
+   /\
+   x[1]*x[1] = x[2]
+   
+   % additional constraint
+   % /\ x[1] >= 0.0
+;
+
+output [
+  "x:" ++ show(x) ++ "\n"
+];
+
+Expected Output:
+{
+  "x": [
+    -0.786151377757423,
+    0.618033988749895
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,42 @@
+{
+  "description": "Fit the \u2018best\u2019 straight line y = bx + a where the objective is to minimize the maximum deviation of all the K observed values of Y from the value predicted by the linear relationship. The observed values of y are given by Y and the observed values of x are given by X.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Linear Regression with Minimax Criterion",
+    "domain": "Statistics",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "-",
+      "*",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Linear Regression with Minimax Criterion",
+    "domain": "Statistics",
+    "model_var_keywords": [
+      "intercept",
+      "slope",
+      "deviation"
+    ],
+    "model_data_keywords": [
+      "NumObs",
+      "Y",
+      "X"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      ">=",
+      "-",
+      "*",
+      "+"
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "description": "The problem is a price change puzzle. There are 3 dealers and 2 prices. The total number of items sold by each dealer is given. The number of items sold by each dealer at each price is to be determined, as well as the two prices. The constraints are that the number of items sold by a dealer at a price cannot exceed the total number of items sold by that dealer and cannot be negative. The total number of items sold by a dealer is the sum of the items sold at each price. The total revenue of the first dealer at each price is equal to the total revenue of the other dealers at each price. The second price is at least one unit higher than the first price. The total number of items sold by the dealers are 10, 25, and 30 respectively.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Price Change Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      ">="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Price Change Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "items_sold_at_price",
+      "price"
+    ],
+    "model_data_keywords": [
+      "total_items_sold",
+      "num_dealers",
+      "num_prices"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      ">="
+    ]
+  }
+}

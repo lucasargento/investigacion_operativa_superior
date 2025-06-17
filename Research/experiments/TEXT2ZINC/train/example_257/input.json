@@ -1,0 +1,49 @@
+{
+  "description": "Maximize the total manpower requirement over five years. The manpower requirements for operations one in year k is ManpowerOne, and for operations two is ManpowerTwo. The stock level of product k at the beginning of the year is Stock, the production capacity for product k for the year is Capacity, and the demand for product k for the year is Demand. The input one coefficient for product k with respect to product j is InputOne, and the input two coefficient for product k with respect to product j is InputTwo.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Economic Production Planning",
+    "domain": "Economics",
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      ">=",
+      "=",
+      "sum",
+      "max"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Economic Production Planning",
+    "domain": "Economics",
+    "model_var_keywords": [
+      "produce",
+      "buildcapa",
+      "stockhold",
+      "total_manpower"
+    ],
+    "model_data_keywords": [
+      "inputone",
+      "manpowerone",
+      "inputtwo",
+      "manpowertwo",
+      "stock",
+      "capacity",
+      "demand"
+    ],
+    "objective": "maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "<=",
+      ">=",
+      "=",
+      "sum",
+      "max"
+    ]
+  }
+}

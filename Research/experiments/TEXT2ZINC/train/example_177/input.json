@@ -1,0 +1,35 @@
+{
+  "description": "The problem is about placing n checkers on an (n x n) checkers board with the following restrictions: \n1) In each column there is EXACTLY one checker. \n2) For i=1,2,...,(n-1), the first i rows cannot have EXACTLY i checkers. \nThe goal is to count the number of ways to do so. The hypothesis is that the answer is n^{n-1}, but it needs to be proven. If restriction 2) is removed, the answer is obviously n^n. The problem also involves finding the number of different row patterns for different values of n. The patterns seem to follow the Catalan numbers.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Checkers Placement",
+    "domain": "Combinatorial Optimization",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "sum",
+      "forall",
+      "!="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Checkers Placement",
+    "domain": "Combinatorial Optimization",
+    "model_var_keywords": [
+      "x",
+      "sum_rows"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "sum",
+      "forall",
+      "!="
+    ]
+  }
+}

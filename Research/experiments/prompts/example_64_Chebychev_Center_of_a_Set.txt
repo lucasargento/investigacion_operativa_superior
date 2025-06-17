@@ -1,0 +1,44 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 64
+- Name: Chebychev Center of a Set
+- Domain: Mathematical Modeling
+- Objective: maximization
+
+Problem Description:
+Consider a set P described by linear inequality constraints, that is:
+
+P = {x \in R^N | {a_i}^T x <= b_i , i = 1, ..., m}.
+
+where a_i \in R^N and b_i \in R
+
+A ball with center y in R^N and radius r is defined as the set of all points within (Euclidean) distance r from y. We are interested in finding a ball with the largest possible radius, which is entirely contained within the set P (The center of such a ball is called the Chebychev center of P). 
+
+
+Input Data (data.dzn):
+M = 4;
+N = 2;
+A = array2d(1..4, 1..2, [1.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, -1.0]);
+B = [2.0, 2.0, 3.0, 5.0];
+
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 2.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

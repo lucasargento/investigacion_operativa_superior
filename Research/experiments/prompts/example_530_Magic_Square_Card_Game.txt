@@ -1,0 +1,88 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 530
+- Name: Magic Square Card Game
+- Domain: Puzzles
+- Objective: maximization
+
+Problem Description:
+The problem is about creating a magic square of order 3 using nine cards from a deck. A magic square is a grid of numbers where the values in each row, each column, and both main diagonals sum up to the same total. In this case, the magic square is of order 3, meaning it is a 3x3 grid. The numbers used to fill the grid are the values of nine cards from a deck. The deck is assumed to have 4 cards of each value from 1 to 13. The problem is to find the largest possible constant sum for the magic square that can be formed with these cards, allowing duplicate values. The constant sum is the total that each row, column, and diagonal adds up to.
+
+
+MiniZinc Model:
+include "globals.mzn"; 
+
+int: n = 3;
+array[1..n, 1..n] of var 1..13: x;
+var 0..13*4: s;
+
+solve satisfy;
+% solve maximize s;
+% solve :: int_search([x[r,c] | r,c in 1..n], first_fail, indomain_min, complete) maximize s;
+
+constraint
+
+  % there are 4 cards of each value in a deck
+  forall(i in 1..13) (
+     % at_most(4, [x[r,c] | r,c in 1..n], i)
+     count(t in [x[r,c] | r,c in 1..n]) (t = i) <= 4
+  )
+
+  % the standard magic square constraints (sans all_different)
+  /\
+  forall (c in 1..n) (sum (r in 1..n) (x[r, c]) = s)
+  /\
+  forall (r in 1..n) (sum (c in 1..n) (x[r, c]) = s)
+  /\
+  sum (i in 1..n) (x[i, i]) = s
+  /\
+  sum (i in 1..n) (x[i, n + 1 - i]) = s
+;
+
+
+output 
+[
+  "\ns: ", show(s)
+] ++
+[
+  if c = 1 then "\n" else " " endif ++
+    show(x[r,c])
+  | r, c in 1..n
+]
+++ ["\n"]
+;
+
+Expected Output:
+{
+  "x": [
+    [
+      2,
+      1,
+      3
+    ],
+    [
+      3,
+      2,
+      1
+    ],
+    [
+      1,
+      3,
+      2
+    ]
+  ],
+  "s": 6
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

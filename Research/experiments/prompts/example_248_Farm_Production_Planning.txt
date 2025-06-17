@@ -1,0 +1,114 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 248
+- Name: Farm Production Planning
+- Domain: Agriculture
+- Objective: maximization
+
+Problem Description:
+How should the farmer operate over the next five years to maximize profit using AllSpace, NHeifers, NMilk, HeiferSpace, CowSpace, CowCalve, PriceBullock, PriceHeifer, PriceCow, LossHeifer, LossCow, RevenueMilk, NMaxCow, CowOutlay, CowGrain, CowSugar, SugarPerAcre, SpaceGrain, GrainDivision, GrainYield, BuyPriceGrain, SellPriceGrain, BuyPriceSugar, SellPriceSugar, LabourHeifers, LabourCow, LabourGrain, LabourSugar, ExtraHeifers, ExtraCow, ExtraGrain, ExtraSugar, LabourCost, LabourHour, and ExtraLabourCost?
+
+
+Input Data (data.dzn):
+all_space = 200;
+n_heifers = 20;
+n_milk = 100;
+heifer_space = 0.666667;
+cow_space = 1;
+cow_calve = 1.1;
+price_bullock = 30;
+price_heifer = 40;
+price_cow = 120;
+loss_heifer = 0.05;
+loss_cow = 0.02;
+revenue_milk = 370;
+n_maxcow = 130;
+cow_outlay = 200;
+cow_grain = 0.6;
+cow_sugar = 0.7;
+sugar_per_acre = 1.5;
+space_grain = 80;
+graindivision = [20, 30, 20, 10];
+yield = [1.1, 0.9, 0.8, 0.65];
+buyprice_grain = 90;
+sellprice_grain = 75;
+buyprice_sugar = 70;
+sellprice_sugar = 58;
+labour_heifers = 10;
+labour_cow = 42;
+labour_grain = 4;
+labour_sugar = 14;
+extra_heifers = 50;
+extra_cow = 100;
+extra_grain = 15;
+extra_sugar = 10;
+labour_cost = 4000;
+labour_hour = 5500;
+extra_labour_cost = 1.2;
+
+MiniZinc Model:
+% Parameters
+int: all_space;
+int: n_heifers;
+int: n_milk;
+float: heifer_space;
+float: cow_space;
+float: cow_calve;
+int: price_bullock;
+int: price_heifer;
+int: price_cow;
+float: loss_heifer;
+float: loss_cow;
+int: revenue_milk;
+int: n_maxcow;
+int: cow_outlay;
+float: cow_grain;
+float: cow_sugar;
+float: sugar_per_acre;
+int: space_grain;
+array[1..4] of int: graindivision;
+array[1..4] of float: yield;
+int: buyprice_grain;
+int: sellprice_grain;
+int: buyprice_sugar;
+int: sellprice_sugar;
+int: labour_heifers;
+int: labour_cow;
+int: labour_grain;
+int: labour_sugar;
+int: extra_heifers;
+int: extra_cow;
+int: extra_grain;
+int: extra_sugar;
+int: labour_cost;
+int: labour_hour;
+float: extra_labour_cost;
+
+% Decision Variables
+var 0..n_heifers: sellheifer;
+array[1..5] of var 0..space_grain: spacegrain;
+array[1..5] of var 0..(all_space-space_grain): spacesugar;
+
+% Constraints
+constraint forall(i in 1..5)(spacegrain[i] + spacesugar[i] <= all_space);
+constraint forall(i in 1..5)(labour_heifers*n_heifers + labour_cow*n_milk + labour_grain*spacegrain[i] + labour_sugar*spacesugar[i] <= labour_hour + extra_labour_cost*(labour_cost - labour_hour));
+
+% Objective Function
+var int: profit = sum(i in 1..5)(revenue_milk*n_milk - extra_cow*n_milk - cow_grain*buyprice_grain*n_milk - cow_sugar*buyprice_sugar*n_milk + sellprice_grain*sum(j in 1..4)(yield[j]*graindivision[j]) - extra_grain*spacegrain[i] + sellprice_sugar*sugar_per_acre*spacesugar[i] - extra_sugar*spacesugar[i] + price_bullock*cow_calve*n_milk/2 + price_heifer*sellheifer + price_cow*n_milk*loss_cow - extra_heifers*n_heifers);
+solve maximize profit;
+
+% Output
+output ["sellheifer: \(sellheifer)\n"] ++ ["spacegrain: \(spacegrain[i])\n" | i in 1..5] ++ ["spacesugar: \(spacesugar[i])\n" | i in 1..5];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

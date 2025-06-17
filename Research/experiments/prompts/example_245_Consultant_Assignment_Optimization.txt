@@ -1,0 +1,54 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 245
+- Name: Consultant Assignment Optimization
+- Domain: Operations Research
+- Objective: minimization
+
+Problem Description:
+Determine the assignment of consultants to projects that minimizes the total cost, given the fixed FixedCosts for each project, AdditionalCosts for assigning consultant i to project j, and the MaxProjectsPerConsultant that can be handled by a single consultant.
+
+
+Input Data (data.dzn):
+fixed_costs = [100, 150, 135];
+additional_costs = [|10, 12, 20|10, 8, 12|15, 8, 20|10, 6, 15|8, 10, 15|];
+max_projects_per_consultant = 3;
+
+MiniZinc Model:
+% Define parameters
+int: I; % Number of projects
+int: J; % Number of consultants
+int: K; % Maximum projects per consultant
+array[1..J] of int: fixed_costs; % Fixed costs for each consultant
+array[1..I, 1..J] of int: additional_costs; % Additional costs for assigning project i to consultant j
+
+% Define decision variables
+array[1..I, 1..J] of var 0..1: assignments; % Assignment of project i to consultant j
+array[1..J] of var 0..1: consultant_hired; % Whether consultant j is hired
+
+% Define constraints
+constraint forall(j in 1..J) (
+    sum(i in 1..I) (assignments[i,j]) <= K * consultant_hired[j]
+);
+
+% Define objective function
+var int: total_cost = sum(j in 1..J) (fixed_costs[j] * consultant_hired[j]) + sum(i in 1..I, j in 1..J) (additional_costs[i,j] * assignments[i,j]);
+
+% Minimize total cost
+solve minimize total_cost;
+
+% Output assignments and total cost
+output ["assignments = ", show(assignments), "\n", "total_cost = ", show(total_cost)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,46 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 32
+- Name: Bounds on Fourth Moment
+- Domain: Mathematical Modeling
+- Objective: maximization
+
+Problem Description:
+Suppose that Z is a random variable taking values 0, 1, ..., K, with probabilities p_0, p_1, ..., p_K, respectively. We are given the values of the first two moments of Z:
+
+E[Z] = \sum_{k=0}^{K} k p_k 
+E[Z^2] = \sum_{k=0}^{K} k^2 p_k 
+
+We would like to obtain upper and lower bounds on the value of the fourth moment of Z:
+
+E[Z_4] = \sum_{k=0}^{K} k^4 p_k
+ 		
+Use linear programming to find the upper bound on \param{E[Z^4]}.
+
+
+Input Data (data.dzn):
+K = 6;
+P = [0.1, 0.2, 0.3, 0.2, 0.1, 0.1];
+ExpectedZ = 3;
+ExpectedZSquared = 10;
+
+MiniZinc Model:
+% Empty model file
+
+Expected Output:
+{
+  "_objective": 150.0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

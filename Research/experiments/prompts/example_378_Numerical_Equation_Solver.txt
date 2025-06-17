@@ -1,0 +1,44 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 378
+- Name: Numerical Equation Solver
+- Domain: Mathematics
+- Objective: satisfaction
+
+Problem Description:
+This problem is taken from the Numerica book, page 19. The problem is to find a value for 'x' that satisfies the equation x^4 - 12x^3 + 47x^2 - 60x + 24 = 0. The value of 'x' is a floating point number in the range of 0.0 to 10^8. The problem has multiple solutions, with some of them being duplicates. The goal is to find all unique solutions.
+
+
+MiniZinc Model:
+var 0.0..pow(10.0,8.0): x;
+
+
+solve satisfy;
+% solve :: float_search([x], 0.00001, input_order, indomain_split, complete) satisfy;
+
+constraint
+  x*x*x*x - 12.0*x*x*x + 47.0*x*x - 60.0*x + 24.0 = 0.0
+  % x*x*x*x - 12.0*x*x*x + 47.0*x*x - 60.0*x + 24.1 = 0.0 % variant: this should fail
+;
+
+output [
+  "x:" ++ show_float(3,12,x)
+];
+
+Expected Output:
+{
+  "x": 0.888305779071742
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,57 @@
+{
+  "description": "The problem is about finding a 'Limerick Prime'. A Limerick Prime is a prime number that has the form AABBA where A is an odd digit and B is any digit other than A. The task is to find such a prime number within the range of 10000 to 99999. The problem is inspired by a post from John D. Cook's blog where he discusses the concept of Limerick Primes and the smallest 14-digit prime number that follows the rhyme scheme of a Shakespearean sonnet.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Limerick Prime Finder",
+    "domain": "Number Theory",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "is_prime",
+      "toNum10",
+      "arrays_equal",
+      "mod",
+      "forall",
+      "ceil",
+      "sqrt",
+      "int2float",
+      "sum",
+      "pow",
+      "assert",
+      "index_set"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Limerick Prime Finder",
+    "domain": "Number Theory",
+    "model_var_keywords": [
+      "prime_number",
+      "digits",
+      "A",
+      "B"
+    ],
+    "model_data_keywords": [
+      "min_prime",
+      "max_prime",
+      "num_digits"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "is_prime",
+      "toNum10",
+      "arrays_equal",
+      "mod",
+      "forall",
+      "ceil",
+      "sqrt",
+      "int2float",
+      "sum",
+      "pow",
+      "assert",
+      "index_set"
+    ]
+  }
+}

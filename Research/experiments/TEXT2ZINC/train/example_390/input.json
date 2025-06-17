@@ -1,0 +1,34 @@
+{
+  "description": "The problem is about creating a cylinder. The cylinder's width (W) can be either 50, 100, or 200, and its length (L) can be any integer between 2 and 5. The volume (V) of the cylinder is calculated using the formula V = 1.0*(W/100.0) * (L*L)/(4.0*pi), where pi is approximately 3.1415926535897931. The goal is to find the values of W and L that minimize the volume V, given that V must be greater than or equal to 2.0.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum Volume Cylinder",
+    "domain": "Mathematics",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "constraint V >= 2.0",
+      "constraint V = 1.0*(int2float(W)/100.0) * (int2float(L*L)/(4.0*pi))"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum Volume Cylinder",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "W",
+      "L",
+      "V"
+    ],
+    "model_data_keywords": [
+      "pi"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "constraint V >= 2.0",
+      "constraint V = 1.0*(int2float(W)/100.0) * (int2float(L*L)/(4.0*pi))"
+    ]
+  }
+}

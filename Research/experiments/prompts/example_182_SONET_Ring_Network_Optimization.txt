@@ -1,0 +1,114 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 182
+- Name: SONET Ring Network Optimization
+- Domain: Network Optimization
+- Objective: minimization
+
+Problem Description:
+In the SONET problem we are given a set of nodes, and for each pair of nodes we are given the demand (which is the number of channels required to carry network traffic between the two nodes). The demand may be zero, in which case the two nodes do not need to be connected.
+
+A SONET ring connects a set of nodes. A node is installed on a ring using a piece of equipment called an add-drop multiplexer (ADM). Each node may be installed on more than one ring. Network traffic can be transmitted from one node to another only if they are both installed on the same ring. Each ring has an upper limit on the number of nodes, and a limit on the number of channels. The demand of a pair of nodes may be split between multiple rings.
+
+The objective is to minimise the total number of ADMs used while satisfying all demands.
+
+
+Input Data (data.dzn):
+% (sonet_problem1nu.param)
+r = 4;
+n = 5;
+
+demand =
+array2d(1..n, 1..n,
+        [0,1,0,1,0,
+         1,0,1,0,0,
+         0,1,0,0,1,
+         1,0,0,0,0,
+         0,0,1,0,0])
+;
+
+capacity_nodes = [3,2,2,1];
+
+MiniZinc Model:
+int: r;
+% amount of clients
+int: n;  
+
+
+% original comment: 
+% we have double entries here because of the symmetric structure!
+array[1..n, 1..n] of 0..1: demand;
+array[1..r] of 1..n: capacity_nodes;
+
+array[1..r, 1..n] of var 0..1: rings;
+var int: z =  sum(ring in 1..r, client in 1..n) (rings[ring, client]);
+
+solve minimize z;
+% solve satisfy;
+
+
+constraint
+  % z <= 7 % for solve satisfy
+  % /\
+
+   % original comment:
+   % if there is a demand between 2 nodes, then there has to exist 
+   % a ring, on which they are both installed
+   forall(client1,client2 in 1..n where client1 < client2) (
+      (demand[client1,client2] = 1) ->
+           exists(ring in 1..r) (
+                 rings[ring,client1] + rings[ring, client2] >= 2
+           )
+   )   
+   /\
+   % original comment:
+   % capacity of each ring must not be exceeded     
+   forall(ring in 1..r) (
+        sum(client in 1..n) (
+              rings[ring, client]
+              ) <= capacity_nodes[ring] 
+   )
+;
+
+
+%
+% data
+% (sonet_problem1nu.param)
+%
+r = 4;
+n = 5;
+
+demand =
+array2d(1..n, 1..n,
+        [0,1,0,1,0,
+         1,0,1,0,0,
+         0,1,0,0,1,
+         1,0,0,0,0,
+         0,0,1,0,0])
+;
+
+capacity_nodes = [3,2,2,1];
+
+
+output 
+[
+  "z: ", show(z)
+] ++
+[
+  if client = 1 then "\n" else " " endif ++
+    show(rings[ring, client])
+  | ring in 1..r, client in 1..n
+] ++ ["\n"];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

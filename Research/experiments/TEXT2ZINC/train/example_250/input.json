@@ -1,0 +1,41 @@
+{
+  "description": "Select the combination of translators that ensures all required languages can be translated into, at the minimum possible cost. There are N translators, each with an associated cost of Cost. Each translator i is capable of translating a set of languages Languages. The objective is to meet the translation needs for M required languages, listed in RequiredLanguages.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Minimum Cost Translator Selection",
+    "domain": "Workforce Scheduling",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Minimum Cost Translator Selection",
+    "domain": "Workforce Scheduling",
+    "model_var_keywords": [
+      "hire_translator",
+      "total_cost",
+      "selected_translators"
+    ],
+    "model_data_keywords": [
+      "translators",
+      "translator_costs",
+      "translator_languages",
+      "required_languages"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "*"
+    ]
+  }
+}

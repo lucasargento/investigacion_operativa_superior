@@ -1,0 +1,74 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 243
+- Name: Warehouse Stock Management
+- Domain: Supply Chain Management
+- Objective: maximization
+
+Problem Description:
+Determine the amount of buying and selling in each period to maximize the profit over the months, given the constraints of maximum storage Capacity, holding costs HoldingCost, selling prices Price, and buying costs Cost.
+
+
+Input Data (data.dzn):
+capacity = 10;
+holding_cost = 2;
+price = [1, 2, 100];
+cost = [100, 1, 100];
+
+MiniZinc Model:
+% Parameters
+int: capacity; % Maximum storage capacity
+int: holding_cost; % Holding cost per unit per period
+array[1..3] of int: price; % Selling price per period
+array[1..3] of int: cost; % Buying cost per period
+
+% Decision Variables
+array[1..3] of var 0..capacity: buyquantity; % Quantity to buy per period
+array[1..3] of var 0..capacity: sellquantity; % Quantity to sell per period
+array[1..3] of var 0..capacity: stock; % Stock per period
+
+% Constraints
+constraint forall(i in 2..3)(stock[i] = stock[i-1] + buyquantity[i] - sellquantity[i]);
+constraint stock[1] = buyquantity[1] - sellquantity[1];
+constraint forall(i in 1..3)(stock[i] <= capacity);
+constraint stock[3] = 0;
+
+% Objective Function
+var int: profit = sum(i in 1..3)(price[i]*sellquantity[i] - cost[i]*buyquantity[i] - holding_cost*stock[i]);
+solve maximize profit;
+
+% Output
+output ["buyquantity: ", show(buyquantity), "\n", "sellquantity: ", show(sellquantity), "\n", "stock: ", show(stock)];
+
+Expected Output:
+{
+  "buyquantity": [
+    0,
+    10,
+    0
+  ],
+  "sellquantity": [
+    0,
+    0,
+    10
+  ],
+  "stock": [
+    0,
+    10,
+    0
+  ],
+  "_objective": 970
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,55 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 429
+- Name: Maximize Berries Transported
+- Domain: Transportation
+- Objective: maximization
+
+Problem Description:
+A man wants to sell his berries at the market down the river . He can either use a boat to carry it down stream or have his neighbor carry it . A boat can take 200 units of berries per trip and cost $ 30 per trip . His neighbor can take 40 units of berries per trip and costs $ 8 . The man does not want to spend more than $ 500 and the number of boat trips can not exceed the number of trips his neighbor does . Formulate a LP to maximize the number of berries he can transport to the market ?
+
+
+MiniZinc Model:
+var int: boat_trips;
+% number of neighbor trips
+var int: neighbor_trips; 
+
+% number of trips are non-negative
+constraint boat_trips >= 0;
+constraint neighbor_trips >= 0;
+
+% man does not want to spend more than $500
+% boat trips cost $30 and trips by his neighbor cost 8
+constraint 30 * boat_trips + 8 * neighbor_trips <= 500;
+
+% number of boat trips can not exceed the number of trips his neighbor does
+constraint boat_trips <= neighbor_trips; 
+
+% units of berries boat trips can take is 200 and trips by his neight can take is 40
+var int: berries = 200 * boat_trips + 40 * neighbor_trips;
+
+% maximize number of berries
+solve maximize berries;
+
+% output the solution
+output ["boat_trips: ", show(boat_trips), "\n", "neighbor_trips: ", show(neighbor_trips)];
+
+Expected Output:
+{
+  "boat_trips": 13,
+  "neighbor_trips": 13,
+  "_objective": 3120
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

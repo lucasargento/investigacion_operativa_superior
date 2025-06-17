@@ -1,0 +1,49 @@
+{
+  "description": "---\nTitle: Synchronous Optical Networking (SONET) Problem\nProposer: Peter Nightingale\nCategory: Network design\n---\n\nIn the SONET problem we are given a set of nodes, and for each pair of nodes\nwe are given the *demand* (which is the number of channels required to carry network traffic \nbetween the two nodes). The demand may be zero, in which case the two nodes do\nnot need to be connected. \n\nA SONET *ring* connects a set of nodes. A node is installed on a ring using a piece of equipment\ncalled an add-drop multiplexer (ADM).  Each node may be installed on more than one\nring. Network traffic can be transmitted from\none node to another only if they are both installed on the same ring. \nEach ring has an upper limit on the number of nodes, and a limit on the number\nof channels. The demand of a pair of nodes may be split between multiple rings. \n\nThe objective is to minimise the total number of ADMs used while satisfying all demands. \n\nThe Unlimited Traffic Capacity Problem\n--------\n\nIn the unlimited traffic capacity problem, the magnitude of the demands is ignored.\nIf a pair of nodes $n_1$ and $n_2$ has a non-zero demand, then there must exist a ring\nconnecting $n_1$ and $n_2$. The upper limit on the number of channels per ring \nhas no significance in this simplified problem. The objective function remains\nthe same.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Synchronous Optical Networking (SONET) Problem",
+    "domain": "Network Design",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "exists",
+      "<=",
+      "+",
+      "sum",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Synchronous Optical Networking (SONET) Problem",
+    "domain": "Network Design",
+    "model_var_keywords": [
+      "numRings",
+      "numNodes",
+      "demandMatrix",
+      "ringCapacity",
+      "rings",
+      "totalADMs"
+    ],
+    "model_data_keywords": [],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "exists",
+      "<=",
+      "+",
+      "sum",
+      "if",
+      "then",
+      "else",
+      "endif"
+    ]
+  }
+}

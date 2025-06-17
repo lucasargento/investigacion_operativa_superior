@@ -1,0 +1,91 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 252
+- Name: DEC System Production Optimization
+- Domain: Manufacturing
+- Objective: maximization
+
+Problem Description:
+How many of which system should DEC produce and using what memories and disks to maximize the profit for the next quarter? The parameters involved are the number of systems N, whether a system is a workstation or not for each system IsWorkstation, the price for each system Price, the number of disk drives for each system DiskDrives, the number of 256K memory boards for each system MemoryBoards, the maximum number of CPUs available MaxCpu, the minimum and maximum total disk drives in the system MinDisk and MaxDisk respectively, the minimum and maximum total memory boards MinMemory and MaxMemory respectively, the demand for each system Demand, the demand for general purpose systems DemandGP and for workstations DemandWS, the number of preordered systems Preorder, the number of alternative memory configurations possible AltMemory, and the compatibility of alternative memory with each system AltCompatible.
+
+
+Input Data (data.dzn):
+N = 5;
+IsWorkstation = [false, false, false, true, true];
+Price = [60000, 40000, 30000, 30000, 15000];
+DiskDrives = [0.3, 1.7, 0, 1.4, 0];
+MemoryBoards = [4, 2, 2, 2, 1];
+Demand = [1800, 999999, 300, 999999, 999999];
+Preorder = [0, 500, 0, 500, 400];
+AltCompatible = [true, false, false, false, false];
+MaxCpu = 7000;
+MinDisk = 3000;
+MaxDisk = 7000;
+MinMemory = 8000;
+MaxMemory = 16000;
+DemandGP = 3800;
+DemandWS = 3200;
+AltMemory = 4000;
+
+MiniZinc Model:
+% Define parameters
+int: N;
+array[1..N] of bool: IsWorkstation;
+array[1..N] of int: Price;
+array[1..N] of float: DiskDrives;
+array[1..N] of int: MemoryBoards;
+array[1..N] of int: Demand;
+array[1..N] of int: Preorder;
+array[1..N] of bool: AltCompatible;
+int: MaxCpu;
+int: MinDisk;
+int: MaxDisk;
+int: MinMemory;
+int: MaxMemory;
+int: DemandGP;
+int: DemandWS;
+int: AltMemory;
+
+% Define decision variables
+array[1..N] of var 0..Demand[i]: NumProduced;
+array[1..N] of var 0..MemoryBoards[i]*NumProduced[i]: Total256KBoardsUsed;
+array[1..N] of var 0..AltMemory: TotalAltBoardsUsed;
+array[1..N] of var 0..DiskDrives[i]*NumProduced[i]: TotalDiskDrivesUsed;
+
+% Define constraints
+constraint sum(i in 1..N)(NumProduced[i]) <= MaxCpu;
+constraint sum(i in 1..N)(TotalDiskDrivesUsed[i]) >= MinDisk;
+constraint sum(i in 1..N)(TotalDiskDrivesUsed[i]) <= MaxDisk;
+constraint sum(i in 1..N)(Total256KBoardsUsed[i] + TotalAltBoardsUsed[i]) >= MinMemory;
+constraint sum(i in 1..N)(Total256KBoardsUsed[i] + TotalAltBoardsUsed[i]) <= MaxMemory;
+constraint sum(i in 1..N where IsWorkstation[i])(NumProduced[i]) <= DemandWS;
+constraint sum(i in 1..N where not IsWorkstation[i])(NumProduced[i]) <= DemandGP;
+constraint forall(i in 1..N)(NumProduced[i] >= Preorder[i]);
+constraint forall(i in 1..N)(TotalAltBoardsUsed[i] <= AltMemory * AltCompatible[i]);
+
+% Define objective function
+var int: Profit = sum(i in 1..N)(Price[i] * NumProduced[i]);
+
+% Maximize profit
+solve maximize Profit;
+
+% Output
+output ["{\"system_output\": ["] ++
+        [ "{ \"num_produced\": " ++ show(NumProduced[i]) ++ 
+          ", \"total_256K_boards_used\": " ++ show(Total256KBoardsUsed[i]) ++ 
+          ", \"total_alt_boards_used\": " ++ show(TotalAltBoardsUsed[i]) ++ 
+          ", \"total_disk_drives_used\": " ++ show(TotalDiskDrivesUsed[i]) ++ "}" | i in 1..N] ++
+        ["], \"profit\": " ++ show(Profit) ++ "}"];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

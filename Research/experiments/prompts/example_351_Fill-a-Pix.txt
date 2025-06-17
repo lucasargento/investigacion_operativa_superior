@@ -1,0 +1,205 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 351
+- Name: Fill-a-Pix
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Fill-a-Pix problem is a Minesweeper-like puzzle based on a grid with a pixilated picture hidden inside. The puzzle consists of a grid containing clues in various places. The objective is to reveal a hidden picture by painting the squares directly around each clue so that the number of painted squares, including the square with the clue, matches the value of the clue. Given a grid with the clues, find which squares should be painted.
+
+
+Input Data (data.dzn):
+% Puzzle 2 from 
+% http://www.conceptispuzzles.com/index.aspx?uri=puzzle/fill-a-pix/rules
+% 
+n = 10;
+puzzle = array2d(1..n, 1..n, 
+[
+  0,X,X,X,X,X,3,4,X,3,
+  X,X,X,4,X,X,X,7,X,X,
+  X,X,5,X,2,2,X,4,X,3,
+  4,X,6,6,X,2,X,X,X,X,
+  X,X,X,X,3,3,X,X,3,X,
+  X,X,8,X,X,4,X,X,X,X,
+  X,9,X,7,X,X,X,X,5,X,
+  X,X,X,7,5,X,X,3,3,0,
+  X,X,X,X,X,X,X,X,X,X,
+  4,4,X,X,2,3,3,4,3,X
+]);
+
+MiniZinc Model:
+int: n;
+% clues in the grid
+array[1..n, 1..n] of -1..9: puzzle;
+% solution grid
+array[1..n, 1..n] of var 0..1: grid;
+% -1 represents a blank
+int: X = -1; 
+
+% satisfaction
+solve satisfy;
+
+% the number of neighboring painted squares must be equal to the value of the clue for every clue
+constraint
+    forall(i,j in 1..n) (
+      (
+       (puzzle[i,j] >= 0)
+        ->
+        puzzle[i,j] = sum(a,b in {-1,0,1} where 
+            i+a > 0  /\ j+b >  0 /\
+            i+a <= n /\ j+b <= n
+         )
+           (grid[i+a,j+b])
+      )
+    )
+;
+
+% output
+output [
+   if j = 1 then ",\n" else "," endif ++
+     show(grid[i,j])
+   | i, j in 1..n
+]
+++
+["\n"]
+;
+
+Expected Output:
+{
+  "grid": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0
+    ]
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

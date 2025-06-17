@@ -1,0 +1,36 @@
+{
+  "description": "A bubble tea store sells two products : almond bubble tea and ginger bubble tea . The store makes x1 bottles of almond bubble tea a day at a profit of $ 5 each and x2 bottles of ginger bubble tea a day at a profit of $ 9 each . ( x1 and x2 are unknowns and they both must be greater than or equal to 0 ) . Currently , the demand is limited to at most 120 bottles of almond bubble tea per day and at most 200 bottles of ginger bubble tea per day . Also , the store can make a maximum of 300 bottles of bubble tea ( ignoring the type ) per day . How many of each bubble tea should be made to maximize profit ?",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Bubble Tea Profit Maximization",
+    "domain": "Business",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "+"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Bubble Tea Profit Maximization",
+    "domain": "Business",
+    "model_var_keywords": [
+      "almond_bubble_tea",
+      "ginger_bubble_tea",
+      "total_profit"
+    ],
+    "model_data_keywords": [
+      "max_bottles_per_day",
+      "almond_profit_per_bottle",
+      "ginger_profit_per_bottle"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "+"
+    ]
+  }
+}

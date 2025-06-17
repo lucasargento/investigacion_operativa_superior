@@ -1,0 +1,59 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 410
+- Name: Fishing Method Optimization
+- Domain: Resource Allocation
+- Objective: maximization
+
+Problem Description:
+A man fishes in a 250 acre lake and can catch fish either using a net or fishing line . For each acre of the lake , using a net will catch 8 fish and requires 4 units of bait but also causes 2 units of pain for the fisherman . For each acre of the lake , using a fishing line will catch 5 fish and requires 3 units of bait but also causes 1 unit of pain for the fisherman . The fisherman has available 800 units of bait and can tolerate at most 350 units of pain . For how many acres each should he use each fishing method to maximize the amount of fish he can catch ?
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% acres of net fishing
+var int: net_acres;
+% acres of line fishing
+var int: line_acres;
+
+% acres of fishing are non-negative
+constraint net_acres >= 0;
+constraint line_acres >= 0;
+
+% the lake is 250 acres
+constraint net_acres + line_acres <= 250;
+% 800 units of bait are available
+% net fishing requires 4 units of bait per acre, line fishing requires 3 units of bait per acre
+constraint 4*net_acres + 3*line_acres <= 800;
+% can tolerate 350 units of pain
+% net fishing requires 2 units of pain per acre, line fishing requires 1 unit of pain per acre
+constraint 2*net_acres + line_acres <= 350;
+
+% net fishing catches 8 fish per acre and line fishing catches 5 fish per acre
+var int: total_fish = 8*net_acres + 5*line_acres;
+
+% maximize total fish
+solve maximize total_fish;
+
+output ["Net Acres: " ++ show(net_acres), "\n", "Line Acres: " ++ show(line_acres), "\n", "Total Fish: " ++ show(total_fish)];
+
+Expected Output:
+{
+  "net_acres": 125,
+  "line_acres": 100,
+  "_objective": 1500
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

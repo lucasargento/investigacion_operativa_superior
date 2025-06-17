@@ -1,0 +1,91 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 352
+- Name: Office Blocked Problem
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The Office Blocked problem involves six employees of the Paper Circulation Division of the Department of Miscellania who occupy offices on two floors of the Administration Building: three on the upper floor (offices U1, U2 and U3) and the other three directly below them on the lower floor (L1, L2 and L3). The offices are arranged and numbered as follows:
+
+floor                   representation
+2    U1   U2   U3       4  5  6
+1    L1   L2   L3       1  2  3
+
+The employees are Arthur, Bella, Craig, Duncan, Elizabeth, and Francesca. The problem is to determine who works where based on the following conditions: 
+- Arthur is directly above Bella, who works next to Duncan. 
+- Elizabeth’s office number is smaller than Francesca’s. 
+- Craig and Francesca are in adjacent rooms.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Number of employees
+int: n = 6;
+
+% Office assignments (1-6)
+array[1..n] of var 1..6: offices;
+
+% Employees
+enum EMPLOYEE = {Arthur, Bella, Craig, Duncan, Elizabeth, Francesca};
+
+% Define the office positions for clarity
+var 1..6: Arthur_office = offices[1];
+var 1..6: Bella_office = offices[2];
+var 1..6: Craig_office = offices[3];
+var 1..6: Duncan_office = offices[4];
+var 1..6: Elizabeth_office = offices[5];
+var 1..6: Francesca_office = offices[6];
+
+% Constraints
+% Arthur is directly above Bella
+constraint Arthur_office == Bella_office + 3;
+
+% Bella works next to Duncan
+constraint abs(Bella_office - Duncan_office) == 1;
+
+% % Elizabeth’s office number is smaller than Francesca’s
+constraint Elizabeth_office < Francesca_office;
+
+% Craig and Francesca are in adjacent rooms
+constraint abs(Craig_office - Francesca_office) == 1;
+
+% ensure all offices are unique
+constraint alldifferent(offices);
+
+% satisfaction
+solve satisfy;
+
+% output
+output ["Arthur: ", show(Arthur_office), "\n",
+        "Bella: ", show(Bella_office), "\n",
+        "Craig: ", show(Craig_office), "\n",
+        "Duncan: ", show(Duncan_office), "\n",
+        "Elizabeth: ", show(Elizabeth_office), "\n",
+        "Francesca: ", show(Francesca_office), "\n"];
+
+Expected Output:
+{
+  "offices": [
+    4,
+    1,
+    6,
+    2,
+    3,
+    5
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

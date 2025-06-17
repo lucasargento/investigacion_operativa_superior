@@ -1,0 +1,56 @@
+{
+  "description": "The problem is a puzzle called 'Tri-Puzzle', which is a three-cornered conundrum. The puzzle consists of a set of triangular pieces, each with three spots of different colors. The goal is to arrange these pieces in a larger triangle such that the colors of adjacent spots match. Each piece can be placed in any of the positions in the larger triangle and can be oriented in three different ways. The problem is to find a placement and orientation for each piece that satisfies the color matching constraints. The constraints ensure that each position is occupied by one triangle in one orientation, each triangle is in one position and one orientation, the spot colors are consistent with piece positions and orientations, and the color matches for both outer and inner triangles. The colors are coded as integers from 1 to 6, representing red, green, white, blue, black, and yellow respectively. Each row in the piece_col array describes a triangle in each of three possible orientations.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Tri-Puzzle Solver",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<=",
+      "/\\",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "show"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Tri-Puzzle Solver",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "piece_placement",
+      "spot_colors"
+    ],
+    "model_data_keywords": [
+      "num_pieces",
+      "num_colors",
+      "right_colors",
+      "left_colors",
+      "base_colors",
+      "piece_colors"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      ">=",
+      "<=",
+      "/\\",
+      "if",
+      "then",
+      "else",
+      "endif",
+      "show"
+    ]
+  }
+}

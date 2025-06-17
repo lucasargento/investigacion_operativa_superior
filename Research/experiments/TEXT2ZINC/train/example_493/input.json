@@ -1,0 +1,49 @@
+{
+  "description": "The problem is about converting a binary matrix to a list of numbers. Given a binary matrix of size n x n, where n is 5, the task is to convert this matrix into a list of numbers. The conversion is done using two methods. The first method, binmatrix2num, requires support of <-> (i.e. not IP models) and the second method, binmatrix2num_ip, is for IP models. The output is the list of numbers obtained from the binary matrix. The problem also includes constraints to ensure that the sizes of the input and output arrays match.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Binary Matrix to Number List Conversion",
+    "domain": "Matrix Operations",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "binmatrix2num",
+      "binmatrix2num_ip",
+      "cp1d",
+      "cp2d",
+      "assert",
+      "forall",
+      "sum",
+      "=",
+      "<->",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Binary Matrix to Number List Conversion",
+    "domain": "Matrix Operations",
+    "model_var_keywords": [
+      "binary_matrix",
+      "number_list"
+    ],
+    "model_data_keywords": [
+      "matrix_size"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "binmatrix2num",
+      "binmatrix2num_ip",
+      "cp1d",
+      "cp2d",
+      "assert",
+      "forall",
+      "sum",
+      "=",
+      "<->",
+      "/\\"
+    ]
+  }
+}

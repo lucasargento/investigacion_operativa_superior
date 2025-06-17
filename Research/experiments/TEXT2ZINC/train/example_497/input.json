@@ -1,0 +1,35 @@
+{
+  "description": "The problem is to calculate the factorial of a given number 'n' using MiniZinc. The factorial of a number is the product of all positive integers less than or equal to that number. The factorial function can be defined by the product of all positive integers from 1 to n. However, since the prod() function is not available in MiniZinc, an alternative method is used to calculate the factorial. An array 'x' of size 'n' is created where each element 'x[i]' is the product of 'x[i-1]' and 'i'. The result 'res' is the last element of the array 'x'. The maximum value of 'n' that can be used depends on the solver used. For example, with the 'flatzinc' solver, the maximum 'n' is 9, while with the 'fz', 'ic', 'eplex', and 'tini' solvers, the maximum 'n' is 12. With the 'fd' solver, the maximum 'n' is 10. With the 'tini' solver and the '-k 64' option, 'n' can be 15 or greater, and the result is presented in hexadecimal.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Factorial Calculation",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Factorial Calculation",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "factorial_result",
+      "intermediate_results"
+    ],
+    "model_data_keywords": [
+      "n"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "forall",
+      "=",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 494
+- Name: Number Theory Divisors
+- Domain: Number Theory
+- Objective: satisfaction
+
+Problem Description:
+The problem is about simple number theory. Given an integer 'n', the task is to calculate the number of divisors of 'n'. The divisors are stored in an array 'divisor' of size 't' where 't' is half of 'n' plus one. A variable 'is_prime' is used to check if 'n' is a prime number. If 'n' has no divisors (other than 1 and itself), then 'n' is a prime number and 'is_prime' is set to 1, otherwise 'is_prime' is set to 0. The goal is to find the values of 'divisor' and 'is_prime' that satisfy these conditions.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+int: n = 33;
+
+var 0..n: num_divisors;
+int: t = (n div 2)+1; % number of elements in the divisors array
+array[2..t] of var 0..n: divisor; 
+var 0..1: is_prime;
+
+%
+% Calculate the number of divisors of n
+%
+predicate divisors(int: n, var int: num_divisors, array[int] of var int: d) =
+   let { 
+         int: t = (n div 2)+1
+         } 
+   in 
+    % is a divisor?
+    forall(i in 2..t) (
+        (d[i] = 1 <-> n mod i = 0) /\
+        (d[i] = 0 <-> n mod i > 0)
+     ) 
+    /\ 
+    num_divisors = sum(i in 2..t) (bool2int(d[i]>0))
+;
+
+% solve satisfy;
+solve :: int_search(divisor, first_fail, indomain_min, complete) satisfy;
+
+constraint
+   divisors(n, num_divisors, divisor)
+   /\
+   (is_prime = 1 <-> num_divisors = 0) /\
+   (is_prime = 0 <-> num_divisors > 0)
+;
+
+
+output
+[
+  "n: " ++ show(n) ++ "\n" ++
+  "divisor: " ++ show(divisor) ++ "\n" ++
+  "is_prime: " ++ show(is_prime) ++ "\n" 
+];
+
+Expected Output:
+{
+  "num_divisors": 2,
+  "divisor": [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "is_prime": 0
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

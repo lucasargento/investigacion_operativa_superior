@@ -1,0 +1,68 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 212
+- Name: Minimum Cost Network Flow
+- Domain: Network Optimization
+- Objective: minimization
+
+Problem Description:
+Find paths along which all data reach their intended destinations, while minimizing the total cost. The links between nodes are characterized by their capacities (Capacity) and associated costs (Cost), where each link ij connects a start node (StartNode) to an end node (EndNode). There is a set number of data flow requirements (F), each with a source node (SourceNode) and destination node (DestinationNode), and a specific data rate (DataRate) that must be achieved.
+
+
+Input Data (data.dzn):
+NumLinks = 4;
+StartNode = [1, 2, 2, 3];
+EndNode = [2, 3, 4, 4];
+Capacity = [50, 40, 60, 50];
+Cost = [2, 3, 1, 1];
+NumFlowReqs = 2;
+Source = [1, 2];
+Destination = [4, 3];
+DataRate = [40, 30];
+
+MiniZinc Model:
+% Define parameters
+int: NumLinks; % Number of links
+array[1..NumLinks] of int: StartNode; % Start node of each link
+array[1..NumLinks] of int: EndNode; % End node of each link
+array[1..NumLinks] of int: Capacity; % Capacity of each link
+array[1..NumLinks] of int: Cost; % Cost of each link
+int: NumFlowReqs; % Number of flow requirements
+array[1..NumFlowReqs] of int: Source; % Source node of each flow requirement
+array[1..NumFlowReqs] of int: Destination; % Destination node of each flow requirement
+array[1..NumFlowReqs] of int: DataRate; % Data rate of each flow requirement
+
+% Define decision variables
+array[1..NumLinks, 1..NumFlowReqs] of var 0..Capacity: Flow; % Flow on each link for each flow requirement
+
+% Define objective function
+var int: TotalCost = sum(i in 1..NumLinks, j in 1..NumFlowReqs) (Flow[i,j] * Cost[i]);
+
+% Define constraints
+constraint forall(j in 1..NumFlowReqs) (
+    sum(i in 1..NumLinks) (Flow[i,j]) >= DataRate[j] % Flow requirement constraint
+);
+
+constraint forall(i in 1..NumLinks) (
+    sum(j in 1..NumFlowReqs) (Flow[i,j]) <= Capacity[i] % Capacity constraint
+);
+
+% Solve the problem
+solve minimize TotalCost;
+
+% Output the solution
+output ["TotalCost: ", show(TotalCost), "\n"] ++
+["Flow: ", show(Flow), "\n"];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

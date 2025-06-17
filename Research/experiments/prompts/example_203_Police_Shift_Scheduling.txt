@@ -1,0 +1,67 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 203
+- Name: Police Shift Scheduling
+- Domain: Workforce Scheduling
+- Objective: minimization
+
+Problem Description:
+How many officers should the town assign to each shift in order to minimize the total cost, given that there are S shifts, defined by the number of officers needed for each shift OfficersNeeded, and the respective costs of assigning an officer to each shift ShiftCosts?
+
+
+Input Data (data.dzn):
+NumShifts = 6;
+OfficersNeeded = [15, 13, 11, 11, 9, 7];
+ShiftCosts = [500, 480, 450, 460, 470, 490];
+
+MiniZinc Model:
+% Parameters
+int: NumShifts; % Number of shifts
+array[1..NumShifts] of int: OfficersNeeded; % Officers needed for each shift
+array[1..NumShifts] of int: ShiftCosts; % Cost of assigning an officer to each shift
+
+% Decision Variables
+array[1..NumShifts] of var 0..max(OfficersNeeded): OfficersAssigned; % Officers assigned to each shift
+
+% Objective
+var int: TotalCost; % Total cost for the town
+
+% Constraints
+constraint forall(i in 1..NumShifts) (
+    OfficersAssigned[i] + OfficersAssigned[i mod NumShifts + 1] >= OfficersNeeded[i]
+);
+
+constraint TotalCost = sum(i in 1..NumShifts) (OfficersAssigned[i] * ShiftCosts[i]);
+
+% Objective Function
+solve minimize TotalCost;
+
+% Output
+output ["{\"officers_assigned\": [", join(", ", [show(OfficersAssigned[i]) | i in 1..NumShifts]), "], \"total_cost\": ", show(TotalCost), "}"];
+
+Expected Output:
+{
+  "OfficersAssigned": [
+    7,
+    8,
+    9,
+    2,
+    9,
+    0
+  ],
+  "TotalCost": 16540,
+  "_objective": 16540
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

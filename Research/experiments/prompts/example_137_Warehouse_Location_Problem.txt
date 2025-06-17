@@ -1,0 +1,224 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 137
+- Name: Warehouse Location Problem
+- Domain: Logistics
+- Objective: minimization
+
+Problem Description:
+---
+Title:    Warehouse Location Problem
+Proposer: Brahim Hnich
+Category:
+- Design and configuration
+- Logistics
+---
+
+In the <i>Warehouse Location</i> problem (WLP), a company considers opening warehouses at some candidate locations in order to supply its existing stores.
+Each possible warehouse has the same maintenance cost, and a capacity designating the maximum number of stores that it can supply.
+Each store must be supplied by exactly one open warehouse.
+
+The supply cost to a store depends on the warehouse.
+The objective is to determine which warehouses to open, and which of these warehouses should supply the various stores, such that the sum of the maintenance and supply costs is minimized.
+
+As an example (from the OPL book), consider the following data:
+
+```
+fixed = 30;
+Warehouses = { Bonn, Bordeaux, London, Paris, Rome };
+nbStores = 10; //labeled from 0 to 9
+capacity = [1,4,2,1,3]; // capacity is indexed by Warehouses
+
+// supplyCost in indexed by Stores(0..9) and the set of Warehouses
+
+supplyCost = [ [ 20, 24, 11, 25, 30 ]
+             , [ 28, 27, 82, 83, 74 ]
+             , [ 74, 97, 71, 96, 70 ]
+             , [ 2, 55, 73, 69, 61 ]
+             , [ 46, 96, 59, 83, 4 ]
+             , [ 42, 22, 29, 67, 59 ]
+             , [ 1, 5, 73, 59, 56 ]
+             , [ 10, 73, 13, 43, 96 ]
+             , [ 93, 35, 63, 85, 46 ]
+             , [ 47, 65, 55, 71, 95 ]
+             ];
+
+```
+
+Then, an optimal solution has value `383`, where:
+
+Stores of Bonn = `{3}`
+
+Stores of Bordeaux = `{8,6,5,1}`
+
+Stores of London = `{9,7}`
+
+Stores of Paris = `{}`
+
+Stores of Rome = `{4,2,0}`
+
+
+See {prob083} for a related problem.
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+%-----------------------------------------------------------------------------
+% Instance
+
+n_suppliers = 5;
+n_stores = 10;
+building_cost = 30;
+
+capacity = [1,4,2,1,3];
+
+cost_matrix =
+ [|20, 24, 11, 25, 30
+  |28, 27, 82, 83, 74
+  |74, 97, 71, 96, 70
+  | 2, 55, 73, 69, 61
+  |46, 96, 59, 83,  4
+  |42, 22, 29, 67, 59
+  | 1,  5, 73, 59, 56
+  |10, 73, 13, 43, 96
+  |93, 35, 63, 85, 46
+  |47, 65, 55, 71, 95|]; 
+
+%-----------------------------------------------------------------------------
+% Model
+
+int: n_suppliers;
+int: n_stores;
+int: building_cost;
+array[1..n_suppliers] of int: capacity;
+array[1..n_stores,1..n_suppliers] of int: cost_matrix;
+
+int: MaxCost = max(i in 1..n_stores, j in 1..n_suppliers)(cost_matrix[i,j]);
+int: MaxTotal =   (n_suppliers * building_cost) 
+                + sum(i in 1..n_stores, j in 1..n_suppliers)(cost_matrix[i,j]); 
+
+array[1..n_stores] of var 1..n_suppliers: supplier;
+array[1..n_suppliers] of var bool: open;
+array[1..n_stores] of var 1..MaxCost: cost;
+var 1..MaxTotal: tot;
+
+constraint
+  sum (i in 1..n_suppliers) (building_cost * bool2int(open[i])) +
+  sum (i in 1..n_stores) (cost[i])
+  = tot;
+
+constraint
+  forall (i in 1..n_stores) (
+    cost_matrix[i,supplier[i]] = cost[i]
+  );
+
+constraint
+  forall (i in 1..n_suppliers) (
+    let {
+      var int: use
+     } in
+    count(supplier,i,use) /\ use <= capacity[i]
+  );
+
+constraint
+  forall (i in 1..n_suppliers) (
+    (exists (j in 1..n_stores) (supplier[j] == i)) == open[i]
+  );
+
+solve
+  :: int_search(
+    supplier ++ cost ++ [bool2int(open[i]) | i in 1..n_suppliers],
+    first_fail,
+    indomain_split,
+    complete
+  )
+  minimize tot;
+
+output
+  [ "warehouses:" ]
+  ++
+  [ "\ntot = ", show(tot) ]
+  ++
+  [ "\nsupplier = [\n" ]
+  ++
+  [ "\t" ++ show(supplier[i]) ++
+    if i = n_stores then "\n]"
+    elseif i mod 5 = 0 then ",\n"
+    else ","
+    endif
+  | i in 1..n_stores
+  ]
+  ++
+  [ "\ncost = [\n" ]
+  ++
+  [ "\t" ++ show(cost[i]) ++
+    if i = n_stores then "\n]"
+    elseif i mod 5 = 0 then ",\n"
+    else ","
+    endif
+  | i in 1..n_stores
+  ]
+  ++
+  [ "\nopen = [\n" ]
+  ++
+  [ "\t" ++ show(open[i]) ++
+    if i = n_suppliers then "\n]\n"
+    elseif i mod 5 = 0 then ",\n"
+    else ","
+    endif
+  | i in 1..n_suppliers
+  ]
+
+%-----------------------------------------------------------------------------
+%-----------------------------------------------------------------------------
+
+Expected Output:
+{
+  "supplier": [
+    5,
+    2,
+    5,
+    1,
+    5,
+    2,
+    2,
+    3,
+    2,
+    3
+  ],
+  "open": [
+    true,
+    true,
+    true,
+    false,
+    true
+  ],
+  "cost": [
+    30,
+    27,
+    70,
+    2,
+    4,
+    22,
+    5,
+    13,
+    35,
+    55
+  ],
+  "tot": 383,
+  "_objective": 383
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

@@ -1,0 +1,40 @@
+{
+  "description": "The problem is about creating a magic square of order 3 using nine cards from a deck. A magic square is a grid of numbers where the values in each row, each column, and both main diagonals sum up to the same total. In this case, the magic square is of order 3, meaning it is a 3x3 grid. The numbers used to fill the grid are the values of nine cards from a deck. The deck is assumed to have 4 cards of each value from 1 to 13. The problem is to find the largest possible constant sum for the magic square that can be formed with these cards, allowing duplicate values. The constant sum is the total that each row, column, and diagonal adds up to.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Magic Square Card Game",
+    "domain": "Puzzles",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "count",
+      "<=",
+      "sum",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Magic Square Card Game",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "magicSquare",
+      "constantSum"
+    ],
+    "model_data_keywords": [
+      "order",
+      "cardValueRange"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "count",
+      "<=",
+      "sum",
+      "="
+    ]
+  }
+}

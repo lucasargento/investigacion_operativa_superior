@@ -1,0 +1,241 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 389
+- Name: Dirichlet Problem for Laplace's Equation
+- Domain: Mathematics
+- Objective: minimization
+
+Problem Description:
+The problem is to solve the Dirichlet problem for Laplace's equation using Leibman's five-point finite-difference approximation. The problem is defined on a grid of size r x c, where r and c are integers. Each cell in the grid has a value between Z and M, where Z and M are floating point numbers. The value of a cell is determined by the average of its four neighboring cells (top, bottom, left, and right). The problem is to find the values of all cells in the grid that satisfy this condition. The problem is solved as a mixed integer programming (MIP) problem. The objective is to minimize the value of the cell at position (1,1).
+
+
+MiniZinc Model:
+int: r;
+int: c;
+float: Z; % zero
+float: M; % max value
+
+% decision variables
+array[0..r, 0..c] of var Z..M: x;
+
+
+% solve satisfy;
+solve :: float_search (
+        [x[i,j] | i in 0..r, j in 1..c], 
+        0.0001, 
+        input_order, 
+        indomain_reverse_split, 
+        complete) 
+    % satisfy;
+    minimize x[1,1]; % To keep Gecode/fz happier.
+
+constraint
+   forall(i in 1..r-1, j in 1..c-1) (
+      4.0*x[i,j] = x[i-1,j] + x[i,j-1] + x[i+1,j] + x[i,j+1]
+   )
+;
+
+output [
+  if j = 0 then "\n" else " " endif ++
+    show_float(8,2, x[i,j])
+  | i in 0..r, j in 0..c
+];
+
+
+% Instance from CLP(R) laplace example
+r = 10;
+c = 10;
+Z = 0.0;
+M = 100.0;
+x = array2d(0..r,0..c, 
+   [
+    Z,Z,Z,Z,Z,Z,Z,Z,Z,Z,Z,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,_,_,_,_,_,_,_,_,_,M,
+    M,M,M,M,M,M,M,M,M,M,M
+   ]);
+
+
+%% The problem instance from MiniZinc's tutorial/laplace.mzn
+% Z = 0.0;
+% M = 100.0;
+% r = 4;
+% c = 4;
+% x = array2d(0..r, 0..c,
+%   [
+%   Z,M,M,M,Z,
+%   Z,_,_,_,Z, 
+%   Z,_,_,_,Z, 
+%   Z,_,_,_,Z,
+%   Z,Z,Z,Z,Z
+%   ]);
+
+Expected Output:
+{
+  "x": [
+    [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      100.0,
+      51.107499035779,
+      32.5209565365329,
+      24.5639524225759,
+      21.1058288555552,
+      20.1179875317424,
+      21.1058288555553,
+      24.5639524225759,
+      32.520956536533,
+      51.107499035779,
+      100.0
+    ],
+    [
+      100.0,
+      71.9090396065828,
+      54.4123746877768,
+      44.6290242982153,
+      39.7413754679026,
+      38.2602924158591,
+      39.7413754679026,
+      44.6290242982154,
+      54.4123746877769,
+      71.9090396065829,
+      100.0
+    ],
+    [
+      100.0,
+      82.1162847027756,
+      68.5904783097761,
+      59.7983946146061,
+      54.9703563019806,
+      53.4404311958888,
+      54.9703563019807,
+      59.7983946146062,
+      68.5904783097762,
+      82.1162847027756,
+      100.0
+    ],
+    [
+      100.0,
+      87.9656208947433,
+      78.034859233946,
+      71.0037195484523,
+      66.9012239295251,
+      65.5607197637347,
+      66.9012239295251,
+      71.0037195484524,
+      78.0348592339461,
+      87.9656208947433,
+      100.0
+    ],
+    [
+      100.0,
+      91.7113396422515,
+      84.5796181828126,
+      79.280400415732,
+      76.0701001039328,
+      74.9999999999998,
+      76.0701001039329,
+      79.280400415732,
+      84.5796181828126,
+      91.7113396422515,
+      100.0
+    ],
+    [
+      100.0,
+      94.30011949145,
+      89.291873439321,
+      85.4681638277303,
+      83.0987760704745,
+      82.2990800283988,
+      83.0987760704745,
+      85.4681638277303,
+      89.291873439321,
+      94.3001194914499,
+      100.0
+    ],
+    [
+      100.0,
+      96.1972648842273,
+      92.8195922552912,
+      90.2016053853936,
+      88.5577603218361,
+      87.9987679726466,
+      88.5577603218361,
+      90.2016053853936,
+      92.8195922552912,
+      96.1972648842272,
+      100.0
+    ],
+    [
+      100.0,
+      97.6693477901679,
+      95.5876253122231,
+      93.9609051367169,
+      92.9318918588299,
+      92.5804712185152,
+      92.9318918588299,
+      93.9609051367169,
+      95.5876253122231,
+      97.6693477901678,
+      100.0
+    ],
+    [
+      100.0,
+      98.8925009642211,
+      97.9006560667163,
+      97.1224979904212,
+      96.6284307582514,
+      96.4593331837545,
+      96.6284307582514,
+      97.1224979904212,
+      97.9006560667163,
+      98.8925009642211,
+      100.0
+    ],
+    [
+      100.0,
+      100.0,
+      100.0,
+      100.0,
+      100.0,
+      100.0,
+      100.0,
+      100.0,
+      100.0,
+      100.0,
+      100.0
+    ]
+  ],
+  "_objective": 51.107499035779
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

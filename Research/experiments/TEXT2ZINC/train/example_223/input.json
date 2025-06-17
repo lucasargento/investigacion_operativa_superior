@@ -1,0 +1,38 @@
+{
+  "description": "We want to minimize the total prices of the foods to purchase. Each food type has a price, a nutrition matrix that contains the amount of nutrients in each food, and there is a demand for each type of nutrient to be met.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Food Purchase Optimization",
+    "domain": "Nutrition",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Food Purchase Optimization",
+    "domain": "Nutrition",
+    "model_var_keywords": [
+      "quantity"
+    ],
+    "model_data_keywords": [
+      "price",
+      "demand",
+      "nutrition"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      ">=",
+      "*"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "description": "The problem is a puzzle named 'Jive turkeys' from Martin Chlond's Integer Programming Puzzles. The problem is to find three integers (x[1], x[2], x[3]) such that they satisfy the following constraints: \n\n1. All three integers are greater than or equal to 0.\n2. The first two integers are less than or equal to 9.\n3. The third integer is less than or equal to 1345.\n4. The equation 10000*x[1] + 6790 + x[2] = 72*x[3] holds true.\n\nThe objective is to minimize the value of the third integer, x[3].",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Jive Turkeys Puzzle",
+    "domain": "Integer Programming Puzzles",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      ">=",
+      "<=",
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Jive Turkeys Puzzle",
+    "domain": "Integer Programming Puzzles",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "max_value_first_two",
+      "max_value_third"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      ">=",
+      "<=",
+      "="
+    ]
+  }
+}

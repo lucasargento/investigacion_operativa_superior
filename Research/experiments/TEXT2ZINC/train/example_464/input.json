@@ -1,0 +1,60 @@
+{
+  "description": "The problem is about implementing the balance_modulo constraint in MiniZinc. The balance_modulo constraint is defined as follows: Given a set of variables, consider the largest set S1 and the smallest set S2 of variables that have the same remainder when divided by a given number M. The balance_modulo constraint is satisfied if the difference between the cardinality of S2 and the cardinality of S1 is equal to a given balance. The problem requires to enforce a balanced assignment of values, no matter how many distinct equivalence classes will be used. In this case, the maximum value of the balance_modulo constraint is minimized. The problem is modeled by creating an array of variables, a balance variable, and a modulo number. The balance_modulo predicate is defined to check the balance_modulo constraint. The problem is solved by satisfying the balance_modulo constraint.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Balance Modulo Constraint",
+    "domain": "Mathematics",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "exists",
+      "forall",
+      "bool2int",
+      "mod",
+      "max",
+      "min_except_0",
+      "balance_modulo",
+      "arrays_equal",
+      "assert",
+      "index_set"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Balance Modulo Constraint",
+    "domain": "Mathematics",
+    "model_var_keywords": [
+      "num_vars",
+      "vars",
+      "balance",
+      "modulo_num",
+      "min_val",
+      "arr",
+      "bal",
+      "m",
+      "lb_arr",
+      "ub_arr",
+      "counts",
+      "max_count",
+      "min_count",
+      "arr1",
+      "arr2"
+    ],
+    "model_data_keywords": [],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "exists",
+      "forall",
+      "bool2int",
+      "mod",
+      "max",
+      "min_except_0",
+      "balance_modulo",
+      "arrays_equal",
+      "assert",
+      "index_set"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "description": "The problem is about a global constraint 'among_modulo' in MiniZinc. The constraint is defined as follows: NVAR is the number of variables of the collection VARIABLES taking a value that is congruent to REMAINDER modulo QUOTIENT. For example, if we have (3, <4, 5, 8, 4, 1>, 0, 2), REMAINDER = 0 and QUOTIENT = 2 specifies that we count the number of even values taken by the different variables. As a consequence the among_modulo constraint holds since exactly 3 values of the collection <4, 5, 8, 4, 1> are even. The problem is to find the values of the variables that satisfy this constraint.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Among Modulo Constraint Satisfaction",
+    "domain": "Constraint Satisfaction",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "among_modulo",
+      "cp1d",
+      "mod",
+      "=",
+      "sum",
+      "bool2int"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Among Modulo Constraint Satisfaction",
+    "domain": "Constraint Satisfaction",
+    "model_var_keywords": [
+      "x",
+      "nvar",
+      "remainder",
+      "quotient"
+    ],
+    "model_data_keywords": [
+      "arraySize",
+      "arrayDomain",
+      "initialValues"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "among_modulo",
+      "cp1d",
+      "mod",
+      "=",
+      "sum",
+      "bool2int"
+    ]
+  }
+}

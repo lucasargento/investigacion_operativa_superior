@@ -1,0 +1,42 @@
+{
+  "description": "The Maximum Flow Problem is a network optimization problem. Given a network G = (V, E), where V is a set of nodes and E within V x V is a set of arcs, the goal is to maximize the flow from one given node s (source) to another given node t (sink) subject to conservation of flow constraints at each node and flow capacities on each arc. The capacity of each arc is represented by an array 'a', where a[i,j] is the capacity of arc (i,j). The elementary flow through each arc is represented by an array 'x', where x[i,j] is the flow through arc (i,j). The total flow from the source to the sink is represented by the variable 'flow'. The problem is to find the values of 'x' and 'flow' that maximize the total flow through the network, subject to the constraints that the flow through each arc must be non-negative and not exceed the capacity of the arc, and the total flow into and out of each node must be equal, except for the source (which only has outgoing flow) and the sink (which only has incoming flow).",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Maximum Flow Problem",
+    "domain": "Network Optimization",
+    "objective": "maximization",
+    "source": "hakank",
+    "constraints": [
+      "<=",
+      "sum",
+      "=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Maximum Flow Problem",
+    "domain": "Network Optimization",
+    "model_var_keywords": [
+      "x",
+      "flow"
+    ],
+    "model_data_keywords": [
+      "n",
+      "num_edges",
+      "E",
+      "a",
+      "s",
+      "t"
+    ],
+    "objective": "maximization",
+    "source": "",
+    "constraints": [
+      "<=",
+      "sum",
+      "=",
+      "*"
+    ]
+  }
+}

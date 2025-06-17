@@ -1,0 +1,44 @@
+{
+  "description": "The P-Median problem is a well-known problem in Operations Research. The problem can be stated as follows: given a set of customers with known amounts of demand, a set of candidate locations for warehouses, and the distance between each pair of customer-warehouse, choose P warehouses to open that minimize the demand-weighted distance of serving all customers from those P warehouses. In this specific instance, there are 2 warehouses to be opened (P=2), 4 customers, and 3 potential warehouse locations. The demand of each customer and the distance from each customer to each warehouse is given. The goal is to determine which warehouses to open and which customers should be served by which warehouse in order to minimize the total demand-weighted distance.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "P-Median Problem",
+    "domain": "Operations Research",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      "/\\"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "P-Median Problem",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "OpenWarehouse",
+      "ShipToCustomer",
+      "TotalDemandWeightedDistance"
+    ],
+    "model_data_keywords": [
+      "num_customers",
+      "num_warehouses",
+      "num_warehouses_to_open",
+      "CustomerDemand",
+      "CustomerWarehouseDistance"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "=",
+      "<=",
+      "/\\"
+    ]
+  }
+}

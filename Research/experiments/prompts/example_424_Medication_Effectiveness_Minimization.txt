@@ -1,0 +1,54 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 424
+- Name: Medication Effectiveness Minimization
+- Domain: Healthcare
+- Objective: minimization
+
+Problem Description:
+A student takes calcium pills and vitamin D pills one after the other . Each calcium pill takes 5 minutes to be effective while each vitamin D pill takes 6 minutes to be effective . Over a month , the student must take at least 130 pills of medication and at least 40 should be vitamin D pills because they enhance the absorption of calcium in the body . Since vitamin D is complimentary to calcium , the student must take more calcium pills than vitamin D pills . How many pills of each should the student take to minimize the total time it takes for the medication to be effective ?
+
+
+MiniZinc Model:
+var int: calcium;
+% vitamin D pills
+var int: vitaminD;
+
+% pills takes are non-negative
+constraint calcium >= 0;
+constraint vitaminD >= 0;
+
+% the student must take at least 130 pills of medication
+constraint calcium + vitaminD >= 130;
+% at least 40 of the total pills must be vitamin D pills
+constraint vitaminD >= 40;
+% the student must take more calcium pills than vitamin D pills
+constraint calcium > vitaminD;
+
+% calcium pills take 5 minutes to be effective and vitamin D pills take 6 minutes to be effective
+var int: total_time = calcium * 5 + vitaminD * 6;
+
+% minimize total time for the pills to be effective
+solve minimize total_time;
+
+output ["Calcium: " ++ show(calcium) ++ "\n", "Vitamin D: " ++ show(vitaminD) ++ "\n", "Total time: " ++ show(total_time) ++ " minutes\n"];
+
+Expected Output:
+{
+  "calcium": 90,
+  "vitaminD": 40,
+  "_objective": 690
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

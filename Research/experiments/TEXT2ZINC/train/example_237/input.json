@@ -1,0 +1,40 @@
+{
+  "description": "PROBLEM TYPE\nLP\n\nINPUT FORMAT\n\n{\n    \"K\": K,\n    \"p\": [P[i] for i in 0, ..., K]\n    \"E[Z]\": ExpectedZ,\n    \"E[Z^2]\": ExpectedZSquared,\n}\n\nOBJECTIVE\nUse linear programming to find lower and upper bounds on E[Z^4].",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Bounds on Fourth Moment",
+    "domain": "Statistics",
+    "objective": "minimization and maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "*",
+      "=",
+      "^"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Bounds on Fourth Moment",
+    "domain": "Statistics",
+    "model_var_keywords": [
+      "lower_bound",
+      "upper_bound"
+    ],
+    "model_data_keywords": [
+      "K",
+      "P",
+      "ExpectedZ",
+      "ExpectedZSquared"
+    ],
+    "objective": "minimization and maximization",
+    "source": "NLP4LP",
+    "constraints": [
+      "sum",
+      "*",
+      "=",
+      "^"
+    ]
+  }
+}

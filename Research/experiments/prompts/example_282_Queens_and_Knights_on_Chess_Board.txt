@@ -1,0 +1,97 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 282
+- Name: Queens and Knights on Chess Board
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+# Problem QueensKnights
+
+The goal is to put m queens in a chess board such that none of the queens can attack each other, and to put n knights such that
+all knights form a cycle. Note that the size of the board si n.
+
+## Data
+  A pair (n,m) where n is the size of the chess board and n the number of queens.
+
+## Model
+  constraints: [AllDifferent](http://pycsp.org/documentation/constraints/AllDifferent)
+
+## Execution
+  - python QueensKnights.py -data=[number,number]
+
+## Links
+  - https://dblp.org/rec/conf/ecai/BoussemartHLS04.html
+
+## Tags
+  academic
+
+
+MiniZinc Model:
+include "globals.mzn";
+
+% Size of the chess board
+int: n = 8;
+
+% Number of queens
+int: m = 8;
+
+% Variables
+array[1..n] of var 1..n: Q;
+array[1..n] of var 1..n: K;
+
+% Constraints
+constraint alldifferent(Q);
+
+% Each queen is in a different row/column
+constraint forall(i in 1..n)(forall(j in i+1..n)(Q[i] != Q[j] /\ abs(Q[i]-Q[j]) != abs(i-j)));
+
+% Knights form a cycle
+constraint forall(i in 1..n-1)(abs(K[i+1]-K[i]) = 2 \/ abs(K[i+1]-K[i]) = 1);
+constraint abs(K[n]-K[1]) = 2 \/ abs(K[n]-K[1]) = 1;
+
+% Queens and knights are not in the same position
+constraint forall(i in 1..n)(Q[i] != K[i]);
+
+% Solve
+solve satisfy;
+
+% Output
+output [ "Q: " ++ show(Q) ++ "\n" ++ "K: " ++ show(K) ];
+
+Expected Output:
+{
+  "Q": [
+    4,
+    2,
+    7,
+    3,
+    6,
+    8,
+    5,
+    1
+  ],
+  "K": [
+    1,
+    3,
+    1,
+    2,
+    1,
+    2,
+    1,
+    2
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

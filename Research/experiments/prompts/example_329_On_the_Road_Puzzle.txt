@@ -1,0 +1,225 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 329
+- Name: On the Road Puzzle
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+The problem is a puzzle named 'On the road' from Martin Chlond's Integer Programming Puzzles. The puzzle is about finding the closest distance on a road. The road is represented by a 10x10 grid where each cell can either be 0 or 1. The variable x[i,j] is 1 if digit (i-1) is in position j. The variable y[i] represents the number at position i (not a proper integer programming constraint). The variable 'closest' is the sum of the products of the digit (i-1) and its position in the grid for the first two columns. The objective is to minimize the value of 'closest'. There are several constraints in the problem. Each row and each column in the grid should have exactly one cell with the value 1. The first, third, fifth, seventh, and ninth cells in the first row should be 0. The sum of the products of the digit (i-1) and its position in the grid for every two consecutive columns should be equal, with a difference of 'd'.
+
+
+MiniZinc Model:
+set of 1..10: N = 1..10;
+array[N,N] of var 0..1: x; %  x(i,j) = 1 if digit (i-1) is in position j
+var int: d;
+array[N] of var 0..9: y; % the number (not a proper integer programming constraint)
+
+var int: closest =  sum(i in N) (10*(i-1)*x[i,1]) + sum(i in N) ((i-1)*x[i,2]);
+
+% solve minimize closest;
+solve :: int_search([x[i,j] | i,j in N], first_fail, indomain_max, complete) minimize closest;
+
+
+constraint 
+  % note: this constraint is not a proper integer programming constraint
+  forall(i in N) (
+     let {
+       var 1..10: j
+     }
+     in
+     x[i,j] = 1
+     /\
+     y[i] = j -1
+  )
+  /\
+  forall(i in N) (
+        sum(j in N) (x[i,j]) = 1
+  )
+  /\
+  forall(j in N) (
+        sum(i in N) (x[i,j]) = 1
+  )
+  /\
+  x[1,1]+x[1,3]+x[1,5]+x[1,7]+x[1,9] = 0
+  /\
+  sum(i in N) (10*(i-1)*x[i,1]) + sum(i in N) ((i-1)*x[i,2]) + d   =
+        sum(i in N) (10*(i-1)*x[i,3]) + sum(i in N) ((i-1)*x[i,4])
+  /\
+   sum(i in N) (10*(i-1)*x[i,3])  + sum(i in N) ((i-1)*x[i,4]) + d =
+   sum(i in N) (10*(i-1)*x[i,5]) + sum(i in N)((i-1)*x[i,6])
+  /\
+  sum(i in N) (10*(i-1)*x[i,5]) + sum(i in N) ((i-1)*x[i,6]) + d =
+  sum(i in N) (10*(i-1)*x[i,7]) +sum(i in N) ((i-1)*x[i,8])
+  /\
+  sum(i in N) (10*(i-1)*x[i,7]) + sum(i in N) ((i-1)*x[i,8]) + d =
+  sum(i in N) (10*(i-1)*x[i,9]) + sum(i in N) ((i-1)*x[i,10])
+;
+
+output 
+[
+  "y: ", show(y), "\n",
+  "d: ", show(d)
+]
+++
+[
+  if i = 1 /\ j = 1 then
+   "\nclosest: " ++ show(closest) 
+  else "" endif ++
+  if j = 1 then "\n" else " " endif ++
+  show(x[i,j])
+  | i,j in N
+] ++ ["\n"];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ]
+  ],
+  "d": 22,
+  "y": [
+    1,
+    0,
+    3,
+    2,
+    5,
+    4,
+    7,
+    6,
+    9,
+    8
+  ],
+  "_objective": 10
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

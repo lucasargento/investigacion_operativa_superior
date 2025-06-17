@@ -1,0 +1,32 @@
+{
+  "description": "This problem is known as the Tobacco puzzle or Clarke's tobacconist problem. It is a simple integer programming problem. The problem is to find two non-negative integers x[1] and x[2] such that the equation 25*x[1] + 49*x[2] = 2000 is satisfied. The problem was originally presented in the book 'Fun with Figures' by L.H. Clarke in 1954.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Tobacco Puzzle",
+    "domain": "Puzzles",
+    "objective": "satisfaction",
+    "source": "hakank",
+    "constraints": [
+      "="
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Tobacco Puzzle",
+    "domain": "Puzzles",
+    "model_var_keywords": [
+      "x"
+    ],
+    "model_data_keywords": [
+      "coeff1",
+      "coeff2",
+      "target_sum"
+    ],
+    "objective": "satisfy",
+    "source": "",
+    "constraints": [
+      "="
+    ]
+  }
+}

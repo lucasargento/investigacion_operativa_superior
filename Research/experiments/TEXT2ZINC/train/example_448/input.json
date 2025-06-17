@@ -1,0 +1,38 @@
+{
+  "description": "The Knapsack Problem is a classic optimization problem in operations research and computer science. The problem is to determine the most valuable combination of items to include in a knapsack, given a set of TotalItems with different values and weights represented by ItemValues and ItemWeights respectively, and a maximum weight capacity of the knapsack MaxKnapsackWeight. The goal is to maximize the total value of the items in the knapsack, represented by ItemValues, without exceeding its weight capacity MaxKnapsackWeight.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Knapsack Problem",
+    "domain": "Operations Research",
+    "objective": "maximization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "sum",
+      "<=",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Knapsack Problem",
+    "domain": "Operations Research",
+    "model_var_keywords": [
+      "InKnapsack",
+      "TotalValue"
+    ],
+    "model_data_keywords": [
+      "TotalItems",
+      "ItemValues",
+      "ItemWeights",
+      "MaxKnapsackWeight"
+    ],
+    "objective": "maximization",
+    "source": "COMPLEXOR",
+    "constraints": [
+      "sum",
+      "<=",
+      "*"
+    ]
+  }
+}

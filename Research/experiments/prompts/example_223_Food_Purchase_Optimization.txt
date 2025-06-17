@@ -1,0 +1,49 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 223
+- Name: Food Purchase Optimization
+- Domain: Nutrition
+- Objective: minimization
+
+Problem Description:
+We want to minimize the total prices of the foods to purchase. Each food type has a price, a nutrition matrix that contains the amount of nutrients in each food, and there is a demand for each type of nutrient to be met.
+
+
+Input Data (data.dzn):
+price = [1, 2, 3];
+demand = [10, 20];
+nutrition = [|3, 5|1, 3|4, 4|];
+
+MiniZinc Model:
+% Define parameters
+int: num_foods; % Number of available foods
+int: num_nutrients; % Number of nutrients
+
+array[1..num_foods] of int: price; % Price of each food
+array[1..num_nutrients] of int: demand; % Demand for each nutrient
+array[1..num_foods, 1..num_nutrients] of int: nutrition; % Nutrition matrix
+
+% Define decision variables
+array[1..num_foods] of var 0..100: quantity; % Quantity of each food to purchase
+
+% Define objective function
+var int: total_price = sum(i in 1..num_foods)(price[i]*quantity[i]);
+minimize total_price;
+
+% Define constraints
+constraint forall(i in 1..num_nutrients)(
+  sum(j in 1..num_foods)(nutrition[j,i]*quantity[j]) >= demand[i]
+);
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

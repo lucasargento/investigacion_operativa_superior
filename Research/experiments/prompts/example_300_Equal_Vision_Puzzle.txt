@@ -1,0 +1,125 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 300
+- Name: Equal Vision Puzzle
+- Domain: Puzzles
+- Objective: minimization
+
+Problem Description:
+The problem is a puzzle called 'Equal Vision' from Martin Chlond's Integer Programming Puzzles. The puzzle is set on a grid of size 4x4. Each cell in the grid can either be occupied or vacant. The objective is to minimize the number of vacant cells. A watchman is placed on each cell and can see all the vacant cells in the same row, column, and diagonals. The number of vacant cells visible to the watchman on each cell is represented by 'n'. The constraints of the problem are such that the sum of vacant cells in the same row, column, and diagonals for each cell should be equal to 'n'. Additionally, 'n' should be greater than or equal to 6 minus 99 times the occupancy status of the cell and less than or equal to 6 plus 99 times the occupancy status of the cell. The occupancy status of a cell is represented by 'x', where 'x' is 0 if the cell is occupied and 1 if it is vacant.
+
+
+MiniZinc Model:
+int: size = 4;
+int: cvis = 6;
+set of 1..size: S = 1..size;
+set of 1..cvis: C = 1..cvis;
+
+% x(i,j) = 0 if cell {i,j} occupied, 1 otherwise
+array[S,S] of var 0..1: x; 
+% n(i,j) = number of vacant cells visible to watchman on cell {i,j}
+array[S,S] of var 0..20: n; % 0..4*(size-4): n; 
+
+var int: sumx = sum(i in S,j in S) (x[i,j]);
+
+% minimise vacant cells
+solve :: int_search([x[i,j] | i,j in S], first_fail, indomain_min, complete) minimize sumx;
+
+constraint 
+
+  forall(i in S,j in S) (
+        sum(m in S where m != i /\ m-i+j >= 1 /\ m-i+j <= size) (x[m,m-i+j]) +
+        sum(m in S where m != i /\ i+j-m >= 1 /\ i+j-m <= size) (x[m,i+j-m]) +
+        sum(m in S where m != i) (x[m,j]) + 
+        sum(m in S where m != j) (x[i,m]) = n[i,j]
+  )
+  /\
+
+  forall(i in S,j in S) (
+     n[i,j] >= cvis-99*x[i,j]
+  )
+  /\
+  forall(i in S,j in S) (
+      n[i,j] <= cvis+99*x[i,j]
+  )
+
+;
+
+output [
+   if i = 1 /\ j = 1 then
+    "\nsumx: " ++ show(sumx)
+   else "" endif ++
+   if j = 1 then "\n" else " " endif ++
+   show(x[i,j])
+   | i in S, j in S
+] ++ ["\n"];
+
+Expected Output:
+{
+  "x": [
+    [
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      1,
+      1,
+      0
+    ]
+  ],
+  "n": [
+    [
+      6,
+      6,
+      6,
+      3
+    ],
+    [
+      6,
+      6,
+      7,
+      6
+    ],
+    [
+      6,
+      9,
+      6,
+      6
+    ],
+    [
+      7,
+      6,
+      6,
+      6
+    ]
+  ],
+  "_objective": 10
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

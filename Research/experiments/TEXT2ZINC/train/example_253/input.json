@@ -1,0 +1,44 @@
+{
+  "description": "Minimize the total transportation cost. This cost is calculated based on the number of depots I, the number of ports J, the cost Price per unit distance for transporting goods, and the distance Distance between depot i and port j.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Container Transportation Optimization",
+    "domain": "Transportation",
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "div",
+      "*"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Container Transportation Optimization",
+    "domain": "Transportation",
+    "model_var_keywords": [
+      "number",
+      "total_cost"
+    ],
+    "model_data_keywords": [
+      "numdepot",
+      "numport",
+      "price",
+      "distance"
+    ],
+    "objective": "minimization",
+    "source": "NLP4LP",
+    "constraints": [
+      "forall",
+      "sum",
+      "<=",
+      ">=",
+      "div",
+      "*"
+    ]
+  }
+}

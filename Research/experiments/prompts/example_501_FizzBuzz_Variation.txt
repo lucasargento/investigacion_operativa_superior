@@ -1,0 +1,247 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 501
+- Name: FizzBuzz Variation
+- Domain: Puzzles
+- Objective: satisfaction
+
+Problem Description:
+The problem is a variation of the classic FizzBuzz problem. The task is to write a program that prints the numbers from 1 to 100 with the following conditions: 
+
+1. For multiples of three print 'Fizz' instead of the number.
+2. For multiples of five print 'Buzz' instead of the number.
+3. For numbers which are multiples of both three and five print 'FizzBuzz'.
+
+The variation adds new requirements:
+
+1. A number is 'Fizz' if it is divisible by 3 or if it has a 3 in it.
+2. A number is 'Buzz' if it is divisible by 5 or if it has a 5 in it.
+3. If a number is divisible by 3 and has a 5 in it, or if it is divisible by 5 and has a 3 in it, it is 'FizzBuzz'.
+
+The solution must handle all these cases at the same time, without any order between the conditions. The solution should also be able to handle the requirement 'or if it has a <n> in it'.
+
+
+MiniZinc Model:
+int: n = 100;
+
+% 0: nothing
+% 1: fizz
+% 2: buzz
+% 3: fizzbuzz
+array[1..n] of var 0..3: x; % 
+
+
+%
+% array <-> number
+%
+predicate toNum(array[int] of var int: number, var int: num_sum) =
+          let { int: len = length(number) }
+          in
+          num_sum = sum(i in 1..len) (
+            ceil(pow(10.0, int2float(len-i))) * number[i]
+          )
+          /\ forall(i in 1..len) (number[i] >= 0)
+;
+
+
+%
+% does a contains e?
+%
+predicate contains(var int: e, array[int] of var int: a) =
+   exists(i in 1..length(a)) (
+      a[i] = e
+   )
+;
+
+array[0..3] of string: fizz_buzz = array1d(0..3, ["", "fizz", "buzz", "fizzbuzz"]);
+
+%solve satisfy;
+solve :: int_search(x, first_fail, indomain_min, complete) satisfy;
+
+
+constraint
+   forall(i in 1..n) (
+     let {
+        array[1..3] of var 0..9: a
+     }
+     in
+     toNum(a, i)
+     /\
+     (
+      ( 
+        (i mod 3 = 0 /\ i mod 5 = 0) 
+         \/ 
+        (contains(3, a) /\ contains(5, a))
+         \/
+        (i mod 3 = 0 /\ contains(5, a)) 
+         \/
+        (i mod 5 = 0 /\ contains(3, a)) 
+
+       )
+        <-> x[i] = 3  % fizz buzz
+     )
+     /\
+     (
+      (
+       (i mod 3 = 0 \/ contains(3, a) )
+       /\
+       (i mod 5 > 0 /\ not(contains(5, a) ))
+      )
+      <-> x[i] = 1  % fizz
+     )
+     /\
+     (
+      (
+       (i mod 5 = 0 \/ contains(5, a)) 
+       /\
+       (i mod 3 > 0 /\ not(contains(3, a) ))
+      )
+      <-> x[i] = 2 % buzz
+     )
+     /\
+     (
+       (
+        i mod 3 > 0 /\ i mod 5 > 0 /\ 
+        not(contains(3,a)) /\ not(contains(5,a))
+       )
+        <-> x[i] = 0
+      )
+
+
+   )
+;
+
+output 
+% [
+%   show(i) ++ ": " ++ show(x[i]) ++ "\n"
+%   | i in 1..n
+% ] ++ 
+[
+  let {
+    int: t = fix(x[i])
+  } in
+    show(i) ++ ": " ++
+    if t = 0 then show(i) else show(fizz_buzz[t]) endif ++
+    "\n"
+  | i in 1..n
+] ++
+["\n"];
+
+Expected Output:
+{
+  "x": [
+    0,
+    0,
+    1,
+    0,
+    2,
+    1,
+    0,
+    0,
+    1,
+    2,
+    0,
+    1,
+    1,
+    0,
+    3,
+    0,
+    0,
+    1,
+    0,
+    2,
+    1,
+    0,
+    1,
+    1,
+    2,
+    0,
+    1,
+    0,
+    0,
+    3,
+    1,
+    1,
+    1,
+    1,
+    3,
+    1,
+    1,
+    1,
+    1,
+    2,
+    0,
+    1,
+    1,
+    0,
+    3,
+    0,
+    0,
+    1,
+    0,
+    2,
+    3,
+    2,
+    3,
+    3,
+    2,
+    2,
+    3,
+    2,
+    2,
+    3,
+    0,
+    0,
+    1,
+    0,
+    2,
+    1,
+    0,
+    0,
+    1,
+    2,
+    0,
+    1,
+    1,
+    0,
+    3,
+    0,
+    0,
+    1,
+    0,
+    2,
+    1,
+    0,
+    1,
+    1,
+    2,
+    0,
+    1,
+    0,
+    0,
+    3,
+    0,
+    0,
+    1,
+    0,
+    2,
+    1,
+    0,
+    0,
+    1,
+    2
+  ]
+}
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

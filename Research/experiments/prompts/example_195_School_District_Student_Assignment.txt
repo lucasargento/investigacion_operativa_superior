@@ -1,0 +1,56 @@
+You are an expert in translating MiniZinc models to Python using OR-Tools. Your task is to translate the following optimization problem:
+
+Problem Information:
+- Example Number: 195
+- Name: School District Student Assignment
+- Domain: Education
+- Objective: minimization
+
+Problem Description:
+We want to assign all students to schools, while minimizing the total distance traveled by all students. We have a total number of S schools, G student groups, and N neighborhoods. Each school s has a capacity for student group g represented by Capacity. The population of student group g in neighborhood n is given by Population. The distance between neighborhood n and school s is denoted as Distance. We may ignore the fact that numbers of students must be integers.
+
+
+Input Data (data.dzn):
+S = 3;
+G = 2;
+N = 4;
+Capacity = [|15, 20|, |20, 15|, |5, 17|];
+Population = [|7, 19|, |4, 12|, |9, 2|, |6, 8|];
+Distance = [|5.2, 4.0, 3.1|, |3.8, 5.5, 6.1|, |4.2, 3.5, 5.0|, |5.0, 4.1, 3.2|];
+
+MiniZinc Model:
+% Parameters
+int: S; % Number of schools
+int: G; % Number of student groups
+int: N; % Number of neighborhoods
+array[1..S, 1..G] of int: Capacity; % Capacity of each school for each student group
+array[1..N, 1..G] of int: Population; % Population of each student group in each neighborhood
+array[1..N, 1..S] of float: Distance; % Distance from each neighborhood to each school
+
+% Decision Variables
+var array[1..N, 1..S, 1..G] of float: x; % Number of students of each group from each neighborhood assigned to each school
+
+% Objective
+var float: total_distance = sum(n in 1..N, s in 1..S, g in 1..G) (x[n,s,g] * Distance[n,s]);
+
+% Constraints
+constraint forall(n in 1..N, g in 1..G) (sum(s in 1..S) (x[n,s,g]) = Population[n,g]); % All students must be assigned to a school
+constraint forall(s in 1..S, g in 1..G) (sum(n in 1..N) (x[n,s,g]) <= Capacity[s,g]); % School capacity must not be exceeded
+
+% Solve
+solve minimize total_distance;
+
+% Output
+output ["assignment: ", show(x), "\n", "total_distance: ", show(total_distance)];
+
+Instructions:
+1. If a MiniZinc model is provided, translate it directly to Python using OR-Tools.
+2. If no MiniZinc model is provided, first create a MiniZinc model and then translate it to Python.
+3. The Python code should be complete and executable as-is.
+4. Include all necessary imports and dependencies.
+5. Define all variables before use.
+6. Use explicit loops instead of list comprehensions.
+7. Ensure the solution matches the expected output format.
+8. Include comments explaining key parts of the implementation.
+
+Please provide the complete Python code that solves this optimization problem using OR-Tools.

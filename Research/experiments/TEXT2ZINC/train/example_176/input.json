@@ -1,0 +1,50 @@
+{
+  "description": "The problem is about carpool fairness. In this scenario, n people are sharing a carpool for m days. Each person may choose whether to participate in the carpool on each day. The goal is to allocate the daily driving responsibilities 'fairly'. One possible approach is to split the responsibilities based on how many people use the car. So, on a day when k people use the carpool, each person incurs a responsibility of 1/k. That is, for each person i, we calculate his or her driving obligation Oi. We can then require that person i drives no more than Oi times every m days. The problem is to minimize the differences between Oi and the actual value to get as fair schedule as possible.",
+  "parameters": [],
+  "output": [],
+  "metadata": {
+    "identifier": "",
+    "name": "Carpool Fairness",
+    "domain": "Transportation",
+    "objective": "minimization",
+    "source": "hakank",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "<=",
+      "abs",
+      "in"
+    ]
+  },
+  "unverified_metadata": {
+    "name": "Carpool Fairness",
+    "domain": "Transportation",
+    "model_var_keywords": [
+      "driver",
+      "num_drives",
+      "diffs",
+      "z",
+      "pdiff",
+      "mean"
+    ],
+    "model_data_keywords": [
+      "num_days",
+      "num_people",
+      "participation",
+      "day_people",
+      "obligation",
+      "obligation_diff"
+    ],
+    "objective": "minimization",
+    "source": "",
+    "constraints": [
+      "forall",
+      "sum",
+      "bool2int",
+      "<=",
+      "abs",
+      "in"
+    ]
+  }
+}
