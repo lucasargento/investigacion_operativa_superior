@@ -1,0 +1,10 @@
+ejemplar_1.txt: 1216932.297
+ejemplar_2.txt: 756664.795
+ejemplar_3.txt: 1470875.228
+ejemplar_4.txt: 297016.8287
+ejemplar_5.txt: 1146648.713
+ejemplar_6.txt: 368738.1588
+ejemplar_7.txt: 960702.9006
+ejemplar_8.txt: 464136.4571
+ejemplar_9.txt: 1242193.926
+ejemplar_10.txt: 475488.3774
