@@ -51,7 +51,7 @@ IO-2026-SCHEDULEIT
 
 ---
 
-## Endpoints disponibles
+## (Algunos) Endpoints disponibles
 
 | Endpoint | Descripción | Filtros disponibles |
 |---|---|---|
@@ -140,9 +140,5 @@ Ahí van a ver la documentación interactiva (Swagger UI) donde pueden probar ca
 
 - [ ] Tengo mi token del grupo
 - [ ] Instalé `requests` (`pip install requests`)
-- [ ] Puedo acceder a `https://scheduleit-api.onrender.com/docs` desde el browser
-- [ ] Sé en qué página están los datos que necesito (revisar `total_pages`)
 
 ---
-
-*ScheduleIt! Factory API — IO III 2026*
