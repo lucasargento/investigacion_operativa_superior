@@ -17,7 +17,7 @@ import math
 
 app = FastAPI(
     title="ScheduleIt! Factory API",
-    description="API de datos para problema de Asignación + Scheduling (IO 2025)",
+    description="API de datos para problema de Asignación + Scheduling (Investigación Operativa Superior)",
     version="1.0.0",
 )
 
