@@ -420,7 +420,7 @@ def tablero():
 
   <div class="card">
     <h2>Ranking de llegada</h2>
-    <div id="ranking"><div class="empty">Esperando al primer valiente...</div></div>
+    <div id="ranking"><div class="empty">Esperando resultados...</div></div>
     <div class="counter" id="counter"></div>
   </div>
 </div>
